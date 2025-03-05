@@ -19,3 +19,23 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+@layer base {
+  @font-face {
+    font-family: "Iran";
+    src: url("/fonts/IRANSans/IRANSans.ttf");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "IranMedium";
+    src: url("/fonts/IRANSans/IRANSans_Medium.ttf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Dana";
+    src: url("/fonts/Dana/woff2/DanaFaNum-Regular.woff2");
+    font-display: swap;
+  }
+}
