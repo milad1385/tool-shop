@@ -28,6 +28,7 @@ export default {
         Iran: "Iran",
         dana: "Dana",
         IranMedium: "IranMedium",
+        Lalezar: "Lalezar",
       },
     },
   },

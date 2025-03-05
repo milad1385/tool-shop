@@ -15,6 +15,7 @@ function Slider() {
     <Swiper
       pagination={{
         dynamicBullets: true,
+        clickable: true,
       }}
       modules={[Pagination]}
       className="mySwiper mt-10"
