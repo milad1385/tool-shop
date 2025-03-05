@@ -66,7 +66,7 @@ function Navbar() {
               <Link href="/">بیشتر</Link>
               <IoChevronDown />
               {/* maga menu */}
-              <div className="absolute top-6 transition-all group-hover:opacity-100 group-hover:visible invisible opacity-0  w-[528px] bg-white text-sm font-dana  shadow-lg rounded-xl px-5 flex items-center gap-x-8">
+              <div className="absolute z-10 top-6 transition-all group-hover:opacity-100 group-hover:visible invisible opacity-0  w-[528px] bg-white text-sm font-dana  shadow-lg rounded-xl px-5 flex items-center gap-x-8">
                 <div>
                   <ul className="space-y-3 child:text-[#1f2937]">
                     <li>
