@@ -1,28 +1,40 @@
+import { formattedPrice } from "@/utils/helper";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { LuArrowDownUp } from "react-icons/lu";
 
-function ProductBox() {
+function ProductBox({ title, discount, id, image, link, price }: IProduct) {
   return (
     <div className="bg-white shadow rounded-2xl overflow-hidden p-4">
-      <div className="relative">
+      <Link href={link} className="relative">
         <Image
-          src="/images/product-1.jpg"
-          alt="product-1.jpg"
+          src={`/images/${image}`}
+          alt={title}
           width={1920}
           height={1080}
           className="mx-auto w-[260px]"
         />
-        <span className="bg-[#eab308] w-[40px]  h-[40px] flex-center text-sm rounded-full absolute top-1 right-1">30%</span>
-      </div>
+        {discount && (
+          <span className="bg-[#eab308] w-[40px]  h-[40px] flex-center text-sm rounded-full absolute top-1 right-1">
+            {discount}%
+          </span>
+        )}
+      </Link>
       <div>
-        <h2 className="text-center font-Lalezar text-base md:text-lg">
-          دستگاه جوشکاری
-        </h2>
+        <Link href={link} className="flex-center font-Lalezar text-base md:text-lg">
+          {title}
+        </Link>
         <div className="flex items-center justify-center gap-x-3 mt-2">
-          <span className="text-zinc-700 line-through">630,000 تومان</span>
-          <span className="text-yellow-500">400,000 تومان</span>
+          <span className={`text-zinc-700 ${discount ? "line-through" : ""}`}>
+            {formattedPrice(price)} تومان
+          </span>
+          {discount && (
+            <span className="text-yellow-500">
+              {formattedPrice(price - (price * discount) / 100)} تومان
+            </span>
+          )}
         </div>
       </div>
       <div className="flex items-center justify-center gap-x-3 mt-4">
@@ -30,7 +42,7 @@ function ProductBox() {
           <HiOutlineShoppingBag className="text-2xl" />
         </div>
         <div className="bg-yellow-500 p-2 text-white rounded-lg md:cursor-pointer">
-        <LuArrowDownUp className="text-2xl"/>
+          <LuArrowDownUp className="text-2xl" />
         </div>
       </div>
     </div>
