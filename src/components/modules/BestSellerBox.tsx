@@ -3,10 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function BestSellerBox({ title, discount, image, link, price, id ,quantity }: IBestSellerBox) {
+function BestSellerBox({
+  title,
+  discount,
+  image,
+  link,
+  price,
+  id,
+  quantity,
+}: IBestSellerBox) {
   return (
     <div className="bg-white shadow rounded-3xl overflow-hidden p-4">
-      <Link href="" className="flex gap-x-2">
+      <Link href={link} className="flex gap-x-2">
         <Image
           width={1920}
           height={1080}
