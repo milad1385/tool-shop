@@ -17,8 +17,8 @@ function Navbar() {
               src="/images/logo.png"
               alt="logo.png"
               className="w-[124px] h-[41px]"
-              width={124}
-              height={41}
+              width={1920}
+              height={1080}
             />
             <div className="h-[48px] w-[65%] border border-gray-300 flex items-center rounded-md overflow-hidden justify-between">
               <input

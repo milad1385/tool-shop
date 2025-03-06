@@ -25,3 +25,10 @@ interface IBestSellerBox extends IProduct {
 interface IBanner {
   src?: string;
 }
+
+interface IArticle {
+  id: number;
+  title: string;
+  link: string;
+  image: string;
+}

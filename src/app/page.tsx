@@ -1,4 +1,5 @@
 import AdsSection from "@/components/templates/Home/AdsSection";
+import Articles from "@/components/templates/Home/Articles";
 import Banner from "@/components/templates/Home/Banner";
 import BestSeller from "@/components/templates/Home/BestSeller";
 import Categories from "@/components/templates/Home/Categories";
@@ -16,9 +17,10 @@ function page() {
       <SalesProducts />
       <BestSeller />
       <Banner src="pic.jpg" />
-      <NewestProduct/>
-      <AdsSection/>
-      <SuggestedProduct/>
+      <NewestProduct />
+      <AdsSection />
+      <SuggestedProduct />
+      <Articles />
     </div>
   );
 }
