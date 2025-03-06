@@ -7,7 +7,7 @@ import { LuArrowDownUp } from "react-icons/lu";
 
 function ProductBox({ title, discount, id, image, link, price }: IProduct) {
   return (
-    <div className="bg-white shadow rounded-2xl overflow-hidden p-4">
+    <div className="bg-white shadow rounded-3xl overflow-hidden p-4">
       <Link href={link} className="relative">
         <Image
           src={`/images/${image}`}

@@ -1,3 +1,4 @@
+import BestSeller from "@/components/templates/Home/BestSeller";
 import Categories from "@/components/templates/Home/Categories";
 import SalesProducts from "@/components/templates/Home/SalesProducts";
 import Slider from "@/components/templates/Home/Slider";
@@ -9,6 +10,7 @@ function page() {
       <Slider />
       <Categories />
       <SalesProducts />
+      <BestSeller />
     </div>
   );
 }

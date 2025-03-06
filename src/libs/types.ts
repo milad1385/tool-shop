@@ -17,3 +17,7 @@ interface IProduct {
 interface ITitle {
   title: string;
 }
+
+interface IBestSellerBox extends IProduct {
+  quantity: number;
+}
