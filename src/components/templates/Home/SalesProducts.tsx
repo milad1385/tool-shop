@@ -2,13 +2,12 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/pagination";
 import SalesProductSlider from "./SalesProductSlider";
+import Title from "@/components/modules/Title";
 
 function SalesProducts() {
   return (
     <div className="my-10 bg-[#eab308] rounded-lg px-5 py-8">
-      <h3 className="text-3xl text-center font-Lalezar mb-10">
-        پیشنهاد شگفت انگیز
-      </h3>
+      <Title title="پیشنهاد شگفت انگیز"/>
       <div className="grid grid-cols-12 gap-[15px]">
         <SalesProductSlider />
         <div className="col-span-3 bg-[#292524] shadow rounded-2xl overflow-hidden px-4 py-8 flex flex-col justify-between">

@@ -13,3 +13,7 @@ interface IProduct {
   price: number;
   discount: number;
 }
+
+interface ITitle {
+  title: string;
+}
