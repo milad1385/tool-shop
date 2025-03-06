@@ -4,7 +4,7 @@ import SuggestedProductSlider from "./SuggestedProductSlider";
 
 function SuggestedProduct() {
   return (
-    <div className="my-10">
+    <div className="my-12">
       <Title title="پیشنهاد های ترازو" />
       <SuggestedProductSlider />
     </div>
