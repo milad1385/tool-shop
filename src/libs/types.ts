@@ -21,3 +21,7 @@ interface ITitle {
 interface IBestSellerBox extends IProduct {
   quantity: number;
 }
+
+interface IBanner {
+  src?: string;
+}

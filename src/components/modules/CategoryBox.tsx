@@ -6,7 +6,7 @@ function CategoryBox({ title, image, link }: ICategory) {
   return (
     <Link
       href={link}
-      className="block bg-white w-[190px]  py-3 border border-slate-200  rounded-3xl leading-10 md:cursor-pointer"
+      className="block bg-white   py-3 border border-slate-200  rounded-3xl leading-10 md:cursor-pointer"
     >
       <Image
         width={1920}

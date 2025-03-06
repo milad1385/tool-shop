@@ -1,3 +1,4 @@
+import Banner from "@/components/templates/Home/Banner";
 import BestSeller from "@/components/templates/Home/BestSeller";
 import Categories from "@/components/templates/Home/Categories";
 import SalesProducts from "@/components/templates/Home/SalesProducts";
@@ -11,6 +12,7 @@ function page() {
       <Categories />
       <SalesProducts />
       <BestSeller />
+      <Banner src="pic.jpg" />
     </div>
   );
 }

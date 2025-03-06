@@ -50,7 +50,7 @@ function CategoriesSlider() {
   ];
 
   return (
-    <Swiper slidesPerView={6} spaceBetween={10} className="mt-10">
+    <Swiper slidesPerView={6} spaceBetween={15} className="mt-10">
       {categories.map((category) => (
         <SwiperSlide key={category.id}>
           <CategoryBox {...category} />
