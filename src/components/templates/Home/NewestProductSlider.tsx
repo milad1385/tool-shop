@@ -49,15 +49,13 @@ function NewestProductSlider() {
     },
   ];
   return (
-    <div>
-      <Swiper slidesPerView={4} spaceBetween={15}>
-        {products.map((product) => (
-          <SwiperSlide key={product.id}>
-            <ProductBox {...product} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+    <Swiper slidesPerView={4} spaceBetween={15}>
+      {products.map((product) => (
+        <SwiperSlide key={product.id}>
+          <ProductBox {...product} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }
 

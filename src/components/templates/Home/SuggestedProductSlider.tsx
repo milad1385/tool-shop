@@ -1,11 +1,10 @@
 "use client";
-import React from "react";
 import ProductBox from "@/components/modules/ProductBox";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-
-function SalesProductSlider() {
+function SuggestedProductSlider() {
   const products = [
     {
       id: 1,
@@ -39,18 +38,24 @@ function SalesProductSlider() {
       price: 6000000,
       discount: 30,
     },
+    {
+      id: 5,
+      title: "دریل شارژی مدل دیوالت",
+      link: "",
+      image: "product-6.jpg",
+      price: 2000000,
+      discount: 30,
+    },
   ];
   return (
-    <div className="col-span-9">
-      <Swiper slidesPerView={3} spaceBetween={15}>
-        {products.map((product) => (
-          <SwiperSlide key={product.id}>
-            <ProductBox {...product} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+    <Swiper slidesPerView={4} spaceBetween={15}>
+      {products.map((product) => (
+        <SwiperSlide key={product.id}>
+          <ProductBox {...product} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }
 
-export default SalesProductSlider;
+export default SuggestedProductSlider;
