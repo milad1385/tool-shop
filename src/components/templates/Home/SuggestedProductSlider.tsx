@@ -58,7 +58,7 @@ function SuggestedProductSlider() {
       }}
       modules={[Autoplay]}
       breakpoints={{
-        300: { slidesPerView: 1 },
+        0: { slidesPerView: 1 },
         500: { slidesPerView: 2 },
         768: { slidesPerView: 3 },
         992: { slidesPerView: 3 },
