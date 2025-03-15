@@ -1,4 +1,4 @@
-const formattedPrice = (price: Number, locale = "fa-IR") => {
+const formattedPrice = (price: number, locale = "fa-IR") => {
   return price.toLocaleString(locale);
 };
 

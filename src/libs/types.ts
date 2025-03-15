@@ -1,17 +1,17 @@
 export interface ICategory {
-  id: Number;
+  id: number;
   title: string;
   image: string;
   link: string;
 }
 
 export interface IProduct {
-  id: Number;
+  id: number;
   title: string;
   link: string;
   image: string;
-  price: Number;
-  discount: Number;
+  price: number;
+  discount: number;
 }
 
 export interface ITitle {
@@ -19,7 +19,7 @@ export interface ITitle {
 }
 
 export interface IBestSellerBox extends IProduct {
-  quantity: Number;
+  quantity: number;
 }
 
 export interface IBanner {
@@ -27,7 +27,7 @@ export interface IBanner {
 }
 
 export interface IArticle {
-  id: Number;
+  id: number;
   title: string;
   link: string;
   image: string;
