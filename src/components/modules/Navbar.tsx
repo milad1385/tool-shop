@@ -1,26 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BsQuestionCircle } from "react-icons/bs";
+import { FaRegUser } from "react-icons/fa";
 import {
   HiOutlineMagnifyingGlass,
   HiOutlineShoppingCart,
 } from "react-icons/hi2";
 import { IoChevronDown } from "react-icons/io5";
+import { LuMenu } from "react-icons/lu";
+import MobileMenu from "./MobileMenu";
 
 function Navbar() {
   return (
-    <div className="bg-white pb-8 shadow">
+    <div className="bg-white md:pb-8 shadow">
       <div className="container">
-        <div className="flex items-center justify-between py-8">
+        <div className="flex items-center justify-between py-6 md:py-8">
+          <MobileMenu />
           <div className="flex items-center gap-x-6 grow">
             <Image
               src="/images/logo.png"
               alt="logo.png"
-              className="w-[124px] h-[41px]"
+              className="w-[100px] md:w-[124px] h-[35px] md:h-[41px] select-none"
               width={1920}
               height={1080}
             />
-            <div className="h-[48px] w-[65%] border border-gray-300 flex items-center rounded-md overflow-hidden justify-between">
+            <div className=" h-[48px] w-[65%] border border-gray-300 hidden md:flex items-center rounded-md overflow-hidden justify-between">
               <input
                 type="text"
                 placeholder="جستجو کنید در ترازو ..."
@@ -37,8 +41,13 @@ function Navbar() {
                 <BsQuestionCircle className="text-xl text-[#1f2937]" />
               </Link>
             </div>
-            <div className="text-sm">
+            <div className="hidden md:block text-sm">
               <Link href="/login">ثبت نام | ورود</Link>
+            </div>
+            <div className="block md:hidden">
+              <Link href="/login">
+                <FaRegUser className="text-xl text-[#1f2937]" />
+              </Link>
             </div>
             <div className="relative md:cursor-pointer">
               <span className="absolute -top-4 left-4 size-5 rounded-full  flex items-center justify-center text-xs bg-yellow-400">
@@ -48,7 +57,7 @@ function Navbar() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="hidden md:block">
           <ul className="flex items-center gap-x-8">
             <li>
               <Link href="/">صفحه اصلی</Link>
