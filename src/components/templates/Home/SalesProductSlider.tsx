@@ -4,6 +4,7 @@ import ProductBox from "@/components/modules/ProductBox";
 import "swiper/css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
 function SalesProductSlider() {
   const products = [
@@ -49,6 +50,7 @@ function SalesProductSlider() {
           delay: 2000,
           disableOnInteraction: false,
         }}
+        modules={[Autoplay]}
         breakpoints={{
           300: { slidesPerView: 1 },
           500: { slidesPerView: 2 },
