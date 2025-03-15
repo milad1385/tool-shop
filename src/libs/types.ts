@@ -1,33 +1,33 @@
-interface ICategory {
-  id: number;
+export interface ICategory {
+  id: Number;
   title: string;
   image: string;
   link: string;
 }
 
-interface IProduct {
-  id: number;
+export interface IProduct {
+  id: Number;
   title: string;
   link: string;
   image: string;
-  price: number;
-  discount: number;
+  price: Number;
+  discount: Number;
 }
 
-interface ITitle {
+export interface ITitle {
   title: string;
 }
 
-interface IBestSellerBox extends IProduct {
-  quantity: number;
+export interface IBestSellerBox extends IProduct {
+  quantity: Number;
 }
 
-interface IBanner {
+export interface IBanner {
   src?: string;
 }
 
-interface IArticle {
-  id: number;
+export interface IArticle {
+  id: Number;
   title: string;
   link: string;
   image: string;

@@ -1,10 +1,11 @@
+import { IArticle } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { IoArrowBack } from "react-icons/io5";
 
-function ArticleBox({ id, image, link, title }: IArticle) {
+function ArticleBox({image, link, title }: IArticle) {
   return (
     <div className="bg-white shadow rounded-3xl p-4 overflow-hidden">
       <Link href={link} className="block overflow-hidden group relative rounded-3xl">

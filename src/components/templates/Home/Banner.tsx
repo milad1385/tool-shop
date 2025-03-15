@@ -1,3 +1,4 @@
+import { IBanner } from "@/libs/types";
 import Image from "next/image";
 import React from "react";
 

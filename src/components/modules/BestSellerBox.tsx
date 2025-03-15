@@ -1,3 +1,4 @@
+import { IBestSellerBox } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +10,6 @@ function BestSellerBox({
   image,
   link,
   price,
-  id,
   quantity,
 }: IBestSellerBox) {
   return (
