@@ -46,6 +46,10 @@ body {
   }
 }
 
+.swiper-pagination-bullet {
+  background-color: #eab308 !important;
+}
+
 @layer base {
   @font-face {
     font-family: "Iran";
