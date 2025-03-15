@@ -2,6 +2,7 @@
 import React from "react";
 import CategoryBox from "@/components/modules/CategoryBox";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
 function CategoriesSlider() {
   const categories = [
@@ -50,7 +51,23 @@ function CategoriesSlider() {
   ];
 
   return (
-    <Swiper slidesPerView={6} spaceBetween={15} className="mt-10">
+    <Swiper
+      slidesPerView={6}
+      breakpoints={{
+        300: { slidesPerView: 2 },
+        500: { slidesPerView: 3 },
+        768: { slidesPerView: 4 },
+        992: { slidesPerView: 5 },
+        1024: { slidesPerView: 6 },
+      }}
+      spaceBetween={15}
+      autoplay={{
+        delay: 2000,
+        disableOnInteraction: false,
+      }}
+      modules={[Autoplay]}
+      className="mt-10"
+    >
       {categories.map((category) => (
         <SwiperSlide key={category.id}>
           <CategoryBox {...category} />
