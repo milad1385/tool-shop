@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`font-dana bg-gray-100 antialiased`}>
+      <body className={`font-dana bg-gray-100 antialiased overflow-x-hidden`}>
         <Navbar />
         {children}
         <Footer/>

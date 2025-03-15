@@ -18,7 +18,7 @@ function Footer() {
                 height={1080}
               />
             </div>
-            <p className="md:text-base/[32px] text-sm xl:max-w-[600px] font-Iran text-justify">
+            <p className="md:text-base/[32px] text-sm/[28px] xl:max-w-[600px] font-Iran text-justify">
               سلام ، میلاد سلامیان هستم ، ترازو با فراهم آوردن تنوع معقولی از
               محصولات در کنار عرضه با قیمت مناسب آن‌ها، به دنبال خرید راحت و
               رضایت‌بخش ابزارآلات برای همراهان خودش است و این مهم را با مهیا
