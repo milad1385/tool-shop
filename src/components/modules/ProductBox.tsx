@@ -23,16 +23,20 @@ function ProductBox({ title, discount, id, image, link, price }: IProduct) {
         )}
       </Link>
       <div>
-        <Link href={link} className="flex-center font-Lalezar text-base md:text-lg">
+        <Link
+          href={link}
+          className="flex-center font-Lalezar text-base md:text-lg"
+        >
           {title}
         </Link>
         <div className="flex items-center justify-center gap-x-3 mt-2">
           <span className={`text-zinc-700 ${discount ? "line-through" : ""}`}>
-            {formattedPrice(price)} تومان
+            {formattedPrice(price)} <span className="sm:hidden lg:block">تومان</span>
           </span>
           {discount && (
             <span className="text-yellow-500">
-              {formattedPrice(price - (price * discount) / 100)} تومان
+              {formattedPrice(price - (price * discount) / 100)}{" "}
+              <span className="sm:hidden lg:block">تومان</span>
             </span>
           )}
         </div>
