@@ -11,7 +11,7 @@ import React from "react";
 
 function page() {
   return (
-    <div className="container">
+    <div className="container py-20">
       <Slider />
       <Categories />
       <SalesProducts />
