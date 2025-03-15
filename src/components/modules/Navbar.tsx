@@ -7,7 +7,6 @@ import {
   HiOutlineShoppingCart,
 } from "react-icons/hi2";
 import { IoChevronDown } from "react-icons/io5";
-import { LuMenu } from "react-icons/lu";
 import MobileMenu from "./MobileMenu";
 
 function Navbar() {

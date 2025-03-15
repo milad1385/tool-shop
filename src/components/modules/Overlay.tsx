@@ -2,7 +2,7 @@ import React from "react";
 
 type TOverlay = {
   isOpen: boolean;
-  onClose: any;
+  onClose: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function MenuOverlay({ isOpen, onClose }: TOverlay) {
