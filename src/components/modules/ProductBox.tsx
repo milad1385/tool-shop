@@ -30,11 +30,11 @@ function ProductBox({ title, discount, id, image, link, price }: IProduct) {
           {title}
         </Link>
         <div className="flex items-center justify-center gap-x-3 mt-2">
-          <span className={`text-zinc-700 ${discount ? "line-through" : ""}`}>
+          <span className={`text-zinc-700 flex items-center gap-x-1 ${discount ? "line-through" : ""}`}>
             {formattedPrice(price)} <span className="sm:hidden lg:block">تومان</span>
           </span>
           {discount && (
-            <span className="text-yellow-500">
+            <span className="text-yellow-500 flex items-center gap-x-1">
               {formattedPrice(price - (price * discount) / 100)}{" "}
               <span className="sm:hidden lg:block">تومان</span>
             </span>

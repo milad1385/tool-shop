@@ -4,6 +4,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Autoplay } from "swiper/modules";
 
 function BestSellerSlider() {
   const products = [
@@ -45,7 +46,20 @@ function BestSellerSlider() {
     },
   ];
   return (
-    <Swiper slidesPerView={3} spaceBetween={15}>
+    <Swiper
+      slidesPerView={3}
+      spaceBetween={15}
+      autoplay={{
+        delay: 2000,
+        disableOnInteraction: false,
+      }}
+      modules={[Autoplay]}
+      breakpoints={{
+        0: { slidesPerView: 1 },
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      }}
+    >
       {products.map((product) => (
         <SwiperSlide key={product.id}>
           <BestSellerBox {...product} />

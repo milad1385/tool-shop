@@ -26,14 +26,14 @@ function BestSellerBox({
           <h2 className="font-Lalezar text-lg mt-6">{title}</h2>
           <div className="flex items-center justify-center gap-x-3 mt-2">
             <span
-              className={`text-zinc-700 font-IranMedium ${
+              className={`text-zinc-700  text-sm lg:text-base font-IranMedium ${
                 true ? "line-through" : ""
               }`}
             >
               {formattedPrice(price)} تومان
             </span>
             {true && (
-              <span className="text-yellow-500 font-IranMedium">
+              <span className="text-yellow-500  text-sm lg:text-base font-IranMedium">
                 {formattedPrice(price - (price * discount) / 100)} تومان
               </span>
             )}
@@ -41,7 +41,9 @@ function BestSellerBox({
         </div>
       </Link>
       <div className="flex items-center text-sm justify-center gap-4">
-        <div>موجودی: {quantity} از 20</div>
+        <div>
+          <span className="sm:hidden xl:block">موجودی : </span> {quantity} از 20
+        </div>
         <div>
           <progress
             className="progress progress-warning w-48 md:w-56"
