@@ -50,7 +50,7 @@ function BestSellerSlider() {
       slidesPerView={3}
       spaceBetween={15}
       autoplay={{
-        delay: 2000,
+        delay: 3000,
         disableOnInteraction: false,
       }}
       modules={[Autoplay]}

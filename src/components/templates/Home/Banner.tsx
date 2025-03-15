@@ -10,7 +10,7 @@ function Banner({ src }: IBanner) {
         height={1080}
         alt="banner"
         src={`/images/${src}`}
-        className="w-full rounded-3xl shadow"
+        className="w-full rounded-3xl shadow h-28 md:h-auto object-fill"
       />
     </div>
   );
