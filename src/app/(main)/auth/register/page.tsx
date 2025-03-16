@@ -23,7 +23,7 @@ function page() {
                 <h2 className="text-center text-2xl lg:text-4xl font-Lalezar">
                   صفحه ثبت نام
                 </h2>
-                <div className="flex flex-col gap-y-5 mt-8">
+                <div className="flex flex-col gap-y-5 mt-3">
                   <div className="flex flex-col gap-y-4">
                     <label htmlFor="username" className="text-sm text-zinc-800">
                       نام کاربری
