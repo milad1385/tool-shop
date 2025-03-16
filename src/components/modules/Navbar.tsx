@@ -50,7 +50,7 @@ function Navbar() {
                 <Link href="/auth/login">ثبت نام | ورود</Link>
               </div>
               <div className="block md:hidden">
-                <Link href="/login">
+                <Link href="/auth/login">
                   <FaRegUser className="text-xl text-[#1f2937]" />
                 </Link>
               </div>
