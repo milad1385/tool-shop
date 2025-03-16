@@ -1,17 +1,22 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BsBasket2Fill } from "react-icons/bs";
 import { FaHeart, FaTools } from "react-icons/fa";
-import { HiOutlineHome } from "react-icons/hi2";
+import { IoIosHome } from "react-icons/io";
 
 function FooterMenu() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
   if (!isLoaded) return null;
+
+  const activeStyle =
+    "after:size-1.5 after:absolute after:bg-yellow-500 after:rounded-full after:-bottom-1.5 text-gray-700";
   return (
     <section className="pt-14 lg:pt-0">
       <div className="fixed bottom-0 z-30 h-[72.5px] w-full bg-[url('/images/mobile-footer-bg.svg')] bg-cover bg-center bg-no-repeat pb-2 pt-3 lg:hidden shadow-2xl">
@@ -19,16 +24,20 @@ function FooterMenu() {
           <ul className="flex w-full items-center justify-between gap-2">
             <li className="w-[56px]">
               <Link
-                className="flex flex-col items-center text-[12px] gap-1 relative transition-all text-gray-700 after:size-1.5 after:absolute after:bg-yellow after:rounded-full after:-bottom-1.5"
+                className={`flex flex-col items-center text-[12px] gap-1 relative transition-all ${
+                  pathname === "/" ? activeStyle : "text-gray-700/60"
+                }`}
                 href="/"
               >
-                <HiOutlineHome className="text-xl" />
+                <IoIosHome className="text-xl" />
                 <p className="font-bold">خانه</p>
               </Link>
             </li>
             <li className="w-[56px]">
               <Link
-                className="flex flex-col items-center text-[12px] gap-1 text-gray-700/60 relative transition-all"
+                className={`flex flex-col items-center text-[12px] gap-1 relative transition-all ${
+                  pathname.includes("/products") ? activeStyle : "text-gray-700/60"
+                }`}
                 href="/products"
               >
                 <FaTools className="text-xl" />
@@ -37,7 +46,9 @@ function FooterMenu() {
             </li>
             <li className="w-[56px]">
               <Link
-                className="flex-col text-[12px] gap-1 text-gray-700/60 transition-all relative -top-9 bg-yellow-500 rounded-full size-14 flex justify-center items-center after:hidden"
+                className={`flex-col text-[12px] gap-1  transition-all relative -top-9 bg-yellow-500 rounded-full size-14 flex justify-center items-center after:hidden ${
+                  pathname.includes("/cart") ? activeStyle : "text-gray-700/60"
+                }`}
                 href="/cart"
               >
                 <svg
@@ -57,7 +68,11 @@ function FooterMenu() {
             </li>
             <li className="w-[56px]">
               <Link
-                className="flex flex-col items-center text-[12px] gap-1 text-gray-700/60 relative transition-all"
+                className={`flex flex-col items-center text-[12px] gap-1  relative transition-all ${
+                  pathname.includes("/orders")
+                    ? activeStyle
+                    : "text-gray-700/60"
+                }`}
                 href="/orders"
               >
                 <BsBasket2Fill className="text-xl" />
@@ -66,7 +81,11 @@ function FooterMenu() {
             </li>
             <li className="w-[56px]">
               <Link
-                className="flex flex-col items-center text-[12px] gap-1 text-gray-700/60 relative transition-all"
+                className={`flex flex-col items-center text-[12px] gap-1  relative transition-all ${
+                  pathname.includes("/favorites")
+                    ? activeStyle
+                    : "text-gray-700/60"
+                }`}
                 href="/favorites"
               >
                 <FaHeart className="text-xl" />
