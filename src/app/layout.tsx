@@ -2,6 +2,7 @@ import Navbar from "@/components/modules/Navbar";
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/modules/Footer";
+import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {
   title: {
@@ -26,9 +27,10 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body className={`font-dana bg-gray-100 antialiased overflow-x-hidden`}>
+        <NextTopLoader color="#eab308" />
         <Navbar />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
