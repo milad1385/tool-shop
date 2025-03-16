@@ -34,6 +34,5 @@ export interface IArticle {
 }
 
 export interface IPage {
-  params: Promise<{ id: string }>;
-  searchParams?: Promise<{}>;
+  params: Promise<{ id?: string }>;
 }
