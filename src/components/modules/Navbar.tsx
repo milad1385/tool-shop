@@ -47,7 +47,7 @@ function Navbar() {
                 </Link>
               </div>
               <div className="hidden md:block text-sm">
-                <Link href="/login">ثبت نام | ورود</Link>
+                <Link href="/auth/login">ثبت نام | ورود</Link>
               </div>
               <div className="block md:hidden">
                 <Link href="/login">
