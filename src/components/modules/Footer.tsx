@@ -1,9 +1,18 @@
+"use client";
 import Image from "next/image";
 import { LuMapPin } from "react-icons/lu";
-import { FaInstagram, FaPhone, FaRegEnvelope, FaTelegram } from "react-icons/fa";
+import {
+  FaInstagram,
+  FaPhone,
+  FaRegEnvelope,
+  FaTelegram,
+} from "react-icons/fa";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function Footer() {
+  const pathname = usePathname();
+  if (pathname.includes("/auth")) return null;
   return (
     <footer className="bg-stone-800 mt-10  py-10 md:py-8 md:pb-8 md:pt-[62px]">
       <div className="w-[98%] lg:w-[90%] mx-auto px-2.5 md:px-0">
@@ -126,7 +135,7 @@ function Footer() {
                 className="ltr-text flex-grow gap-x-2 text-sm md:text-base bg-gradient-to-r from-yellow-200 to-yellow-500 text-zinc-700 rounded-xl flex-center  h-12"
               >
                 @Trazo-Shop
-                <FaTelegram className="text-sky-600 text-lg mb-[3px]"/>
+                <FaTelegram className="text-sky-600 text-lg mb-[3px]" />
               </a>
             </div>
           </div>

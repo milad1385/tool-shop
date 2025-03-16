@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { BsQuestionCircle } from "react-icons/bs";
@@ -8,8 +9,12 @@ import {
 } from "react-icons/hi2";
 import { IoChevronDown } from "react-icons/io5";
 import MobileMenu from "./MobileMenu";
+import { usePathname } from "next/navigation";
 
 function Navbar() {
+  const pathname = usePathname();
+
+  if (pathname.includes("/auth")) return null;
   return (
     <div className="mb-28 md:mb-52">
       <div className="bg-white md:pb-8 shadow fixed top-0 left-0 right-0  z-30">
