@@ -32,3 +32,8 @@ export interface IArticle {
   link: string;
   image: string;
 }
+
+export interface IPage {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{}>;
+}

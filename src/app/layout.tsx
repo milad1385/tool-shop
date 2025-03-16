@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body className={`font-dana bg-gray-100 antialiased overflow-x-hidden`}>
-        <NextTopLoader color="#eab308" />
+        <NextTopLoader color="#eab308" showSpinner={false} />
         <Navbar />
         {children}
         <Footer />
