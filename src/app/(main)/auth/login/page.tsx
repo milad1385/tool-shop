@@ -1,6 +1,16 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "وارد شوید",
+  description:
+    "صفحه ورود کاربر ، از این صفحه میتوانید فرایند لاگین یا همان ورود را در سایت انجام دهید",
+  openGraph: {
+    title: "صفحه ورود",
+  },
+};
 
 function page() {
   return (
