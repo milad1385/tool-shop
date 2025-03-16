@@ -13,7 +13,7 @@ function FooterMenu() {
 
   if (!isLoaded) return null;
   return (
-    <section className="pt-28 lg:pt-10">
+    <section className="pt-14 lg:pt-0">
       <div className="fixed bottom-0 z-30 h-[72px] w-full bg-[url('/images/mobile-footer-bg.svg')] bg-cover bg-center bg-no-repeat pb-2 pt-3 lg:hidden shadow-2xl">
         <nav className="container">
           <ul className="flex w-full items-center justify-between gap-2">
