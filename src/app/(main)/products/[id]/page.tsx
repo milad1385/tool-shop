@@ -5,7 +5,6 @@ import { IPage } from "@/libs/types";
 import React from "react";
 
 async function page({ params }: IPage) {
-  const { id } = await params;
   return (
     <div className="container">
       <Breadcrumb
@@ -16,7 +15,7 @@ async function page({ params }: IPage) {
       />
       <div className="grid grid-cols-12 bg-white p-4 rounded-2xl">
         <ProductSlider />
-        <ProductDetails/>
+        <ProductDetails />
       </div>
     </div>
   );
