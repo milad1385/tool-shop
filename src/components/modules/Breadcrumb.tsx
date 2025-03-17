@@ -1,7 +1,5 @@
 import { IBreadcrumb } from "@/libs/types";
 import Link from "next/link";
-import React from "react";
-import { FaChevronLeft } from "react-icons/fa";
 import { HiChevronLeft } from "react-icons/hi2";
 
 function Breadcrumb({ links }: IBreadcrumb) {

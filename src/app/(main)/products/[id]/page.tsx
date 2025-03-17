@@ -1,4 +1,6 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
+import ProductDetails from "@/components/templates/Product/ProductDetails";
+import ProductSlider from "@/components/templates/Product/ProductSlider";
 import { IPage } from "@/libs/types";
 import React from "react";
 
@@ -12,6 +14,10 @@ async function page({ params }: IPage) {
           { id: 2, href: "/products/1", name: "جزییات محصول دریل" },
         ]}
       />
+      <div className="grid grid-cols-12 bg-white p-4 rounded-2xl">
+        <ProductSlider />
+        <ProductDetails/>
+      </div>
     </div>
   );
 }
