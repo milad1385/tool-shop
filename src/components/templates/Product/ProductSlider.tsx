@@ -2,11 +2,12 @@
 import React, { useState } from "react";
 import { Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperClass } from "swiper";
 import "swiper/css";
 import Image from "next/image";
 
 function ProductSlider() {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<null | SwiperClass>(null);
   return (
     <div className="col-span-12 md:col-span-4">
       <Swiper
@@ -73,7 +74,7 @@ function ProductSlider() {
         </SwiperSlide>
       </Swiper>
       <Swiper
-        onSwiper={(swiper: any) => setThumbsSwiper(swiper)}
+        onSwiper={(swiper: SwiperClass) => setThumbsSwiper(swiper)}
         spaceBetween={10}
         slidesPerView={4}
         freeMode={true}
