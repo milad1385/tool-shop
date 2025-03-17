@@ -19,7 +19,7 @@ function FooterMenu() {
     "after:size-1.5 after:absolute after:bg-yellow-500 after:rounded-full after:-bottom-1.5 text-gray-700";
   return (
     <section className="pt-14 lg:pt-0">
-      <div className="fixed bottom-0 z-30 h-[72.5px] w-full bg-[url('/images/mobile-footer-bg.svg')] bg-cover bg-center bg-no-repeat pb-2 pt-3 lg:hidden shadow-2xl">
+      <div className="fixed bottom-0 z-20 h-[72.5px] w-full bg-[url('/images/mobile-footer-bg.svg')] bg-cover bg-center bg-no-repeat pb-2 pt-3 lg:hidden shadow-2xl">
         <nav className="container">
           <ul className="flex w-full items-center justify-between gap-2">
             <li className="w-[56px]">
@@ -36,7 +36,9 @@ function FooterMenu() {
             <li className="w-[56px]">
               <Link
                 className={`flex flex-col items-center text-[12px] gap-1 relative transition-all ${
-                  pathname.includes("/products") ? activeStyle : "text-gray-700/60"
+                  pathname.includes("/products")
+                    ? activeStyle
+                    : "text-gray-700/60"
                 }`}
                 href="/products"
               >
@@ -46,9 +48,7 @@ function FooterMenu() {
             </li>
             <li className="w-[56px]">
               <Link
-                className={`flex-col text-[12px] gap-1  transition-all relative -top-9 bg-yellow-500 rounded-full size-14 flex justify-center items-center after:hidden ${
-                  pathname.includes("/cart") ? activeStyle : "text-gray-700/60"
-                }`}
+                className={`flex-col text-[12px] gap-1  transition-all relative -top-9 bg-zinc-800 rounded-full size-14 flex justify-center items-center after:hidden`}
                 href="/cart"
               >
                 <svg
