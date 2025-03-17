@@ -54,7 +54,7 @@ function MobileMenu() {
         </div>
         <ul className="text-zinc-700 dark:text-white child:pr-2.5 space-y-6 pb-8 cursor-pointer">
           <li className="justify-between">
-            <Link href="/" className="gap-x-2">
+            <div className="gap-x-2">
               <div className="flex items-center justify-between transition-all">
                 <div className="flex items-center gap-x-2 shopping">
                   <HiOutlineShoppingBag className="text-xl" />
@@ -67,7 +67,7 @@ function MobileMenu() {
                   onClick={() => setIsOpenSubMenu((prev) => !prev)}
                 />
               </div>
-            </Link>
+            </div>
             <ul
               className={`pr-5 pt-3 space-y-4 text-sm submenu child:transition-all ${
                 isOpenSubMenu ? "block" : "hidden"
