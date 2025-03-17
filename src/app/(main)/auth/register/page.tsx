@@ -17,7 +17,7 @@ function page() {
     <>
       <section className="h-screen px-4 flex items-center">
         <div className="container mx-auto max-w-screen-lg">
-          <div className="bg-white rounded-2xl overflow-hidden">
+          <div className="bg-white shadow rounded-2xl overflow-hidden">
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex-1 p-6 md:p-4 lg:p-14 lg:pb-0">
                 <h2 className="text-center text-2xl lg:text-4xl font-Lalezar">
