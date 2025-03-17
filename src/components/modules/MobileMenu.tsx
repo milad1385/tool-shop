@@ -54,8 +54,11 @@ function MobileMenu() {
         </div>
         <ul className="text-zinc-700 dark:text-white child:pr-2.5 space-y-6 pb-8 cursor-pointer">
           <li className="justify-between">
-            <div className="gap-x-2">
-              <div className="flex items-center justify-between transition-all">
+            <div
+              className="gap-x-2"
+              onClick={() => setIsOpenSubMenu((prev) => !prev)}
+            >
+              <div className="flex items-center justify-between transition-all select-none">
                 <div className="flex items-center gap-x-2 shopping">
                   <HiOutlineShoppingBag className="text-xl" />
                   فروشگاه
@@ -64,7 +67,6 @@ function MobileMenu() {
                   className={`text-xl transition-all ${
                     isOpenSubMenu ? "rotate-180" : ""
                   }`}
-                  onClick={() => setIsOpenSubMenu((prev) => !prev)}
                 />
               </div>
             </div>
