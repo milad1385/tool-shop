@@ -36,3 +36,13 @@ export interface IArticle {
 export interface IPage {
   params: Promise<{ id?: string }>;
 }
+
+interface ILink {
+  id: string | number;
+  href: string;
+  name: string;
+}
+
+export interface IBreadcrumb {
+  links: ILink[];
+}
