@@ -13,10 +13,10 @@ function ProductDetails() {
     <div className="col-span-12 md:col-span-8">
       <div className="p-4">
         <div className="bg-stone-50 rounded-xl p-4 leading-8">
-          <h1 className="text-base md:text-lg lg:text-xl font-Lalezar">
+          <h1 className="text-lg lg:text-xl font-Lalezar">
             دریل شارژِ مدل رونیکس
           </h1>
-          <p className="text-[15px] mt-2">دسته بندی: دریل ها</p>
+          <p className="text-sm md:text-[15px] mt-2">دسته بندی: دریل ها</p>
         </div>
         <div className="grid grid-cols-12 mt-4">
           <div className="col-span-12 lg:col-span-8 p-4">

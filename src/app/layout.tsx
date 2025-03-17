@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa" dir="rtl" className="overflow-x-hidden">
       <body className={`font-dana bg-gray-100 antialiased overflow-x-hidden`}>
         <NextTopLoader color="#eab308" showSpinner={false} />
         <Navbar />
