@@ -46,3 +46,10 @@ interface ILink {
 export interface IBreadcrumb {
   links: ILink[];
 }
+
+export interface ITabButton {
+  tab: string;
+  onTab: React.Dispatch<React.SetStateAction<string>>;
+  name: string;
+  label: string;
+}

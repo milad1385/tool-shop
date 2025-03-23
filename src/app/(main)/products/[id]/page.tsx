@@ -1,6 +1,7 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
 import ProductDetails from "@/components/templates/Product/ProductDetails";
 import ProductSlider from "@/components/templates/Product/ProductSlider";
+import ProductTabs from "@/components/templates/Product/ProductTabs";
 import { IPage } from "@/libs/types";
 import React from "react";
 
@@ -20,6 +21,8 @@ async function page({ params }: IPage) {
         <ProductSlider />
         <ProductDetails />
       </div>
+
+      <ProductTabs />
     </div>
   );
 }
