@@ -6,7 +6,7 @@ function ProductTabs() {
   const [tab, setTab] = useState("details");
   return (
     <div className="bg-white p-4 rounded-2xl my-7">
-      <div className="flex items-center gap-x-4 text-lg md:text-xl font-Lalezar">
+      <div className="flex items-center gap-x-4 text-base md:text-xl font-Lalezar">
         <TabButton label="توضیحات" name="details" onTab={setTab} tab={tab} />
         <TabButton
           label="اطلاعات"
