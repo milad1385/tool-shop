@@ -53,3 +53,17 @@ export interface ITabButton {
   name: string;
   label: string;
 }
+
+export interface IFeature {
+  _id: number;
+  name: string;
+  value: string;
+}
+
+export interface IFeatureList {
+  features: IFeature[];
+}
+
+export interface IFeatureItem {
+  feature: IFeature;
+}
