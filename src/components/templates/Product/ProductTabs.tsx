@@ -3,6 +3,7 @@ import { useState } from "react";
 import TabButton from "./TabButton";
 import Image from "next/image";
 import FeatureList from "./FeatureList";
+import Comments from "./Comments";
 
 function ProductTabs() {
   const [tab, setTab] = useState("details");
@@ -14,7 +15,7 @@ function ProductTabs() {
   ];
   return (
     <div className="bg-white p-6 rounded-2xl my-7">
-      <div className="flex items-center gap-x-4 text-base md:text-xl font-Lalezar">
+      <div className="flex items-center gap-x-4 text-base md:text-xl font-Lalezar border-b-2 border-gray-200 pb-4">
         <TabButton label="توضیحات" name="details" onTab={setTab} tab={tab} />
         <TabButton
           label="اطلاعات"
@@ -24,7 +25,7 @@ function ProductTabs() {
         />
         <TabButton label="نظر ها" name="comments" onTab={setTab} tab={tab} />
       </div>
-      <div className="p-3 mt-5">
+      <div className="p-1 mt-5">
         {tab === "details" && (
           <div>
             <p className="text-sm/[25px] md:text-base/[32px] text-justify">
@@ -50,7 +51,7 @@ function ProductTabs() {
           </div>
         )}{" "}
         {tab === "information" && <FeatureList features={feaures} />}
-        {tab === "comments" && <div>نظر ها</div>}
+        {tab === "comments" && <Comments />}
       </div>
     </div>
   );
