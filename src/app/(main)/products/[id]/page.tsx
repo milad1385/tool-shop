@@ -1,7 +1,9 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
+import Title from "@/components/modules/Title";
 import ProductDetails from "@/components/templates/Product/ProductDetails";
 import ProductSlider from "@/components/templates/Product/ProductSlider";
 import ProductTabs from "@/components/templates/Product/ProductTabs";
+import SameProductSlider from "@/components/templates/Product/SameProductSlider";
 import { IPage } from "@/libs/types";
 import React from "react";
 
@@ -23,6 +25,10 @@ async function page({ params }: IPage) {
       </div>
 
       <ProductTabs />
+      <div className="mt-16 mb-10 bg-[#eab308] rounded-2xl p-8 shadow">
+        <Title title="محصولات مرتبط" />
+        <SameProductSlider />
+      </div>
     </div>
   );
 }
