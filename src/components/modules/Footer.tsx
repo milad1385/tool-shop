@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import FooterMenu from "./FooterMenu";
+import FooterSlider from "./FooterSlider";
 
 function Footer() {
   const pathname = usePathname();
@@ -18,6 +19,7 @@ function Footer() {
     <>
       <footer className="bg-stone-800 mt-10  py-10 md:py-8 md:pb-8 md:pt-[62px]">
         <div className="w-[98%] lg:w-[90%] mx-auto px-2.5 md:px-0">
+          <FooterSlider/>
           <div className="text-gray-300 flex flex-wrap  justify-between border-b border-b-white/20 pb-4">
             <div>
               <div className="flex items-center gap-x-4 mb-3">

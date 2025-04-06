@@ -67,3 +67,7 @@ export interface IFeatureList {
 export interface IFeatureItem {
   feature: IFeature;
 }
+
+export interface IFooterSliderBox {
+  img: string;
+}

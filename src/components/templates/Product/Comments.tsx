@@ -16,7 +16,7 @@ function Comments() {
         <button
           disabled={isShow}
           onClick={() => setIsShow(true)}
-          className="bg-yellow-500 text-white flex items-center p-2 rounded-md gap-x-2"
+          className="bg-yellow-500 text-white flex items-center p-2 rounded-md gap-x-2 text-sm md:text-base"
         >
           <span>ایجاد نظر جدید</span>
           <BsChatSquareText className="text-white" />
@@ -36,9 +36,9 @@ function Comments() {
                 <FaUser className="text-lg text-zinc-500" />
               </div>
             </div>
-            <div className="flex flex-col gap-y-2">
-              <span className="text-base font-IranMedium">میلاد سلامیان</span>
-              <span className="font-dana text-sm text-gray-700">
+            <div className="flex flex-col gap-y-2 text-sm md:text-base">
+              <span className="font-IranMedium">میلاد سلامیان</span>
+              <span className="font-dana text-xs md:text-sm text-gray-700">
                 ثبت نظر جدید
               </span>
             </div>
