@@ -49,7 +49,7 @@ function ProductTabs() {
               className="w-[250px] mx-auto md:w-[350px]"
             />
           </div>
-        )}{" "}
+        )}
         {tab === "information" && <FeatureList features={feaures} />}
         {tab === "comments" && <Comments />}
       </div>
