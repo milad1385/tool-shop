@@ -71,3 +71,9 @@ export interface IFeatureItem {
 export interface IFooterSliderBox {
   img: string;
 }
+
+export interface IAboutUsBox {
+  title: string;
+  desc: string;
+  icon: React.ReactNode;
+}
