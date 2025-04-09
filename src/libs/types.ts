@@ -82,3 +82,8 @@ export interface IAboutUsBox {
 export interface IStaffSliderBox {
   image: string;
 }
+
+export interface IAccordionTitle {
+  title: string;
+  children: React.ReactNode;
+}
