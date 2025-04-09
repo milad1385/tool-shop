@@ -77,3 +77,7 @@ export interface IAboutUsBox {
   desc: string;
   icon: React.ReactNode;
 }
+
+export interface IStaffSliderBox {
+  image: string;
+}

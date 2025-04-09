@@ -5,11 +5,17 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-import { EffectCoverflow, Pagination } from "swiper/modules";
-import Image from "next/image";
 import Title from "@/components/modules/Title";
+import { EffectCoverflow, Pagination } from "swiper/modules";
+import StaffSliderBox from "./StaffSliderBox";
 
 export default function StaffSlider() {
+  const slides = [
+    { id: 1, image: "pic-1.jpg" },
+    { id: 2, image: "pic-2.jpg" },
+    { id: 3, image: "pic-3.jpg" },
+    { id: 4, image: "pic-4.jpg" },
+  ];
   return (
     <div className="my-24 px-4 md:px-0">
       <Title title="نیروی های ترازو" />
@@ -35,38 +41,11 @@ export default function StaffSlider() {
         modules={[EffectCoverflow, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <Image
-            src="/images/about/pic-1.jpg"
-            width={1920}
-            height={1080}
-            alt="pic1"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src="/images/about/pic-2.jpg"
-            width={1920}
-            height={1080}
-            alt="pic2"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src="/images/about/pic-3.jpg"
-            width={1920}
-            height={1080}
-            alt="pic3"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src="/images/about/pic-4.jpg"
-            width={1920}
-            height={1080}
-            alt="pic4"
-          />
-        </SwiperSlide>
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.id}>
+            <StaffSliderBox {...slide} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
