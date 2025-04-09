@@ -42,7 +42,7 @@ function Navbar() {
             </div>
             <div className="flex items-center gap-x-7">
               <div>
-                <Link href="/about-us">
+                <Link href="/questions">
                   <BsQuestionCircle className="text-xl text-[#1f2937]" />
                 </Link>
               </div>
@@ -54,12 +54,12 @@ function Navbar() {
                   <FaRegUser className="text-xl text-[#1f2937]" />
                 </Link>
               </div>
-              <div className="relative md:cursor-pointer">
+              <Link href="/cart" className="block relative md:cursor-pointer">
                 <span className="absolute -top-4 left-4 size-5 rounded-full  flex items-center justify-center text-xs bg-yellow-400">
                   3
                 </span>
                 <HiOutlineShoppingCart className="text-2xl" />
-              </div>
+              </Link>
             </div>
           </div>
           <div className="hidden md:block">
@@ -74,7 +74,7 @@ function Navbar() {
                 <Link href="/">وبلاگ</Link>
               </li>
               <li>
-                <Link href="/">درباره ما</Link>
+                <Link href="/about">درباره ما</Link>
               </li>
               <li className="flex items-center gap-x-2 relative group">
                 <Link href="/">بیشتر</Link>
@@ -103,13 +103,13 @@ function Navbar() {
                   <div>
                     <ul className="space-y-3">
                       <li>
-                        <Link href="/">سوالات متداول</Link>
+                        <Link href="/questions">سوالات متداول</Link>
                       </li>
                       <li>
                         <Link href="/">جزییات وبلاگ</Link>
                       </li>
                       <li>
-                        <Link href="/">سبد خرید</Link>
+                        <Link href="/cart">سبد خرید</Link>
                       </li>
                       <li>
                         <Link href="/">جزییات پرداخت</Link>

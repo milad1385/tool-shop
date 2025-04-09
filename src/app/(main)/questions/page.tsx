@@ -5,7 +5,7 @@ function page() {
   return (
     <>
       <section>
-        <div className="relative flex justify-center items-center">
+        <div className="relative flex justify-center items-center select-none">
           <Image
             src="/images/bg-question.jpg"
             alt="question-image"
