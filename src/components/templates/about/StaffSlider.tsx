@@ -17,7 +17,7 @@ export default function StaffSlider() {
     { id: 4, image: "pic-4.jpg" },
   ];
   return (
-    <div className="my-24 px-4 md:px-0">
+    <div className="my-24 px-4 md:px-0 bg-gray-200 py-10">
       <Title title="نیروی های ترازو" />
       <Swiper
         effect={"coverflow"}
