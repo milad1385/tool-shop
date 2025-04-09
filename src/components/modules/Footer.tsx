@@ -153,7 +153,7 @@ function Footer() {
               </div>
               <p>
                 تمام حقوق این سایت ، متعلق به ترازو میباشد (توسعه داده شده با{" "}
-                <span className="text-red-600 text-lg md:text-2xl">❤</span> در
+                <span className="text-red-600 text-lg md:text-2xl">❤</span> توسط میلاد سلامیان در
                 ترازو)
               </p>
             </div>
