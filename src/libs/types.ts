@@ -16,6 +16,7 @@ export interface IProduct {
 
 export interface ITitle {
   title: string;
+  className?: string;
 }
 
 export interface IBestSellerBox extends IProduct {

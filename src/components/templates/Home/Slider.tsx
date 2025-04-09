@@ -18,7 +18,7 @@ function Slider() {
         clickable: true,
       }}
       modules={[Pagination]}
-      className="mySwiper mt-10"
+      className="mySwiper mt-28 md:mt-48"
     >
       {images.map((image) => (
         <SwiperSlide key={image.id}>

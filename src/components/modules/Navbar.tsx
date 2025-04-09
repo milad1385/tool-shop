@@ -16,7 +16,7 @@ function Navbar() {
 
   if (pathname.includes("/auth")) return null;
   return (
-    <div className="mb-28 md:mb-52">
+    <div className="mb-20 md:mb-40">
       <div className="bg-white md:pb-8 shadow fixed top-0 left-0 right-0  z-30">
         <div className="container">
           <div className="flex items-center justify-between py-6 md:py-8">
