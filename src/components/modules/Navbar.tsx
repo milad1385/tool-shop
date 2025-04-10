@@ -71,7 +71,7 @@ function Navbar() {
                 <Link href="/">فروشگاه</Link>
               </li>
               <li>
-                <Link href="/">وبلاگ</Link>
+                <Link href="/blog">وبلاگ</Link>
               </li>
               <li>
                 <Link href="/about">درباره ما</Link>
