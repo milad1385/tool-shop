@@ -131,7 +131,7 @@ function Navbar() {
                 </div>
               </li>
               <li>
-                <Link href="/">ارتباط با ما</Link>
+                <Link href="/contact">ارتباط با ما</Link>
               </li>
             </ul>
           </div>

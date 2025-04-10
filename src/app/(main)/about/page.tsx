@@ -5,7 +5,7 @@ import StaffSlider from "@/components/templates/about/StaffSlider";
 function page() {
   return (
     <>
-      <div className="container">
+      <div className="container mt-24 md:mt-48">
         <About />
         <AboutUsSection />
       </div>
