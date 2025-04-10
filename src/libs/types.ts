@@ -87,3 +87,7 @@ export interface IAccordionTitle {
   title: string;
   children: React.ReactNode;
 }
+
+export interface IPagination {
+  count: number;
+}

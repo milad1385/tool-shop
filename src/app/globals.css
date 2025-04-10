@@ -44,6 +44,10 @@ body {
     background-color: #eab308;
     border-radius: 7px;
   }
+
+  .active-page {
+    @apply !bg-[#eab308] !text-white;
+  }
 }
 
 .swiper-pagination-bullet {
@@ -68,10 +72,11 @@ body {
   white-space: nowrap;
 }
 
-.divider:before, .divider:after {
+.divider:before,
+.divider:after {
   content: "";
-  height: 0.10rem;
-  width:100%;
+  height: 0.1rem;
+  width: 100%;
   background-color: rgb(235, 235, 235);
 }
 
