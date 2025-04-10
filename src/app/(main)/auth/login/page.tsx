@@ -23,7 +23,7 @@ function page() {
                 <h2 className="text-center text-2xl lg:text-4xl font-Lalezar">
                   صفحه ورود
                 </h2>
-                <div className="flex flex-col gap-y-5 mt-8">
+                <form className="flex flex-col gap-y-5 mt-8">
                   <div className="flex flex-col gap-y-4">
                     <label htmlFor="username" className="text-sm text-zinc-800">
                       نام کاربری
@@ -52,7 +52,7 @@ function page() {
                   <button className="p-3 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-full my-4">
                     ورود
                   </button>
-                </div>
+                </form>
                 <div className="flex flex-col gap-y-2 mt-5">
                   <Link href="/auth/forget" className="text-center text-sm">
                     رمز عبور خود را فراموش کرده اید ؟
