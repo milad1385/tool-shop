@@ -1,7 +1,6 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
 import Pagination from "@/components/modules/Pagination";
 import Articles from "@/components/templates/articles/Articles";
-import React, { Suspense } from "react";
 
 
 function page() {
