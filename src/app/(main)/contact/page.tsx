@@ -23,7 +23,7 @@ function page() {
         </div>
         <div className="flex flex-col gap-y-4">
           <label htmlFor="name" className="text-sm text-zinc-800">
-            نام و نام خوانوادگی
+            نام و نام خانوادگی
           </label>
           <input
             type="text"
