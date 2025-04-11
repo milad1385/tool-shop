@@ -1,9 +1,6 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
+import ArticleDeatils from "@/components/templates/articles/ArticleDeatils";
 import ArticleTitle from "@/components/templates/articles/ArticleTitle";
-import React from "react";
-import { FaClock } from "react-icons/fa";
-import { IoFolderOpenOutline } from "react-icons/io5";
-import { LuClock3 } from "react-icons/lu";
 
 function page() {
   return (
@@ -18,6 +15,7 @@ function page() {
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-9 bg-white p-4 rounded-3xl leading-8">
           <ArticleTitle/>
+          <ArticleDeatils/>
         </div>
         <div className="col-span-3 bg-white rounded-2xl"></div>
       </div>
