@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
+import ArticleCategories from "@/components/templates/articles/ArticleCategories";
 import ArticleComments from "@/components/templates/articles/ArticleComments";
 import ArticleDeatils from "@/components/templates/articles/ArticleDeatils";
 import ArticleTitle from "@/components/templates/articles/ArticleTitle";
@@ -22,6 +23,7 @@ function page() {
         </div>
         <div className="col-span-3">
           <RecentArticles />
+          <ArticleCategories/>
         </div>
       </div>
     </div>
