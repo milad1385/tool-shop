@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
+import ArticleComments from "@/components/templates/articles/ArticleComments";
 import ArticleDeatils from "@/components/templates/articles/ArticleDeatils";
 import ArticleTitle from "@/components/templates/articles/ArticleTitle";
 
@@ -16,6 +17,7 @@ function page() {
         <div className="col-span-9 bg-white p-4 rounded-3xl leading-8">
           <ArticleTitle/>
           <ArticleDeatils/>
+          <ArticleComments/>
         </div>
         <div className="col-span-3 bg-white rounded-2xl"></div>
       </div>
