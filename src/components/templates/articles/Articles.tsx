@@ -1,5 +1,4 @@
 import ArticleBox from "@/components/modules/ArticleBox";
-import React from "react";
 
 function Articles() {
   const articles = [

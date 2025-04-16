@@ -12,7 +12,7 @@ async function page({ params }: IPage) {
   console.log(id);
 
   return (
-    <div className="container mt-24 md:mt-48">
+    <div className="container mt-28 md:mt-48">
       <Breadcrumb
         links={[
           { id: 1, href: "/", name: "خانه" },
