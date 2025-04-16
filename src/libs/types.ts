@@ -91,3 +91,8 @@ export interface IAccordionTitle {
 export interface IPagination {
   count: number;
 }
+
+export interface IArticleCategory {
+  title: string;
+  subCategories: any;
+}
