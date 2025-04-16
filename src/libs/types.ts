@@ -109,3 +109,7 @@ export interface IRecentArticleBox {
   title: string;
   description: string;
 }
+
+export interface ITArticleSectionTitle {
+  title: string;
+}
