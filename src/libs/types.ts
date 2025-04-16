@@ -1,3 +1,5 @@
+import { exportTraceState } from "next/dist/trace";
+
 export interface ICategory {
   id: number;
   title: string;
@@ -94,5 +96,10 @@ export interface IPagination {
 
 export interface IArticleCategory {
   title: string;
-  subCategories: any;
+  subCategories: SubCategories[];
 }
+
+type SubCategories = {
+  id: number;
+  title: string;
+};

@@ -18,7 +18,7 @@ function ArticleCategory({ title, subCategories }: IArticleCategory) {
       </div>
       {subCategories.length > 0 && isOpen && (
         <ul className="text-sm text-zinc-700 space-y-3 mt-1.5 list-disc mr-5">
-          {subCategories.map((subCategory: any) => (
+          {subCategories.map((subCategory) => (
             <li key={subCategory.id}>{subCategory.title}</li>
           ))}
         </ul>
