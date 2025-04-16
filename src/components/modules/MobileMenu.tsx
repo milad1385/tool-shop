@@ -71,7 +71,7 @@ function MobileMenu() {
               </div>
             </div>
             <ul
-              className={`pr-5 pt-3 space-y-4 text-sm submenu child:transition-all ${
+              className={`pr-5 pt-3 space-y-4 text-[13px] child:transition-all ${
                 isOpenSubMenu ? "block" : "hidden"
               }`}
             >

@@ -11,8 +11,8 @@ function ArticleDeatils() {
         height={1080}
         className="w-full rounded-2xl"
       />
-      <div className="my-5 space-y-5">
-        <p className="text-base/[32px] text-zinc-700 text-justify">
+      <div className="my-5 space-y-5 text-sm/[30px] md:text-base/[32px]">
+        <p className="text-zinc-700 text-justify">
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
           استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
           ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
@@ -25,7 +25,7 @@ function ArticleDeatils() {
           اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده
           قرار گیرد.
         </p>
-        <p className="text-base/[32px] text-zinc-700 text-justify">
+        <p className="text-zinc-700 text-justify">
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
           استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
           ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و

@@ -31,7 +31,7 @@ function ArticleCategories() {
   return (
     <div className="bg-white p-4 rounded-3xl mb-4 leading-8">
       <ArticleSectionTitle title="دسته بندی ها" />
-      <ul className="space-y-3">
+      <ul className="space-y-5 md:space-y-3 px-3 md:px-0">
         {articleCategories.map((articleCategory) => (
           <ArticleCategory
             {...articleCategory}

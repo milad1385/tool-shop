@@ -14,7 +14,7 @@ function ArticleComments() {
           placeholder="نظر خود را بنویسید ..."
           className="input h-28  p-2 border border-gray-300 rounded-2xl text-sm w-full mt-5"
         />
-        <button className="p-2 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-[90px] my-4">
+        <button className="p-2 text-sm md:text-base md:p-2 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-[90px] my-4">
           ارسال
         </button>
       </form>
