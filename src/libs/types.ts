@@ -103,3 +103,9 @@ type SubCategories = {
   id: number;
   title: string;
 };
+
+export interface IRecentArticleBox {
+  image: string;
+  title: string;
+  description: string;
+}
