@@ -1,11 +1,11 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
+import Container from "@/components/modules/Container";
 import Pagination from "@/components/modules/Pagination";
 import Articles from "@/components/templates/articles/Articles";
 
-
 function page() {
   return (
-    <div className="container mt-24 md:mt-48">
+    <Container>
       <Breadcrumb
         links={[
           { id: 1, href: "/", name: "خانه" },
@@ -13,8 +13,8 @@ function page() {
         ]}
       />
       <Articles />
-      <Pagination count={3}/>
-    </div>
+      <Pagination count={3} />
+    </Container>
   );
 }
 

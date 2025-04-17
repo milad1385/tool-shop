@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
+import Container from "@/components/modules/Container";
 import ArticleCategories from "@/components/templates/articles/ArticleCategories";
 import ArticleComments from "@/components/templates/articles/ArticleComments";
 import ArticleDeatils from "@/components/templates/articles/ArticleDeatils";
@@ -7,7 +8,7 @@ import RecentArticles from "@/components/templates/articles/RecentArticles";
 
 function page() {
   return (
-    <div className="container mt-28 md:mt-48">
+    <Container>
       <Breadcrumb
         links={[
           { id: 1, href: "/", name: "خانه" },
@@ -23,10 +24,10 @@ function page() {
         </div>
         <div className="col-span-12 md:col-span-3">
           <RecentArticles />
-          <ArticleCategories/>
+          <ArticleCategories />
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

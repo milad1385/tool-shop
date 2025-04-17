@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
+import Container from "@/components/modules/Container";
 import Title from "@/components/modules/Title";
 import ProductDetails from "@/components/templates/Product/ProductDetails";
 import ProductSlider from "@/components/templates/Product/ProductSlider";
@@ -12,7 +13,7 @@ async function page({ params }: IPage) {
   console.log(id);
 
   return (
-    <div className="container mt-28 md:mt-48">
+    <Container>
       <Breadcrumb
         links={[
           { id: 1, href: "/", name: "خانه" },
@@ -29,7 +30,7 @@ async function page({ params }: IPage) {
         <Title title="محصولات مرتبط" />
         <SameProductSlider />
       </div>
-    </div>
+    </Container>
   );
 }
 
