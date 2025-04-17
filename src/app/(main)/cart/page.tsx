@@ -1,5 +1,6 @@
 import Breadcrumb from "@/components/modules/Breadcrumb";
 import Container from "@/components/modules/Container";
+import CartDetails from "@/components/templates/cart/CartDetails";
 import React from "react";
 
 function page() {
@@ -11,6 +12,8 @@ function page() {
           { id: 2, href: "/cart", name: "سبد خرید" },
         ]}
       />
+
+      <CartDetails/>
     </Container>
   );
 }
