@@ -113,3 +113,11 @@ export interface IRecentArticleBox {
 export interface ITArticleSectionTitle {
   title: string;
 }
+
+export interface ILinks {
+  id: number;
+  title: string;
+  icon: React.ReactNode;
+  href: string;
+}
+[];
