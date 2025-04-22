@@ -74,6 +74,9 @@ function Navbar() {
                 <Link href="/blog">وبلاگ</Link>
               </li>
               <li>
+                <Link href="/comparison">مقایسه محصول</Link>
+              </li>
+              <li>
                 <Link href="/about">درباره ما</Link>
               </li>
               <li className="flex items-center gap-x-2 relative group">
