@@ -1,5 +1,4 @@
-import Link from "next/link";
-import React from "react";
+import { HiOutlineDocumentDownload } from "react-icons/hi";
 import {
   HiOutlineChevronRight,
   HiOutlineCreditCard,
@@ -7,7 +6,6 @@ import {
   HiOutlineSquares2X2,
   HiOutlineUser,
 } from "react-icons/hi2";
-import { HiOutlineDocumentDownload } from "react-icons/hi";
 import MenuItem from "./MenuItem";
 
 function Sidebar() {
