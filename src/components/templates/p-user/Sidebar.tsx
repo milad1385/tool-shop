@@ -45,8 +45,8 @@ function Sidebar() {
         <div className="h-24 bg-stone-800 relative">
           <div className="absolute inset-0 flex items-center justify-center flex-col top-24">
             <div className="avatar online mt-8">
-              <div className="w-24 rounded-full overflow-hidden">
-                <img src="/images/user.jpg" />
+              <div className="w-24 rounded-full overflow-hidden border-4 border-white">
+                <img src="/images/avatar-3.jpg" />
               </div>
             </div>
 
