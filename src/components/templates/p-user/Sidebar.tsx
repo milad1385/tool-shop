@@ -15,7 +15,7 @@ function Sidebar() {
       id: 2,
       title: "سفارش ها",
       icon: <HiOutlineCreditCard className="text-2xl" />,
-      href: "/p-user/order",
+      href: "/p-user/orders",
     },
     {
       id: 3,

@@ -48,6 +48,10 @@ body {
   .active-page {
     @apply !bg-[#eab308] !text-white;
   }
+
+  .active-btn {
+    @apply bg-[#eab308] text-white;
+  }
 }
 
 .swiper-pagination-bullet {

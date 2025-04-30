@@ -132,3 +132,14 @@ export interface IStatBox {
 export interface IUserPanelTitle {
   content: string;
 }
+
+export interface IFilters {
+  items: IFilterItem[];
+  slug: string;
+}
+
+interface IFilterItem {
+  id: string | number;
+  title: string;
+  slug: string;
+}

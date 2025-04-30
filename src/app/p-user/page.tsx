@@ -3,8 +3,6 @@ import Notification from "@/components/templates/p-user/Notification";
 import Orders from "@/components/templates/p-user/Orders";
 import Stats from "@/components/templates/p-user/Stats";
 import Title from "@/components/templates/p-user/Title";
-import React from "react";
-import { HiOutlineBellAlert } from "react-icons/hi2";
 
 function page() {
   return (
