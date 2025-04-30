@@ -3,7 +3,7 @@ import React from "react";
 
 function StatBox({ className, title, desc, icon }: IStatBox) {
   return (
-    <div className={`flex justify-between items-center rounded-2xl lg:rounded-3xl p-4 lg:p-8 ${className}`}>
+    <div className={`flex justify-between items-center rounded-2xl lg:rounded-3xl p-4 sm:p-6 md:p-8 ${className}`}>
       <div className="space-y-2">
         <h3 className="text-base md:text-2xl font-Lalezar">{title}</h3>
         <p className="font-IranMedium text-xs md:text-sm">{desc}</p>
