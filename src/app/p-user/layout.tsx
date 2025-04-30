@@ -9,7 +9,7 @@ function layout({
 }>) {
   return (
     <Container>
-      <div className="grid grid-cols-12">
+      <div className="grid grid-cols-12 min-h-screen pb-5">
         <Sidebar/>
         <div className="col-span-12 lg:col-span-9 lg:mr-10">{children}</div>
       </div>

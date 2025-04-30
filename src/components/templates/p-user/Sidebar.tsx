@@ -38,8 +38,8 @@ function Sidebar() {
     { id: 6, title: "خروج", icon: <HiOutlineChevronRight className="text-2xl" />, href: "" },
   ];
   return (
-    <div className="col-span-3  hidden lg:block ">
-      <div className="bg-white rounded-3xl overflow-hidden pb-4">
+    <div className="col-span-3  hidden lg:block">
+      <div className="bg-white rounded-3xl overflow-hidden  xl:w-[312px] fixed">
         <div className="h-24 bg-stone-800 relative">
           <div className="absolute inset-0 flex items-center justify-center flex-col top-24">
             <div className="avatar online mt-8">

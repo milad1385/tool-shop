@@ -14,7 +14,7 @@ import FooterSlider from "./FooterSlider";
 
 function Footer() {
   const pathname = usePathname();
-  if (pathname.includes("/auth")) return null;
+  if (pathname.includes("/auth")|| pathname.includes("/p-user")) return null;
   return (
     <>
       <footer className="bg-stone-800 mt-10  py-10 md:py-8 md:pb-8 md:pt-[62px]">
