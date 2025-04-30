@@ -121,3 +121,10 @@ export interface ILinks {
   href: string;
 }
 [];
+
+export interface IStatBox {
+  className: string;
+  title: string;
+  desc: string;
+  icon: React.ReactNode;
+}
