@@ -1,3 +1,4 @@
+import Container from "@/components/templates/p-user/Container";
 import Filters from "@/components/templates/p-user/Filters";
 import Orders from "@/components/templates/p-user/Orders";
 import Title from "@/components/templates/p-user/Title";
@@ -5,7 +6,7 @@ import React from "react";
 
 function page() {
   return (
-    <div className="bg-white rounded-2xl md:rounded-3xl p-4">
+    <Container>
       <Title content="سفارش ها" />
       <Filters
         items={[
@@ -17,7 +18,7 @@ function page() {
         slug="status"
       />
       <Orders />
-    </div>
+    </Container>
   );
 }
 

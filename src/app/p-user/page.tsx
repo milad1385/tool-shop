@@ -1,3 +1,4 @@
+import Container from "@/components/templates/p-user/Container";
 import MobileMenu from "@/components/templates/p-user/MobileMenu";
 import Notification from "@/components/templates/p-user/Notification";
 import Orders from "@/components/templates/p-user/Orders";
@@ -9,11 +10,11 @@ function page() {
     <div>
       <MobileMenu />
       <Stats />
-      <div className="bg-white rounded-2xl md:rounded-3xl p-4 mt-8">
+      <Container>
         <Notification />
         <Title content="سفارش های اخیر شما" />
         <Orders />
-      </div>
+      </Container>
     </div>
   );
 }

@@ -1,13 +1,14 @@
+import Container from "@/components/templates/p-user/Container";
 import FavoriteList from "@/components/templates/p-user/FavoriteList";
 import Title from "@/components/templates/p-user/Title";
 import React from "react";
 
 function page() {
   return (
-    <div className="bg-white rounded-2xl md:rounded-3xl p-4">
+    <Container>
       <Title content="لیست علاقه مندی ها" />
-      <FavoriteList/>
-    </div>
+      <FavoriteList />
+    </Container>
   );
 }
 
