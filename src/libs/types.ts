@@ -128,3 +128,7 @@ export interface IStatBox {
   desc: string;
   icon: React.ReactNode;
 }
+
+export interface IUserPanelTitle {
+  content: string;
+}
