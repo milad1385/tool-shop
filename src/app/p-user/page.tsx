@@ -1,8 +1,11 @@
+import Stats from '@/components/templates/p-user/Stats'
 import React from 'react'
 
 function page() {
   return (
-    <div>page</div>
+    <div>
+      <Stats/>
+    </div>
   )
 }
 

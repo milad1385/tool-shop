@@ -123,7 +123,7 @@ export interface ILinks {
 [];
 
 export interface IStatBox {
-  className: string;
+  className?: string;
   title: string;
   desc: string;
   icon: React.ReactNode;

@@ -11,7 +11,7 @@ function layout({
     <Container>
       <div className="grid grid-cols-12">
         <Sidebar/>
-        <div className="col-span-9 mr-10">{children}</div>
+        <div className="col-span-12 lg:col-span-9 lg:mr-10">{children}</div>
       </div>
     </Container>
   );
