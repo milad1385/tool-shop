@@ -1,12 +1,15 @@
+"use client"
 import { ILinks } from "@/libs/types";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 function MenuItem({ title, href, icon }: ILinks) {
+  const pathname = usePathname()
   return (
     <Link
       href={href}
-      className="flex items-center gap-x-2 py-4 px-8 hover:bg-stone-100 duration-300"
+      className={`flex items-center gap-x-2 py-4 px-8 hover:bg-stone-100 duration-300 ${pathname === href ? "bg-stone-100" :""}`}
     >
       {icon}
       <span className="mr-1">{title}</span>
