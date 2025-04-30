@@ -21,7 +21,7 @@ function Sidebar() {
       id: 3,
       title: "لیست علاقه مندی",
       icon: <HiOutlineFaceSmile className="text-2xl" />,
-      href: "/p-user/favorite",
+      href: "/p-user/favorites",
     },
     {
       id: 4,
