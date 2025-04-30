@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { FaTrash } from "react-icons/fa";
 import { HiOutlineTrash } from "react-icons/hi2";
 
 function FavoriteBox() {
