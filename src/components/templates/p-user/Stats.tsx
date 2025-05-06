@@ -7,7 +7,7 @@ import { formattedPrice } from "@/utils/helper";
 
 function Stats() {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
       <StatBox
         title="9 محصول"
         icon={<AiOutlineProduct className="text-zinc-800 text-xl md:text-3xl" />}
