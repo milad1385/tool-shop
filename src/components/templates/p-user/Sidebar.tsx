@@ -7,10 +7,17 @@ import {
   HiOutlineUser,
 } from "react-icons/hi2";
 import MenuItem from "./MenuItem";
+import { LiaComments } from "react-icons/lia";
+import { IoTicketOutline } from "react-icons/io5";
 
 function Sidebar() {
   const links = [
-    { id: 1, title: "پیشخوان", icon: <HiOutlineSquares2X2 className="text-2xl" />, href: "/p-user" },
+    {
+      id: 1,
+      title: "پیشخوان",
+      icon: <HiOutlineSquares2X2 className="text-2xl" />,
+      href: "/p-user",
+    },
     {
       id: 2,
       title: "سفارش ها",
@@ -25,17 +32,29 @@ function Sidebar() {
     },
     {
       id: 4,
+      title: "نظرات",
+      icon: <LiaComments className="text-2xl" />,
+      href: "/p-user/comments",
+    },
+    {
+      id: 44,
+      title: "تیکت ها",
+      icon: <IoTicketOutline className="text-2xl" />,
+      href: "/p-user/tickets",
+    },
+    {
+      id: 5,
       title: "دانلود ها",
       icon: <HiOutlineDocumentDownload className="text-2xl" />,
       href: "/p-user/downloads",
     },
     {
-      id: 5,
+      id: 6,
       title: "جزییات حساب کاربری",
       icon: <HiOutlineUser className="text-2xl" />,
       href: "/p-user/info",
     },
-    { id: 6, title: "خروج", icon: <HiOutlineChevronRight className="text-2xl" />, href: "" },
+   
   ];
   return (
     <div className="col-span-3  hidden lg:block">
