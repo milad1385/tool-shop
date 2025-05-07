@@ -1,5 +1,5 @@
 import React from "react";
-import StatBox from "./StatBox";
+import StatBox from "../../../modules/p-user/StatBox";
 import { RiArticleLine } from "react-icons/ri";
 import { FaFlagCheckered, FaRegStickyNote } from "react-icons/fa";
 import { VscError } from "react-icons/vsc";

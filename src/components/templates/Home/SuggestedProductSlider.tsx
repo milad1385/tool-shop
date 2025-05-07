@@ -1,5 +1,5 @@
 "use client";
-import ProductBox from "@/components/modules/ProductBox";
+import ProductBox from "@/components/modules/main/ProductBox";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

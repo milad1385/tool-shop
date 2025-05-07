@@ -1,11 +1,11 @@
 import React from "react";
 import { HiOutlineBellAlert } from "react-icons/hi2";
-import Title from "./Title";
+import Title from "@/components/modules/p-user/Title";
 
 function Notification() {
   return (
     <>
-      <Title content="اطلاعیه مهم"/>
+      <Title content="اطلاعیه مهم" />
       <div className="bg-white border p-6 rounded-2xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="leading-8 mr-2">

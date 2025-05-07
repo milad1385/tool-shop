@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-import Title from "@/components/modules/Title";
+import Title from "@/components/modules/main/Title";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import StaffSliderBox from "./StaffSliderBox";
 

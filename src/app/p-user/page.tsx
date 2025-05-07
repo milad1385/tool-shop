@@ -1,9 +1,9 @@
-import Container from "@/components/templates/p-user/Container";
-import MobileMenu from "@/components/templates/p-user/MobileMenu";
-import Notification from "@/components/templates/p-user/Notification";
-import Orders from "@/components/templates/p-user/Orders";
-import Stats from "@/components/templates/p-user/Stats";
-import Title from "@/components/templates/p-user/Title";
+import Container from "@/components/modules/p-user/Container";
+import MobileMenu from "@/components/modules/p-user/MobileMenu";
+import Notification from "@/components/templates/p-user/main/Notification";
+import Orders from "@/components/templates/p-user/orders/Orders";
+import Stats from "@/components/templates/p-user/main/Stats";
+import Title from "@/components/modules/p-user/Title";
 
 function page() {
   return (

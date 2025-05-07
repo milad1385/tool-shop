@@ -1,5 +1,5 @@
 import React from "react";
-import StatBox from "./StatBox";
+import StatBox from "../../../modules/p-user/StatBox";
 import { AiOutlineProduct } from "react-icons/ai";
 import { CgSandClock } from "react-icons/cg";
 import { TbBasketPause } from "react-icons/tb";

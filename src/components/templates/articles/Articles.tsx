@@ -1,4 +1,4 @@
-import ArticleBox from "@/components/modules/ArticleBox";
+import ArticleBox from "@/components/modules/main/ArticleBox";
 
 function Articles() {
   const articles = [

@@ -1,7 +1,7 @@
-import Container from "@/components/templates/p-user/Container";
-import Filters from "@/components/templates/p-user/Filters";
-import Orders from "@/components/templates/p-user/Orders";
-import Title from "@/components/templates/p-user/Title";
+import Container from "@/components/modules/p-user/Container";
+import Filters from "@/components/modules/p-user/Filters";
+import Orders from "@/components/templates/p-user/orders/Orders";
+import Title from "@/components/modules/p-user/Title";
 import React from "react";
 
 function page() {

@@ -1,6 +1,6 @@
-import Breadcrumb from "@/components/modules/Breadcrumb";
-import Container from "@/components/modules/Container";
-import Pagination from "@/components/modules/Pagination";
+import Breadcrumb from "@/components/modules/main/Breadcrumb";
+import Container from "@/components/modules/main/Container";
+import Pagination from "@/components/modules/main/Pagination";
 import ComparisonBox from "@/components/templates/comparison/ComparisonBox";
 import React from "react";
 

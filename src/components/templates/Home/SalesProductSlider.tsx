@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ProductBox from "@/components/modules/ProductBox";
+import ProductBox from "@/components/modules/main/ProductBox";
 import "swiper/css";
 
 import { Swiper, SwiperSlide } from "swiper/react";

@@ -2,7 +2,7 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/pagination";
 import SalesProductSlider from "./SalesProductSlider";
-import Title from "@/components/modules/Title";
+import Title from "@/components/modules/main/Title";
 
 function SalesProducts() {
   return (

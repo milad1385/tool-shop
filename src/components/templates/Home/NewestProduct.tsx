@@ -1,4 +1,4 @@
-import Title from "@/components/modules/Title";
+import Title from "@/components/modules/main/Title";
 import React from "react";
 import NewestProductSlider from "./NewestProductSlider";
 

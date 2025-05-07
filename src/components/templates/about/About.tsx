@@ -1,5 +1,5 @@
-import AboutUsBox from "@/components/modules/AboutUsBox";
-import Title from "@/components/modules/Title";
+import AboutUsBox from "@/components/modules/main/AboutUsBox";
+import Title from "@/components/modules/main/Title";
 import Image from "next/image";
 import React from "react";
 import { FaRegFaceSmile } from "react-icons/fa6";

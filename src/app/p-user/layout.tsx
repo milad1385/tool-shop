@@ -1,5 +1,5 @@
-import Navbar from "@/components/templates/p-user/Navbar";
-import Sidebar from "@/components/templates/p-user/Sidebar";
+import Navbar from "@/components/modules/p-user/Navbar";
+import Sidebar from "@/components/modules/p-user/Sidebar";
 import React from "react";
 
 function layout({

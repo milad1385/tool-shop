@@ -1,7 +1,7 @@
-import Navbar from "@/components/modules/Navbar";
+import Navbar from "@/components/modules/main/Navbar";
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "@/components/modules/Footer";
+import Footer from "@/components/modules/main/Footer";
 import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {

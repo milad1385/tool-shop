@@ -1,5 +1,5 @@
 "use client";
-import BestSellerBox from "@/components/modules/BestSellerBox";
+import BestSellerBox from "@/components/modules/main/BestSellerBox";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

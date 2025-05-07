@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import CategoryBox from "@/components/modules/CategoryBox";
+import CategoryBox from "@/components/modules/main/CategoryBox";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 

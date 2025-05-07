@@ -1,6 +1,6 @@
 import React from "react";
 import CategoriesSlider from "./CategoriesSlider";
-import Title from "@/components/modules/Title";
+import Title from "@/components/modules/main/Title";
 
 function Categories() {
   return (

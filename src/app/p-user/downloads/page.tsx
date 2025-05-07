@@ -1,6 +1,6 @@
-import Container from "@/components/templates/p-user/Container";
-import DownloadList from "@/components/templates/p-user/DownloadList";
-import Title from "@/components/templates/p-user/Title";
+import Container from "@/components/modules/p-user/Container";
+import DownloadList from "@/components/templates/p-user/downloads/DownloadList";
+import Title from "@/components/modules/p-user/Title";
 import React from "react";
 
 function page() {

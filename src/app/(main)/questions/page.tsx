@@ -1,4 +1,4 @@
-import Accordion from "@/components/modules/Accordion";
+import Accordion from "@/components/modules/main/Accordion";
 import QuetionSearchInput from "@/components/templates/question/QuetionSearchInput";
 import Image from "next/image";
 

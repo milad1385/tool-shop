@@ -1,5 +1,5 @@
 "use client";
-import ArticleBox from "@/components/modules/ArticleBox";
+import ArticleBox from "@/components/modules/main/ArticleBox";
 import React from "react";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
