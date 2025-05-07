@@ -4,6 +4,18 @@ import Container from "@/components/modules/p-user/Container";
 import Filters from "@/components/modules/p-user/Filters";
 import Title from "@/components/modules/p-user/Title";
 import React from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "کامنت ها - پنل کاربری",
+  description:"لیست کامنت های خود را میتوانید مشاهده کنید",
+  icons: {
+    icon: "/images/tool.png",
+  },
+  openGraph: {
+    title: "ابزار آلات ترازو",
+  },
+};
 
 function page() {
   return (
