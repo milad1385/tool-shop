@@ -1,15 +1,13 @@
 "use client";
 import Input from "@/components/ui/Input";
-import Image from "next/image";
-import React from "react";
-import { PiUploadSimple } from "react-icons/pi";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import {
   UserData,
   userValidorSchema,
 } from "@/validators/frontend/user/user.validator";
-import { editUser } from "@/libs/actions/user";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { PiUploadSimple } from "react-icons/pi";
 function InformationInputs() {
   const {
     register,
@@ -20,15 +18,20 @@ function InformationInputs() {
     resolver: yupResolver(userValidorSchema),
   });
 
+  console.log(errors);
+  
+
   const editUserInformation = async (data: UserData) => {
+    console.log("click");
+    
     console.log(data);
-    const userFormData = new FormData();
+    // const userFormData = new FormData();
 
-    // for (let key in data) {
-    //   userFormData.append(key, data?.[key]);
-    // }
+    // // for (let key in data) {
+    // //   userFormData.append(key, data?.[key]);
+    // // }
 
-    await editUser(userFormData);
+    // await editUser(userFormData);
   };
   return (
     <form onSubmit={handleSubmit(editUserInformation)}>
@@ -51,7 +54,7 @@ function InformationInputs() {
         <input
           type="file"
           {...register("image")}
-          name="upload"
+          name="image"
           id="upload"
           hidden
         />

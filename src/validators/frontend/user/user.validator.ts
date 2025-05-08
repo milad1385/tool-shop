@@ -42,7 +42,7 @@ export const userValidorSchema = yup.object({
     .required("این فیلد الزامی است")
     .min(11, "حداقل تعداد کاراکتر 11 عدد است")
     .max(11, "حداکثر تعداد کاراکتر 11 عدد میباشد"),
-  image: yup.string(),
+  image: yup.mixed().required("انتخاب تصویر ضروری است"),
 });
 
 export type UserData = yup.InferType<typeof userValidorSchema>;
