@@ -52,7 +52,7 @@ function Sidebar() {
       id: 6,
       title: "جزییات حساب کاربری",
       icon: <HiOutlineUser className="text-2xl" />,
-      href: "/p-user/info",
+      href: "/p-user/information",
     },
    
   ];

@@ -143,3 +143,15 @@ interface IFilterItem {
   title: string;
   slug: string;
 }
+
+export interface IInput {
+  label: string;
+  name: string;
+  className?: string;
+  register: any;
+  errors: any;
+  placeholder?: string;
+  multiple?: boolean;
+  type: "text" | "number" | "email" | "password" | "file" | "textarea";
+  disable?: boolean;
+}
