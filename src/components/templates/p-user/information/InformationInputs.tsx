@@ -1,44 +1,38 @@
 "use client";
 import Input from "@/components/ui/Input";
+import { editUser } from "@/libs/actions/user";
 import {
   UserData,
   userValidorSchema,
 } from "@/validators/frontend/user/user.validator";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { PiUploadSimple } from "react-icons/pi";
 function InformationInputs() {
+  const [tempUserImage, setTempUserImage] = useState("");
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: yupResolver(userValidorSchema),
   });
 
   console.log(errors);
-  
 
   const editUserInformation = async (data: UserData) => {
-    console.log("click");
-    
     console.log(data);
-    // const userFormData = new FormData();
 
-    // // for (let key in data) {
-    // //   userFormData.append(key, data?.[key]);
-    // // }
-
-    // await editUser(userFormData);
+    await editUser(data);
   };
   return (
     <form onSubmit={handleSubmit(editUserInformation)}>
       <div className="my-8">
         <div className="relative w-[125px] h-[125px] mx-auto">
           <Image
-            src="/images/avatar-3.jpg"
+            src={tempUserImage ? tempUserImage : "/images/avatar-3.jpg"}
             alt="avatar-3.jpg"
             width={1920}
             height={1080}
@@ -53,7 +47,12 @@ function InformationInputs() {
         </div>
         <input
           type="file"
-          {...register("image")}
+          {...register("image", {
+            onChange: (e) => {
+              const url = URL.createObjectURL(e.target.files[0]);
+              setTempUserImage(url);
+            },
+          })}
           name="image"
           id="upload"
           hidden
@@ -66,6 +65,7 @@ function InformationInputs() {
           label="نام"
           type="text"
           name="name"
+          className="text-right"
         />
         <Input
           register={register}
@@ -73,6 +73,7 @@ function InformationInputs() {
           label="نام خانوادگی"
           type="text"
           name="lastname"
+          className="text-right"
         />
         <Input
           register={register}
@@ -80,6 +81,7 @@ function InformationInputs() {
           label="نام کاربری"
           type="text"
           name="username"
+          className="text-right"
         />
         <Input
           register={register}
@@ -108,6 +110,7 @@ function InformationInputs() {
           label="آدرس سایت"
           type="text"
           name="site"
+          className="text-right"
         />
         <Input
           register={register}
