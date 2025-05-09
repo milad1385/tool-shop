@@ -20,8 +20,6 @@ function InformationInputs() {
     resolver: yupResolver(userValidorSchema),
   });
 
-  console.log(errors);
-
   const editUserInformation = async (data: UserData) => {
     console.log(data);
 
