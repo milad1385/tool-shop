@@ -8,7 +8,6 @@ import Title from "@/components/modules/p-user/Title";
 function page() {
   return (
     <div>
-      <MobileMenu />
       <Stats />
       <Container>
         <Notification />
