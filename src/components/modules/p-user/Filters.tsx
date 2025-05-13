@@ -8,6 +8,8 @@ function Filters({ items, slug }: IFilters) {
   const params = new URLSearchParams(searchParams);
   const router = useRouter();
 
+  const activeFilter = params.get(slug) || "all";
+
   const filterHandler = (filterSlug: string) => {
     params.set(slug, filterSlug);
     router.push(`${pathname}?${params}`);
@@ -20,7 +22,9 @@ function Filters({ items, slug }: IFilters) {
           onClick={() => filterHandler(item.slug)}
           key={item.id}
           className={`text-white font-Lalezar rounded-xl px-4 py-2 ${
-            item.slug === params.get(slug) ? "active-btn" : "bg-black"
+            item.slug === activeFilter
+              ? "active-btn"
+              : "bg-black"
           }`}
         >
           {item.title}

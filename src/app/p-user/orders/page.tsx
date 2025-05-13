@@ -22,6 +22,7 @@ function page() {
       <Title content="سفارش ها" />
       <Filters
         items={[
+          { id: 0, title: "همه", slug: "all" },
           { id: 1, title: "پرداخت شده", slug: "paid" },
           { id: 2, title: "لغو شده", slug: "canceled" },
           { id: 3, title: "مرجوع شده", slug: "deported" },

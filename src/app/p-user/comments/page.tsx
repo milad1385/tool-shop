@@ -8,7 +8,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "کامنت ها - پنل کاربری",
-  description:"لیست کامنت های خود را میتوانید مشاهده کنید",
+  description: "لیست کامنت های خود را میتوانید مشاهده کنید",
   icons: {
     icon: "/images/tool.png",
   },
@@ -25,6 +25,7 @@ function page() {
         <Title content="لیست نظرات" />
         <Filters
           items={[
+            { id: 0, title: "همه", slug: "all" },
             { id: 1, title: "تایید شده", slug: "accepted" },
             { id: 2, title: "رد شده", slug: "rejected" },
             { id: 3, title: "در انتظار تایید", slug: "proccessing" },
