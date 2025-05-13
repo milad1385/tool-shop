@@ -6,11 +6,14 @@ import React from "react";
 
 function MenuItem({ title, href, icon }: ILinks) {
   const pathname = usePathname();
+
+  const isActive = pathname === href;
+
   return (
     <Link
       href={href}
       className={`flex items-center gap-x-2 py-4 px-8 hover:bg-stone-100 duration-300 ${
-        pathname === href ? "bg-stone-100" : ""
+        isActive ? "bg-stone-100" : ""
       }`}
     >
       {icon}

@@ -155,3 +155,10 @@ export interface IInput {
   type: "text" | "number" | "email" | "password" | "file" | "textarea";
   disable?: boolean;
 }
+
+export interface IAnswerBox {
+  body?: string;
+  creator?: string;
+  createdAt?: number;
+  isFromUserPanel?: boolean;
+}
