@@ -30,14 +30,32 @@ function Input({
         />
 
         {errors[name] && (
-          <span className={`absolute -bottom-6  text-xs md:text-sm text-red-600`}>
+          <span
+            className={`absolute -bottom-6  text-xs md:text-sm text-red-600`}
+          >
             {errors[name].message}
           </span>
         )}
       </div>
     );
   } else {
-    return <textarea></textarea>;
+    return (
+      <div className="relative">
+        <textarea
+          rows={8}
+          {...register(`${name}`)}
+          className={`input w-full  p-2 border border-gray-300 rounded-md ${className}`}
+          placeholder={placeholder}
+          id={name}
+          name={name}
+        ></textarea>
+        {errors[name] && (
+          <span className={`text-xs md:text-sm text-red-600`}>
+            {errors[name].message}
+          </span>
+        )}
+      </div>
+    );
   }
 }
 

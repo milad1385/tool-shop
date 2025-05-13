@@ -12,7 +12,7 @@ function AnswerBox({
       className={`w-11/12 sm:w-2/3  ${
         isFromUserPanel
           ? "bg-gray-100 text-zinc-700 "
-          : "bg-blue-600 text-white mr-auto"
+          : "bg-zinc-700 text-white mr-auto"
       }   p-4 rounded-2xl ${isFromUserPanel ? "rounded-tr-sm" :"rounded-tl-sm"}`}
     >
       <h4
