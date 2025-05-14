@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import SelectBox from "@/components/ui/SelectBox";
 import { departments, priority } from "@/constants/data";
@@ -69,12 +70,7 @@ function SendTicketForm() {
       />
 
       <div className="flex items-center justify-end">
-        <button
-          type="submit"
-          className="bg-amber-500 px-4 py-2 text-white rounded-md"
-        >
-          ارسال
-        </button>
+        <Button className="!w-[150px]">ارسال تیکت</Button>
       </div>
     </form>
   );

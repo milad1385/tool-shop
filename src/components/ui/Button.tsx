@@ -1,9 +1,13 @@
-import React from "react";
+import React, { ComponentProps } from "react";
+type TButton = ComponentProps<"button">;
 
-function Button() {
+function Button({ className, children, ...rest }: TButton) {
   return (
-    <button className="p-3 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-full my-4">
-      ارسال
+    <button
+      {...rest}
+      className={`p-3 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-full my-4 ${className}`}
+    >
+      {children}
     </button>
   );
 }
