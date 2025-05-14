@@ -4,7 +4,9 @@ import Title from "@/components/modules/p-user/Title";
 import TicketList from "@/components/templates/p-user/tickets/TicketList";
 import TicketsStats from "@/components/templates/p-user/tickets/TicketsStats";
 import { Metadata } from "next";
+import Link from "next/link";
 import React from "react";
+import { BsPlusCircle } from "react-icons/bs";
 
 export const metadata: Metadata = {
   title: "تیکت ها - پنل کاربری",
@@ -22,7 +24,12 @@ function page() {
     <>
       <TicketsStats />
       <Container>
-        <Title content="تیکت ها" />
+        <Title content="تیکت ها">
+          <Link href="/p-user/tickets/new" className="bg-amber-500 text-white flex items-center gap-x-2 px-4 py-2 rounded-md">
+            <span>ایجاد تیکت جدید</span>
+            <BsPlusCircle className="text-xl" />
+          </Link>
+        </Title>
         <Filters
           items={[
             { id: 1, title: "همه", slug: "all" },

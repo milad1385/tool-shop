@@ -131,6 +131,7 @@ export interface IStatBox {
 
 export interface IUserPanelTitle {
   content: string;
+  children?: React.ReactNode;
 }
 
 export interface IFilters {
@@ -162,7 +163,6 @@ export interface IAnswerBox {
   createdAt?: number;
   isFromUserPanel?: boolean;
 }
-
 
 type TOption = {
   id: string | number;
