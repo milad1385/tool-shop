@@ -145,7 +145,7 @@ interface IFilterItem {
 }
 
 export interface IInput {
-  label: string;
+  label?: string;
   name: string;
   className?: string;
   register: any;
@@ -162,3 +162,24 @@ export interface IAnswerBox {
   createdAt?: number;
   isFromUserPanel?: boolean;
 }
+
+
+type TOption = {
+  id: string | number;
+  value: string | number;
+  label: string;
+};
+
+export type TSelectBox = {
+  title: string;
+  register: any;
+  errors: any;
+  name: string;
+  options: TOption[];
+  dateName?: string;
+  disable?: boolean;
+  multiple?: boolean;
+  selected?: any;
+  onSelected?: any;
+  placeholder?: string;
+};

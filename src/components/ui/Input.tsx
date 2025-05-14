@@ -40,7 +40,10 @@ function Input({
     );
   } else {
     return (
-      <div className="relative">
+      <div className="flex flex-col gap-y-4 relative">
+        <label htmlFor={name} className="text-sm text-zinc-800">
+          {label} :
+        </label>
         <textarea
           rows={8}
           {...register(`${name}`)}
