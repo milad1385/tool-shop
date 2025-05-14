@@ -2,6 +2,7 @@
 
 import Input from "@/components/ui/Input";
 import SelectBox from "@/components/ui/SelectBox";
+import { departments, priority } from "@/constants/data";
 import {
   newTicketSchema,
   newTicketType,
@@ -12,17 +13,6 @@ import { useForm } from "react-hook-form";
 
 function SendTicketForm() {
   const [selected, setSelected] = useState(null);
-  const priority = [
-    { id: 1, value: 1, label: "بسیار بالا" },
-    { id: 2, value: 2, label: "بالا" },
-    { id: 3, value: 3, label: "متوسط" },
-  ];
-
-  const departments = [
-    { id: 1, value: 1, label: "مالی" },
-    { id: 2, value: 2, label: "پشتیبانی" },
-    { id: 3, value: 3, label: "رسیدگی" },
-  ];
   const {
     handleSubmit,
     register,
@@ -31,9 +21,6 @@ function SendTicketForm() {
   } = useForm({
     resolver: yupResolver(newTicketSchema),
   });
-
-  console.log(errors);
-  
 
   const sendNewTicketHandler = async (data: newTicketType) => {
     console.log(data);
@@ -52,7 +39,6 @@ function SendTicketForm() {
         title="دپارتمان"
         selected={selected}
         onSelected={setSelected}
-       
       />
 
       <SelectBox
@@ -83,7 +69,10 @@ function SendTicketForm() {
       />
 
       <div className="flex items-center justify-end">
-        <button type="submit" className="bg-amber-500 px-4 py-2 text-white rounded-md">
+        <button
+          type="submit"
+          className="bg-amber-500 px-4 py-2 text-white rounded-md"
+        >
           ارسال
         </button>
       </div>
