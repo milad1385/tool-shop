@@ -28,11 +28,11 @@ function CommentItem() {
         <div className="flex items-center gap-x-2">
           <span>امتیاز :</span>
           <div className="flex items-center gap-x-1">
-            <FaRegStar className="text-lg text-yellow-500" />
-            <FaRegStar className="text-lg text-yellow-500" />
-            <FaRegStar className="text-lg text-yellow-500" />
-            <FaRegStar className="text-lg text-gray-500" />
-            <FaRegStar className="text-lg text-gray-500" />
+            <FaRegStar className="text-xs md:text-lg text-yellow-500" />
+            <FaRegStar className="text-xs md:text-lg text-yellow-500" />
+            <FaRegStar className="text-xs md:text-lg text-yellow-500" />
+            <FaRegStar className="text-xs md:text-lg text-gray-500" />
+            <FaRegStar className="text-xs md:text-lg text-gray-500" />
           </div>
         </div>
       </div>

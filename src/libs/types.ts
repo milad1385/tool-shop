@@ -183,3 +183,8 @@ export type TSelectBox = {
   onSelected?: any;
   placeholder?: string;
 };
+
+export interface IHambergerMobileMenu {
+  isOpen: boolean;
+  onOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}

@@ -1,61 +1,8 @@
-import { HiOutlineDocumentDownload } from "react-icons/hi";
-import {
-  HiOutlineChevronRight,
-  HiOutlineCreditCard,
-  HiOutlineFaceSmile,
-  HiOutlineSquares2X2,
-  HiOutlineUser,
-} from "react-icons/hi2";
+import { links } from "@/constants/data";
 import MenuItem from "./MenuItem";
-import { LiaComments } from "react-icons/lia";
-import { IoTicketOutline } from "react-icons/io5";
 
 function Sidebar() {
-  const links = [
-    {
-      id: 1,
-      title: "پیشخوان",
-      icon: <HiOutlineSquares2X2 className="text-2xl" />,
-      href: "/p-user",
-    },
-    {
-      id: 2,
-      title: "سفارش ها",
-      icon: <HiOutlineCreditCard className="text-2xl" />,
-      href: "/p-user/orders",
-    },
-    {
-      id: 3,
-      title: "لیست علاقه مندی",
-      icon: <HiOutlineFaceSmile className="text-2xl" />,
-      href: "/p-user/favorites",
-    },
-    {
-      id: 4,
-      title: "نظرات",
-      icon: <LiaComments className="text-2xl" />,
-      href: "/p-user/comments",
-    },
-    {
-      id: 44,
-      title: "تیکت ها",
-      icon: <IoTicketOutline className="text-2xl" />,
-      href: "/p-user/tickets",
-    },
-    {
-      id: 5,
-      title: "دانلود ها",
-      icon: <HiOutlineDocumentDownload className="text-2xl" />,
-      href: "/p-user/downloads",
-    },
-    {
-      id: 6,
-      title: "جزییات حساب کاربری",
-      icon: <HiOutlineUser className="text-2xl" />,
-      href: "/p-user/information",
-    },
-   
-  ];
+ 
   return (
     <div className="col-span-3  hidden lg:block">
       <div className="bg-white rounded-3xl overflow-hidden  xl:w-[312px] fixed">

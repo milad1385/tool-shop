@@ -12,7 +12,7 @@ function MenuItem({ title, href, icon }: ILinks) {
   return (
     <Link
       href={href}
-      className={`flex items-center gap-x-2 py-4 px-8 hover:bg-stone-100 duration-300 ${
+      className={`flex items-center gap-x-2 text-[15px] md:text-base p-3 md:py-4 md:px-8 hover:bg-stone-100 rounded-md md:rounded-none duration-300 ${
         isActive ? "bg-stone-100" : ""
       }`}
     >
