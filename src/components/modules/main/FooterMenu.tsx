@@ -73,7 +73,7 @@ function FooterMenu() {
                     ? activeStyle
                     : "text-gray-700/60"
                 }`}
-                href="/orders"
+                href="/p-user/orders"
               >
                 <BsBasket2Fill className="text-xl" />
                 <p className="font-bold">سفارشات</p>
@@ -86,7 +86,7 @@ function FooterMenu() {
                     ? activeStyle
                     : "text-gray-700/60"
                 }`}
-                href="/favorites"
+                href="/p-user/favorites"
               >
                 <FaHeart className="text-xl" />
                 <p className="font-bold">علاقه مندی</p>

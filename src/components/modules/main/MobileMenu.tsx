@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LuMenu } from "react-icons/lu";
 import MenuOverlay from "./Overlay";
 import Image from "next/image";
@@ -16,10 +16,16 @@ import {
 } from "react-icons/hi2";
 import Link from "next/link";
 import { IoDocumentTextOutline, IoSettingsOutline } from "react-icons/io5";
+import { usePathname } from "next/navigation";
 
 function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
   return (
     <>
       <LuMenu
@@ -116,12 +122,12 @@ function MobileMenu() {
           </li>
         </ul>
         <div className="flex flex-col items-start gap-y-6 border-t border-t-gray-100  text-yellow-500 py-6 px-2.5">
-          <Link href="/login" className="inline-flex items-center gap-x-2">
+          <Link href="/auth/login" className="inline-flex items-center gap-x-2">
             <HiArrowLeftEndOnRectangle className="text-xl" />
             ورود و ثبت نام
           </Link>
 
-          <Link href="/" className="inline-flex items-center gap-x-2">
+          <Link href="/cart" className="inline-flex items-center gap-x-2">
             <HiOutlineShoppingCart className="text-xl" />
             سبد خرید
           </Link>

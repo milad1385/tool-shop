@@ -7,7 +7,7 @@ function page() {
       <Title title="پیغام خود را ارسال کنید" className="!text-3xl" />
       <form
         action="#"
-        className="flex flex-col gap-y-5  bg-white w-[400px] p-8 shadow rounded-md"
+        className="flex flex-col gap-y-5  bg-white w-[90%] md:w-[400px] p-8 shadow rounded-md"
       >
         <div className="flex flex-col gap-y-4">
           <label htmlFor="email" className="text-sm text-zinc-800">
