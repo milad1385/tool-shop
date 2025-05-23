@@ -7,7 +7,7 @@ import { LuUsers } from "react-icons/lu";
 
 function Stats() {
   return (
-    <div className="grid grid-cols-2  lg:grid-cols-4 gap-4 mb-5">
+    <div className="grid grid-cols-2  lg:grid-cols-4 gap-5 my-5">
       <StatBox
         title="مقدار فروش"
         icon={
