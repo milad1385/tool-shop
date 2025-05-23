@@ -1,9 +1,13 @@
-import React from 'react'
+import Container from "@/components/modules/p-admin/Container";
+import Stats from "@/components/templates/p-admin/Stats";
+import React from "react";
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <Container>
+      <Stats />
+    </Container>
+  );
 }
 
-export default page
+export default page;

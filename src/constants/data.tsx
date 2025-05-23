@@ -7,10 +7,20 @@ import {
   HiOutlineUser,
 } from "react-icons/hi2";
 import { LiaComments } from "react-icons/lia";
-import { IoTicketOutline } from "react-icons/io5";
+import {
+  IoHomeOutline,
+  IoSettingsOutline,
+  IoTicketOutline,
+} from "react-icons/io5";
 import { IoIosHome } from "react-icons/io";
 import { FaHeart, FaTools } from "react-icons/fa";
 import { BsBasket2Fill } from "react-icons/bs";
+import { AiOutlineProduct } from "react-icons/ai";
+import { LuUsers } from "react-icons/lu";
+import { GoCommentDiscussion, GoGift } from "react-icons/go";
+import { FiShoppingCart } from "react-icons/fi";
+import { RiArticleLine } from "react-icons/ri";
+import { MdOutlineCategory } from "react-icons/md";
 
 export const priority = [
   { id: 1, value: 1, label: "بسیار بالا" },
@@ -66,6 +76,69 @@ export const links = [
     title: "جزییات حساب کاربری",
     icon: <HiOutlineUser className="text-2xl" />,
     href: "/p-user/information",
+  },
+];
+
+export const adminPanelLinks = [
+  {
+    id: 1,
+    title: "صفحه اصلی",
+    href: "/p-admin",
+    icon: <IoHomeOutline className="text-2xl" />,
+  },
+  {
+    id: 2,
+    title: "محصولات",
+    href: "/p-admin/products",
+    icon: <AiOutlineProduct className="text-2xl" />,
+  },
+  {
+    id: 3,
+    title: "کاربران",
+    href: "/p-admin/products",
+    icon: <LuUsers className="text-2xl" />,
+  },
+  {
+    id: 4,
+    title: "کامنت ها",
+    href: "/p-admin/comments",
+    icon: <GoCommentDiscussion className="text-2xl" />,
+  },
+  {
+    id: 5,
+    title: "تیکت ها",
+    href: "/p-admin/tickets",
+    icon: <IoTicketOutline className="text-2xl" />,
+  },
+  {
+    id: 6,
+    title: "سفارشات",
+    href: "/p-admin/orders",
+    icon: <FiShoppingCart className="text-2xl" />,
+  },
+  {
+    id: 7,
+    title: "مقاله ها",
+    href: "/p-admin/articles",
+    icon: <RiArticleLine className="text-2xl" />,
+  },
+  {
+    id: 8,
+    title: "دسته بندی ها",
+    href: "/p-admin/categories",
+    icon: <MdOutlineCategory className="text-2xl" />,
+  },
+  {
+    id: 9,
+    title: "کد تخفیف",
+    href: "/p-admins/discount",
+    icon: <GoGift className="text-2xl" />,
+  },
+  {
+    id: 10,
+    title: "تنظیمات",
+    href: "/p-admin/settings",
+    icon: <IoSettingsOutline className="text-2xl" />,
   },
 ];
 
