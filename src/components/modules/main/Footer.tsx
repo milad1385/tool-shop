@@ -14,12 +14,17 @@ import FooterSlider from "./FooterSlider";
 
 function Footer() {
   const pathname = usePathname();
-  if (pathname.includes("/auth")|| pathname.includes("/p-user")) return null;
+  if (
+    pathname.includes("/auth") ||
+    pathname.includes("/p-user") ||
+    pathname.includes("/p-admin")
+  )
+    return null;
   return (
     <>
       <footer className="bg-stone-800 mt-10  py-10 md:py-8 md:pb-8 md:pt-[62px]">
         <div className="w-[98%] lg:w-[90%] mx-auto px-2.5 md:px-0">
-          <FooterSlider/>
+          <FooterSlider />
           <div className="text-gray-300 flex flex-wrap  justify-between border-b border-b-white/20 pb-4">
             <div>
               <div className="flex items-center gap-x-4 mb-3">
@@ -153,8 +158,8 @@ function Footer() {
               </div>
               <p>
                 تمام حقوق این سایت ، متعلق به ترازو میباشد (توسعه داده شده با{" "}
-                <span className="text-red-600 text-lg md:text-2xl">❤</span> توسط میلاد سلامیان در
-                ترازو)
+                <span className="text-red-600 text-lg md:text-2xl">❤</span> توسط
+                میلاد سلامیان در ترازو)
               </p>
             </div>
             <div className="mr-auto mt-2 md:mt-0">

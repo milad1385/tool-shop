@@ -14,7 +14,12 @@ import { usePathname } from "next/navigation";
 function Navbar() {
   const pathname = usePathname();
 
-  if (pathname.includes("/auth") || pathname.includes("/p-user")) return null;
+  if (
+    pathname.includes("/auth") ||
+    pathname.includes("/p-user") ||
+    pathname.includes("/p-admin")
+  )
+    return null;
   return (
     <div className="mb-20 md:mb-40">
       <div className="bg-white md:pb-8 shadow fixed top-0 left-0 right-0  z-30">
