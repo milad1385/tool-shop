@@ -25,7 +25,7 @@ function Filters({ filterField, options }: TFilter) {
     router.replace(`${pathname}?${params}`);
   };
   return (
-    <div className="bg-white inline-flex items-center gap-x-2 font-Dana bg-namavaBlack p-1 child:transition-all child:cursor-pointer text-xs md:text-sm rounded-md mt-4">
+    <div className="bg-white inline-flex items-center gap-x-2 p-1 child:transition-all child:cursor-pointer text-xs md:text-sm rounded-md">
       {options.map((option, index) => (
         <div
           key={index}
