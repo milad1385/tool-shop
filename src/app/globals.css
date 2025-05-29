@@ -60,6 +60,27 @@ body {
   .duration-chart .recharts-wrapper {
     @apply !min-h-[360px] md:!min-h-[250px];
   }
+
+  table tr td{
+    @apply text-center
+  }
+
+  .recent-table tbody tr{
+    height: 60px !important;
+  }
+}
+
+
+.table-container {
+  overflow-x: auto !important;
+}
+
+.table-container::-webkit-scrollbar {
+  height: 10px !important;
+}
+table {
+  width: 100% !important;
+  white-space: nowrap !important;
 }
 
 .swiper-pagination-bullet {
