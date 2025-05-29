@@ -1,6 +1,5 @@
 import Image from "next/image";
-import React from "react";
-import { FaEye, FaTrash, FaUser } from "react-icons/fa6";
+import { FaEye, FaTrash } from "react-icons/fa6";
 import { LuUsers } from "react-icons/lu";
 
 function RecentUser() {
