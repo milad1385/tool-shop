@@ -52,6 +52,14 @@ body {
   .active-btn {
     @apply bg-[#eab308] text-white;
   }
+
+  .duration-chart .recharts-responsive-container {
+    @apply !h-[366px] md:!h-[250px];
+  }
+
+  .duration-chart .recharts-wrapper {
+    @apply !min-h-[360px] md:!min-h-[250px];
+  }
 }
 
 .swiper-pagination-bullet {
