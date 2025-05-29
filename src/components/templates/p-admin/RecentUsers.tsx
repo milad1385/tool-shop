@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { FaEye, FaTrash, FaUser } from "react-icons/fa6";
 import { LuUsers } from "react-icons/lu";
@@ -8,7 +9,7 @@ function RecentUser() {
       <h2 className="text-lg md:text-xl lg:text-2xl pb-2 font-Lalezar">
         کاربران اخیر
       </h2>
-      {false ? (
+      {true ? (
         <div className="overflow-hidden max-h-[225px] md:max-h-[250px] overflow-y-auto table-container">
           <table className="w-full mt-5 recent-table text-xs md:text-sm lg:text-base">
             <thead>
@@ -24,10 +25,12 @@ function RecentUser() {
               <tr>
                 <td>1</td>
                 <td>
-                  <img
+                  <Image
                     src="/images/user.jpg"
+                    alt="user.jpg"
+                    width={1920}
+                    height={1080}
                     className="w-8 md:w-10 h-8 md:h-10 rounded-full mx-auto"
-                    alt=""
                   />
                 </td>
                 <td>میلاد سلامیان</td>
@@ -42,10 +45,12 @@ function RecentUser() {
               <tr>
                 <td>1</td>
                 <td>
-                  <img
+                  <Image
                     src="/images/user.jpg"
+                    alt="user.jpg"
+                    width={1920}
+                    height={1080}
                     className="w-8 md:w-10 h-8 md:h-10 rounded-full mx-auto"
-                    alt=""
                   />
                 </td>
                 <td>میلاد سلامیان</td>
@@ -60,10 +65,12 @@ function RecentUser() {
               <tr>
                 <td>1</td>
                 <td>
-                  <img
+                  <Image
                     src="/images/user.jpg"
+                    alt="user.jpg"
+                    width={1920}
+                    height={1080}
                     className="w-8 md:w-10 h-8 md:h-10 rounded-full mx-auto"
-                    alt=""
                   />
                 </td>
                 <td>میلاد سلامیان</td>
@@ -78,10 +85,12 @@ function RecentUser() {
               <tr>
                 <td>1</td>
                 <td>
-                  <img
+                  <Image
                     src="/images/user.jpg"
+                    alt="user.jpg"
+                    width={1920}
+                    height={1080}
                     className="w-8 md:w-10 h-8 md:h-10 rounded-full mx-auto"
-                    alt=""
                   />
                 </td>
                 <td>میلاد سلامیان</td>
@@ -96,10 +105,12 @@ function RecentUser() {
               <tr>
                 <td>1</td>
                 <td>
-                  <img
+                  <Image
                     src="/images/user.jpg"
+                    alt="user.jpg"
+                    width={1920}
+                    height={1080}
                     className="w-8 md:w-10 h-8 md:h-10 rounded-full mx-auto"
-                    alt=""
                   />
                 </td>
                 <td>میلاد سلامیان</td>
