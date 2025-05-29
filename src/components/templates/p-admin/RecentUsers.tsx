@@ -1,3 +1,4 @@
+import Title from "@/components/modules/p-admin/Title";
 import Image from "next/image";
 import { FaEye, FaTrash } from "react-icons/fa6";
 import { LuUsers } from "react-icons/lu";
@@ -5,9 +6,7 @@ import { LuUsers } from "react-icons/lu";
 function RecentUser() {
   return (
     <div className="rounded-3xl bg-white  py-4 md:py-6 px-3 md:px-6">
-      <h2 className="text-lg md:text-xl lg:text-2xl pb-2 font-Lalezar">
-        کاربران اخیر
-      </h2>
+      <Title content="کاربران اخیر"/>
       {true ? (
         <div className="overflow-hidden max-h-[225px] md:max-h-[250px] overflow-y-auto table-container">
           <table className="w-full mt-5 recent-table text-xs md:text-sm lg:text-base">
@@ -37,7 +36,7 @@ function RecentUser() {
                 <td>
                   <div className="flex items-center gap-x-3 justify-center">
                     <FaTrash className="-mt-1 text-red-700" />
-                    <FaEye className="-mt-1 text-namava md:cursor-pointer" />
+                    <FaEye className="-mt-1 text-yellow-500 md:cursor-pointer" />
                   </div>
                 </td>
               </tr>
@@ -57,7 +56,7 @@ function RecentUser() {
                 <td>
                   <div className="flex items-center gap-x-3 justify-center">
                     <FaTrash className="-mt-1 text-red-700" />
-                    <FaEye className="-mt-1 text-namava md:cursor-pointer" />
+                    <FaEye className="-mt-1 text-yellow-500 md:cursor-pointer" />
                   </div>
                 </td>
               </tr>
@@ -77,7 +76,7 @@ function RecentUser() {
                 <td>
                   <div className="flex items-center gap-x-3 justify-center">
                     <FaTrash className="-mt-1 text-red-700" />
-                    <FaEye className="-mt-1 text-namava md:cursor-pointer" />
+                    <FaEye className="-mt-1 text-yellow-500 md:cursor-pointer" />
                   </div>
                 </td>
               </tr>
@@ -97,7 +96,7 @@ function RecentUser() {
                 <td>
                   <div className="flex items-center gap-x-3 justify-center">
                     <FaTrash className="-mt-1 text-red-700" />
-                    <FaEye className="-mt-1 text-namava md:cursor-pointer" />
+                    <FaEye className="-mt-1 text-yellow-500 md:cursor-pointer" />
                   </div>
                 </td>
               </tr>
@@ -117,7 +116,7 @@ function RecentUser() {
                 <td>
                   <div className="flex items-center gap-x-3 justify-center">
                     <FaTrash className="-mt-1 text-red-700" />
-                    <FaEye className="-mt-1 text-namava md:cursor-pointer" />
+                    <FaEye className="-mt-1 text-yellow-500 md:cursor-pointer" />
                   </div>
                 </td>
               </tr>

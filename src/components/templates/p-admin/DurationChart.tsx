@@ -1,4 +1,5 @@
 "use client";
+import Title from "@/components/modules/p-admin/Title";
 import React from "react";
 import {
   Cell,
@@ -38,7 +39,7 @@ function DurationChart() {
 
   return (
     <div className="duration-chart  rounded-3xl bg-white py-4 md:py-6 px-8">
-      <h2 className="md:text-xl lg:text-2xl text-zinc-700 font-Lalezar">تعداد خرید اشتراک</h2>
+      <Title content="تعداد خرید اشتراک"/>
       <ResponsiveContainer height={267}>
         <PieChart>
           <Pie
