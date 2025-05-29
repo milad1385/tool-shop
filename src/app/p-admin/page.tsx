@@ -1,5 +1,6 @@
 import Container from "@/components/modules/p-admin/Container";
 import Filters from "@/components/modules/p-admin/Filters";
+import SalesChart from "@/components/modules/p-admin/SalesChart";
 import DurationChart from "@/components/templates/p-admin/DurationChart";
 import RecentUser from "@/components/templates/p-admin/RecentUsers";
 
@@ -23,6 +24,7 @@ function page() {
         <DurationChart/>
         <RecentUser/>
       </div>
+      <SalesChart/>
     </Container>
   );
 }
