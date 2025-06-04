@@ -1,9 +1,10 @@
-import Title from '@/components/modules/p-admin/Title';
-import EmptyRecentUsersError from './EmptyRecentError';
-import { FaBasketShopping } from 'react-icons/fa6';
+import Title from "@/components/modules/p-admin/Title";
+import EmptyRecentUsersError from "./EmptyRecentError";
+import { FaBasketShopping } from "react-icons/fa6";
+import OrderRow from "./OrderRow";
 
 function RecentOrders() {
- return (
+  return (
     <div className="rounded-3xl bg-white  py-4 md:py-6 px-3 md:px-6">
       <Title content="سفارشات اخیر" />
       {true ? (
@@ -15,22 +16,30 @@ function RecentOrders() {
                 <td>نام</td>
                 <td>تاریخ</td>
                 <td>قیمت</td>
+                <td>وضعیت</td>
                 <td>رویداد ها</td>
               </tr>
             </thead>
             <tbody>
-              
+              <OrderRow />
+              <OrderRow />
+              <OrderRow />
+              <OrderRow />
+              <OrderRow />
+              <OrderRow />
             </tbody>
           </table>
         </div>
       ) : (
         <EmptyRecentUsersError
           desc="هیچ سفارشی یافت نشد"
-          icon={<FaBasketShopping className="text-2xl md:text-3xl lg:text-[60px]" />}
+          icon={
+            <FaBasketShopping className="text-2xl md:text-3xl lg:text-[60px]" />
+          }
         />
       )}
     </div>
   );
 }
 
-export default RecentOrders
+export default RecentOrders;
