@@ -2,6 +2,7 @@ import Container from "@/components/modules/p-admin/Container";
 import Filters from "@/components/modules/p-admin/Filters";
 import SalesChart from "@/components/modules/p-admin/SalesChart";
 import DurationChart from "@/components/templates/p-admin/DurationChart";
+import RecentProducts from "@/components/templates/p-admin/RecentProducts";
 import RecentUser from "@/components/templates/p-admin/RecentUsers";
 
 import Stats from "@/components/templates/p-admin/Stats";
@@ -29,7 +30,7 @@ function page() {
 
       {/* recent activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
-        
+        <RecentProducts/>
       </div>
     </Container>
   );
