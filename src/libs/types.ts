@@ -188,3 +188,8 @@ export interface IHambergerMobileMenu {
   isOpen: boolean;
   onOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface IEmptyRecentError {
+  desc: string;
+  icon: React.ReactNode;
+}

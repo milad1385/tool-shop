@@ -1,6 +1,7 @@
 import Title from "@/components/modules/p-admin/Title";
-import EmptyRecentUsersError from "./EmptyRecentUsersError";
+import EmptyRecentUsersError from "./EmptyRecentError";
 import UserRow from "./UserRow";
+import { LuUsers } from "react-icons/lu";
 
 function RecentUser() {
   return (
@@ -29,7 +30,10 @@ function RecentUser() {
           </table>
         </div>
       ) : (
-        <EmptyRecentUsersError />
+        <EmptyRecentUsersError
+          desc="هیچ کاربری تا این تاریخ در سایت ثبت نام نکرده است"
+          icon={<LuUsers className="text-2xl md:text-3xl lg:text-[60px]" />}
+        />
       )}
     </div>
   );
