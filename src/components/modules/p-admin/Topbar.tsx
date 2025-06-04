@@ -14,11 +14,13 @@ function Topbar() {
         />
         <div className="flex flex-col gap-y-1">
           <span className="font-Lalezar">میلاد سلامیان</span>
-          <span className="text-xs font-IranMedium text-gray-700">ادمین کل</span>
+          <span className="text-xs font-IranMedium text-gray-700">
+            ادمین کل
+          </span>
         </div>
       </div>
       <div>
-        <Logout/>
+        <Logout />
       </div>
     </div>
   );
