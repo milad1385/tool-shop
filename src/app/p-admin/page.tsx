@@ -20,11 +20,17 @@ function page() {
         ]}
       />
       <Stats />
+      {/* charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
         <DurationChart/>
         <RecentUser/>
       </div>
       <SalesChart/>
+
+      {/* recent activity */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
+        
+      </div>
     </Container>
   );
 }
