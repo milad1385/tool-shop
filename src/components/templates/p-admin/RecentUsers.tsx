@@ -1,7 +1,6 @@
 import Title from "@/components/modules/p-admin/Title";
-import { LuUsers } from "react-icons/lu";
-import UserRow from "./UserRow";
 import EmptyRecentUsersError from "./EmptyRecentUsersError";
+import UserRow from "./UserRow";
 
 function RecentUser() {
   return (
