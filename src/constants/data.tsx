@@ -22,6 +22,51 @@ import { FiShoppingCart } from "react-icons/fi";
 import { RiArticleLine } from "react-icons/ri";
 import { MdOutlineCategory } from "react-icons/md";
 
+export const categories = [
+  {
+    id: 1,
+    title: "سنگ فرز",
+    image: "ca-1.png",
+    link: "",
+  },
+  {
+    id: 2,
+    title: "دریل شارژی",
+    image: "ca-2.png",
+    link: "",
+  },
+  {
+    id: 3,
+    title: "اره ساده",
+    image: "ca-3.png",
+    link: "",
+  },
+  {
+    id: 4,
+    title: "اره چکشی",
+    image: "ca-4.png",
+    link: "",
+  },
+  {
+    id: 5,
+    title: "پیچ گوشتی",
+    image: "ca-5.png",
+    link: "",
+  },
+  {
+    id: 6,
+    title: "اره دم روباهی",
+    image: "ca-6.png",
+    link: "",
+  },
+  {
+    id: 7,
+    title: "چکش",
+    image: "ca-7.png",
+    link: "",
+  },
+];
+
 export const priority = [
   { id: 1, value: 1, label: "بسیار بالا" },
   { id: 2, value: 2, label: "بالا" },
@@ -195,4 +240,12 @@ export const brands = [
   { id: 3, slug: "macita", label: "ماکیتا" },
   { id: 4, slug: "tosan", label: "توسن" },
   { id: 5, slug: "general", label: "ژنرال استیل" },
+];
+
+export const categoriesFilter = [
+  { id: 1, slug: "grinding-stone", label: "سنگ فرز" },
+  { id: 2, slug: "cordless-drill", label: "دریل شارژی" },
+  { id: 3, slug: "simple-saw", label: "اره ساده" },
+  { id: 4, slug: "hammer-saw", label: "اره چکشی" },
+  { id: 5, slug: "screwdriver", label: "پیچ گوشتی" },
 ];
