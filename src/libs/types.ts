@@ -197,5 +197,17 @@ export interface IEmptyRecentError {
 export interface ICheckbox {
   label: string;
   slug: string;
+  selected: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface IBrands {
+  id: number;
+  slug: string;
+  label: string;
+}
+
+export interface IFilterCheckbox {
+  param: string;
+  options: IBrands[];
 }
