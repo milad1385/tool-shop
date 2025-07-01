@@ -8,7 +8,7 @@ import { LuArrowDownUp } from "react-icons/lu";
 
 function ProductBox({ title, discount, image, link, price }: IProduct) {
   return (
-    <div className="bg-white shadow rounded-3xl overflow-hidden p-4">
+    <div className="bg-white space-y-3 rounded-3xl overflow-hidden p-4">
       <Link href={link} className="relative">
         <Image
           src={`/images/${image}`}
@@ -30,7 +30,7 @@ function ProductBox({ title, discount, image, link, price }: IProduct) {
         >
           {title}
         </Link>
-        <div className="flex items-center justify-center gap-x-3 mt-2">
+        <div className="flex items-center justify-center gap-x-3 mt-4">
           <span className={`text-zinc-700 flex items-center gap-x-1 ${discount ? "line-through" : ""}`}>
             {formattedPrice(price)} <span className="sm:hidden lg:block">تومان</span>
           </span>

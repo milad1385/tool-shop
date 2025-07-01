@@ -14,7 +14,7 @@ function page() {
         ]}
       />
 
-      <div className="grid grid-cols-12">
+      <div className="grid grid-cols-12 gap-x-5">
         <FilterSide />
         <Products />
       </div>
