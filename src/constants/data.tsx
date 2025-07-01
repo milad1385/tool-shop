@@ -249,3 +249,11 @@ export const categoriesFilter = [
   { id: 4, slug: "hammer-saw", label: "اره چکشی" },
   { id: 5, slug: "screwdriver", label: "پیچ گوشتی" },
 ];
+
+export const colorsFilter = [
+  { id: 1, slug: "red", label: "قرمز" },
+  { id: 2, slug: "yellow", label: "زرد" },
+  { id: 3, slug: "black", label: "مشکی" },
+  { id: 4, slug: "sky", label: "آبی" },
+  { id: 5, slug: "green", label: "سبز" },
+];

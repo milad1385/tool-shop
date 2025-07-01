@@ -201,7 +201,7 @@ export interface ICheckbox {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface IBrands {
+export interface IOptions {
   id: number;
   slug: string;
   label: string;
@@ -209,5 +209,14 @@ export interface IBrands {
 
 export interface IFilterCheckbox {
   param: string;
-  options: IBrands[];
+  options: IOptions[];
+}
+
+export interface IColorBoxes extends IFilterCheckbox {}
+
+export interface IColorBox {
+  label: string;
+  slug: string;
+  onClick: (slug: string) => void;
+  selected : boolean
 }
