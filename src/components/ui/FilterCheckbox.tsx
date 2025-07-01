@@ -23,7 +23,7 @@ function FilterCheckbox({ param, options }: IFilterCheckbox) {
       params.delete(param);
     }
 
-    router.push(`${pathname}?${params.toString()}`);
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
