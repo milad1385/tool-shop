@@ -193,3 +193,9 @@ export interface IEmptyRecentError {
   desc: string;
   icon: React.ReactNode;
 }
+
+export interface ICheckbox {
+  label: string;
+  slug: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}

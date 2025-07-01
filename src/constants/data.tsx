@@ -188,3 +188,11 @@ export const footerMenus = [
     href: "/p-user/favorites",
   },
 ];
+
+export const brands = [
+  { id: 1, slug: "ronix", label: "رونیکس" },
+  { id: 2, slug: "diolet", label: "دیوالت" },
+  { id: 3, slug: "macita", label: "ماکیتا" },
+  { id: 4, slug: "tosan", label: "توسن" },
+  { id: 5, slug: "general", label: "ژنرال استیل" },
+];

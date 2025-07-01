@@ -61,15 +61,14 @@ body {
     @apply !min-h-[360px] md:!min-h-[250px];
   }
 
-  table tr td{
-    @apply text-center
+  table tr td {
+    @apply text-center;
   }
 
-  .recent-table tbody tr{
+  .recent-table tbody tr {
     height: 60px !important;
   }
 }
-
 
 .table-container {
   overflow-x: auto !important;
@@ -120,13 +119,6 @@ table {
   transition: all 0.3s ease;
 }
 
-/* Range Slider as a Single Thumb Slider */
-/* .single-thumb .range-slider__thumb[data-lower] {
-  width: 0;
-}
-.single-thumb .range-slider__range {
-  border-radius: 6px;
-} */
 
 
 /* Yellow Range Slider */
@@ -153,6 +145,8 @@ table {
 #range-slider-yellow .range-slider__range[data-active] {
   height: 16px;
 }
+
+
 
 @layer base {
   @font-face {
