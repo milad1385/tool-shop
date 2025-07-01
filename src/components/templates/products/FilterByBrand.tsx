@@ -1,8 +1,6 @@
-import React from "react";
-import FilterTitle from "./FilterTitle";
-import { brands } from "@/constants/data";
-import Checkbox from "@/components/ui/Checkbox";
 import FilterCheckbox from "@/components/ui/FilterCheckbox";
+import { brands } from "@/constants/data";
+import FilterTitle from "./FilterTitle";
 
 function FilterByBrand() {
   return (
