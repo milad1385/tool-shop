@@ -11,7 +11,7 @@ export const sendAnswerToTicketSchema = yup.object({
 export type AnswerTicketType = yup.InferType<typeof sendAnswerToTicketSchema>;
 
 export const newTicketSchema = yup.object({
-  priority: yup.string().required("این فیلد الزامی است").oneOf(["1", "2", "3"]),
+  priority: yup.string().required("این فیلد الزامی است").oneOf(["1", "2", "3"] , "اولویت باید بین اعداد 1 و 2 و 3 باشد"),
   title: yup
     .string()
     .required("این فیلد الزامی است")
