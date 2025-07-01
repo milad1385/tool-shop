@@ -1,9 +1,18 @@
-import React from 'react'
+import Breadcrumb from "@/components/modules/main/Breadcrumb";
+import Container from "@/components/modules/main/Container";
+import React from "react";
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <Container>
+      <Breadcrumb
+        links={[
+          { name: "خانه", href: "/", id: 1 },
+          { id: 2, name: "فروشگاه", href: "/products" },
+        ]}
+      />
+    </Container>
+  );
 }
 
-export default page
+export default page;
