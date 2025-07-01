@@ -1,11 +1,11 @@
+"use client";
 import React from "react";
+import RangeFilter from "./RangeFilter";
 
 function FilterSide() {
   return (
     <div className="col-span-3">
-      <div className="bg-white rounded-2xl p-3">
-        <h3 className="text-lg text-zinc-700 font-Lalezar">فیلتر بر اساس قیمت : </h3>
-      </div>
+      <RangeFilter />
     </div>
   );
 }
