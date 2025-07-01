@@ -40,7 +40,7 @@ function SelectBox({
         </select>
 
         {errors[name] && (
-          <span className="absolute top-24 text-xs md:text-sm text-red-600">
+          <span className="absolute top-[80px] text-xs md:text-sm text-red-600">
             {errors[name].message}
           </span>
         )}
