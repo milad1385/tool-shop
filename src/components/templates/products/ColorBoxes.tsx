@@ -26,7 +26,7 @@ function ColorBoxes({ param, options }: IColorBoxes) {
   };
 
   return (
-    <div className="w-full  mt-5 flex items-center gap-3 flex-wrap">
+    <div className="w-full  mt-5 flex items-center gap-3.5 flex-wrap">
       {options.map((option) => (
         <ColorBox
           label={option.label}
