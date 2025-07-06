@@ -6,7 +6,7 @@ import React from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { LuArrowDownUp } from "react-icons/lu";
 
-function ProductBox({ title, discount, image, link, price }: IProduct) {
+function ProductBox({ title, discount, image, link, price }: IProduct) {  
   return (
     <div className="bg-white space-y-3 rounded-3xl overflow-hidden p-4">
       <Link href={link} className="relative">
