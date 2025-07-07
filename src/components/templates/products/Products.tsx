@@ -4,11 +4,13 @@ import { products } from "@/constants/data";
 import React from "react";
 import SortProduct from "./SortProduct";
 import MobileSearch from "./MobileSearch";
+import MobileFilter from "./MobileFilter";
 
 function Products() {
   return (
     <div className="col-span-12 md:col-span-9">
       <MobileSearch/>
+      <MobileFilter/>
       <SortProduct/>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {products.map((product) => (

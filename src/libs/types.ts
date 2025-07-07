@@ -218,5 +218,10 @@ export interface IColorBox {
   label: string;
   slug: string;
   onClick: (slug: string) => void;
-  selected : boolean
+  selected: boolean;
+}
+
+export interface IMobileFilterModal {
+  isShow: boolean;
+  onShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
