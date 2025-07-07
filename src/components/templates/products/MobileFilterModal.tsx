@@ -19,7 +19,7 @@ function MobileFilterModal({ isShow, onShow }: IMobileAction) {
           className="flex items-center gap-x-1.5"
           onClick={() => onShow(false)}
         >
-          <FaRegCircleXmark className="text-xl text-yellow-500" />
+          <FaRegCircleXmark className="text-xl text-red-500" />
           <span className="font-IranMedium text-lg">فیلتر ها</span>
         </div>
         <div className="flex items-center gap-x-2">

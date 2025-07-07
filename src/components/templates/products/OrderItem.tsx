@@ -29,7 +29,7 @@ function OrderItem({ onStatus, onShow, status, label, slug }: IOrderItem) {
         {label}
       </span>
       {status.slug === slug && (
-        <IoIosCheckmarkCircleOutline className="text-yellow-600 text-2xl" />
+        <IoIosCheckmarkCircleOutline className="text-yellow-500 text-2xl" />
       )}
     </div>
   );
