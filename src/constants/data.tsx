@@ -79,7 +79,7 @@ export const products = [
   {
     id: 2,
     title: "دریل شارژی مدل دیوالت",
-       link: "/products/2",
+    link: "/products/2",
     image: "product-6.jpg",
     price: 2000000,
     discount: 30,
@@ -105,6 +105,14 @@ export const products = [
     title: "دریل شارژی مدل دیوالت",
     link: "/products/5",
     image: "product-6.jpg",
+    price: 2000000,
+    discount: 30,
+  },
+  {
+    id: 6,
+    title: "دریل شارژی مدل دیوالت",
+    link: "/products/6",
+    image: "product-2.jpg",
     price: 2000000,
     discount: 30,
   },
