@@ -1,4 +1,4 @@
-import { IMobileFilterModal } from "@/libs/types";
+import { IMobileAction } from "@/libs/types";
 import { useRouter } from "next/navigation";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegCircleXmark } from "react-icons/fa6";
@@ -7,7 +7,7 @@ import FilterByCategory from "./FilterByCategory";
 import FilterByColor from "./FilterByColor";
 import RangeFilter from "./RangeFilter";
 
-function MobileFilterModal({ isShow, onShow }: IMobileFilterModal) {
+function MobileFilterModal({ isShow, onShow }: IMobileAction) {
   const router = useRouter();
   return (
     <div

@@ -221,7 +221,20 @@ export interface IColorBox {
   selected: boolean;
 }
 
-export interface IMobileFilterModal {
+export interface IMobileAction {
   isShow: boolean;
   onShow: React.Dispatch<React.SetStateAction<boolean>>;
+  onStatus?: any;
+  status?: any;
+}
+export interface IStatus {
+  slug: string;
+  label: string;
+}
+export interface IOrderItem {
+  onShow: React.Dispatch<React.SetStateAction<boolean>>;
+  onStatus: React.Dispatch<React.SetStateAction<IStatus>>;
+  status: IStatus;
+  label: string;
+  slug: string;
 }
