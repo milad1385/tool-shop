@@ -11,7 +11,11 @@ function SortProduct() {
 
   const handlerSortFilter = (status: string) => {
     setStatus(status);
-    params.set("status", status);
+    if (status !== "default") {
+      params.set("status", status);
+    } else {
+      params.delete("status");
+    }
     router.push(`${pathname}?${params}`);
   };
   return (
