@@ -308,3 +308,11 @@ export const colorsFilter = [
   { id: 4, slug: "sky", label: "آبی" },
   { id: 5, slug: "green", label: "سبز" },
 ];
+
+export const colors = [
+  { id: 3, slug: "black", label: "مشکی" },
+  { id: 1, slug: "red", label: "قرمز" },
+  { id: 2, slug: "yellow", label: "زرد" },
+  { id: 4, slug: "sky", label: "آبی" },
+  { id: 5, slug: "green", label: "سبز" },
+];

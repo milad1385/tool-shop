@@ -7,6 +7,7 @@ import { MdOutlineSupportAgent } from "react-icons/md";
 import { FiGift } from "react-icons/fi";
 import { FaRegFaceSmile } from "react-icons/fa6";
 import { IoMdCheckmark } from "react-icons/io";
+import ColorBoxes from "@/components/modules/main/ColorBoxes";
 
 function ProductDetails() {
   return (
@@ -35,10 +36,13 @@ function ProductDetails() {
             <div className="flex items-start flex-col gap-2">
               <AddToCart />
 
+              <ColorBoxes/>
+
               <button className="block border px-4 py-2 rounded-xl">
                 افزودن به مقایسه
               </button>
             </div>
+
           </div>
           <div className="hidden lg:block col-span-4">
             <div className="flex items-center border rounded-lg my-2 p-2">
