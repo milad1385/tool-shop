@@ -191,7 +191,7 @@ export const adminPanelLinks = [
   {
     id: 3,
     title: "کاربران",
-    href: "/p-admin/products",
+    href: "/p-admin/users",
     icon: <LuUsers className="text-2xl" />,
   },
   {
@@ -227,7 +227,7 @@ export const adminPanelLinks = [
   {
     id: 9,
     title: "کد تخفیف",
-    href: "/p-admins/discount",
+    href: "/p-admin/discount",
     icon: <GoGift className="text-2xl" />,
   },
   {
