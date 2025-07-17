@@ -1,9 +1,13 @@
-import React from 'react'
+import Container from "@/components/modules/p-admin/Container";
+import PageTitle from "@/components/modules/p-admin/PageTitle";
+import React from "react";
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <Container>
+      <PageTitle content="لیست محصولات" />
+    </Container>
+  );
 }
 
-export default page
+export default page;
