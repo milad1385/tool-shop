@@ -1,4 +1,5 @@
 import React from "react";
+import ArticleCommentsList from "./ArticleCommentsList";
 
 function ArticleComments() {
   return (
@@ -18,6 +19,8 @@ function ArticleComments() {
           ارسال
         </button>
       </form>
+
+      <ArticleCommentsList/>
     </div>
   );
 }
