@@ -1,17 +1,31 @@
 "use client";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import {
+  createCategorySchema,
+  TCategorySchema,
+} from "@/validators/frontend/category.validator";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 function CreateCategory() {
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({});
+  } = useForm({
+    resolver: yupResolver(createCategorySchema),
+  });
+
+  const createCategoryHandler = (data: TCategorySchema) => {
+    console.log(data);
+  };
   return (
-    <form className="bg-white rounded-xl px-8 pt-5 pb-10 my-5 shadow ">
+    <form
+      onSubmit={handleSubmit(createCategoryHandler)}
+      className="bg-white rounded-xl px-8 pt-5 pb-10 my-5 shadow "
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input
           register={register}

@@ -113,6 +113,7 @@ function Input({
               type="file"
               disabled={disable}
               className="sr-only"
+              accept="image/*"
             />
           </div>
         </div>
