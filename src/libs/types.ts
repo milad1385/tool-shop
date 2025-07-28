@@ -153,7 +153,14 @@ export interface IInput {
   errors: any;
   placeholder?: string;
   multiple?: boolean;
-  type: "text" | "number" | "email" | "password" | "file" | "textarea";
+  type:
+    | "text"
+    | "number"
+    | "email"
+    | "password"
+    | "file"
+    | "textarea"
+    | "select";
   disable?: boolean;
   labelClassName?: string;
 }

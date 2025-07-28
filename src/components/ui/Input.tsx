@@ -62,7 +62,7 @@ function Input({
         )}
       </div>
     );
-  } else {
+  } else if(type ==="file") {
     return (
       <div className="flex flex-col gap-y-2">
         <label
@@ -91,7 +91,7 @@ function Input({
               />
             </svg>
 
-            {/* متن راهنما */}
+
             <p className="mt-4 text-lg font-medium text-slate-700">
               فایل خود را{" "}
               <label
