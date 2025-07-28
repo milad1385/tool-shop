@@ -153,6 +153,7 @@ export interface IInput {
   errors: any;
   placeholder?: string;
   multiple?: boolean;
+  setImage?: any;
   type:
     | "text"
     | "number"

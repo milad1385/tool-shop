@@ -12,6 +12,7 @@ function Input({
   multiple,
   placeholder,
   labelClassName,
+  setImage,
 }: IInput) {
   if (type === "text") {
     return (
@@ -107,7 +108,15 @@ function Input({
             </p>
 
             <input
-              {...register(`${name}`)}
+              {...register(`${name}`, {
+                onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (e.target.files && e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    const objUrl = URL.createObjectURL(file);
+                    setImage(objUrl);
+                  }
+                },
+              })}
               id={name}
               name={name}
               type="file"

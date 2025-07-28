@@ -5,15 +5,19 @@ import {
   createCategorySchema,
   TCategorySchema,
 } from "@/validators/frontend/category.validator";
-import React from "react";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Image from "next/image";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 function CreateCategory() {
+  const [image, setImage] = useState<any>(null);
   const {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm({
     resolver: yupResolver(createCategorySchema),
   });
@@ -72,7 +76,30 @@ function CreateCategory() {
           label="آیکون"
           disable={false}
           labelClassName="!text-lg font-Iran"
+          setImage={setImage}
         />
+
+        {image && (
+          <div className="flex items-end justify-end">
+            <div className="relative">
+              <Image
+                src={image}
+                width={1920}
+                height={1080}
+                className="w-[200px] rounded-md"
+                alt="image"
+              />
+
+              <FaRegTrashAlt
+                onClick={() => {
+                  setImage("");
+                  setValue("image", "");
+                }}
+                className="text-red-500 absolute -top-8 right-0 text-xl md:cursor-pointer"
+              />
+            </div>
+          </div>
+        )}
       </div>
       <div className="flex items-center gap-x-4">
         <Button type="submit" className="!w-[200px] mt-10">
