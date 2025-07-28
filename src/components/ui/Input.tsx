@@ -13,7 +13,7 @@ function Input({
   placeholder,
   labelClassName,
 }: IInput) {
-  if (type !== "textarea" && type !== "file") {
+  if (type === "text") {
     return (
       <div className="flex flex-col gap-y-4 relative">
         <label
@@ -62,7 +62,7 @@ function Input({
         )}
       </div>
     );
-  } else if(type ==="file") {
+  } else if (type === "file") {
     return (
       <div className="flex flex-col gap-y-2">
         <label
@@ -90,7 +90,6 @@ function Input({
                 d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 21H5.25A2.25 2.25 0 013 17.25z"
               />
             </svg>
-
 
             <p className="mt-4 text-lg font-medium text-slate-700">
               فایل خود را{" "}
@@ -120,6 +119,49 @@ function Input({
 
         {errors[name] && (
           <span className="text-sm text-red-600">{errors[name].message}</span>
+        )}
+      </div>
+    );
+  } else if (type === "select") {
+    return (
+      <div className="relative flex flex-col gap-y-2">
+        <label
+          htmlFor={name}
+          className={`text-sm font-medium text-zinc-700 ${labelClassName}`}
+        >
+          {label} :
+        </label>
+        <div className="relative">
+          <select
+            {...register(`${name}`)}
+            id={name}
+            name={name}
+            disabled={disable}
+            defaultValue=""
+            className={`appearance-none input mt-[8px] w-full bg-white text-right p-2 border border-gray-300 rounded-md  transition duration-300 ${className}`}
+          >
+            {/* Add your options here */}
+            <option value="" disabled selected>
+              {placeholder || "یک گزینه را انتخاب کنید"}
+            </option>
+            {/* Example options: */}
+            <option value="option1">آپشن 1</option>
+            <option value="option2">آپشن 2</option>
+          </select>
+          <div className="pointer-events-none absolute top-2 inset-y-0 left-0 flex items-center px-2 text-gray-700">
+            <svg
+              className="fill-current h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+            </svg>
+          </div>
+        </div>
+        {errors[name] && (
+          <span className="absolute -bottom-5 text-xs text-red-600">
+            {errors[name].message}
+          </span>
         )}
       </div>
     );

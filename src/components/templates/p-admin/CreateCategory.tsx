@@ -38,6 +38,16 @@ function CreateCategory() {
         disable={false}
         labelClassName="!text-lg font-Iran"
       />
+
+      <Input
+        register={register}
+        errors={errors}
+        name="category"
+        type="select"
+        label="دسته بندی پرنت"
+        disable={false}
+        labelClassName="!text-lg font-Iran"
+      />
       <Input
         register={register}
         errors={errors}
