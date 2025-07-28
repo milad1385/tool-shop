@@ -316,3 +316,11 @@ export const colors = [
   { id: 4, slug: "sky", label: "آبی" },
   { id: 5, slug: "green", label: "سبز" },
 ];
+
+export const people = [
+  { id: 1, name: 'Durward Reynolds' },
+  { id: 2, name: 'Kenton Towne' },
+  { id: 3, name: 'Therese Wunsch' },
+  { id: 4, name: 'Benedict Kessler' },
+  { id: 5, name: 'Katelyn Rohan' },
+]

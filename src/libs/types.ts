@@ -155,6 +155,7 @@ export interface IInput {
   multiple?: boolean;
   type: "text" | "number" | "email" | "password" | "file" | "textarea";
   disable?: boolean;
+  labelClassName?: string;
 }
 
 export interface IAnswerBox {
