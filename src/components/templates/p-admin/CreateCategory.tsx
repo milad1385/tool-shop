@@ -18,6 +18,7 @@ function CreateCategory() {
     formState: { errors },
     handleSubmit,
     setValue,
+    reset,
   } = useForm({
     resolver: yupResolver(createCategorySchema),
   });
@@ -105,7 +106,14 @@ function CreateCategory() {
         <Button type="submit" className="!w-[200px] mt-10">
           ایجاد دسته بندی
         </Button>
-        <Button type="reset" className="!w-[200px] mt-10 !bg-red-500">
+        <Button
+          onClick={() => {
+            reset();
+            setImage("");
+          }}
+          type="reset"
+          className="!w-[200px] mt-10 !bg-red-500"
+        >
           لغو
         </Button>
       </div>
