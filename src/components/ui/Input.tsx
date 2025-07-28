@@ -141,7 +141,7 @@ function Input({
             className={`appearance-none input mt-[8px] w-full bg-white text-right p-2 border border-gray-300 rounded-md  transition duration-300 ${className}`}
           >
             {/* Add your options here */}
-            <option value="" disabled selected>
+            <option value="" disabled>
               {placeholder || "یک گزینه را انتخاب کنید"}
             </option>
             {/* Example options: */}
