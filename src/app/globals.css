@@ -72,6 +72,39 @@ body {
   .sort-active {
     @apply bg-yellow-500 text-white transition-all;
   }
+
+  .section-box {
+    @apply bg-white rounded-xl px-8 pt-5 pb-10 my-5 shadow;
+  }
+
+  .table-container {
+    overflow-x: auto !important;
+  }
+
+  .table-container::-webkit-scrollbar {
+    height: 10px !important;
+  }
+
+  .table-container::-webkit-scrollbar {
+    width: 0.5vw;
+    height: 0.1vw !important;
+  }
+  .table-container::-webkit-scrollbar-thumb {
+    background-color: #6a6a6e;
+    border-radius: 5px;
+    height: 0.1vw !important;
+  }
+  .table-container::-webkit-scrollbar-track {
+    height: 0.1vw !important;
+  }
+
+  .admin-table table thead th {
+    padding: 15px;
+  }
+
+  .admin-table table tbody tr:nth-child(even) {
+    background-color: rgb(233, 233, 233);
+  }
 }
 
 .table-container {
