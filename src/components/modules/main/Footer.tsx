@@ -126,8 +126,8 @@ function Footer() {
                   <a href="mailto:trazo@gmail.com">trazo@gmail.com</a>
                 </div>
                 <div className="flex items-center gap-x-2">
-                  <FaPhone className="text-white" />
                   <p>09336085012</p>
+                  <FaPhone className="text-white" />
                 </div>
                 <p className="mt-2 md:mt-0">026-36512345</p>
               </div>
@@ -136,15 +136,15 @@ function Footer() {
                   href="#"
                   className="ltr-text flex-grow gap-x-2 text-sm md:text-base text-yellow-500 border border-yellow-500 rounded-xl flex-center  h-12"
                 >
-                  @Trazo-Shop
-                  <FaInstagram className="text-pink-700 text-lg mb-[3px]" />
+                  Trazo-Shop@
+                  <FaInstagram className="text-pink-700 text-lg md:text-2xl mb-[3px]" />
                 </a>
                 <a
                   href="#"
                   className="ltr-text flex-grow gap-x-2 text-sm md:text-base bg-gradient-to-r from-yellow-200 to-yellow-500 text-zinc-700 rounded-xl flex-center  h-12"
                 >
-                  @Trazo-Shop
-                  <FaTelegram className="text-sky-600 text-lg mb-[3px]" />
+                  Trazo-Shop@
+                  <FaTelegram className="text-sky-600 text-lg md:text-2xl mb-[3px]" />
                 </a>
               </div>
             </div>
