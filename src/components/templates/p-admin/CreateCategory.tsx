@@ -53,6 +53,16 @@ function CreateCategory() {
         <Input
           register={register}
           errors={errors}
+          name="tags"
+          type="text"
+          label="تگ ها"
+          placeholder="تگ ها را به صورت تگ 1 , تگ 2 , تگ 3 بنویسید"
+          disable={false}
+          labelClassName="!text-lg font-Iran"
+        />
+        <Input
+          register={register}
+          errors={errors}
           name="desc"
           type="text"
           label="توضیحات"
@@ -69,6 +79,7 @@ function CreateCategory() {
           disable={false}
           labelClassName="!text-lg font-Iran"
         />
+        <div></div>
         <Input
           register={register}
           errors={errors}
