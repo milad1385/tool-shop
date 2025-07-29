@@ -8,8 +8,8 @@ import Image from "next/image";
 
 function Slider() {
   const images = [
-    { id: 1, url: "/images/slider-1.jpg", alt: "image1" },
-    { id: 2, url: "/images/slider-2.jpg", alt: "image2" },
+    { id: 1, url: "/images/slider-2.jpg", alt: "image1" },
+    { id: 2, url: "/images/slider-1.jpg", alt: "image2" },
   ];
   return (
     <Swiper
