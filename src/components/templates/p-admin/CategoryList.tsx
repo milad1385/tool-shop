@@ -1,3 +1,4 @@
+import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
 import Image from "next/image";
 import React from "react";
@@ -7,7 +8,7 @@ import { FaPencil } from "react-icons/fa6";
 function CategoryList() {
   return (
     <div className="section-box">
-      <div className="admin-table mt-10 overflow-hidden bg-namavaBlack  rounded-md">
+      <div className="admin-table mt-5 overflow-hidden bg-namavaBlack  rounded-md">
         <Table>
           <Table.Header>
             <th>شماره</th>
@@ -142,6 +143,7 @@ function CategoryList() {
             </Table.Row>
           </Table.Body>
         </Table>
+        <Pagination count={35} />
       </div>
     </div>
   );
