@@ -29,7 +29,7 @@ function CreateCategory() {
   return (
     <form
       onSubmit={handleSubmit(createCategoryHandler)}
-      className="bg-white rounded-xl px-8 pt-5 pb-10 my-5 shadow "
+      className="section-box"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input
