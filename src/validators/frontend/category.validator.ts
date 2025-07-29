@@ -20,6 +20,13 @@ export const createCategorySchema = yup.object({
     .max(1000, "حداکثر تعداد توضیحات دسته بندی  1000 کاراکتر عدد میباشد"),
 
   category: yup.string().optional(),
+  tags: yup
+    .string()
+    .required("وارد کردن حداقل یک تگ الزامی است")
+    .test("is-splittable", "حداقل یک تگ وارد کن", (value) => {
+      const tagsArray = value.split(" , ").map((tag) => tag.trim());
+      return tagsArray.length > 0 && tagsArray[0] !== "";
+    }),
   image: yup
     .mixed()
     .test(
