@@ -38,6 +38,7 @@ function CreateCategory() {
           name="name"
           type="text"
           label="نام"
+          className="bg-gray-50"
           disable={false}
           labelClassName="!text-lg font-Iran"
         />
@@ -47,6 +48,7 @@ function CreateCategory() {
           name="href"
           type="text"
           label="لینک"
+          className="bg-gray-50"
           disable={false}
           labelClassName="!text-lg font-Iran"
         />
@@ -56,6 +58,7 @@ function CreateCategory() {
           name="tags"
           type="text"
           label="تگ ها"
+          className="bg-gray-50"
           placeholder="تگ ها را به صورت تگ 1 , تگ 2 , تگ 3 بنویسید"
           disable={false}
           labelClassName="!text-lg font-Iran"
@@ -66,6 +69,7 @@ function CreateCategory() {
           name="desc"
           type="text"
           label="توضیحات"
+          className="bg-gray-50"
           disable={false}
           labelClassName="!text-lg font-Iran"
         />
@@ -75,6 +79,7 @@ function CreateCategory() {
           errors={errors}
           name="category"
           type="select"
+          className="!bg-gray-50"
           options={[
             { id: 1, label: "دریل", value: "deral" },
             { id: 2, label: "سنگ بر", value: "stone" },
