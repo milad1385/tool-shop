@@ -22,3 +22,5 @@ export const createDiscountSchema = yup.object({
     .max(1000, "حداکثر تعداد استفاده 100 کاراکتر عدد میباشد"),
   product: yup.string().required("محصول مورد نظر را برای کد تخفیف انتخاب کنید"),
 });
+
+export type TDiscountSchema = yup.InferType<typeof createDiscountSchema>;
