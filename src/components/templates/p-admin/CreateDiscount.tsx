@@ -1,7 +1,10 @@
 "use client";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { createDiscountSchema } from "@/validators/frontend/discount.validator";
+import {
+  createDiscountSchema,
+  TDiscountSchema,
+} from "@/validators/frontend/discount.validator";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -16,8 +19,15 @@ function CreateDiscount() {
   } = useForm({
     resolver: yupResolver(createDiscountSchema),
   });
+
+  const createDiscountHandler = (data: TDiscountSchema) => {
+    console.log(data);
+  };
   return (
-    <form className="section-box">
+    <form
+      onSubmit={handleSubmit(createDiscountHandler)}
+      className="section-box"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input
           register={register}
@@ -68,7 +78,7 @@ function CreateDiscount() {
       </div>
       <div className="flex items-center gap-x-4">
         <Button type="submit" className="!w-[200px] mt-10">
-          ایجاد کد تخفیف 
+          ایجاد کد تخفیف
         </Button>
         <Button
           onClick={() => {
