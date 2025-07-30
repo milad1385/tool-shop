@@ -154,6 +154,7 @@ export interface IInput {
   placeholder?: string;
   multiple?: boolean;
   setImage?: any;
+  options?: TOption[];
   type:
     | "text"
     | "number"
