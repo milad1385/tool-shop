@@ -75,6 +75,10 @@ function CreateCategory() {
           errors={errors}
           name="category"
           type="select"
+          options={[
+            { id: 1, label: "دریل", value: "deral" },
+            { id: 2, label: "سنگ بر", value: "stone" },
+          ]}
           label="دسته بندی پرنت"
           disable={false}
           labelClassName="!text-lg font-Iran"

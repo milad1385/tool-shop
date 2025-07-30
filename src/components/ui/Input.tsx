@@ -13,8 +13,9 @@ function Input({
   placeholder,
   labelClassName,
   setImage,
+  options,
 }: IInput) {
-  if (type === "text") {
+  if (type === "text" || type === "number") {
     return (
       <div className="flex flex-col gap-y-4 relative">
         <label
@@ -155,8 +156,11 @@ function Input({
               {placeholder || "یک گزینه را انتخاب کنید"}
             </option>
             {/* Example options: */}
-            <option value="option1">آپشن 1</option>
-            <option value="option2">آپشن 2</option>
+            {options?.map((option) => (
+              <option key={option.id} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
           <div className="pointer-events-none absolute top-2 inset-y-0 left-0 flex items-center px-2 text-gray-700">
             <svg
