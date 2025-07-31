@@ -105,6 +105,10 @@ body {
   .admin-table table tbody tr:nth-child(even) {
     background-color: rgb(233, 233, 233);
   }
+
+  .admin-table.discount table tbody tr td{
+    padding: 18px !important;
+  }
 }
 
 .table-container {
