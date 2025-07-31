@@ -249,7 +249,7 @@ export interface IOrderItem {
   slug: string;
 }
 
-export interface ITableOpration {
+export interface ITableOperation {
   pageTitle: string;
   options: any[];
 }
