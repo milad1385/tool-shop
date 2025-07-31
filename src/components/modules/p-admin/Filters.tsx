@@ -23,14 +23,14 @@ function Filters({ filterField, options }: TFilter) {
 
   const handleFilterParm = (slug: string) => {
     params.set(filterField, slug);
-    router.replace(`${pathname}?${params}`);
+    router.push(`${pathname}?${params}`, { scroll: false });
   };
   return (
     <div className="bg-white inline-flex items-center gap-x-2 p-1 child:transition-all child:cursor-pointer text-xs md:text-sm rounded-md">
       {options.map((option, index) => (
         <div
           key={index}
-          className={`text-black ${
+          className={`text-black !text-nowrap ${
             option.color ? `hover:bg-${option?.color}` : "hover:bg-yellow-500"
           } px-2 ${
             option.slug === paramValue
@@ -38,7 +38,7 @@ function Filters({ filterField, options }: TFilter) {
                   option.color ? `bg-${option.color}` : "bg-yellow-500"
                 } text-white`
               : ""
-          } hover:text-white py-1 px-1 rounded-md`}
+          } hover:text-white py-1.5 px-2 rounded-md`}
           onClick={() => handleFilterParm(option.slug)}
         >
           {option.label}
