@@ -6,6 +6,14 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "hover:bg-black",
+    "hover:bg-green-500",
+    "hover:bg-red-500",
+    "hover:bg-yellow-500",
+    // هر کلاس دیگه‌ای که داینامیک استفاده کردی
+  ],
+
   theme: {
     screens: {
       sm: "640px",
