@@ -248,3 +248,8 @@ export interface IOrderItem {
   label: string;
   slug: string;
 }
+
+export interface ITableOpration {
+  pageTitle: string;
+  options: any[];
+}
