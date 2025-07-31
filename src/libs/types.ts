@@ -212,7 +212,7 @@ export interface ICheckbox {
 }
 
 export interface IOptions {
-  id: number;
+  id?: number;
   slug: string;
   label: string;
 }
@@ -251,5 +251,5 @@ export interface IOrderItem {
 
 export interface ITableOperation {
   pageTitle: string;
-  options: any[];
+  options?: IOptions[];
 }

@@ -1,5 +1,6 @@
 import Container from "@/components/modules/p-admin/Container";
 import PageTitle from "@/components/modules/p-admin/PageTitle";
+import TableOperation from "@/components/modules/p-admin/TableOpration";
 import CategoryList from "@/components/templates/p-admin/CategoryList";
 import CreateCategory from "@/components/templates/p-admin/CreateCategory";
 import { Metadata } from "next";
@@ -14,7 +15,7 @@ function page() {
     <Container>
       <PageTitle content="ایجاد دسته بندی" />
       <CreateCategory/>
-      <PageTitle content="لیست دسته بندی ها" />
+      <TableOperation pageTitle="لیست دسته بندی ها" />
       <CategoryList/>
     </Container>
   );
