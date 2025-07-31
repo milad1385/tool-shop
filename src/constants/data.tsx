@@ -325,6 +325,13 @@ export const people = [
   { id: 5, name: "Katelyn Rohan" },
 ];
 
+export const DiscountFilterOptions = [
+  { label: "همه", slug: "all", color: "black" },
+  { label: "فعال", slug: "active", color: "green-500" },
+  { label: "غیر فعال", slug: "disactive", color: "red-500" },
+  { label: "منقضی", slug: "expire", color: "yellow-500" },
+];
+
 export const ITEM_PER_PAGE = 10;
 export const MAX_FILE_SIZE = 5000000; // 5MB
 export const ACCEPTED_IMAGE_TYPES = [
