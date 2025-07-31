@@ -35,7 +35,7 @@ function Search() {
           value={search}
         />
         <button className="shrink-0 bg-yellow-500 w-[40px] h-[40px] flex-center rounded-full">
-          <HiMiniMagnifyingGlass className="text-xl text-zinc-700" />
+          <HiMiniMagnifyingGlass className="text-xl text-white" />
         </button>
       </div>
     </div>
