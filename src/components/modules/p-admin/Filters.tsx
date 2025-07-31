@@ -6,6 +6,7 @@ import React from "react";
 type Option = {
   label: string;
   slug: string;
+  color?: string;
 };
 
 type TFilter = {
@@ -29,8 +30,14 @@ function Filters({ filterField, options }: TFilter) {
       {options.map((option, index) => (
         <div
           key={index}
-          className={`text-black hover:bg-yellow-500 ${
-            option.slug === paramValue ? "bg-yellow-500 text-white" : ""
+          className={`text-black ${
+            option.color ? `hover:bg-${option?.color}` : "hover:bg-yellow-500"
+          } px-2 ${
+            option.slug === paramValue
+              ? `${
+                  option.color ? `bg-${option.color}` : "bg-yellow-500"
+                } text-white`
+              : ""
           } hover:text-white py-1 px-1 rounded-md`}
           onClick={() => handleFilterParm(option.slug)}
         >
