@@ -12,15 +12,16 @@ import {
   IoSettingsOutline,
   IoTicketOutline,
 } from "react-icons/io5";
-import { IoIosHome } from "react-icons/io";
+import { IoIosGitPullRequest, IoIosHome } from "react-icons/io";
 import { FaHeart, FaTools } from "react-icons/fa";
-import { BsBasket2Fill } from "react-icons/bs";
+import { BsBasket2Fill, BsShop } from "react-icons/bs";
 import { AiOutlineProduct } from "react-icons/ai";
 import { LuUsers } from "react-icons/lu";
 import { GoCommentDiscussion, GoGift } from "react-icons/go";
 import { FiShoppingCart } from "react-icons/fi";
 import { RiArticleLine } from "react-icons/ri";
 import { MdOutlineCategory } from "react-icons/md";
+
 
 export const categories = [
   {
@@ -232,6 +233,18 @@ export const adminPanelLinks = [
   },
   {
     id: 10,
+    title: "فروشندگان",
+    href: "/p-admin/sellers",
+    icon: <BsShop className="text-2xl" />,
+  },
+  {
+    id: 11,
+    title: "درخواست فروشندگان",
+    href: "/p-admin/sellers-request",
+    icon: <IoIosGitPullRequest className="text-2xl" />,
+  },
+  {
+    id: 12,
     title: "تنظیمات",
     href: "/p-admin/settings",
     icon: <IoSettingsOutline className="text-2xl" />,
