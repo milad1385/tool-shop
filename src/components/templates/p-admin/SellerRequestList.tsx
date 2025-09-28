@@ -13,7 +13,8 @@ function SellerRequestList() {
           <Table.Header>
             <th>شماره</th>
             <th>نام</th>
-            <th>نام کاربری</th>
+
+            <th>فروشگاه</th>
             <th>محصول</th>
             <th>تعداد</th>
             <th>قیمت</th>
@@ -27,7 +28,7 @@ function SellerRequestList() {
             <Table.Row>
               <td>1</td>
               <td>میلاد سلامیان</td>
-              <td>Milad1385</td>
+              <td>ابزار میلاد</td>
               <td>دریل رونیکس</td>
               <td>25</td>
 
@@ -56,7 +57,7 @@ function SellerRequestList() {
             <Table.Row>
               <td>2</td>
               <td>میلاد سلامیان</td>
-              <td>Milad1385</td>
+              <td>ابزار محمد</td>
               <td>موتور رونیکس</td>
               <td>35</td>
 
@@ -85,7 +86,7 @@ function SellerRequestList() {
             <Table.Row>
               <td>3</td>
               <td>میلاد سلامیان</td>
-              <td>Milad1385</td>
+              <td>ابزار میلاد</td>
               <td>پیچ گوشتی</td>
               <td>85</td>
 
@@ -114,7 +115,7 @@ function SellerRequestList() {
             <Table.Row>
               <td>4</td>
               <td>میلاد سلامیان</td>
-              <td>Milad1385</td>
+              <td>ابزار میلاد</td>
               <td>دریل رونیکس</td>
               <td>25</td>
 
@@ -143,7 +144,7 @@ function SellerRequestList() {
             <Table.Row>
               <td>5</td>
               <td>میلاد سلامیان</td>
-              <td>Milad1385</td>
+              <td>ابزار میلاد</td>
               <td>موتور رونیکس</td>
               <td>35</td>
 
@@ -172,7 +173,7 @@ function SellerRequestList() {
             <Table.Row>
               <td>6</td>
               <td>میلاد سلامیان</td>
-              <td>Milad1385</td>
+              <td>ابزار میلاد</td>
               <td>پیچ گوشتی</td>
               <td>85</td>
 
