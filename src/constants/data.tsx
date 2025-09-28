@@ -344,7 +344,7 @@ export const DiscountFilterOptions = [
   { label: "منقضی", slug: "expire", color: "yellow-500" },
 ];
 
-export const CommentFilterOptions = [
+export const statusFilterOptions = [
   { label: "همه", slug: "all", color: "black" },
   { label: "تایید شده", slug: "accepted", color: "green-500" },
   { label: "در حال بررسی", slug: "pending", color: "yellow-500" },
