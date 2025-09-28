@@ -22,7 +22,6 @@ import { FiShoppingCart } from "react-icons/fi";
 import { RiArticleLine } from "react-icons/ri";
 import { MdOutlineCategory } from "react-icons/md";
 
-
 export const categories = [
   {
     id: 1,
@@ -343,6 +342,13 @@ export const DiscountFilterOptions = [
   { label: "فعال", slug: "active", color: "green-500" },
   { label: "غیر فعال", slug: "disactive", color: "red-500" },
   { label: "منقضی", slug: "expire", color: "yellow-500" },
+];
+
+export const CommentFilterOptions = [
+  { label: "همه", slug: "all", color: "black" },
+  { label: "تایید شده", slug: "accepted", color: "green-500" },
+  { label: "در حال بررسی", slug: "pending", color: "yellow-500" },
+  { label: "رد شده", slug: "rejected", color: "red-500" },
 ];
 
 export const ITEM_PER_PAGE = 10;
