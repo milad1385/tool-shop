@@ -1,9 +1,8 @@
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
 import { BsFillEyeFill } from "react-icons/bs";
-import { FaCheck, FaStar, FaTrash } from "react-icons/fa";
-import { FaXmark } from "react-icons/fa6";
-import { MdOutlineEdit } from "react-icons/md";
+import { FaCheck, FaEye, FaStar, FaTrash } from "react-icons/fa";
+import { FaPencil, FaXmark } from "react-icons/fa6";
 
 function CommentList() {
   return (
@@ -49,8 +48,8 @@ function CommentList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaXmark className="text-red-500 text-base md:text-2xl" />
-                  <MdOutlineEdit className="text-yellow-500 text-base md:text-2xl" />
-                  <BsFillEyeFill className="text-blue-800 text-base md:text-2xl" />
+                  <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                  <FaEye className="text-sky-500 text-base md:text-xl" />
                   <FaTrash className="text-red-600 text-base md:text-xl" />
                 </div>
               </td>
@@ -81,8 +80,8 @@ function CommentList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaCheck className="text-green-500 text-base md:text-xl" />
-                  <MdOutlineEdit className="text-yellow-500 text-base md:text-2xl" />
-                  <BsFillEyeFill className="text-blue-800 text-base md:text-2xl" />
+                  <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                  <FaEye className="text-sky-500 text-base md:text-xl" />
                   <FaTrash className="text-red-600 text-base md:text-xl" />
                 </div>
               </td>
@@ -113,8 +112,8 @@ function CommentList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaCheck className="text-green-500 text-base md:text-xl" />
-                  <MdOutlineEdit className="text-yellow-500 text-base md:text-2xl" />
-                  <BsFillEyeFill className="text-blue-800 text-base md:text-2xl" />
+                  <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                  <FaEye className="text-sky-500 text-base md:text-xl" />
                   <FaTrash className="text-red-600 text-base md:text-xl" />
                 </div>
               </td>
@@ -145,8 +144,8 @@ function CommentList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaXmark className="text-red-500 text-base md:text-2xl" />
-                  <MdOutlineEdit className="text-yellow-500 text-base md:text-2xl" />
-                  <BsFillEyeFill className="text-blue-800 text-base md:text-2xl" />
+                  <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                  <FaEye className="text-sky-500 text-base md:text-xl" />
                   <FaTrash className="text-red-600 text-base md:text-xl" />
                 </div>
               </td>
@@ -177,8 +176,8 @@ function CommentList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaCheck className="text-green-500 text-base md:text-xl" />
-                  <MdOutlineEdit className="text-yellow-500 text-base md:text-2xl" />
-                  <BsFillEyeFill className="text-blue-800 text-base md:text-2xl" />
+                  <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                  <FaEye className="text-sky-500 text-base md:text-xl" />
                   <FaTrash className="text-red-600 text-base md:text-xl" />
                 </div>
               </td>
@@ -209,8 +208,8 @@ function CommentList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaCheck className="text-green-500 text-base md:text-xl" />
-                  <MdOutlineEdit className="text-yellow-500 text-base md:text-2xl" />
-                  <BsFillEyeFill className="text-blue-800 text-base md:text-2xl" />
+                  <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                  <FaEye className="text-sky-500 text-base md:text-xl" />
                   <FaTrash className="text-red-600 text-base md:text-xl" />
                 </div>
               </td>
@@ -241,8 +240,8 @@ function CommentList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaXmark className="text-red-500 text-base md:text-2xl" />
-                  <MdOutlineEdit className="text-yellow-500 text-base md:text-2xl" />
-                  <BsFillEyeFill className="text-blue-800 text-base md:text-2xl" />
+                  <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                  <FaEye className="text-sky-500 text-base md:text-xl" />
                   <FaTrash className="text-red-600 text-base md:text-xl" />
                 </div>
               </td>
@@ -273,8 +272,8 @@ function CommentList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaCheck className="text-green-500 text-base md:text-xl" />
-                  <MdOutlineEdit className="text-yellow-500 text-base md:text-2xl" />
-                  <BsFillEyeFill className="text-blue-800 text-base md:text-2xl" />
+                  <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                  <FaEye className="text-sky-500 text-base md:text-xl" />
                   <FaTrash className="text-red-600 text-base md:text-xl" />
                 </div>
               </td>
@@ -305,8 +304,8 @@ function CommentList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaCheck className="text-green-500 text-base md:text-xl" />
-                  <MdOutlineEdit className="text-yellow-500 text-base md:text-2xl" />
-                  <BsFillEyeFill className="text-blue-800 text-base md:text-2xl" />
+                  <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                  <FaEye className="text-sky-500 text-base md:text-xl" />
                   <FaTrash className="text-red-600 text-base md:text-xl" />
                 </div>
               </td>
