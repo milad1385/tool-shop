@@ -1,7 +1,7 @@
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
-import { FaCheck, FaTrash, FaEye } from "react-icons/fa";
-import { FaPencil, FaXmark } from "react-icons/fa6";
+import { FaCheck, FaTrash } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 
 function SellerList() {
   return (
