@@ -1,11 +1,16 @@
 import Container from "@/components/modules/p-admin/Container";
-import PageTitle from "@/components/modules/p-admin/PageTitle";
-import React from "react";
+import TableOperation from "@/components/modules/p-admin/TableOpration";
+import SellerList from "@/components/templates/p-admin/SellerList";
+import { statusFilterOptions } from "@/constants/data";
 
 function page() {
   return (
     <Container>
-      <PageTitle content="لیست فروشندگان" />
+       <TableOperation
+        options={statusFilterOptions}
+        pageTitle="لیست فروشندگان"
+      />
+      <SellerList/>
     </Container>
   );
 }
