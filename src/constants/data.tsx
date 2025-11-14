@@ -351,6 +351,12 @@ export const statusFilterOptions = [
   { label: "رد شده", slug: "rejected", color: "red-500" },
 ];
 
+export const userStatusFilterOptions = [
+  { label: "همه", slug: "all", color: "black" },
+  { label: "بن شده", slug: "ban", color: "yellow-500" },
+  { label: "فعال", slug: "active", color: "green-500" },
+];
+
 export const ITEM_PER_PAGE = 10;
 export const MAX_FILE_SIZE = 5000000; // 5MB
 export const ACCEPTED_IMAGE_TYPES = [
