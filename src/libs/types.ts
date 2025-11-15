@@ -253,3 +253,7 @@ export interface ITableOperation {
   pageTitle: string;
   options?: IOptions[];
 }
+
+export interface IOrderBox {
+  className?: string;
+}
