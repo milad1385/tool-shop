@@ -20,7 +20,7 @@ import { LuUsers } from "react-icons/lu";
 import { GoCommentDiscussion, GoGift } from "react-icons/go";
 import { FiShoppingCart } from "react-icons/fi";
 import { RiArticleLine } from "react-icons/ri";
-import { MdOutlineCategory } from "react-icons/md";
+import { MdMenuBook, MdOutlineCategory } from "react-icons/md";
 
 export const categories = [
   {
@@ -226,24 +226,30 @@ export const adminPanelLinks = [
   },
   {
     id: 9,
+    title: "منو ها",
+    href: "/p-admin/menus",
+    icon: <MdMenuBook className="text-2xl" />,
+  },
+  {
+    id: 10,
     title: "کد تخفیف",
     href: "/p-admin/discount",
     icon: <GoGift className="text-2xl" />,
   },
   {
-    id: 10,
+    id: 11,
     title: "فروشندگان",
     href: "/p-admin/sellers",
     icon: <BsShop className="text-2xl" />,
   },
   {
-    id: 11,
+    id: 12,
     title: "درخواست فروشندگان",
     href: "/p-admin/sellers-request",
     icon: <IoIosGitPullRequest className="text-2xl" />,
   },
   {
-    id: 12,
+    id: 13,
     title: "تنظیمات",
     href: "/p-admin/settings",
     icon: <IoSettingsOutline className="text-2xl" />,
