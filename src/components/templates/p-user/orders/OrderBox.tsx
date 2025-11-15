@@ -1,10 +1,11 @@
+import { IOrderBox } from "@/libs/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function OrderBox() {
+function OrderBox({ className }: IOrderBox) {
   return (
-    <div className="p-6 border rounded-2xl relative">
+    <div className={`p-6 border rounded-2xl relative ${className}`}>
       <div className="bg-green-500 rounded-tl-2xl font-Lalezar text-sm text-white py-3 px-6 rounded-br-2xl absolute top-0 left-0">
         پرداخت موفق
       </div>
@@ -19,11 +20,15 @@ function OrderBox() {
         </div>
         <div>
           <span>تخفیف:</span>
-          <span className="mr-1 text-stone-500">76.000 <span className="hidden md:inline-block">تومان</span></span>
+          <span className="mr-1 text-stone-500">
+            76.000 <span className="hidden md:inline-block">تومان</span>
+          </span>
         </div>
         <div>
           <span>جمع سبد خرید:</span>
-          <span className="mr-1 text-stone-500">399.000 <span className="hidden md:inline-block">تومان</span></span>
+          <span className="mr-1 text-stone-500">
+            399.000 <span className="hidden md:inline-block">تومان</span>
+          </span>
         </div>
       </div>
       <div className="flex flex-col sm:flex-row justify-between items-center">
