@@ -14,7 +14,6 @@ function Input({
   labelClassName,
   setImage,
   options,
-  setValue,
 }: IInput) {
   if (type === "text" || type === "number") {
     return (
@@ -186,6 +185,34 @@ function Input({
         </div>
         {errors[name] && (
           <span className="absolute -bottom-5 text-xs text-red-600">
+            {errors[name].message}
+          </span>
+        )}
+      </div>
+    );
+  } else if (type === "color") {
+    return (
+      <div className="flex flex-col gap-y-4 relative">
+        <label
+          htmlFor={name}
+          className={`text-sm text-zinc-800 ${labelClassName}`}
+        >
+          {label} :
+        </label>
+        <input
+          {...register(`${name}`)}
+          type={type}
+          id={name}
+          name={name}
+          disabled={disable}
+          placeholder={placeholder}
+          className={`input w-full h-[40px] p-2 text-right  border border-gray-300 rounded-md ${className}`}
+        />
+
+        {errors[name] && (
+          <span
+            className={`absolute -bottom-6  text-xs md:text-sm text-red-600`}
+          >
             {errors[name].message}
           </span>
         )}
