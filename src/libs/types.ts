@@ -155,6 +155,7 @@ export interface IInput {
   multiple?: boolean;
   setImage?: any;
   options?: TOption[];
+  setValue?: any;
   type:
     | "text"
     | "number"
