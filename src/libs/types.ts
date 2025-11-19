@@ -163,7 +163,8 @@ export interface IInput {
     | "password"
     | "file"
     | "textarea"
-    | "select";
+    | "select"
+    | "color";
   disable?: boolean;
   labelClassName?: string;
 }

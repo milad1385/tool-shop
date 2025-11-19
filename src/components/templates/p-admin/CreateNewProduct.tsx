@@ -8,12 +8,14 @@ import {
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 function CreateNewProduct() {
   const [images, setImages] = useState<File[]>([]);
+  const router = useRouter();
   const {
     register,
     formState: { errors },
@@ -136,6 +138,13 @@ function CreateNewProduct() {
           className="!w-[200px] mt-10 !bg-red-500"
         >
           لغو
+        </Button>
+        <Button
+          onClick={() => router.push("/p-admin/products/details")}
+          type="reset"
+          className="!w-[200px] mt-10 !bg-yellow-500"
+        >
+          ایجاد جزییات
         </Button>
       </div>
     </form>
