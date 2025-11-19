@@ -67,3 +67,4 @@ export const productDetailSchema = yup.object({
 });
 
 export type TProductSchema = yup.InferType<typeof createProductSchema>;
+export type TProductDetailSchema = yup.InferType<typeof productDetailSchema>;
