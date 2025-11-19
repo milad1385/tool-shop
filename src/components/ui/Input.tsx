@@ -14,6 +14,7 @@ function Input({
   labelClassName,
   setImage,
   options,
+  setValue,
 }: IInput) {
   if (type === "text" || type === "number") {
     return (
@@ -46,13 +47,13 @@ function Input({
   } else if (type === "textarea") {
     return (
       <div className="flex flex-col gap-y-4 relative">
-        <label htmlFor={name} className="text-sm text-zinc-800">
+        <label htmlFor={name} className="text-base md:text-lg text-zinc-800">
           {label} :
         </label>
         <textarea
           rows={8}
           {...register(`${name}`)}
-          className={`input w-full  p-2 border border-gray-300 rounded-md ${className}`}
+          className={`input w-full resize-none  p-2 border border-gray-300 rounded-md ${className}`}
           placeholder={placeholder}
           id={name}
           name={name}
@@ -71,13 +72,16 @@ function Input({
           htmlFor={name}
           className={`text-sm font-medium text-zinc-800 ${labelClassName}`}
         >
-          {label} :
+          {label} :{" "}
+          {multiple && <span className="text-gray-500 text-xs">(چند عکس)</span>}
         </label>
 
+        {/* بخش آپلود - از قابلیت multiple استفاده می‌کند */}
         <div className="relative flex flex-col items-center justify-center w-full p-8 transition-colors duration-300 bg-white border-2 border-dashed rounded-xl border-slate-300 hover:border-yellow-500 group">
           <div className="absolute inset-0 transition-colors duration-300 bg-yellow-50 group-hover:bg-yellow-100 opacity-50"></div>
 
           <div className="relative z-10 text-center">
+            {/* SVG icon */}
             <svg
               className="w-16 h-16 mx-auto text-slate-400 group-hover:text-yellow-500"
               xmlns="http://www.w3.org/2000/svg"
@@ -112,9 +116,13 @@ function Input({
               {...register(`${name}`, {
                 onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
                   if (e.target.files && e.target.files.length > 0) {
-                    const file = e.target.files[0];
-                    const objUrl = URL.createObjectURL(file);
-                    setImage(objUrl);
+                    if (multiple) {
+                      setImage(Array.from(e.target.files));
+                    } else {
+                      const file = e.target.files[0];
+                      const objUrl = URL.createObjectURL(file);
+                      setImage(objUrl);
+                    }
                   }
                 },
               })}
@@ -124,9 +132,13 @@ function Input({
               disabled={disable}
               className="sr-only"
               accept="image/*"
+              // 👈 فعال سازی آپلود چندگانه
+              multiple={multiple}
             />
           </div>
         </div>
+
+        {/* بخش پیش نمایش زنده عکس‌ها */}
 
         {errors[name] && (
           <span className="text-sm text-red-600">{errors[name].message}</span>
