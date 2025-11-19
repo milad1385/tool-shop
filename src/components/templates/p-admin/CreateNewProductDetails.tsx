@@ -7,16 +7,13 @@ import {
 } from "@/validators/frontend/product.validator";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 function CreateNewProductDetails() {
-  const router = useRouter();
   const {
     register,
     formState: { errors },
     handleSubmit,
-    setValue,
     reset,
   } = useForm({
     resolver: yupResolver(productDetailSchema),
@@ -25,6 +22,8 @@ function CreateNewProductDetails() {
   const createProductDetails = (data: TProductDetailSchema) => {
     console.log(data);
   };
+
+  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(createProductDetails)} className="section-box">
@@ -66,7 +65,7 @@ function CreateNewProductDetails() {
         <Input
           register={register}
           errors={errors}
-          name="discount"
+          name="stock"
           type="number"
           label="تعداد موجودی"
           className="bg-gray-50"
@@ -105,7 +104,6 @@ function CreateNewProductDetails() {
         >
           لغو
         </Button>
-       
       </div>
     </form>
   );
