@@ -367,9 +367,17 @@ export const orderStatusFilterOptions = [
   { label: "همه", slug: "all", color: "black" },
   { label: "تحویل داده", slug: "delivered", color: "green-500" },
   { label: "در حال پردازش", slug: "pending", color: "yellow-500" },
-  { label: "آماده ارسال", slug: "shipped", color: "gray-500" },
+  { label: "آماده ارسال", slug: "shipped", color: "green-500" },
   { label: "لغو شده", slug: "canceled", color: "red-500" },
-  { label: "مرجوع شده", slug: "deported", color: "purple-500" },
+  { label: "مرجوع شده", slug: "deported", color: "red-500" },
+];
+
+export const productFilterOptions = [
+  { label: "همه", slug: "all", color: "black" },
+  { label: "موجود", slug: "exist", color: "green-500" },
+  { label: "ناموجود", slug: "not-exist", color: "red-500" },
+  { label: "فعال", slug: "not-exist", color: "green-500" },
+  { label: "غیر فعال", slug: "not-exist", color: "yellow-500" },
 ];
 
 export const ITEM_PER_PAGE = 10;
