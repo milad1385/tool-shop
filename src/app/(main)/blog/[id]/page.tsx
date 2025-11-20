@@ -5,8 +5,11 @@ import ArticleComments from "@/components/templates/articles/ArticleComments";
 import ArticleDeatils from "@/components/templates/articles/ArticleDeatils";
 import ArticleTitle from "@/components/templates/articles/ArticleTitle";
 import RecentArticles from "@/components/templates/articles/RecentArticles";
+import { IPage } from "@/libs/types";
 
-function page() {
+async function page({ params }: IPage) {
+  const { id } = await params;
+  console.log(id);
   return (
     <Container>
       <Breadcrumb
