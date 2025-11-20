@@ -1,9 +1,9 @@
-import { IColorBoxes } from "@/libs/types";
+import { IColorBox } from "@/libs/types";
 import React from "react";
 import ColorBox from "./ColorBox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-function ColorBoxes({ param, options }: IColorBoxes) {
+function ColorBoxes({ param, options }: {param : string;options : IColorBox[]}) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const params = new URLSearchParams(searchParams);

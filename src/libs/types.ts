@@ -119,7 +119,6 @@ export interface ILinks {
   href: string;
 }
 
-
 export interface IStatBox {
   className?: string;
   title: string;
@@ -227,6 +226,7 @@ export interface IColorBox {
   slug: string;
   onClick: (slug: string) => void;
   selected: boolean;
+  id?: string | number;
 }
 
 export interface IMobileAction {
