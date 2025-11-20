@@ -2,7 +2,7 @@ import Breadcrumb from "@/components/modules/main/Breadcrumb";
 import Container from "@/components/modules/main/Container";
 import FilterSide from "@/components/templates/products/FilterSide";
 import Products from "@/components/templates/products/Products";
-import React from "react";
+import React, { Suspense } from "react";
 
 function page() {
   return (
@@ -16,7 +16,9 @@ function page() {
 
       <div className="grid grid-cols-12 gap-x-5">
         <FilterSide />
-        <Products />
+        <Suspense fallback={<div>Loading ...</div>}>
+          <Products />
+        </Suspense>
       </div>
     </Container>
   );
