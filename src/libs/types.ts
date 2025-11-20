@@ -143,8 +143,6 @@ interface IFilterItem {
   slug: string;
 }
 
-
-
 export interface IInput {
   label?: string;
   name: string;
@@ -223,8 +221,6 @@ export interface IFilterCheckbox {
   param: string;
   options: IOptions[];
 }
-
-export interface IColorBoxes extends IFilterCheckbox {}
 
 export interface IColorBox {
   label: string;

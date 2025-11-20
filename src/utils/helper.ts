@@ -1,8 +1,8 @@
-const formattedPrice = (price: number, locale = "fa-IR") => {
+export const formattedPrice = (price: number, locale = "fa-IR") => {
   return price.toLocaleString(locale);
 };
 
-const getDate = () => {
+export const getDate = () => {
   const today = new Date();
   const options: Intl.DateTimeFormatOptions = {
     weekday: "long",

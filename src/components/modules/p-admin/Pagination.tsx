@@ -1,8 +1,10 @@
 "use client";
+
 import { ITEM_PER_PAGE } from "@/constants/data";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
+
 
 function Pagination({ count = 10 }: { count?: number }) {
   const searchParams = useSearchParams();
