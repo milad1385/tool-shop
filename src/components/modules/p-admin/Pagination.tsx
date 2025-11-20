@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 "use client";
+
 import { ITEM_PER_PAGE } from "@/constants/data";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
