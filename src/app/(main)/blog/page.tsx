@@ -1,8 +1,16 @@
+// app/(main)/blog/page.js (اصلاح نهایی)
+
 import Breadcrumb from "@/components/modules/main/Breadcrumb";
 import Container from "@/components/modules/main/Container";
 import Pagination from "@/components/modules/main/Pagination";
 import Articles from "@/components/templates/articles/Articles";
 import { Suspense } from "react";
+
+function PaginationFallback() {
+  return (
+    <div className="h-10 w-full animate-pulse bg-gray-200 mt-6 rounded"></div>
+  );
+}
 
 function page() {
   return (
@@ -13,10 +21,16 @@ function page() {
           { id: 2, href: "/articles", name: "مقاله ها" },
         ]}
       />
-      <Suspense fallback={<div>Loading ....</div>}>
+
+      {/* 1. Suspense برای کامپوننت Articles */}
+      <Suspense fallback={<div>در حال بارگیری مقالات....</div>}>
         <Articles />
       </Suspense>
-      <Pagination count={3} />
+
+      {/* 2. Suspense مجزا برای کامپوننت Pagination که از useSearchParams استفاده می‌کند */}
+      <Suspense fallback={<PaginationFallback />}>
+        <Pagination count={3} />
+      </Suspense>
     </Container>
   );
 }
