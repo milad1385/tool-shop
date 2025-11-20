@@ -1,10 +1,8 @@
 "use client";
-
 import { ITEM_PER_PAGE } from "@/constants/data";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-
 
 function Pagination({ count = 10 }: { count?: number }) {
   const searchParams = useSearchParams();
@@ -21,7 +19,7 @@ function Pagination({ count = 10 }: { count?: number }) {
   const start = end - ITEM_PER_PAGE;
 
   const handleChangePage = (type: string) => {
-    const curPage = page
+    const curPage = page;
     if (curPage < 1) return false;
     type === "prev"
       ? params.set("page", String(curPage - 1 === 0 ? curPage : curPage - 1))

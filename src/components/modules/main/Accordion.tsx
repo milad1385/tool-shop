@@ -1,10 +1,9 @@
 "use client";
 import { IAccordionTitle } from "@/libs/types";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 
 function Accordion({ title, children }: IAccordionTitle) {
-
   const subMenuRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -13,8 +12,14 @@ function Accordion({ title, children }: IAccordionTitle) {
   };
 
   useEffect(() => {
-    if (isOpen && subMenuRef.current) {
-      const height = subMenuRef.current.scrollHeight;
+    const el = subMenuRef.current;
+    if (!el) return;
+
+    if (isOpen) {
+      const height = el.scrollHeight;
+      el.style.height = height + "px";
+    } else {
+      el.style.height = "0px";
     }
   }, [isOpen]);
 

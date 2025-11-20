@@ -118,7 +118,7 @@ export interface ILinks {
   icon: React.ReactNode;
   href: string;
 }
-[];
+
 
 export interface IStatBox {
   className?: string;
