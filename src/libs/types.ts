@@ -224,8 +224,8 @@ export interface IFilterCheckbox {
 export interface IColorBox {
   label: string;
   slug: string;
-  onClick: (slug: string) => void;
-  selected: boolean;
+  onClick?: (slug: string) => void;
+  selected?: boolean;
   id?: string | number;
 }
 
