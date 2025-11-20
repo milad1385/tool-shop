@@ -4,7 +4,7 @@ import React from "react";
 function ColorBox({ label, slug, onClick , selected}: IColorBox) {
   return (
     <div
-      onClick={() => onClick(slug)}
+      onClick={() => onClick?.(slug)}
       className={`px-2 py-1.5 inline-flex items-center gap-x-3 border border-gray-400 rounded-lg md:cursor-pointer ${selected ?"bg-yellow-200 border-yellow-500" :""}`}
     >
       <span>{label}</span>
