@@ -3,21 +3,18 @@ const formattedPrice = (price: number, locale = "fa-IR") => {
 };
 
 const getDate = () => {
-  const options = {
+  const today = new Date();
+  const options: Intl.DateTimeFormatOptions = {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
   };
+  const formattedDate = today.toLocaleDateString("fa-IR", options);
 
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString("fa-IR", options as any);
-
-  // جداسازی اجزای تاریخ و تغییر ترتیب آنها
   const parts = formattedDate.split(" ");
   const correctedFormat =
-    `${parts[3]} ${parts[2]} ${parts[1]}  ${parts[0]}`.replace(",", "");
+    `${parts[3]} ${parts[2]} ${parts[1]} ${parts[0]}`.replace(",", "");
 
   return correctedFormat;
 };
-export { formattedPrice, getDate };

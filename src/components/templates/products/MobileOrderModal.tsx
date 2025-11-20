@@ -1,7 +1,6 @@
 import { IMobileAction } from "@/libs/types";
-import React, { useEffect, useState } from "react";
-import OrderItem from "./OrderItem";
 import { FaRegCircleXmark } from "react-icons/fa6";
+import OrderItem from "./OrderItem";
 
 function MobileOrderModal({ isShow, onShow, onStatus, status }: IMobileAction) {
   return (

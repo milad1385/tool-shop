@@ -29,24 +29,24 @@ export const createCategorySchema = yup.object({
     }),
   image: yup
     .mixed()
-    .test(
-      "required",
-      "آپلود عکس الزامی است",
-      (value: any) => value && value.length > 0
-    )
-    .test(
-      "fileSize",
-      `حداکثر حجم فایل 5MB است`,
-      (value: any) =>
-        value && value.length > 0 && value[0].size <= MAX_FILE_SIZE
-    )
+    .test("required", "آپلود عکس الزامی است", (value) => {
+      if (!value || !(value instanceof FileList || Array.isArray(value)))
+        return false;
+      return value.length > 0;
+    })
+    .test("fileSize", "حداکثر حجم فایل 5MB است", (value) => {
+      if (!value || !(value instanceof FileList || Array.isArray(value)))
+        return false;
+      return value[0].size <= MAX_FILE_SIZE;
+    })
     .test(
       "fileType",
       "فقط فرمت‌های .jpg, .jpeg, .png و .webp پشتیبانی می‌شوند",
-      (value: any) =>
-        value &&
-        value.length > 0 &&
-        ACCEPTED_IMAGE_TYPES.includes(value[0].type)
+      (value) => {
+        if (!value || !(value instanceof FileList || Array.isArray(value)))
+          return false;
+        return ACCEPTED_IMAGE_TYPES.includes(value[0].type);
+      }
     ),
 });
 

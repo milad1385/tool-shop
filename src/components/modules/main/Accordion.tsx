@@ -1,7 +1,7 @@
 "use client";
+import { IAccordionTitle } from "@/libs/types";
 import React, { useEffect, useRef, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
-import { IAccordionTitle } from "../../libs/types";
 
 function Accordion({ title, children }: IAccordionTitle) {
   const subMenuRef = useRef<any>(null);

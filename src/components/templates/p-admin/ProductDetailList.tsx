@@ -1,7 +1,6 @@
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
-import { FaEye, FaTrash } from "react-icons/fa";
-import { FaPencil } from "react-icons/fa6";
+import { FaTrash } from "react-icons/fa";
 
 function ProductDetailList() {
   return (
@@ -57,7 +56,7 @@ function ProductDetailList() {
                 </div>
               </td>
             </Table.Row>
-             <Table.Row>
+            <Table.Row>
               <td>3</td>
 
               <td>پیج گوشتی</td>
@@ -75,7 +74,7 @@ function ProductDetailList() {
                 </div>
               </td>
             </Table.Row>
-             <Table.Row>
+            <Table.Row>
               <td>4</td>
 
               <td>دریل رونیکس</td>
@@ -111,7 +110,7 @@ function ProductDetailList() {
                 </div>
               </td>
             </Table.Row>
-             <Table.Row>
+            <Table.Row>
               <td>6</td>
 
               <td>پیج گوشتی</td>

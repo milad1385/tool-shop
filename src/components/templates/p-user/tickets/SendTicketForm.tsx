@@ -17,7 +17,6 @@ function SendTicketForm() {
   const {
     handleSubmit,
     register,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(newTicketSchema),

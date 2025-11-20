@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 function CreateCategory() {
-  const [image, setImage] = useState<any>(null);
+  const [image, setImage] = useState<string | null>("");
   const {
     register,
     formState: { errors },
@@ -129,7 +129,7 @@ function CreateCategory() {
         <Button
           onClick={() => {
             reset();
-            setImage("");
+            setImage(null);
           }}
           type="reset"
           className="!w-[200px] mt-10 !bg-red-500"

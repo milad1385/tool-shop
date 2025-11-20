@@ -1,5 +1,3 @@
-import { exportTraceState } from "next/dist/trace";
-
 export interface ICategory {
   id: number;
   title: string;
@@ -145,17 +143,19 @@ interface IFilterItem {
   slug: string;
 }
 
+
+
 export interface IInput {
   label?: string;
   name: string;
   className?: string;
-  register: any;
-  errors: any;
+  register: unknown;
+  errors: unknown;
   placeholder?: string;
   multiple?: boolean;
-  setImage?: any;
+  setImage?: unknown;
   options?: TOption[];
-  setValue?: any;
+  setValue?: unknown;
   type:
     | "text"
     | "number"
@@ -184,15 +184,15 @@ type TOption = {
 
 export type TSelectBox = {
   title: string;
-  register: any;
-  errors: any;
+  register: unknown;
+  errors: unknown;
   name: string;
   options: TOption[];
   dateName?: string;
   disable?: boolean;
   multiple?: boolean;
-  selected?: any;
-  onSelected?: any;
+  selected?: unknown;
+  onSelected?: unknown;
   placeholder?: string;
 };
 
@@ -236,8 +236,8 @@ export interface IColorBox {
 export interface IMobileAction {
   isShow: boolean;
   onShow: React.Dispatch<React.SetStateAction<boolean>>;
-  onStatus?: any;
-  status?: any;
+  onStatus?: unknown;
+  status?: unknown;
 }
 export interface IStatus {
   slug: string;

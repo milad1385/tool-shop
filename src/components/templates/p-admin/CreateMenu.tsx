@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 function CreateMenu() {
-  const [image, setImage] = useState<any>(null);
+  const [image, setImage] = useState<string | null>(null);
   const {
     register,
     formState: { errors },

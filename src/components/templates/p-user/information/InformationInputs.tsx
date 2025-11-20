@@ -1,6 +1,5 @@
 "use client";
 import Input from "@/components/ui/Input";
-import { editUser } from "@/libs/actions/user";
 import {
   UserData,
   userValidorSchema,
@@ -22,8 +21,6 @@ function InformationInputs() {
 
   const editUserInformation = async (data: UserData) => {
     console.log(data);
-
-    await editUser(data);
   };
   return (
     <form onSubmit={handleSubmit(editUserInformation)}>

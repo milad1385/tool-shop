@@ -33,13 +33,15 @@ function DurationChart() {
       color: "#a16207",
     },
   ];
-//   const data = prepareData(startData, orders);
+  //   const data = prepareData(startData, orders);
 
-  const windowWidth: any = typeof window !== "undefined" && window.innerWidth;
+  const windowWidth: number = Number(
+    typeof window !== "undefined" && window.innerWidth
+  );
 
   return (
     <div className="duration-chart  rounded-3xl bg-white py-4 md:py-6 px-8">
-      <Title content="تعداد خرید اشتراک"/>
+      <Title content="تعداد خرید اشتراک" />
       <ResponsiveContainer height={267}>
         <PieChart>
           <Pie
@@ -52,7 +54,7 @@ function DurationChart() {
             outerRadius={110}
             innerRadius={85}
           >
-            {startData.map((entry : any) => (
+            {startData.map((entry) => (
               <Cell
                 key={entry.duration}
                 fill={entry.color}

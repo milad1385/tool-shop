@@ -1,26 +1,25 @@
+import { AiOutlineProduct } from "react-icons/ai";
+import { BsBasket2Fill, BsShop } from "react-icons/bs";
+import { FaHeart, FaTools } from "react-icons/fa";
+import { FiShoppingCart } from "react-icons/fi";
+import { GoCommentDiscussion, GoGift } from "react-icons/go";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
 import {
-  HiOutlineChevronRight,
   HiOutlineCreditCard,
   HiOutlineFaceSmile,
   HiOutlineSquares2X2,
-  HiOutlineUser,
+  HiOutlineUser
 } from "react-icons/hi2";
-import { LiaComments } from "react-icons/lia";
+import { IoIosGitPullRequest, IoIosHome } from "react-icons/io";
 import {
   IoHomeOutline,
   IoSettingsOutline,
   IoTicketOutline,
 } from "react-icons/io5";
-import { IoIosGitPullRequest, IoIosHome } from "react-icons/io";
-import { FaHeart, FaTools } from "react-icons/fa";
-import { BsBasket2Fill, BsShop } from "react-icons/bs";
-import { AiOutlineProduct } from "react-icons/ai";
+import { LiaComments } from "react-icons/lia";
 import { LuUsers } from "react-icons/lu";
-import { GoCommentDiscussion, GoGift } from "react-icons/go";
-import { FiShoppingCart } from "react-icons/fi";
-import { RiArticleLine } from "react-icons/ri";
 import { MdMenuBook, MdOutlineCategory } from "react-icons/md";
+import { RiArticleLine } from "react-icons/ri";
 
 export const categories = [
   {

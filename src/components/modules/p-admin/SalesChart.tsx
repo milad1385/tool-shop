@@ -11,7 +11,9 @@ import {
 } from "recharts";
 
 function SalesChart() {
-  const windowWidth: any = typeof window !== "undefined" && window.innerWidth;
+  const windowWidth: number = Number(
+    typeof window !== "undefined" && window.innerWidth
+  );
 
   const colors = {
     totalSales: { stroke: "#4f46e5", fill: "#c7d2fe" },

@@ -2,7 +2,7 @@ import { ITabButton } from "@/libs/types";
 import React from "react";
 
 function TabButton({ tab, onTab, name, label }: ITabButton) {
-  let activeClass = "bg-yellow-500 text-white rounded-lg";
+  const activeClass = "bg-yellow-500 text-white rounded-lg";
   return (
     <button
       onClick={() => onTab(name)}

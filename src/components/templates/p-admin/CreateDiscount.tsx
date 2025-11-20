@@ -14,7 +14,6 @@ function CreateDiscount() {
     register,
     formState: { errors },
     handleSubmit,
-    setValue,
     reset,
   } = useForm({
     resolver: yupResolver(createDiscountSchema),

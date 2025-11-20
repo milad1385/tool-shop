@@ -1,5 +1,6 @@
 import { links } from "@/constants/data";
 import MenuItem from "./MenuItem";
+import Image from "next/image";
 
 function Sidebar() {
  
@@ -10,7 +11,7 @@ function Sidebar() {
           <div className="absolute inset-0 flex items-center justify-center flex-col top-24">
             <div className="avatar online mt-8">
               <div className="w-24 rounded-full overflow-hidden border-4 border-white">
-                <img src="/images/avatar-3.jpg" />
+                <Image src="/images/avatar-3.jpg" alt="user-image" width={1920} height={1080} className="w-24" />
               </div>
             </div>
 

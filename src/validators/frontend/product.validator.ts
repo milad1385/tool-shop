@@ -17,24 +17,25 @@ export const createProductSchema = yup.object({
     .max(2000, "حداکثر تعداد عنوان 2000 کاراکتر عدد میباشد"),
   images: yup
     .mixed()
-    .test(
-      "required",
-      "آپلود حداقل یک عکس الزامی است",
-      (value: any) => value && value.length > 0
-    )
-    .test("fileSize", `حداکثر حجم فایل 5MB است`, (value: any) => {
-      if (!value || value.length === 0) return true;
+    .test("required", "آپلود حداقل یک عکس الزامی است", (value) => {
+      if (!value || !(value instanceof FileList || Array.isArray(value)))
+        return false;
+      return value.length > 0;
+    })
+    .test("fileSize", "حداکثر حجم فایل 5MB است", (value) => {
+      if (!value || !(value instanceof FileList || Array.isArray(value)))
+        return true;
       const filesArray = Array.from(value);
-      return filesArray.every((file: any) => file.size <= MAX_FILE_SIZE);
+      return filesArray.every((file) => file.size <= MAX_FILE_SIZE);
     })
     .test(
       "fileType",
       "فقط فرمت‌های .jpg, .jpeg, .png و .webp پشتیبانی می‌شوند",
-
-      (value: any) => {
-        if (!value || value.length === 0) return true;
+      (value) => {
+        if (!value || !(value instanceof FileList || Array.isArray(value)))
+          return true;
         const filesArray = Array.from(value);
-        return filesArray.every((file: any) =>
+        return filesArray.every((file) =>
           ACCEPTED_IMAGE_TYPES.includes(file.type)
         );
       }

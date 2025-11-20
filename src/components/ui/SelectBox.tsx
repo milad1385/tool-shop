@@ -1,5 +1,4 @@
 import { TSelectBox } from "@/libs/types";
-import React from "react";
 import Select from "react-select";
 
 function SelectBox({
@@ -47,7 +46,7 @@ function SelectBox({
       </div>
     );
   } else {
-    const handleSelectChange = (e: any) => {
+    const handleSelectChange = (e: unknown) => {
       onSelected(e);
     };
     return (

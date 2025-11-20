@@ -1,6 +1,5 @@
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
-import { BsFillEyeFill } from "react-icons/bs";
 import { FaCheck, FaEye, FaStar, FaTrash } from "react-icons/fa";
 import { FaPencil, FaXmark } from "react-icons/fa6";
 

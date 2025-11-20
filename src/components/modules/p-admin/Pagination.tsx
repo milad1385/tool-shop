@@ -10,7 +10,7 @@ function Pagination({ count = 10 }: { count?: number }) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const params = new URLSearchParams(searchParams);
-  const page: any = searchParams.get("page") || 1;
+  const page: number = +(searchParams.get("page") || 1);
 
   const hasPrev = ITEM_PER_PAGE * (+page - 1) > 0;
   const hasNext = ITEM_PER_PAGE * (+page - 1) + ITEM_PER_PAGE < count;
@@ -19,7 +19,7 @@ function Pagination({ count = 10 }: { count?: number }) {
   const start = end - ITEM_PER_PAGE;
 
   const handleChangePage = (type: string) => {
-    const curPage = parseInt(page);
+    const curPage = page
     if (curPage < 1) return false;
     type === "prev"
       ? params.set("page", String(curPage - 1 === 0 ? curPage : curPage - 1))
