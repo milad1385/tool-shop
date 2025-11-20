@@ -146,13 +146,13 @@ export interface IInput {
   label?: string;
   name: string;
   className?: string;
-  register: unknown;
-  errors: unknown;
+  register: any;
+  errors: any;
   placeholder?: string;
   multiple?: boolean;
-  setImage?: unknown;
+  setImage?: any;
   options?: TOption[];
-  setValue?: unknown;
+  setValue?: any;
   type:
     | "text"
     | "number"
@@ -181,15 +181,15 @@ type TOption = {
 
 export type TSelectBox = {
   title: string;
-  register: unknown;
-  errors: unknown;
+  register: any;
+  errors: any;
   name: string;
   options: TOption[];
   dateName?: string;
   disable?: boolean;
   multiple?: boolean;
-  selected?: unknown;
-  onSelected?: unknown;
+  selected?: any;
+  onSelected?: any;
   placeholder?: string;
 };
 
@@ -232,8 +232,8 @@ export interface IColorBox {
 export interface IMobileAction {
   isShow: boolean;
   onShow: React.Dispatch<React.SetStateAction<boolean>>;
-  onStatus?: unknown;
-  status?: unknown;
+  onStatus?: any;
+  status?: any;
 }
 export interface IStatus {
   slug: string;
