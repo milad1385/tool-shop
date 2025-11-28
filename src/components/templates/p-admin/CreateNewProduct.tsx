@@ -146,6 +146,13 @@ function CreateNewProduct() {
         >
           ایجاد جزییات
         </Button>
+        <Button
+          onClick={() => router.push("/p-admin/products/feature")}
+          type="reset"
+          className="!w-[200px] mt-10 !bg-purple-600"
+        >
+          ایجاد ویژگی
+        </Button>
       </div>
     </form>
   );
