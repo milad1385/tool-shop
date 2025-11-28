@@ -8,7 +8,7 @@ import {
   HiOutlineCreditCard,
   HiOutlineFaceSmile,
   HiOutlineSquares2X2,
-  HiOutlineUser
+  HiOutlineUser,
 } from "react-icons/hi2";
 import { IoIosGitPullRequest, IoIosHome } from "react-icons/io";
 import {
@@ -324,6 +324,12 @@ export const colorsFilter = [
   { id: 3, slug: "black", label: "مشکی" },
   { id: 4, slug: "sky", label: "آبی" },
   { id: 5, slug: "green", label: "سبز" },
+];
+
+export const articleFilter = [
+  { slug: "all", label: "همه", color: "black" },
+  { slug: "publish", label: "منتشر شده", color: "green-500" },
+  { slug: "draft", label: "یادداشت شده", color: "red-500" },
 ];
 
 export const colors = [
