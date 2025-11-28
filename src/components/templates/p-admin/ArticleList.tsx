@@ -35,7 +35,7 @@ function ArticleList() {
                 />
               </td>
               <td>
-                <Link href="/articles/1">مقاله اول</Link>
+                <Link href="/blog/1">مقاله اول</Link>
               </td>
 
               <td>آموزش ، روش استفاده ، دریل</td>
@@ -70,7 +70,7 @@ function ArticleList() {
                 />
               </td>
               <td>
-                <Link href="/articles/1">مقاله دوم</Link>
+                <Link href="/blog/1">مقاله دوم</Link>
               </td>
 
               <td>آموزش ، استفاده ، پیج</td>
@@ -104,7 +104,7 @@ function ArticleList() {
                 />
               </td>
               <td>
-                <Link href="/articles/3">مقاله سوم</Link>
+                <Link href="/blog/3">مقاله سوم</Link>
               </td>
 
               <td>آموزش ، استفاده ، پیج</td>
@@ -138,7 +138,7 @@ function ArticleList() {
                 />
               </td>
               <td>
-                <Link href="/articles/1">مقاله اول</Link>
+                <Link href="/blog/1">مقاله اول</Link>
               </td>
 
               <td>آموزش ، روش استفاده ، دریل</td>
@@ -172,7 +172,7 @@ function ArticleList() {
                 />
               </td>
               <td>
-                <Link href="/articles/1">مقاله دوم</Link>
+                <Link href="/blog/1">مقاله دوم</Link>
               </td>
 
               <td>آموزش ، استفاده ، پیج</td>
@@ -206,7 +206,7 @@ function ArticleList() {
                 />
               </td>
               <td>
-                <Link href="/articles/3">مقاله سوم</Link>
+                <Link href="/blog/3">مقاله سوم</Link>
               </td>
               <td>آموزش ، استفاده ، پیج</td>
               <td>پیج گوشتی</td>
