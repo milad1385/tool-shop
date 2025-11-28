@@ -10,7 +10,7 @@ function page() {
     <Container>
       <PageTitle content="ایجاد جزییات محصول" />
       <CreateNewProductDetails />
-      <TableOperation pageTitle="لیست ویژگی ها" />
+      <TableOperation pageTitle="لیست جزییات" />
       <ProductDetailList />
     </Container>
   );
