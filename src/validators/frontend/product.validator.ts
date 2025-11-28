@@ -65,7 +65,25 @@ export const productDetailSchema = yup.object({
     .number()
     .required("وارد کردن این فیلد الزامی است")
     .positive("تعداد نمی‌تواند منفی باشد"),
+
+  product: yup.string().required("باید یک محصول را انتخاب کنید"),
+});
+
+export const productFeatureSchema = yup.object({
+  title: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(5, "حداقل تعداد عنوان 5 کاراکتر عدد است")
+    .max(200, "حداکثر تعداد عنوان 200 کاراکتر عدد میباشد"),
+  value: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(5, "حداقل تعداد مقدار ویژگی 5 کاراکتر عدد است")
+    .max(200, "حداکثر تعداد مقدار ویژگی 200 کاراکتر عدد میباشد"),
+  product: yup.string().required("باید یک محصول را انتخاب کنید"),
+  slug: yup.string().required("این فیلد الزامی است"),
 });
 
 export type TProductSchema = yup.InferType<typeof createProductSchema>;
 export type TProductDetailSchema = yup.InferType<typeof productDetailSchema>;
+export type TProductFeatureSchema = yup.InferType<typeof productFeatureSchema>;
