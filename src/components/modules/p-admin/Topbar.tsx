@@ -3,7 +3,7 @@ import Logout from "@/components/templates/p-admin/Logout";
 
 function Topbar() {
   return (
-    <div className="bg-white sticky top-0 z-50 p-4 flex items-center justify-between">
+    <div className="bg-white sticky top-0 z-40 p-4 flex items-center justify-between">
       <div className="flex items-center gap-x-3">
         <Image
           src="/images/user.jpg"
