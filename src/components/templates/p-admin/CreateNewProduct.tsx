@@ -127,7 +127,7 @@ function CreateNewProduct() {
       </div>
       <div className="flex items-center gap-x-4">
         <Button type="submit" className="!w-[200px] mt-10">
-          ایجاد منو
+          ایجاد محصول
         </Button>
         <Button
           onClick={() => {
