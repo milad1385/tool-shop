@@ -185,6 +185,16 @@ table {
   height: 16px;
 }
 
+.editor-container .ck-editor__editable_inline {
+  min-height: 400px;
+  height: 400px;
+  max-height: 600px;
+}
+
+.editor-container .ck-content {
+  min-height: 400px;
+}
+
 .lds-spinner,
 .lds-spinner div,
 .lds-spinner div:after {
