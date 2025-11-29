@@ -1,0 +1,33 @@
+"use client";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+
+function ArticleEditor({ article, onArticle }) {
+  const uploadConfig = {
+    ckfinder: {
+      uploadUrl: "http://localhost:3001/upload",
+      withCredentials: true,
+      headers: {
+        "X-CSRF-TOKEN": "CSFR-TOKEN",
+        Authorization: `Bearer <JSON Web Token>`,
+      },
+    },
+    language: "fa",
+    direction: "rtl",
+  };
+  return (
+    <div className="editor-container mt-8">
+      <CKEditor
+        editor={ClassicEditor as any}
+        config={uploadConfig}
+        data={article}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          onArticle(data);
+        }}
+      />
+    </div>
+  );
+}
+
+export default ArticleEditor;
