@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FaShop } from "react-icons/fa6";
 import { HiMinus, HiPlus } from "react-icons/hi2";
 
 function CartItem() {
@@ -17,7 +18,13 @@ function CartItem() {
         <h1 className="font-Lalezar  text-lg md:text-xl">
           دریل شارژِ مدل رونیکس
         </h1>
-        <p className="text-center md:text-right text-zinc-700 text-sm md:text-base">دسته بندی: دریل ها</p>
+        <p className="text-center md:text-right text-zinc-700 text-sm md:text-base">
+          دسته بندی: دریل ها
+        </p>
+        <p className="text-center md:text-right text-zinc-700 text-xs md:text-sm flex items-center gap-x-2">
+          <FaShop className="text-base md:text-lg text-yellow-500" />
+          فروشگاه ابزارینو
+        </p>
       </div>
       <div className="flex gap-4 text-base mt-4">
         <span className="line-through">360.000 تومان</span>
