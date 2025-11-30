@@ -13,13 +13,11 @@ function Products() {
       <MobileSearch />
       <MobileFilter />
       <SortProduct />
-      <Suspense fallback={<div>Loading ...</div>}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {products.map((product) => (
-            <ProductBox {...product} key={product.id} />
-          ))}
-        </div>
-      </Suspense>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {products.map((product) => (
+          <ProductBox {...product} key={product.id} />
+        ))}
+      </div>
       <Suspense fallback={<PaginationFallback />}>
         <div className="w-full">
           <Pagination count={4} />
