@@ -1,7 +1,7 @@
 import Breadcrumb from "@/components/modules/main/Breadcrumb";
 import Container from "@/components/modules/main/Container";
+import ProductList from "@/components/templates/seller/ProductList";
 import SellerInfo from "@/components/templates/seller/SellerInfo";
-import React from "react";
 
 function page() {
   return (
@@ -14,6 +14,8 @@ function page() {
         ]}
       />
       <SellerInfo />
+      <ProductList/>
+      
     </Container>
   );
 }
