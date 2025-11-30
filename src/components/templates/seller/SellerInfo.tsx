@@ -12,7 +12,7 @@ function SellerInfo() {
           <FaShop className="text-zinc-700 text-xl md:text-3xl" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-base md:text-lg font-bold">
+          <h1 className="text-sm md:text-lg font-bold">
             اسمارت فروشگاه ابزارینو
           </h1>
           <p className="text-xs md:text-sm text-gray-500">5 سال و 10 ماه</p>
@@ -21,7 +21,7 @@ function SellerInfo() {
 
       <Modal>
         <Modal.Open name="detail">
-          <AiOutlineInfoCircle className="block md:hidden  text-2xl text-gray-400 absolute top-5 left-5" />
+          <AiOutlineInfoCircle className="block md:hidden text-xl md:text-2xl text-gray-400 absolute top-5 left-5" />
         </Modal.Open>
         <Modal.Page name="detail">
           <SellerInfoBox />
