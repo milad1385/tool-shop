@@ -9,7 +9,7 @@ function Search() {
   const params = new URLSearchParams(searchParams);
   const pathname = usePathname();
   const router = useRouter();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams.get("q") || "");
 
   const handleChange = useDebouncedCallback((value: string) => {
     if (value.trim()) {
@@ -17,7 +17,7 @@ function Search() {
     } else {
       params.delete("q");
     }
-    router.replace(`${pathname}?${params}`);
+    router.replace(`${pathname}?${params}`, { scroll: false });
   }, 300);
 
   return (
