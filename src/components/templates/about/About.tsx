@@ -32,7 +32,7 @@ function About() {
             alt="about.jpg"
             width={1920}
             height={1080}
-            className="w-[95%] rounded-2xl shadow"
+            className="w-full rounded-2xl shadow"
           />
         </div>
         <div className="col-span-12 md:col-span-3 flex flex-col justify-center">
