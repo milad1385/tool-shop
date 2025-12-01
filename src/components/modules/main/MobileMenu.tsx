@@ -1,8 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { LuMenu } from "react-icons/lu";
-import MenuOverlay from "./Overlay";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { AiOutlineProduct } from "react-icons/ai";
+import { BsShop } from "react-icons/bs";
 import {
   HiArrowLeftEndOnRectangle,
   HiOutlineBriefcase,
@@ -14,9 +16,10 @@ import {
   HiOutlineShoppingCart,
   HiXMark,
 } from "react-icons/hi2";
-import Link from "next/link";
 import { IoDocumentTextOutline, IoSettingsOutline } from "react-icons/io5";
-import { usePathname } from "next/navigation";
+import { LuMenu } from "react-icons/lu";
+import MenuOverlay from "./Overlay";
+import { FaRegUser } from "react-icons/fa";
 
 function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,21 +86,21 @@ function MobileMenu() {
             >
               <li>
                 <a href="#" className="gap-x-2"></a>
-                <Link href="/">دریل رونیکس</Link>
+                <Link href="/products/1">دریل رونیکس</Link>
               </li>
               <li>
-                <Link href="/">دریل شارژی ویژه</Link>
+                <Link href="/products/1">دریل شارژی ویژه</Link>
               </li>
               <li>
-                <Link href="/">دریل بتن کن</Link>
+                <Link href="/products/1">دریل بتن کن</Link>
               </li>
               <li>
-                <Link href="/">دستگاه تجاری</Link>
+                <Link href="/products/1">دستگاه تجاری</Link>
               </li>
             </ul>
           </li>
           <li>
-            <Link href="/" className="flex items-center gap-x-2">
+            <Link href="/category/1" className="flex items-center gap-x-2">
               <HiOutlineChatBubbleLeftEllipsis className="text-xl" />
               دسته بندی
             </Link>
@@ -118,6 +121,24 @@ function MobileMenu() {
             <Link href="/contact" className="flex items-center gap-x-2">
               <HiOutlinePhoneArrowUpRight className="text-xl" />
               تماس با ما
+            </Link>
+          </li>
+          <li>
+            <Link href="/seller" className="flex items-center gap-x-2">
+              <BsShop className="text-xl" />
+              فروشنده ها
+            </Link>
+          </li>
+          <li>
+            <Link href="/products" className="flex items-center gap-x-2">
+              <AiOutlineProduct className="text-2xl" />
+              محصولات
+            </Link>
+          </li>
+          <li>
+            <Link href="/p-user" className="flex items-center gap-x-2">
+              <FaRegUser className="text-xl" />
+              پنل کاربری
             </Link>
           </li>
         </ul>
