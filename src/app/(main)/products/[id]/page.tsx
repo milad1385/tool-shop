@@ -17,7 +17,8 @@ async function page({ params }: IPage) {
       <Breadcrumb
         links={[
           { id: 1, href: "/", name: "خانه" },
-          { id: 2, href: "/products/1", name: "جزییات محصول دریل" },
+          { id: 2, href: "/products", name: "محصولات" },
+          { id: 3, href: "/products/1", name: "جزییات محصول دریل" },
         ]}
       />
       <div className="grid grid-cols-12 bg-white p-4 rounded-2xl">
