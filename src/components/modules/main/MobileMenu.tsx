@@ -17,7 +17,7 @@ import {
   HiXMark,
 } from "react-icons/hi2";
 import { IoDocumentTextOutline, IoSettingsOutline } from "react-icons/io5";
-import { LuMenu } from "react-icons/lu";
+import { LuArrowDownUp, LuMenu } from "react-icons/lu";
 import MenuOverlay from "./Overlay";
 import { FaRegUser } from "react-icons/fa";
 
@@ -36,7 +36,7 @@ function MobileMenu() {
         className="block md:hidden text-2xl text-[#1f2937] ml-3 cursor-pointer"
       />
       <div
-        className={`fixed md:hidden bg-white transition-all w-64 z-30 ${
+        className={`fixed md:hidden overflow-y-auto bg-white transition-all w-64 z-30 ${
           isOpen ? "right-0" : "-right-64"
         } top-0 bottom-0 p-4`}
       >
@@ -106,7 +106,7 @@ function MobileMenu() {
             </Link>
           </li>
           <li>
-            <Link href="/about-us" className="flex items-center gap-x-2">
+            <Link href="/about" className="flex items-center gap-x-2">
               <HiOutlineBriefcase className="text-xl" />
               درباره ما
             </Link>
@@ -136,6 +136,12 @@ function MobileMenu() {
             </Link>
           </li>
           <li>
+            <Link href="/comparison" className="flex items-center gap-x-2">
+              <LuArrowDownUp className="text-2xl" />
+              مقایسه
+            </Link>
+          </li>
+          <li>
             <Link href="/p-user" className="flex items-center gap-x-2">
               <FaRegUser className="text-xl" />
               پنل کاربری
@@ -152,10 +158,10 @@ function MobileMenu() {
             <HiOutlineShoppingCart className="text-xl" />
             سبد خرید
           </Link>
-          <Link href="/" className="inline-flex items-center gap-x-2">
+          {/* <Link href="/" className="inline-flex items-center gap-x-2">
             <IoSettingsOutline className="text-xl" />
             پنل مدیریت
-          </Link>
+          </Link> */}
         </div>
       </div>
 
