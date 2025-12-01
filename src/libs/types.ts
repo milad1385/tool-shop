@@ -255,3 +255,11 @@ export interface ITableOperation {
 export interface IOrderBox {
   className?: string;
 }
+
+export interface ISeller {
+  image: string;
+  link: string;
+  title: string;
+  city: string;
+  productCount: number;
+}
