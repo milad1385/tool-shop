@@ -29,7 +29,7 @@ function Accordion({ title, children }: IAccordionTitle) {
       className="text-black bg-white shadow  px-3 py-5  md:p-6 md:rounded-xl md:cursor-pointer"
     >
       <div className={`md:cursor-pointer flex items-center justify-between`}>
-        <p className="font-Lalezar text-xs/[25px] md:text-lg max-w-[260px] md:max-w-[600px]">
+        <p className="font-Lalezar text-base/[25px] md:text-lg max-w-[260px] md:max-w-[600px]">
           {title}
         </p>
         <BiChevronDown
@@ -37,7 +37,7 @@ function Accordion({ title, children }: IAccordionTitle) {
         />
       </div>
       <div className={`submenu`} ref={subMenuRef}>
-        <p className="pt-3 text-xs/[25px] md:text-sm/[25px] text-zinc-700">
+        <p className="pt-3 text-sm/[25px] md:text-sm/[25px] text-zinc-700">
           {children}
         </p>
       </div>
