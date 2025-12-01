@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AiOutlineProduct } from "react-icons/ai";
 import { BsShop } from "react-icons/bs";
+import { FaRegUser } from "react-icons/fa";
 import {
   HiArrowLeftEndOnRectangle,
   HiOutlineBriefcase,
@@ -16,10 +17,9 @@ import {
   HiOutlineShoppingCart,
   HiXMark,
 } from "react-icons/hi2";
-import { IoDocumentTextOutline, IoSettingsOutline } from "react-icons/io5";
+import { IoDocumentTextOutline } from "react-icons/io5";
 import { LuArrowDownUp, LuMenu } from "react-icons/lu";
 import MenuOverlay from "./Overlay";
-import { FaRegUser } from "react-icons/fa";
 
 function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
