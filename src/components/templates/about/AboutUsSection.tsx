@@ -5,7 +5,7 @@ function AboutUsSection() {
   return (
     <div className="my-10">
       <Title title="درباره شرکت بخوانید" />
-      <p className="text-zinc-700 text-justify text-sm/[28px] md:text-base/[32px]">
+      <p className="text-zinc-700 text-justify text-sm/[28px] md:text-base/[32px] px-4">
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
         از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
         سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای

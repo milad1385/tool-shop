@@ -14,7 +14,7 @@ function About() {
         <Title title="درباره ما" />
       </div>
       <div className="grid grid-cols-12 gap-8 mx-auto">
-        <div className="col-span-11 md:col-span-3 flex flex-col justify-center">
+        <div className="col-span-12 md:col-span-3 flex flex-col justify-center w-full">
           <AboutUsBox
             title="1500 محصول"
             desc="انواع ترازو و ابزارآلات"
@@ -26,16 +26,16 @@ function About() {
             icon={<IoCalendarOutline className="text-[40px] text-white" />}
           />
         </div>
-        <div className="col-span-11 md:col-span-6">
+        <div className="col-span-12 md:col-span-6 w-full">
           <Image
             src="/images/about.jpg"
             alt="about.jpg"
             width={1920}
             height={1080}
-            className="w-full rounded-2xl shadow"
+            className="w-[95%] rounded-2xl shadow"
           />
         </div>
-        <div className="col-span-11 md:col-span-3 flex flex-col justify-center">
+        <div className="col-span-12 md:col-span-3 flex flex-col justify-center">
           <AboutUsBox
             title="رضایت کاربران"
             desc="بالای 1 میلیون رضایت کاربران"
