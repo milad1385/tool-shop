@@ -9,7 +9,7 @@ function page() {
       <Breadcrumb
         links={[
           { id: 1, href: "/", name: "صفحه اصلی" },
-          { id: 2, href: "/products", name: "محصولات" },
+          { id: 2, href: "/seller", name: "فروشگاه ها" },
           { id: 3, href: "/seller/1", name: "فروشگاه تستی" },
         ]}
       />
