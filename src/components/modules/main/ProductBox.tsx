@@ -15,7 +15,7 @@ function ProductBox({ title, discount, image, link, price }: IProduct) {
           alt={title}
           width={1920}
           height={1080}
-          className="mx-auto w-[260px]"
+          className="mx-auto w-[200px] md:w-[260px]"
         />
         {discount && (
           <span className="bg-[#eab308] w-[40px]  h-[40px] flex-center text-sm rounded-full absolute top-1 right-1">
