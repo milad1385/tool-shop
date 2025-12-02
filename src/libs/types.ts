@@ -263,3 +263,8 @@ export interface ISeller {
   city: string;
   productCount: number;
 }
+
+export interface IModalDetail {
+  isShow: boolean;
+  onClose: React.Dispatch<React.SetStateAction<boolean>>;
+}
