@@ -25,7 +25,7 @@ function OtherSellersModal({ isShow, onClose }) {
         />
       </div>
 
-      <div className="mt-24 space-y-8">
+      <div className="mt-24 space-y-8 px-4">
         <OtherSellerBox isMain/>
         <OtherSellerBox/>
         <OtherSellerBox/>
