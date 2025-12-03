@@ -17,7 +17,7 @@ function SellersBox() {
         <SellerBox />
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex md:hidden items-center justify-between">
         <h3 className="font-Lalezar text-lg lg:text-2xl text-zinc-700">
           فروشندگان این کالا
         </h3>

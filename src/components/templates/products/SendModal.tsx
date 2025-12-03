@@ -6,7 +6,7 @@ import { LuCalendarClock, LuTruck } from "react-icons/lu";
 function SendModal({ isShow, onClose }: IModalDetail) {
   return (
     <div
-      className={`bg-white h-1/2 fixed md:hidden transition-all px-4 py-5 ${
+      className={`bg-white h-[50%] fixed md:hidden transition-all px-4 py-5 ${
         isShow ? "bottom-0" : "bottom-[-50%]"
       } z-50 left-0 right-0 rounded-t-lg`}
     >

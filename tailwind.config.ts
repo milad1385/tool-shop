@@ -25,7 +25,7 @@ export default {
       container: {
         center: true,
         padding: {
-          DEFAULT: "15px",
+          DEFAULT: "18px",
         },
       },
       colors: {

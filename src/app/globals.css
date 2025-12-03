@@ -302,3 +302,11 @@ table {
     font-display: swap;
   }
 }
+
+.mySwiper img{
+  opacity: 0.5;
+}
+
+.swiper-slide-thumb-active img {
+  opacity: 1 !important;
+}

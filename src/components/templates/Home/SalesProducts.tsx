@@ -6,7 +6,7 @@ import Title from "@/components/modules/main/Title";
 
 function SalesProducts() {
   return (
-    <div className="my-10 bg-[#eab308] rounded-lg px-5 py-8">
+    <div className="my-10 bg-[#eab308] rounded-lg px-8 py-8">
       <Title title="پیشنهاد شگفت انگیز" />
       <div className="grid grid-cols-12 gap-[15px]">
         <SalesProductSlider />
