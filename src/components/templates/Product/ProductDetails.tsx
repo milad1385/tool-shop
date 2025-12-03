@@ -32,20 +32,21 @@ function ProductDetails() {
                 <FactorItem />
               </div>
             </div>
-            <div className="flex gap-4 text-base mt-4">
-              <span className="line-through">360.000 تومان</span>
-              <span className="text-yellow-500">280.000 تومان</span>
-            </div>
-            <div className="flex items-start flex-col gap-2 pt-8 md:pt-0">
-              <div className="hidden md:block">
-                <AddToCart />
-              </div>
-
+            <div className="flex items-start flex-col gap-2 md:gap-0 pt-8 md:pt-8">
               <ColorBoxes />
+              <div className="flex gap-4 text-base mb-4 md:mb-0">
+                <span className="line-through text-zinc-500">360.000</span>
+                <span className="text-yellow-500">280.000 تومان</span>
+              </div>
+              <div className="w-full flex items-center gap-x-4">
+                <div className="hidden md:block">
+                  <AddToCart />
+                </div>
 
-              <button className="block border px-4 py-2 md:py-3 rounded-lg w-full md:w-[180px]">
-                افزودن به مقایسه
-              </button>
+                <button className="block border px-4 py-2 md:py-3 rounded-lg w-full md:w-[180px]">
+                  افزودن به مقایسه
+                </button>
+              </div>
               <div className="block md:hidden w-full">
                 <AddToCart />
               </div>
