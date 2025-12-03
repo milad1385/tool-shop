@@ -15,7 +15,7 @@ function MobileSellerBox() {
   const [isShowClub, setIsShowClub] = useState(false);
   return (
     <>
-      <div className="divide-y-[1.7px] divide-gray-200">
+      <div className="divide-y-[1.5px] divide-gray-200">
         <div className="flex items-center gap-x-4 py-2">
           <div className="bg-gray-100 rounded-full w-[35px] h-[35px] flex-center">
             <BsShop className="text-zinc-600 text-xl" />

@@ -1,7 +1,7 @@
 import React from "react";
 import SellerBox from "./SellerBox";
 import MobileSellerBox from "./MobileSellerBox";
-import { HiChevronLeft } from "react-icons/hi";
+import OtherSellers from "./OtherSellers";
 
 function SellersBox() {
   return (
@@ -21,10 +21,7 @@ function SellersBox() {
         <h3 className="font-Lalezar text-lg lg:text-2xl text-zinc-700">
           فروشندگان این کالا
         </h3>
-        <div className="flex items-center gap-x-2">
-          <span className="text-xs font-bold text-gray-500">انتخاب از 1 فروشنده دیگر</span>
-          <HiChevronLeft className="text-lg text-zinc-700" />
-        </div>
+        <OtherSellers />
       </div>
       {/* mobile seller box */}
 
