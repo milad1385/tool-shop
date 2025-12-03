@@ -1,6 +1,4 @@
-import React from "react";
 import { FaXmark } from "react-icons/fa6";
-import MobileSellerBox from "./MobileSellerBox";
 import OtherSellerBox from "./OtherSellerBox";
 
 function OtherSellersModal({ isShow, onClose }) {
