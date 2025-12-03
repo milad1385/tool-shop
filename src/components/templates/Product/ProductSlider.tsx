@@ -80,7 +80,7 @@ function ProductSlider() {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[Thumbs]}
-        className="mySwiper"
+        className="ThumbSwiper"
       >
         <SwiperSlide>
           <Image
