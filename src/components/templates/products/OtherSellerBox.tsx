@@ -13,7 +13,7 @@ function OtherSellerBox({ isMain }: { isMain?: boolean }) {
         <MobileSellerBox />
       </div>
       <div className="border-t-[1.5px] border-t-gray-300 px-5 py-6 flex items-center justify-between">
-        <button className="bg-yellow-500 py-3 px-4 rounded-md text-white">
+        <button className="bg-yellow-500 py-3 px-4 rounded-md text-white font-bold">
           افزودن به سبد خرید
         </button>
         <div className="flex flex-col items-center gap-y-2">
