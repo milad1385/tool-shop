@@ -31,8 +31,8 @@ function ProductBox({ title, discount, image, link, price }: IProduct) {
           {title}
         </Link>
         <div className="flex items-center justify-center gap-x-3 mt-4">
-          <span className={`text-zinc-700 flex items-center gap-x-1 ${discount ? "line-through" : ""}`}>
-            {formattedPrice(price)} <span className="sm:hidden lg:block">تومان</span>
+          <span className={`text-zinc-500 flex items-center gap-x-1 ${discount ? "line-through" : ""}`}>
+            {formattedPrice(price)}{/*  <span className="sm:hidden lg:block"></span> */}
           </span>
           {discount && (
             <span className="text-yellow-500 flex items-center gap-x-1">
