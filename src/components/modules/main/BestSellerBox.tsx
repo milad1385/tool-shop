@@ -26,14 +26,14 @@ function BestSellerBox({
           <h2 className="font-Lalezar text-lg mt-6">{title}</h2>
           <div className="flex items-center justify-center gap-x-3 mt-2">
             <span
-              className={`text-zinc-700  text-sm lg:text-base font-IranMedium ${
+              className={`text-zinc-500  text-sm lg:text-base font-IranMedium ${
                 true ? "line-through" : ""
               }`}
             >
-              {formattedPrice(price)} تومان
+              {formattedPrice(price)}
             </span>
             {true && (
-              <span className="text-yellow-500  text-sm lg:text-base font-IranMedium">
+              <span className="text-yellow-500  text-base font-IranMedium">
                 {formattedPrice(price - (price * discount) / 100)} تومان
               </span>
             )}
