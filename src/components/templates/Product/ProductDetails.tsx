@@ -19,7 +19,20 @@ function ProductDetails() {
           </h1>
           <p className="text-sm md:text-[15px] mt-2">دسته بندی: دریل ها</p>
         </div>
-        <div className="grid grid-cols-12 mt-4">
+        <div className="mt-5 md:mt-6 px-4">
+          <div className="flex gap-4 text-base mb-4 md:mb-0">
+            <span className="line-through text-zinc-400  text-lg">360.000</span>
+            <div className="flex items-center gap-x-2">
+              <span className="text-black font-bold text-lg md:text-xl">
+                280.000 تومان
+              </span>
+              <span className="flex-center h-6 bg-yellow-500 text-white px-3 rounded-xl text-sm">
+                ۸٪
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-12 mt-4 md:mt-2">
           <div className="col-span-12 lg:col-span-8 px-1 py-2 md:py-4 md:px-3">
             <div>
               <h3 className="text-xl font-Lalezar">مشخصات کالا</h3>
@@ -34,10 +47,6 @@ function ProductDetails() {
             </div>
             <div className="flex items-start flex-col gap-2 md:gap-0 pt-8 md:pt-8">
               <ColorBoxes />
-              <div className="flex gap-4 text-base mb-4 md:mb-0">
-                <span className="line-through text-zinc-500">360.000</span>
-                <span className="text-yellow-500">280.000 تومان</span>
-              </div>
               <div className="w-full flex items-center gap-x-4">
                 <div className="hidden md:block">
                   <AddToCart />
