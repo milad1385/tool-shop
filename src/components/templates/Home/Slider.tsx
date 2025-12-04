@@ -23,7 +23,7 @@ function Slider() {
       {images.map((image) => (
         <SwiperSlide key={image.id}>
           <Image
-            className="rounded-xl"
+            className="rounded-xl h-[160px] object-cover md:h-full"
             width={1920}
             height={1080}
             src={image.url}
