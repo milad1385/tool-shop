@@ -11,15 +11,15 @@ function Comments() {
     <div className="rounded-xl">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
-          <IoIosChatboxes className="text-yellow-500 text-[40px]" />
-          <span className="font-Lalezar text-2xl">نظرات</span>
+          <IoIosChatboxes className="text-yellow-500 text-4xl md:text-[40px]" />
+          <span className="font-Lalezar text-xl md:text-2xl">نظرات</span>
         </div>
         <button
           disabled={isShow}
           onClick={() => setIsShow(true)}
           className="bg-yellow-500 text-white flex items-center p-2 rounded-md gap-x-2 text-sm md:text-base"
         >
-          <span>ایجاد نظر جدید</span>
+          <span className="text-sm md:text-base">ایجاد نظر جدید</span>
           <BsChatSquareText className="text-white" />
         </button>
       </div>

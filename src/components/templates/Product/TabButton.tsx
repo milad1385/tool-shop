@@ -6,7 +6,7 @@ function TabButton({ tab, onTab, name, label }: ITabButton) {
   return (
     <button
       onClick={() => onTab(name)}
-      className={`p-2 ${tab === name ? activeClass : ""}`}
+      className={`px-2 py-1 md:p-2 ${tab === name ? activeClass : ""}`}
     >
       {label}
     </button>

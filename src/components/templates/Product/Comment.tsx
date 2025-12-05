@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
+import { BsShop } from "react-icons/bs";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import { HiOutlineArrowUturnLeft } from "react-icons/hi2";
 
 function Comment() {
@@ -27,11 +30,36 @@ function Comment() {
           <HiOutlineArrowUturnLeft className="text-yellow-500 text-lg" />
         </button>
       </div>
-      <p className="text-sm sm:text-base/[28px] text-justify font-light text-zinc-700">
+      <p className="text-sm/[26px] sm:text-base/[30px] text-justify font-light text-zinc-700">
         سلام ، دوستان وقتتون بخیر ، بین دوتا از ابزار های کاربردی با برند های
         رونیکس و فلوکس گیر کردم ، میخوام دریل شارژی بخرم ، شما کدوم برند رو
         پیشنهاد میدهید و دلیلتون برای انتخاب اون چیه ؟ ممنون میشم راهنمایی کنید
       </p>
+      <div className="flex justify-between items-end mt-3 mb-5">
+        <div className="flex flex-col md:flex-row md:items-center gap-x-3 border-t border-t-gray-200">
+          <div className="flex items-center gap-x-2 mt-3">
+            <BsShop className="text-lg" />
+            <Link
+              href="/seller/1"
+              className="text-xs mt-1 md:mt-0 md:text-[13px]"
+            >
+              اسمارت فروشگاه ابزارینو
+            </Link>
+          </div>
+          <div className="hidden md:block size-2 bg-gray-400 rounded-full mt-3"></div>
+          <div className="flex items-center gap-x-2 mt-3">
+            <div className="size-3 md:size-4 bg-black rounded-full"></div>
+            <span className="text-xs md:text-sm">مشکی</span>
+          </div>
+        </div>
+        <div className="flex flex-row-reverse items-center gap-x-1">
+          <FaStar className="text-yellow-500 text-base md:text-xl" />
+          <FaStar className="text-yellow-500 text-base md:text-xl" />
+          <FaStar className="text-yellow-500 text-base md:text-xl" />
+          <FaRegStar className="text-gray-500 text-base md:text-xl" />
+          <FaRegStar className="text-gray-500 text-base md:text-xl" />
+        </div>
+      </div>
 
       {/* replies */}
       <div className="mt-4 space-y-4">
@@ -59,7 +87,7 @@ function Comment() {
               </div>
             </div>
           </div>
-          <p className="text-sm sm:text-base/[28px] text-justify font-light text-zinc-700">
+          <p className="text-sm/[26px] sm:text-base/[30px] text-justify font-light text-zinc-700">
             سلام ، میلاد جان ، من به عنوان کارشناس در این حوزه برند فولوکس را به
             شما پیشنهاد میدم ، به دلایل قیمت مناسب تر و همچنین استقامت و کیفیت
             بالاتر نسبت به برند رونیکس ❤️

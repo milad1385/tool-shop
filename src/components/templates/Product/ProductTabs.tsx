@@ -14,8 +14,8 @@ function ProductTabs() {
     { _id: 3, name: "محتویات در جعبه", value: "دفترچه راهنما" },
   ];
   return (
-    <div className="bg-white p-6 rounded-2xl my-7">
-      <div className="flex items-center gap-x-4 text-base md:text-xl font-Lalezar border-b-2 border-gray-200 pb-4">
+    <div className="bg-white px-5 py-4 md:p-6 rounded-2xl my-7">
+      <div className="flex items-center gap-x-4 text-base md:text-xl font-Lalezar border-b-2 border-gray-200 pb-3 md:pb-4">
         <TabButton label="توضیحات" name="details" onTab={setTab} tab={tab} />
         <TabButton
           label="اطلاعات"
@@ -28,7 +28,7 @@ function ProductTabs() {
       <div className="p-1 mt-5">
         {tab === "details" && (
           <div>
-            <p className="text-sm/[25px] md:text-base/[32px] text-justify">
+            <p className="text-sm/[28px] md:text-base/[32px] text-justify">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
               استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
               در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
