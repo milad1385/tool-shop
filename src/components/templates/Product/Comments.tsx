@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { BsChatSquareText, BsExclamationTriangle } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
-import { IoIosChatboxes } from "react-icons/io";
+import { IoIosChatboxes, IoIosCheckmarkCircle } from "react-icons/io";
 import CommentList from "./CommentList";
+import Image from "next/image";
+import { HiMinusCircle } from "react-icons/hi";
+import AiComment from "./AiComment";
 
 function Comments() {
   const [isShow, setIsShow] = useState(false);
@@ -70,6 +73,9 @@ function Comments() {
           </div>
         </>
       )}
+
+      {/* ai comment */}
+      <AiComment/>
 
       <div className="w-full lg:w-[65%] mt-5">
         <CommentList />
