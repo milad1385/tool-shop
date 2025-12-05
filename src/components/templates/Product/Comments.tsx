@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { BsChatSquareText, BsExclamationTriangle } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
-import { IoIosChatboxes, IoIosCheckmarkCircle } from "react-icons/io";
-import CommentList from "./CommentList";
-import Image from "next/image";
-import { HiMinusCircle } from "react-icons/hi";
+import { IoIosChatboxes } from "react-icons/io";
 import AiComment from "./AiComment";
+import CommentList from "./CommentList";
 
 function Comments() {
   const [isShow, setIsShow] = useState(false);
