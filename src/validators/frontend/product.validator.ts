@@ -82,6 +82,7 @@ export const productFeatureSchema = yup.object({
     .max(200, "حداکثر تعداد مقدار ویژگی 200 کاراکتر عدد میباشد"),
   product: yup.string().required("باید یک محصول را انتخاب کنید"),
   slug: yup.string().required("این فیلد الزامی است"),
+  parent: yup.string().required("این فیلد الزامی است"),
 });
 
 export type TProductSchema = yup.InferType<typeof createProductSchema>;
