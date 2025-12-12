@@ -309,3 +309,8 @@ table {
 .swiper-slide-thumb-active img {
   opacity: 1 !important;
 }
+
+
+.qestion-table table td{
+  padding: 20px;
+}
