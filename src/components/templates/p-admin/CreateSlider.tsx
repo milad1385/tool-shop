@@ -1,5 +1,4 @@
 "use client";
-import PageTitle from "@/components/modules/p-admin/PageTitle";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import {
@@ -29,7 +28,6 @@ function CreateSlider() {
   };
   return (
     <form className="section-box" onSubmit={handleSubmit(createSliderHandler)}>
-      <PageTitle content="اسلایدر صفحه اصلی" className="!text-2xl" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
         <Input
           register={register}
