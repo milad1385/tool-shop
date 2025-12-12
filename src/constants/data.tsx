@@ -7,6 +7,7 @@ import { HiOutlineDocumentDownload } from "react-icons/hi";
 import {
   HiOutlineCreditCard,
   HiOutlineFaceSmile,
+  HiOutlinePhoto,
   HiOutlineSquares2X2,
   HiOutlineUser,
 } from "react-icons/hi2";
@@ -249,6 +250,12 @@ export const adminPanelLinks = [
   },
   {
     id: 13,
+    title: "اسلایدر ها",
+    href: "/p-admin/sliders",
+    icon: <HiOutlinePhoto className="text-2xl" />,
+  },
+  {
+    id: 14,
     title: "تنظیمات",
     href: "/p-admin/settings",
     icon: <IoSettingsOutline className="text-2xl" />,
@@ -383,6 +390,12 @@ export const productFilterOptions = [
   { label: "ناموجود", slug: "not-exist", color: "red-500" },
   { label: "فعال", slug: "not-exist", color: "green-500" },
   { label: "غیر فعال", slug: "not-exist", color: "yellow-500" },
+];
+
+export const sliderFilterOptions = [
+  { label: "همه", slug: "all", color: "black" },
+  { label: "فعال", slug: "active", color: "green-500" },
+  { label: "غیر فعال", slug: "not-active", color: "red-500" },
 ];
 
 export const ITEM_PER_PAGE = 10;
