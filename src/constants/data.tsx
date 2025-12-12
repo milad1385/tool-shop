@@ -8,6 +8,7 @@ import {
   HiOutlineCreditCard,
   HiOutlineFaceSmile,
   HiOutlinePhoto,
+  HiOutlineQueueList,
   HiOutlineSquares2X2,
   HiOutlineUser,
 } from "react-icons/hi2";
@@ -256,6 +257,12 @@ export const adminPanelLinks = [
   },
   {
     id: 14,
+    title: "سوالات متداول",
+    href: "/p-admin/questions",
+    icon: <HiOutlineQueueList className="text-2xl" />,
+  },
+  {
+    id: 15,
     title: "تنظیمات",
     href: "/p-admin/settings",
     icon: <IoSettingsOutline className="text-2xl" />,
@@ -397,6 +404,14 @@ export const sliderFilterOptions = [
   { label: "فعال", slug: "active", color: "green-500" },
   { label: "غیر فعال", slug: "not-active", color: "red-500" },
 ];
+
+
+export const questionFilterOptions = [
+  { label: "همه", slug: "all", color: "black" },
+  { label: "فعال", slug: "active", color: "green-500" },
+  { label: "غیر فعال", slug: "not-active", color: "red-500" },
+];
+
 
 export const ITEM_PER_PAGE = 10;
 export const MAX_FILE_SIZE = 5000000; // 5MB

@@ -23,8 +23,6 @@ function CreateProductFeature() {
     console.log(data);
   };
 
-  console.log(errors);
-
   return (
     <form onSubmit={handleSubmit(createProductFeature)} className="section-box">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
