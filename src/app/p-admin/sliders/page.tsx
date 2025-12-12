@@ -8,7 +8,7 @@ import { sliderFilterOptions } from "@/constants/data";
 function page() {
   return (
     <Container>
-      <PageTitle content="ایجاد اسلایدر جدید" />
+      <PageTitle content="ایجاد اسلایدر" />
       <CreateSlider/>
       <TableOperation pageTitle="لیست اسلایدر ها" options={sliderFilterOptions}/>
       <SliderList/>
