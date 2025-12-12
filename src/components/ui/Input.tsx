@@ -27,6 +27,7 @@ function Input({
         <input
           {...register(`${name}`)}
           type={type}
+          min={1}
           id={name}
           name={name}
           disabled={disable}
