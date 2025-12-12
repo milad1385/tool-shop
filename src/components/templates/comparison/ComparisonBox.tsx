@@ -4,7 +4,7 @@ import React from "react";
 
 function ComparisonBox() {
   return (
-    <div className="grid flex-grow card p-4 rounded-box place-items-center border rounded-xl">
+    <div className="grid flex-grow card pt-2 rounded-box place-items-center border rounded-xl">
       <div className="flex items-center gap-4 border-b mb-4 pb-4">
         <div>
           <Image
@@ -22,7 +22,7 @@ function ComparisonBox() {
             </h3>
           </a>
           <div className="flex justify-center gap-4 text-sm md:text-base mt-4">
-            <span className="line-through">140,000 تومان</span>
+            <span className="line-through text-gray-500">140,000</span>
             <span className="text-yellow-500">90,000 تومان</span>
           </div>
         </div>
@@ -72,7 +72,7 @@ function ComparisonBox() {
         </table>
       </div>
       <div className="my-12">
-        <Link className="bg-yellow-500 py-4 px-6 rounded-xl font-Lalezar text-white text-base md:text-lg" href="/products/1">
+        <Link className="bg-yellow-500 py-2 px-4 rounded-xl font-Lalezar text-white text-base md:text-lg" href="/products/1">
           مشاهده و خرید
         </Link>
       </div>
