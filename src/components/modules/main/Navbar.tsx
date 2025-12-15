@@ -17,7 +17,8 @@ function Navbar() {
   if (
     pathname.includes("/auth") ||
     pathname.includes("/p-user") ||
-    pathname.includes("/p-admin")
+    pathname.includes("/p-admin") ||
+    pathname.includes("/seller-introduction")
   )
     return null;
   return (
@@ -84,6 +85,13 @@ function Navbar() {
               <li>
                 <Link href="/about">درباره ما</Link>
               </li>
+
+              <li>
+                <Link href="/contact">ارتباط با ما</Link>
+              </li>
+              <li>
+                <Link href="/seller-introduction">در ترازو بفروشید</Link>
+              </li>
               <li className="flex items-center gap-x-2 relative group">
                 <Link href="/">بیشتر</Link>
                 <IoChevronDown />
@@ -137,9 +145,6 @@ function Navbar() {
                     />
                   </div>
                 </div>
-              </li>
-              <li>
-                <Link href="/contact">ارتباط با ما</Link>
               </li>
             </ul>
           </div>
