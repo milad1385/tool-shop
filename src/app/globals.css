@@ -310,7 +310,16 @@ table {
   opacity: 1 !important;
 }
 
-
-.qestion-table table td{
+.qestion-table table td {
   padding: 20px;
+}
+
+.Typewriter__wrapper {
+  color: white;
+  font-size: 26px;
+}
+
+.Typewriter__cursor {
+  color: white;
+  font-size: 26px;
 }
