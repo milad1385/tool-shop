@@ -316,10 +316,10 @@ table {
 
 .Typewriter__wrapper {
   color: white;
-  font-size: 26px;
+  @apply text-lg md:text-[26px]
 }
 
 .Typewriter__cursor {
   color: white;
-  font-size: 26px;
+  @apply text-lg md:text-[26px]
 }
