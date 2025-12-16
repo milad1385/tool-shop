@@ -1,9 +1,9 @@
 import { AiOutlineProduct } from "react-icons/ai";
-import { BsBasket2Fill, BsShop } from "react-icons/bs";
-import { FaHeart, FaTools } from "react-icons/fa";
-import { FiShoppingCart } from "react-icons/fi";
+import { BsBasket2Fill, BsBookHalf, BsShop } from "react-icons/bs";
+import { FaHeart, FaMoneyBill, FaRegBell, FaRegClock, FaTools } from "react-icons/fa";
+import { FiShoppingCart, FiTruck } from "react-icons/fi";
 import { GoCommentDiscussion, GoGift } from "react-icons/go";
-import { HiOutlineDocumentDownload } from "react-icons/hi";
+import { HiOutlineDocumentDownload, HiOutlineUsers } from "react-icons/hi";
 import {
   HiOutlineCreditCard,
   HiOutlineFaceSmile,
@@ -405,13 +405,11 @@ export const sliderFilterOptions = [
   { label: "غیر فعال", slug: "not-active", color: "red-500" },
 ];
 
-
 export const questionFilterOptions = [
   { label: "همه", slug: "all", color: "black" },
   { label: "فعال", slug: "active", color: "green-500" },
   { label: "غیر فعال", slug: "not-active", color: "red-500" },
 ];
-
 
 export const ITEM_PER_PAGE = 10;
 export const MAX_FILE_SIZE = 5000000; // 5MB
@@ -494,5 +492,49 @@ export const sellers = [
     link: "/seller/9",
     image: "/images/sellers/seller-1.jpg",
     productCount: 45,
+  },
+];
+
+export const trazoItems = [
+  {
+    id: 1,
+    title: "فروش آنلاین ۲۴/۷ در هر نقطه از ایران",
+    description: "۲۴ ساعته در تمام هفته، می‌توانید سفارش دریافت کنید و بفروشید",
+    icon: <FaRegClock className="text-3xl text-zinc-700" />,
+  },
+  {
+    id: 2,
+    title: "بیش از ۶ میلیون بازدید روزانه و ۳۰ میلیون مشتری",
+    description:
+      "کالای شما در ویترین شلوغ‌ترین فروشگاه اینترنتی ایران نمایش داده می‌شود.",
+    icon: <HiOutlineUsers className="text-3xl text-zinc-700" />,
+  },
+  {
+    id: 3,
+    title: "گزارش مالی شفاف و تسویه در کمتر از ۱۵ روز",
+    description:
+      "طی حداکثر ۲ هفته تسویه انجام می‌شود و آمار جزيي را دریافت می‌کنید.",
+    icon: <FaMoneyBill className="text-3xl text-zinc-700" />,
+  },
+  {
+    id: 4,
+    title: "امکان ارسال توسط دیجی‌کالا و فروشنده",
+    description:
+      "می‌توانید بسته‌بندی و ارسال را به دیجی‌کالا بسپارید یاخودتان ارسال کنید",
+    icon: <FiTruck className="text-3xl text-zinc-700" />,
+  },
+  {
+    id: 5,
+    title: "ثبت نام در ۲۴ ساعت با آموزش رایگان فروش آنلاین",
+    description:
+      "بعد از تایید ثبت‌نامتان، تمام مراحل فروش آنلاین را یاد می‌گیرید.",
+    icon: <BsBookHalf className="text-3xl text-zinc-700" />,
+  },
+  {
+    id: 6,
+    title: "استفاده از تبلیغات کلیکی و کار با یک پنل ساده",
+    description:
+      "با تبلیغات کلیکی و استفاده از پنل، فروشتان افزایش پیدا می‌کند.",
+    icon: <FaRegBell className="text-3xl text-zinc-700" />,
   },
 ];
