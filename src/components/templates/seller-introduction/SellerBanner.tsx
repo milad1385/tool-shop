@@ -28,7 +28,7 @@ function SellerBanner() {
         className="h-[80vh] mt-20 block md:hidden object-cover"
       />
 
-      <div className="absolute z-30 top-80 right-5 md:left-8 space-y-6 w-[450px]">
+      <div className="absolute z-30 top-80 right-5 md:right-[1050px] space-y-6 w-[450px]">
         <h3 className="text-2xl md:text-4xl font-bold text-white">
           در ترازو فروشنده شوید !
         </h3>
