@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AiOutlineProduct } from "react-icons/ai";
-import { BsShop } from "react-icons/bs";
+import { BsShop, BsShopWindow } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 import {
   HiArrowLeftEndOnRectangle,
@@ -139,6 +139,12 @@ function MobileMenu() {
             <Link href="/comparison" className="flex items-center gap-x-2">
               <LuArrowDownUp className="text-2xl" />
               مقایسه
+            </Link>
+          </li>
+          <li>
+            <Link href="/seller-introduction" className="flex items-center gap-x-2">
+              <BsShopWindow className="text-xl" />
+              فروشنده باش
             </Link>
           </li>
           <li>
