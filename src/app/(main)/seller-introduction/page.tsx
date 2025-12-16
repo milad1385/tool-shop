@@ -4,8 +4,8 @@ import SellerBanner from "@/components/templates/seller-introduction/SellerBanne
 function page() {
   return (
     <div>
-      <Navbar/>
-      <SellerBanner/>
+      <Navbar />
+      <SellerBanner />
     </div>
   );
 }
