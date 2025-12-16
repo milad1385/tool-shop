@@ -57,7 +57,7 @@ function SellerBanner() {
           </Link>
         </div>
       </div>
-      <div className="bg-gradient-to-r from-yellow-800 to-yellow-500 px-6 py-5 md:px-12 md:py-6 rounded-xl flex flex-col md:flex-row items-center justify-between absolute md:left-8 left-4 right-4 md:right-8 -bottom-[350px] md:-bottom-[550px] z-20">
+      <div className="bg-gradient-to-r from-yellow-800 to-yellow-500 px-6 py-5 md:px-12 md:py-6 rounded-xl flex flex-col md:flex-row items-center justify-between absolute md:left-8 left-4 right-4 md:right-8 -bottom-[350px] md:-bottom-[400px] z-20">
         <div className="w-full space-y-5 mt-2 mb-8">
           <h3 className=" text-xl md:text-3xl text-white">چرا در ترازو بفروشیم ؟</h3>
           <span className="block h-[2.40px] w-20 bg-white "></span>
