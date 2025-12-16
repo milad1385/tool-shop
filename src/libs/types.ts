@@ -268,3 +268,9 @@ export interface IModalDetail {
   isShow: boolean;
   onClose: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface ITrazoItem {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}
