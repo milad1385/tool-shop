@@ -13,7 +13,7 @@ function RegisterStep({ icon, title, id }: IRegisterStep) {
         {icon}
       </div>
       <p className="font-bold text-xs md:text-sm text-zinc-700">{title}</p>
-      <span className="flex-center absolute top-12 md:top-14 border-2 border-gray-100 bg-yellow-500 size-4 rounded-full text-white text-xs font-bold">
+      <span className="flex-center absolute top-12 md:top-[50px] border-2 border-gray-100 bg-yellow-500 size-5 rounded-full text-white text-xs font-bold">
         {id}
       </span>
     </div>
