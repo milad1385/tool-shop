@@ -5,7 +5,7 @@ import React from "react";
 
 function TaxCategory({ id, image, link, max, min, title }: ITaxCategory) {
   return (
-    <Link key={id} className="space-y-3" href={link}>
+    <Link key={id} className="space-y-3 flex flex-col items-center md:items-start" href={link}>
       <Image
         alt="image"
         width={1920}
