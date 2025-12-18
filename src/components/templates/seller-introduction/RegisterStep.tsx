@@ -1,6 +1,4 @@
 import { IRegisterStep } from "@/libs/types";
-import React from "react";
-import { HiMiniArrowLeftEndOnRectangle } from "react-icons/hi2";
 
 function RegisterStep({ icon, title, id }: IRegisterStep) {
   return (
