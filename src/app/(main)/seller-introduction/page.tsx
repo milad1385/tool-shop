@@ -3,6 +3,7 @@ import Navbar from "@/components/templates/seller-introduction/Navbar";
 import RegisterSteps from "@/components/templates/seller-introduction/RegisterSteps";
 import RequiredDocuments from "@/components/templates/seller-introduction/RequiredDocuments";
 import SellerBanner from "@/components/templates/seller-introduction/SellerBanner";
+import TaxInCategories from "@/components/templates/seller-introduction/TaxInCategories";
 import WhyTrazo from "@/components/templates/seller-introduction/WhyTrazo";
 
 function page() {
@@ -14,9 +15,10 @@ function page() {
         <div className="px-2 md:px-8">
           <WhyTrazo />
           <RegisterSteps />
-          <RequiredDocuments/>
+          <RequiredDocuments />
         </div>
       </Container>
+      <TaxInCategories />
     </div>
   );
 }
