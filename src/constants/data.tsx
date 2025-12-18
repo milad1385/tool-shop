@@ -1,10 +1,17 @@
 import { AiOutlineProduct } from "react-icons/ai";
 import { BsBasket2Fill, BsBookHalf, BsShop } from "react-icons/bs";
-import { FaHeart, FaMoneyBill, FaRegBell, FaRegClock, FaTools } from "react-icons/fa";
+import {
+  FaHeart,
+  FaMoneyBill,
+  FaRegBell,
+  FaRegClock,
+  FaTools,
+} from "react-icons/fa";
 import { FiShoppingCart, FiTruck } from "react-icons/fi";
 import { GoCommentDiscussion, GoGift } from "react-icons/go";
 import { HiOutlineDocumentDownload, HiOutlineUsers } from "react-icons/hi";
 import {
+  HiMiniArrowLeftEndOnRectangle,
   HiOutlineCreditCard,
   HiOutlineFaceSmile,
   HiOutlinePhoto,
@@ -19,7 +26,7 @@ import {
   IoTicketOutline,
 } from "react-icons/io5";
 import { LiaComments } from "react-icons/lia";
-import { LuUsers } from "react-icons/lu";
+import { LuNotebookText, LuUsers } from "react-icons/lu";
 import { MdMenuBook, MdOutlineCategory } from "react-icons/md";
 import { RiArticleLine } from "react-icons/ri";
 
@@ -536,5 +543,44 @@ export const trazoItems = [
     description:
       "با تبلیغات کلیکی و استفاده از پنل، فروشتان افزایش پیدا می‌کند.",
     icon: <FaRegBell className="text-3xl text-zinc-700" />,
+  },
+];
+
+export const sellerRegisterSteps = [
+  {
+    id: 1,
+    title: "ثبت‌نام در پنل فروشندگان",
+    icon: (
+      <HiMiniArrowLeftEndOnRectangle
+        className={`iconStyle`}
+      />
+    ),
+  },
+  {
+    id: 2,
+    title: "یادگیری استفاده از پنل",
+    icon: (
+      <MdMenuBook
+        className={`iconStyle`}
+      />
+    ),
+  },
+  {
+    id: 3,
+    title: "ثبت اطلاعات و قیمت‌ کالاها",
+    icon: (
+      <LuNotebookText
+        className={`iconStyle`}
+      />
+    ),
+  },
+  {
+    id: 4,
+    title: "آغاز فروش در دیجی‌کالا",
+    icon: (
+      <BsShop
+        className={`iconStyle`}
+      />
+    ),
   },
 ];
