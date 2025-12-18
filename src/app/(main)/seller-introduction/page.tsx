@@ -1,6 +1,7 @@
 import Container from "@/components/modules/main/Container";
 import Navbar from "@/components/templates/seller-introduction/Navbar";
 import RegisterSteps from "@/components/templates/seller-introduction/RegisterSteps";
+import RequiredDocuments from "@/components/templates/seller-introduction/RequiredDocuments";
 import SellerBanner from "@/components/templates/seller-introduction/SellerBanner";
 import WhyTrazo from "@/components/templates/seller-introduction/WhyTrazo";
 
@@ -13,6 +14,7 @@ function page() {
         <div className="px-2 md:px-8">
           <WhyTrazo />
           <RegisterSteps />
+          <RequiredDocuments/>
         </div>
       </Container>
     </div>

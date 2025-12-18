@@ -5,7 +5,7 @@ import RegisterStep from "./RegisterStep";
 
 function RegisterSteps() {
   return (
-    <div className=" mt-16 md:mt-44 relative mb-96">
+    <div className=" mt-16 md:mt-44 relative mb-20 md:mb-48">
       <Title content="فرآیند شروع کار" />
       <SvgShape />
       <div className="md:px-12 flex items-center justify-evenly flex-wrap gap-x-4 gap-y-6 mt-7 md:mt-0">
