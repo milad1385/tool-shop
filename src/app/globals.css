@@ -316,10 +316,14 @@ table {
 
 .Typewriter__wrapper {
   color: white;
-  @apply text-lg md:text-[26px]
+  @apply text-lg md:text-[26px];
+}
+
+.iconStyle {
+  @apply text-3xl md:text-4xl text-zinc-800;
 }
 
 .Typewriter__cursor {
   color: white;
-  @apply text-lg md:text-[26px]
+  @apply text-lg md:text-[26px];
 }
