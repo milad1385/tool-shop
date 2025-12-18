@@ -274,3 +274,10 @@ export interface ITrazoItem {
   description: string;
   icon: React.ReactNode;
 }
+
+export interface IRegisterStep {
+  isFirst?: boolean;
+  id: number;
+  title: string;
+  icon: React.ReactNode;
+}
