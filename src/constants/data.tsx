@@ -550,37 +550,80 @@ export const sellerRegisterSteps = [
   {
     id: 1,
     title: "ثبت‌نام در پنل فروشندگان",
-    icon: (
-      <HiMiniArrowLeftEndOnRectangle
-        className={`iconStyle`}
-      />
-    ),
+    icon: <HiMiniArrowLeftEndOnRectangle className={`iconStyle`} />,
   },
   {
     id: 2,
     title: "یادگیری استفاده از پنل",
-    icon: (
-      <MdMenuBook
-        className={`iconStyle`}
-      />
-    ),
+    icon: <MdMenuBook className={`iconStyle`} />,
   },
   {
     id: 3,
     title: "ثبت اطلاعات و قیمت‌ کالاها",
-    icon: (
-      <LuNotebookText
-        className={`iconStyle`}
-      />
-    ),
+    icon: <LuNotebookText className={`iconStyle`} />,
   },
   {
     id: 4,
     title: "آغاز فروش در دیجی‌کالا",
-    icon: (
-      <BsShop
-        className={`iconStyle`}
-      />
-    ),
+    icon: <BsShop className={`iconStyle`} />,
+  },
+];
+
+export const taxCategories = [
+  {
+    id: 1,
+    title: "سنگ فرز",
+    image: "ca-1.png",
+    link: "/category/1",
+    min: 0.5,
+    max: 10,
+  },
+  {
+    id: 2,
+    title: "دریل شارژی",
+    image: "ca-2.png",
+    link: "/category/1",
+    min: 0.5,
+    max: 10,
+  },
+  {
+    id: 3,
+    title: "اره ساده",
+    image: "ca-3.png",
+    link: "/category/1",
+    min: 0.5,
+    max: 10,
+  },
+  {
+    id: 4,
+    title: "اره چکشی",
+    image: "ca-4.png",
+    link: "/category/1",
+    min: 0.5,
+    max: 10,
+  },
+  {
+    id: 5,
+    title: "پیچ گوشتی",
+    image: "ca-5.png",
+    link: "/category/1",
+    min: 0.5,
+    max: 10,
+  },
+  {
+    id: 6,
+    title: "اره دم روباهی",
+    image: "ca-6.png",
+    link: "/category/1",
+    min: 0.5,
+    max: 10,
+  },
+  {
+    id: 7,
+    title: "چکش",
+    image: "ca-7.png",
+    link: "/category/1",
+    min: 0.5,
+    max: 10,
   },
 ];
