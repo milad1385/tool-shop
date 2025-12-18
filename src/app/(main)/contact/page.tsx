@@ -4,10 +4,10 @@ import React from "react";
 function page() {
   return (
     <div className="mt-24 md:mt-48 flex items-center justify-center flex-col container">
-      <Title title="پیغام خود را ارسال کنید" className="!text-3xl" />
+      <Title title="پیغام خود را ارسال کنید" className="text-2xl md:!text-3xl mt-5" />
       <form
         action="#"
-        className="flex flex-col gap-y-5  bg-white w-[90%] md:w-[400px] p-8 shadow rounded-md"
+        className="flex flex-col gap-y-5  bg-white w-[100%] md:w-[400px] p-8 shadow rounded-md"
       >
         <div className="flex flex-col gap-y-4">
           <label htmlFor="email" className="text-sm text-zinc-800">
