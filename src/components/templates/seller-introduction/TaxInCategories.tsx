@@ -1,8 +1,6 @@
 import { taxCategories } from "@/constants/data";
-import Image from "next/image";
-import Link from "next/link";
-import Title from "./Title";
 import TaxCategory from "./TaxCategory";
+import Title from "./Title";
 
 function TaxInCategories() {
   return (
