@@ -281,3 +281,9 @@ export interface IRegisterStep {
   title: string;
   icon: React.ReactNode;
 }
+
+export interface IRequiredDocument {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}
