@@ -287,3 +287,12 @@ export interface IRequiredDocument {
   description: string;
   icon: React.ReactNode;
 }
+
+export interface ITaxCategory {
+  id: number;
+  title: string;
+  image: string;
+  link: string;
+  min: number;
+  max: number;
+}
