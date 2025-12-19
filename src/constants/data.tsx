@@ -564,7 +564,7 @@ export const sellerRegisterSteps = [
   },
   {
     id: 4,
-    title: "آغاز فروش در دیجی‌کالا",
+    title: "آغاز فروش در ترازو",
     icon: <BsShop className={`iconStyle`} />,
   },
 ];
@@ -626,4 +626,97 @@ export const taxCategories = [
     min: 0.5,
     max: 10,
   },
+];
+
+export const branches = [
+  {
+    id: 1,
+    title: "تهران",
+    city: "تهران",
+    lat: 35.7219,
+    lng: 51.3347,
+    description: "شعبه ترازو فعال در استان تهران و شهر تهران",
+    image: "https://picsum.photos/id/10/300/200"
+  },
+  {
+    id: 2,
+    title: "البرز",
+    city: "کرج",
+    lat: 35.8327,
+    lng: 50.9915,
+    description: "شعبه ترازو فعال در استان البرز و شهر کرج",
+    image: "https://picsum.photos/id/20/300/200"
+  },
+  {
+    id: 3,
+    title: "گیلان",
+    city: "رشت",
+    lat: 37.2808,
+    lng: 49.5831,
+    description: "شعبه ترازو فعال در استان گیلان و شهر رشت",
+    image: "https://picsum.photos/id/30/300/200"
+  },
+  {
+    id: 4,
+    title: "زنجان",
+    city: "زنجان",
+    lat: 36.6736,
+    lng: 48.4787,
+    description: "شعبه ترازو فعال در استان زنجان و شهر زنجان",
+    image: "https://picsum.photos/id/40/300/200"
+  },
+  {
+    id: 5,
+    title: "اصفهان",
+    city: "اصفهان",
+    lat: 32.6546,
+    lng: 51.6680,
+    description: "شعبه ترازو فعال در استان اصفهان و شهر اصفهان",
+    image: "https://picsum.photos/id/50/300/200"
+  },
+  {
+    id: 6,
+    title: "خراسان رضوی",
+    city: "مشهد",
+    lat: 36.2972,
+    lng: 59.6067,
+    description: "شعبه ترازو فعال در استان خراسان رضوی و شهر مشهد",
+    image: "https://picsum.photos/id/60/300/200"
+  },
+  {
+    id: 7,
+    title: "بوشهر",
+    city: "بوشهر",
+    lat: 28.9234,
+    lng: 50.8203,
+    description: "شعبه ترازو فعال در استان بوشهر و شهر بوشهر",
+    image: "https://picsum.photos/id/70/300/200"
+  },
+  {
+    id: 8,
+    title: "هرمزگان",
+    city: "بندر عباس",
+    lat: 27.1750,
+    lng: 56.2803,
+    description: "شعبه ترازو فعال در استان هرمزگان و شهر بندر عباس",
+    image: "https://picsum.photos/id/80/300/200"
+  },
+  {
+    id: 9,
+    title: "فارس",
+    city: "شیراز",
+    lat: 29.6100,
+    lng: 52.5425,
+    description: "شعبه ترازو فعال در استان فارس و شهر شیراز",
+    image: "https://picsum.photos/id/90/300/200"
+  },
+  {
+    id: 10,
+    title: "سمنان",
+    city: "سمنان",
+    lat: 35.5765,
+    lng: 53.3951,
+    description: "شعبه ترازو فعال در استان سمنان و شهر سمنان",
+    image: "https://picsum.photos/id/100/300/200"
+  }
 ];
