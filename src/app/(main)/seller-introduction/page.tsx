@@ -5,6 +5,7 @@ import RequiredDocuments from "@/components/templates/seller-introduction/Requir
 import SellerBanner from "@/components/templates/seller-introduction/SellerBanner";
 import TaxInCategories from "@/components/templates/seller-introduction/TaxInCategories";
 import WhyTrazo from "@/components/templates/seller-introduction/WhyTrazo";
+import Branches from "../../../components/templates/seller-introduction/Branches";
 
 function page() {
   return (
@@ -19,6 +20,7 @@ function page() {
         </div>
       </Container>
       <TaxInCategories />
+      <Branches />
     </div>
   );
 }
