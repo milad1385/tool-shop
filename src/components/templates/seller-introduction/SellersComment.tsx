@@ -6,17 +6,17 @@ function SellersComment() {
   return (
     <div>
       <Title content="داستان‌های موفقیت از زبان فروشندگان" />
-      <div className="grid grid-cols-12 mt-8">
-        <div className="col-span-7 border border-gray-300 p-2 rounded-xl">
+      <div className="grid grid-cols-12 mt-5">
+        <div className="col-span-12 lg:col-span-7 border border-gray-300 p-2 rounded-xl">
           <Image
             alt="image"
             src="/images/blog-3.jpg"
             width={1920}
             height={1080}
-            className="w-[700px] h-[390px] rounded-md"
+            className="w-[700px] lg:h-[390px] rounded-md"
           />
         </div>
-        <div className="col-span-5 flex items-center justify-center">
+        <div className="col-span-12 lg:col-span-5 flex items-center justify-center">
             <SellersCommentList/>
         </div>
       </div>

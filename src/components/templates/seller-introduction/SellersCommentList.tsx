@@ -18,7 +18,30 @@ export default function SellersCommentList() {
           clickable: true,
         }}
         modules={[FreeMode, Pagination]}
-        className="mySwiper seller-comment-slider"
+        className="mySwiper seller-comment-slider !hidden lg:!block"
+      >
+        <SwiperSlide>
+          <SellerComment />
+        </SwiperSlide>
+        <SwiperSlide>
+          <SellerComment />
+        </SwiperSlide>
+        <SwiperSlide>
+          <SellerComment />
+        </SwiperSlide>
+        <SwiperSlide>
+          <SellerComment />
+        </SwiperSlide>
+      </Swiper>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={50}
+        freeMode={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        className="mySwiper seller-comment-slider !block lg:!hidden"
       >
         <SwiperSlide>
           <SellerComment />
