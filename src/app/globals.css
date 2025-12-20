@@ -333,3 +333,12 @@ table {
   height: 100%;
   z-index: 20 !important;
 }
+
+.seller-comment-slider .swiper-pagination {
+  bottom: -8px !important;
+}
+
+.seller-comment-slider .swiper-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+}
