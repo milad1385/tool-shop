@@ -3,7 +3,7 @@ import CommaSvg from "./CommaSvg";
 
 function SellerComment() {
   return (
-    <div className="px-12 pt-6 pb-10 lg:py-10">
+    <div className="px-3 lg:px-12 pt-6 pb-10 lg:py-10">
       <div className="flex items-center justify-between">
         <h3 className="text-base lg:text-lg text-zinc-700 font-bold">محمد رضایی</h3>
         <CommaSvg />

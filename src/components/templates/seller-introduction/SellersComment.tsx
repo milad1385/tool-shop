@@ -4,7 +4,7 @@ import Title from "./Title";
 
 function SellersComment() {
   return (
-    <div>
+    <div className="container">
       <Title content="داستان‌های موفقیت از زبان فروشندگان" />
       <div className="grid grid-cols-12 mt-5">
         <div className="col-span-12 lg:col-span-7 border border-gray-300 p-2 rounded-xl">
