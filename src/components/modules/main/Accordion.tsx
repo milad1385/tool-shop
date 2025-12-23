@@ -37,7 +37,7 @@ function Accordion({ title, children, className }: IAccordionTitle) {
         />
       </div>
       <div className={`submenu`} ref={subMenuRef}>
-        <p className="pt-3 text-[13px]/[26px] md:text-sm/[25px] text-zinc-700">
+        <p className="pt-3 text-[13px]/[26px] md:text-sm/[32px] text-zinc-700">
           {children}
         </p>
       </div>
