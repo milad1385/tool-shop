@@ -86,6 +86,7 @@ export interface IStaffSliderBox {
 export interface IAccordionTitle {
   title: string;
   children: React.ReactNode;
+  className?: string;
 }
 
 export interface IPagination {
@@ -295,4 +296,10 @@ export interface ITaxCategory {
   link: string;
   min: number;
   max: number;
+}
+
+export interface ISellerQuestions {
+  id: number;
+  question: string;
+  answer: string;
 }
