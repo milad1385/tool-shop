@@ -7,6 +7,7 @@ import SellersComment from "@/components/templates/seller-introduction/SellersCo
 import TaxInCategories from "@/components/templates/seller-introduction/TaxInCategories";
 import WhyTrazo from "@/components/templates/seller-introduction/WhyTrazo";
 import Branches from "../../../components/templates/seller-introduction/Branches";
+import Questions from "@/components/templates/seller-introduction/Questions";
 
 function page() {
   return (
@@ -14,7 +15,7 @@ function page() {
       <Navbar />
       <SellerBanner />
       <Container>
-        <div className="px-2 md:px-8">
+        <div className="px-0 md:px-8">
           <WhyTrazo />
           <RegisterSteps />
           <RequiredDocuments />
@@ -22,8 +23,11 @@ function page() {
       </Container>
       <TaxInCategories />
       <Branches />
-      <div className="container mt-14 px-2 md:px-8">
+      <div className="container mt-14 px-0 md:px-8">
         <SellersComment />
+      </div>
+      <div className="container">
+        <Questions />
       </div>
     </div>
   );

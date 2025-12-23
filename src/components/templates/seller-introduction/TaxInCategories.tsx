@@ -6,7 +6,7 @@ function TaxInCategories() {
   return (
     <div className="bg-gray-50 mt-12">
       <div className="container">
-        <div className="py-6 md:py-10 lg:grid grid-cols-12 gap-y-10 gap-x-28 px-2 md:px-8 space-y-10">
+        <div className="py-6 md:py-10 lg:grid grid-cols-12 gap-y-10 gap-x-28 px-0 md:px-8 space-y-10">
           <div className="lg:col-span-5">
             <Title content="میزان کمیسیون در هر دسته‌بندی" />
             <p className="text-justify text-zinc-700 text-sm/[28px] md:text-base/[32px] mt-3 whitespace-normal break-words">

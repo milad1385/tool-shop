@@ -8,8 +8,8 @@ function Branches() {
   return (
     <div className="bg-yellow-600">
       <div className="grid grid-cols-12">
-        <div className="col-span-12 lg:col-span-5 py-7 lg:py-20 container  px-8  md:px-12">
-          <h2 className="text-white text-lg lg:text-xl font-bold">
+        <div className="col-span-12 lg:col-span-5 py-7 lg:py-20 container  px-4  md:px-12">
+          <h2 className="text-white text-base lg:text-xl font-bold">
             ارسال کالا به روش‌های مختلف
           </h2>
           <div className="text-white text-justify text-sm/[28px] md:text-lg/[32px] mt-5 lg:flex flex-wrap items-center">
