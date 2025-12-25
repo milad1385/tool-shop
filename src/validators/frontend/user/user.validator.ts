@@ -45,4 +45,13 @@ export const userValidorSchema = yup.object({
   image: yup.mixed().required("انتخاب تصویر ضروری است"),
 });
 
+export const sellerAuthSchema = yup.object({
+  identifier: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(1, "حداقل تعداد کاراکتر 5 عدد است")
+    .max(100, "حداکثر تعداد کاراکتر 100 عدد میباشد"),
+});
+export type ISellerAuth = yup.InferType<typeof sellerAuthSchema>;
+
 export type UserData = yup.InferType<typeof userValidorSchema>;

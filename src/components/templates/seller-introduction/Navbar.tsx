@@ -15,12 +15,12 @@ function Navbar() {
         />
       </div>
       <div className="flex items-center gap-x-4">
-        <Link href="/" className="text-xs md:text-sm text-white">
+        <Link href="/seller-introduction/auth" className="text-xs md:text-sm text-white">
           ورود به پنل فروشندگان
         </Link>
-        <button className="px-6 md:px-16 py-2 border-2 text-white border-white rounded-lg text-sm">
+        <Link href="/seller-introduction/auth" className="px-6 md:px-16 py-2 border-2 text-white border-white rounded-lg text-sm">
           ثبت نام
-        </button>
+        </Link>
       </div>
     </div>
   );
