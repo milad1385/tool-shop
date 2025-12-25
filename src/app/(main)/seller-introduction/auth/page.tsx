@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function page() {
   return (
-    <div className="flex items-center flex-col justify-center min-h-screen px-3">
+    <div className="flex items-center flex-col justify-center min-h-screen px-3 overflow-y-hidden">
       <div className="w-full lg:w-[800px]  px-8 py-7 border border-gray-300 rounded-lg bg-gray-50">
         <Image
           alt="image"
@@ -62,7 +62,7 @@ function page() {
         </div>
       </div>
 
-      <div className="fixed bottom-2 lg:relative flex items-center justify-center gap-x-4 text-sm lg:text-base mt-12">
+      <div className="flex items-center justify-center gap-x-4 text-sm lg:text-base mt-6 lg:mt-12">
         <Link href="/" className="text-zinc-700">
           راهنمای ثبت نام
         </Link>
