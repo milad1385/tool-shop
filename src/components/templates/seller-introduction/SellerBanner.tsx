@@ -50,7 +50,7 @@ function SellerBanner() {
           />
 
           <Link
-            href="/"
+            href="/seller-introduction/auth"
             className="block px-6 bg-yellow-600 md:bg-black text-white w-[160px] py-3 text-center text-sm rounded-lg"
           >
             ثبت نام فروشنده
