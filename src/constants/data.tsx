@@ -5,6 +5,8 @@ import {
   FaMoneyBill,
   FaRegBell,
   FaRegClock,
+  FaRegNewspaper,
+  FaRegQuestionCircle,
   FaTools,
 } from "react-icons/fa";
 import { FiShoppingCart, FiTruck } from "react-icons/fi";
@@ -22,11 +24,15 @@ import {
 import { IoIosGitPullRequest, IoIosHome } from "react-icons/io";
 import {
   IoHomeOutline,
+  IoInformationCircleOutline,
+  IoLocationOutline,
+  IoMapOutline,
+  IoNewspaperOutline,
   IoSettingsOutline,
   IoTicketOutline,
 } from "react-icons/io5";
 import { LiaComments } from "react-icons/lia";
-import { LuNotebookText, LuUsers } from "react-icons/lu";
+import { LuLayoutPanelTop, LuNotebookText, LuUsers } from "react-icons/lu";
 import { MdMenuBook, MdOutlineCategory } from "react-icons/md";
 import { RiArticleLine } from "react-icons/ri";
 
@@ -806,5 +812,58 @@ export const sellerStatusBoxes = [
     description:
       "فروشنده حقوقی یک موسسه یا شرکت است که به صورت قانونی ثبت شده و مشخصاتی مانند تاریخ ثبت، شماره ثبت، کد شناسایی و کد اقتصادی دارد",
     buttonText: "فروشنده حقوقی هستم",
+  },
+];
+
+export const sideBarLinks = [
+  {
+    id: 1,
+    title: "اطلاعات",
+    icon: <IoInformationCircleOutline className="text-white text-2xl" />,
+    isActive: true,
+    options: [
+      { id: 1, icon: <BsShop />, title: "وضعیت فروشگاه", isActive: true },
+      {
+        id: 2,
+        icon: <IoNewspaperOutline />,
+        title: "اطلاعات تکمیلی",
+        isActive: false,
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "آدرس",
+    icon: <IoMapOutline className="text-white text-2xl" />,
+    isActive: false,
+    options: [
+      {
+        id: 1,
+        icon: <IoLocationOutline className="text-lg" />,
+        title: "موقعیت مکانی",
+        isActive: false,
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "آموزش",
+    icon: <FaRegQuestionCircle className="text-white text-2xl" />,
+    isActive: false,
+    options: [
+      {
+        id: 1,
+        icon: <FaRegNewspaper className="text-lg" />,
+        title: "آشنایی",
+        isActive: false,
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "ورود به پنل",
+    icon: <LuLayoutPanelTop  className="text-white text-2xl" />,
+    isActive: false,
+    options: [],
   },
 ];
