@@ -303,3 +303,11 @@ export interface ISellerQuestions {
   question: string;
   answer: string;
 }
+
+export interface ISellerStatus {
+  id: number;
+  title: string;
+  image: string;
+  description: string;
+  buttonText: string;
+}
