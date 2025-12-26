@@ -17,7 +17,8 @@ function Footer() {
   if (
     pathname.includes("/auth") ||
     pathname.includes("/p-user") ||
-    pathname.includes("/p-admin")
+    pathname.includes("/p-admin") ||
+    pathname.includes("/seller-introduction/register")
   )
     return null;
   return (
