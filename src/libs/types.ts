@@ -311,3 +311,17 @@ export interface ISellerStatus {
   description: string;
   buttonText: string;
 }
+
+export interface ISellerStepLink {
+  title: string;
+  icon: React.ReactNode;
+  options: ISellerStepOption[];
+  isActive: boolean;
+}
+
+interface ISellerStepOption {
+  title: string;
+  icon: React.ReactNode;
+  id: number;
+  isActive: boolean;
+}
