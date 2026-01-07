@@ -819,7 +819,7 @@ export const sideBarLinks = [
   {
     id: 1,
     title: "اطلاعات",
-    icon: <IoInformationCircleOutline className="text-white text-2xl" />,
+    icon: <IoInformationCircleOutline className="text-white text-xl lg:text-2xl" />,
     isActive: true,
     options: [
       { id: 1, icon: <BsShop />, title: "وضعیت فروشگاه", isActive: true },
@@ -834,7 +834,7 @@ export const sideBarLinks = [
   {
     id: 2,
     title: "آدرس",
-    icon: <IoMapOutline className="text-white text-2xl" />,
+    icon: <IoMapOutline className="text-white text-xl lg:text-2xl" />,
     isActive: false,
     options: [
       {
@@ -848,7 +848,7 @@ export const sideBarLinks = [
   {
     id: 3,
     title: "آموزش",
-    icon: <FaRegQuestionCircle className="text-white text-2xl" />,
+    icon: <FaRegQuestionCircle className="text-white text-xl lg:text-2xl" />,
     isActive: false,
     options: [
       {
@@ -862,7 +862,7 @@ export const sideBarLinks = [
   {
     id: 4,
     title: "ورود به پنل",
-    icon: <LuLayoutPanelTop  className="text-white text-2xl" />,
+    icon: <LuLayoutPanelTop  className="text-white text-xl lg:text-2xl" />,
     isActive: false,
     options: [],
   },
