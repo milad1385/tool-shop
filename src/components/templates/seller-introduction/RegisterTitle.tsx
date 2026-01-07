@@ -8,8 +8,8 @@ function RegisterTitle({
   step?: number;
 }) {
   return (
-    <div>
-      <h1 className="font-bold text-xl">{content}</h1>
+    <div className="px-5 md:px-0">
+      <h1 className="font-bold text-lg md:text-xl">{content}</h1>
     </div>
   );
 }
