@@ -192,6 +192,7 @@ export type TSelectBox = {
   selected?: any;
   onSelected?: any;
   placeholder?: string;
+  className?: string;
 };
 
 export interface IHambergerMobileMenu {
