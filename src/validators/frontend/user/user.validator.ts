@@ -55,3 +55,40 @@ export const sellerAuthSchema = yup.object({
 export type ISellerAuth = yup.InferType<typeof sellerAuthSchema>;
 
 export type UserData = yup.InferType<typeof userValidorSchema>;
+
+export const sellerInformation = yup.object({
+  name: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(1, "حداقل تعداد کاراکتر 1 عدد است")
+    .max(100, "حداکثر تعداد کاراکتر 100 عدد میباشد"),
+  lastname: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(1, "حداقل تعداد کاراکتر 1 عدد است")
+    .max(100, "حداکثر تعداد کاراکتر 100 عدد میباشد"),
+  email: yup
+    .string()
+    .email("ایمیل معتبر نمیباشد")
+    .required("این فیلد الزامی است")
+    .min(1, "حداقل تعداد کاراکتر 1 عدد است")
+    .max(100, "حداکثر تعداد کاراکتر 100 عدد میباشد"),
+  phone: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(11, "حداقل تعداد کاراکتر 11 عدد است")
+    .max(11, "حداکثر تعداد کاراکتر 11 عدد میباشد"),
+  storeName: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(5, "حداقل تعداد کاراکتر 5 عدد است")
+    .max(150, "حداکثر تعداد کاراکتر 150 عدد میباشد"),
+  nationalCode: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(10, "حداقل تعداد کاراکتر 10 عدد است")
+    .max(10, "حداکثر تعداد کاراکتر 10 عدد میباشد"),
+  gender: yup.string().required("این فیلد الزامی است"),
+});
+
+export type SellerInformationType = yup.InferType<typeof sellerInformation>;
