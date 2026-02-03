@@ -804,6 +804,7 @@ export const sellerStatusBoxes = [
     description:
       "فروشنده حقیقی، یک فرد است که مشخصاتی مانند نام، نام خانوادگی، تاریخ تولد، کد ملی، شماره شناسنامه و... دارد، اما شرکت و کد اقتصادی ندارد",
     buttonText: "فروشنده حقیقی هستم",
+    type: "personal-seller",
   },
   {
     id: 2,
@@ -812,6 +813,7 @@ export const sellerStatusBoxes = [
     description:
       "فروشنده حقوقی یک موسسه یا شرکت است که به صورت قانونی ثبت شده و مشخصاتی مانند تاریخ ثبت، شماره ثبت، کد شناسایی و کد اقتصادی دارد",
     buttonText: "فروشنده حقوقی هستم",
+    type: "company-seller",
   },
 ];
 
@@ -819,7 +821,9 @@ export const sideBarLinks = [
   {
     id: 1,
     title: "اطلاعات",
-    icon: <IoInformationCircleOutline className="text-white text-xl lg:text-2xl" />,
+    icon: (
+      <IoInformationCircleOutline className="text-white text-xl lg:text-2xl" />
+    ),
     isActive: true,
     options: [
       { id: 1, icon: <BsShop />, title: "وضعیت فروشگاه", isActive: true },
@@ -862,7 +866,7 @@ export const sideBarLinks = [
   {
     id: 4,
     title: "ورود به پنل",
-    icon: <LuLayoutPanelTop  className="text-white text-xl lg:text-2xl" />,
+    icon: <LuLayoutPanelTop className="text-white text-xl lg:text-2xl" />,
     isActive: false,
     options: [],
   },
