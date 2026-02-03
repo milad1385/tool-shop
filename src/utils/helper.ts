@@ -18,3 +18,14 @@ export const getDate = () => {
 
   return correctedFormat;
 };
+
+export const setToLocalStorage = (key: string, value: any) => {
+  if (key.length && value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+};
+
+export const getFromLocalStorage = (key: string) => {
+  const value = JSON.parse(localStorage.getItem(key));
+  return value ? value : null;
+};
