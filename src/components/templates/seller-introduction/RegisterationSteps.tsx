@@ -7,7 +7,6 @@ import SellerStatus from "./SellerStatus";
 function RegisterationSteps() {
   return (
     <SellerRegisterContainer>
-      <RegisterTitle content="وضعیت فروشنده را انتخاب کنید" />
       <MobileMenuBar />
       <SellerStatus />
       <CancelSellerRegisteration />
