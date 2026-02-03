@@ -1,5 +1,5 @@
-"use client";
 import { ISellerStatus } from "@/libs/types";
+import { setToLocalStorage } from "@/utils/helper";
 import Image from "next/image";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { HiChevronLeft } from "react-icons/hi";
@@ -17,8 +17,12 @@ function SellerStatusBox({
   const params = new URLSearchParams(searchParams);
 
   const handleNextStep = (value: string) => {
-    console.log(value);
     params.set("seller-type", value);
+    params.set("step", "1");
+    params.set("substep", "2");
+
+    setToLocalStorage("step", 1);
+    setToLocalStorage("substep", 2);
     router.push(`${pathname}?${params}`);
   };
   return (
