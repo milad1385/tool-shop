@@ -13,15 +13,16 @@ function SelectBox({
   selected,
   onSelected,
   placeholder = "placeholder",
+  className,
 }: TSelectBox) {
   if (!multiple) {
     return (
       <div className="flex w-full flex-col gap-y-3  relative">
-        <label className="text-sm">{title}</label>
+        <label className={`text-sm ${className}`}>{title}</label>
 
         <select
           disabled={disable}
-          className="p-2 input border border-gray-300 text-black rounded-md w-full text-sm md:text-base"
+          className={`p-2 input border border-gray-300 text-black rounded-md w-full text-sm md:text-base ${className}`}
           {...register(`${name}`)}
           name={name}
           onChange={(e) => onSelected?.(e.target.value)}
