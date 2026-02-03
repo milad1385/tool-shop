@@ -310,6 +310,7 @@ export interface ISellerStatus {
   image: string;
   description: string;
   buttonText: string;
+  type: string;
 }
 
 export interface ISellerStepLink {
