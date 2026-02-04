@@ -6,9 +6,9 @@ import {
   sellerInformation,
 } from "@/validators/frontend/user/user.validator";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import RegisterTitle from "./RegisterTitle";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 function SellerInformation() {
   const router = useRouter();
@@ -24,8 +24,6 @@ function SellerInformation() {
   } = useForm({
     resolver: yupResolver(sellerInformation),
   });
-
-  console.log(errors);
 
   const saveSellerInformation = (data: SellerInformationType) => {
     console.log(data);
