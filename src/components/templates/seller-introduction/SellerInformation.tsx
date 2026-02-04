@@ -1,4 +1,6 @@
+import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import RadioButton from "@/components/ui/RadioButton";
 import {
   SellerInformationType,
   sellerInformation,
@@ -6,8 +8,6 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import RegisterTitle from "./RegisterTitle";
-import SelectBox from "@/components/ui/SelectBox";
-import Button from "@/components/ui/Button";
 
 function SellerInformation() {
   const {
@@ -19,6 +19,8 @@ function SellerInformation() {
   } = useForm({
     resolver: yupResolver(sellerInformation),
   });
+
+  console.log(errors);
 
   const saveSellerInformation = (data: SellerInformationType) => {
     console.log(data);
@@ -91,8 +93,19 @@ function SellerInformation() {
           placeholder="نام فروشگاه را وارد کنید"
           className="!text-sm"
         />
+        <Input
+          register={register}
+          errors={errors}
+          name="companyCode"
+          type="text"
+          label="کد شرکت"
+          labelClassName="!text-[15px] md:!text-[17px]"
+          placeholder="کد شرکت را وارد کنید"
+          className="!text-sm"
+        />
 
-        <SelectBox
+       
+        <RadioButton
           register={register}
           errors={errors}
           name="gender"
@@ -100,10 +113,8 @@ function SellerInformation() {
             { id: 1, label: "مرد", value: "male" },
             { id: 2, label: "زن", value: "famale" },
           ]}
-          title="جنسیت : "
-          className="!text-[15px]"
+          labelName="جنسیت"
         />
-        <div></div>
         <div className="flex items-center gap-x-4 mt-5">
           <Button type="submit" className="!w-[200px] text-sm md:text-base">
             ذخیره اطلاعات
