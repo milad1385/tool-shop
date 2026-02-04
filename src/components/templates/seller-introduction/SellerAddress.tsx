@@ -10,10 +10,13 @@ import {
 import SelectBox from "@/components/ui/SelectBox";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
+import { usePathname, useRouter } from "next/navigation";
 
 function SellerAddress() {
   const [province, setProvince] = useState(null);
   const [city, setCity] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
   const {
     register,
     formState: { errors },
@@ -33,6 +36,10 @@ function SellerAddress() {
 
   const saveSellerAddress = (data: sellerAddressInfoType) => {
     console.log(data);
+
+    if (!province || !city) return;
+
+    router.push(`${pathname}?step=2&substep=2`);
   };
 
   return (
@@ -97,7 +104,7 @@ function SellerAddress() {
           placeholder="توضیحات فروشگاه را وارد کنید"
           className="!text-sm"
         />
-      
+
         <div className="flex items-center gap-x-4 mt-[158px]">
           <Button type="submit" className="!w-[200px] text-sm md:text-base">
             ذخیره اطلاعات

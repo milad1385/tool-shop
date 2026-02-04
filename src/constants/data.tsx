@@ -1,4 +1,5 @@
 import { AiOutlineProduct } from "react-icons/ai";
+import { BiWorld } from "react-icons/bi";
 import { BsBasket2Fill, BsBookHalf, BsShop } from "react-icons/bs";
 import {
   FaHeart,
@@ -843,6 +844,12 @@ export const sideBarLinks = [
     options: [
       {
         id: 1,
+        icon: <BiWorld className="text-lg text-zinc-700" />,
+        title: "آدرس فروشگاه",
+        isActive: false,
+      },
+      {
+        id: 2,
         icon: <IoLocationOutline className="text-lg" />,
         title: "موقعیت مکانی",
         isActive: false,
