@@ -5,14 +5,13 @@ import MobileMenuBar from "./MobileMenuBar";
 import SellerInformation from "./SellerInformation";
 import SellerRegisterContainer from "./SellerRegisterContainer";
 import SellerStatus from "./SellerStatus";
+import SellerAddress from "./SellerAddress";
 
 function RegisterationSteps() {
   const searchParam = useSearchParams();
 
-
   const step = Number(searchParam.get("step")) || 1;
   const subStep = Number(searchParam.get("substep")) || 1;
- 
 
   return (
     <SellerRegisterContainer>
@@ -28,6 +27,8 @@ function renderStep(step: number, subStep: number) {
     return <SellerStatus />;
   } else if (step === 1 && subStep === 2) {
     return <SellerInformation />;
+  } else if (step === 2 && subStep === 1) {
+    return <SellerAddress />;
   }
 }
 
