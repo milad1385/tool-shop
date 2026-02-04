@@ -8,9 +8,11 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import RegisterTitle from "./RegisterTitle";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 function SellerInformation() {
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const sellerType = searchParams.get("seller-type");
   const {
@@ -27,6 +29,7 @@ function SellerInformation() {
 
   const saveSellerInformation = (data: SellerInformationType) => {
     console.log(data);
+    router.push(`${pathname}?step=2&substep=1`);
   };
   return (
     <>
