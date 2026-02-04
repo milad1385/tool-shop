@@ -182,10 +182,10 @@ type TOption = {
 
 export type TSelectBox = {
   title: string;
-  register: any;
-  errors: any;
+  register?: any;
+  errors?: any;
   name: string;
-  options: TOption[];
+  options: any;
   dateName?: string;
   disable?: boolean;
   multiple?: boolean;
@@ -193,6 +193,8 @@ export type TSelectBox = {
   onSelected?: any;
   placeholder?: string;
   className?: string;
+  searchable?: boolean;
+  noOptionMsg?: string;
 };
 
 export type TRadioButton = {
