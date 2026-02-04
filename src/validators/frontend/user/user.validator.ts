@@ -89,7 +89,11 @@ export const sellerInformation = yup.object({
     .min(10, "حداقل تعداد کاراکتر 10 عدد است")
     .max(10, "حداکثر تعداد کاراکتر 10 عدد میباشد"),
   gender: yup.string().required("این فیلد الزامی است"),
-  companyCode: yup.string().required("این فیلد الزامی است"),
+  companyCode: yup
+    .string()
+    .optional()
+    .min(11, "حداقل 11 کاراکتر وارد کنید")
+    .max(11, "حداکثر 11 کاراکتر وارد کنید"),
 });
 
 export type SellerInformationType = yup.InferType<typeof sellerInformation>;

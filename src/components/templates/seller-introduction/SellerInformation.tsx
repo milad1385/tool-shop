@@ -8,8 +8,11 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import RegisterTitle from "./RegisterTitle";
+import { useSearchParams } from "next/navigation";
 
 function SellerInformation() {
+  const searchParams = useSearchParams();
+  const sellerType = searchParams.get("seller-type");
   const {
     register,
     formState: { errors },
@@ -93,18 +96,18 @@ function SellerInformation() {
           placeholder="نام فروشگاه را وارد کنید"
           className="!text-sm"
         />
-        <Input
-          register={register}
-          errors={errors}
-          name="companyCode"
-          type="text"
-          label="کد شرکت"
-          labelClassName="!text-[15px] md:!text-[17px]"
-          placeholder="کد شرکت را وارد کنید"
-          className="!text-sm"
-        />
-
-       
+        {sellerType === "company-seller" && (
+          <Input
+            register={register}
+            errors={errors}
+            name="companyCode"
+            type="text"
+            label="کد شرکت"
+            labelClassName="!text-[15px] md:!text-[17px]"
+            placeholder="کد شرکت را وارد کنید"
+            className="!text-sm"
+          />
+        )}
         <RadioButton
           register={register}
           errors={errors}
