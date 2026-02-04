@@ -1,5 +1,11 @@
 import { TSelectBox } from "@/libs/types";
-import Select from "react-select";
+import dynamic from "next/dynamic";
+const Select = dynamic(() => import("react-select"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[42px] animate-pulse bg-gray-200 rounded-md" />
+  ),
+});
 
 function SelectBox({
   title,
@@ -14,8 +20,10 @@ function SelectBox({
   onSelected,
   placeholder = "placeholder",
   className,
+  searchable,
+  noOptionMsg,
 }: TSelectBox) {
-  if (!multiple) {
+  if (!multiple && !searchable) {
     return (
       <div className="flex w-full flex-col gap-y-3  relative">
         <label className={`text-sm ${className}`}>{title}</label>
@@ -63,6 +71,8 @@ function SelectBox({
             options={options}
             onChange={handleSelectChange}
             placeholder={placeholder}
+            noOptionsMessage={() => noOptionMsg}
+            isDisabled={disable}
           />
         </div>
       </div>
