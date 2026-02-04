@@ -195,6 +195,15 @@ export type TSelectBox = {
   className?: string;
 };
 
+export type TRadioButton = {
+  className?: string;
+  register: any;
+  errors: any;
+  name: string;
+  options: TOption[];
+  labelName: string;
+};
+
 export interface IHambergerMobileMenu {
   isOpen: boolean;
   onOpen: React.Dispatch<React.SetStateAction<boolean>>;
