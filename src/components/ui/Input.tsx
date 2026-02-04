@@ -59,7 +59,7 @@ function Input({
           name={name}
         ></textarea>
         {errors[name] && (
-          <span className={`text-xs md:text-sm text-red-600`}>
+          <span className={`absolute -bottom-3 text-xs md:text-sm text-red-600`}>
             {errors[name].message}
           </span>
         )}
