@@ -97,3 +97,25 @@ export const sellerInformation = yup.object({
 });
 
 export type SellerInformationType = yup.InferType<typeof sellerInformation>;
+
+export const sellerAddressInfo = yup.object({
+  address: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(10, "حداقل تعداد کاراکتر 10 عدد است")
+    .max(1000, "حداکثر تعداد کاراکتر 1000 عدد میباشد"),
+  postalCode: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .required("این فیلد الزامی است")
+    .min(10, "حداقل تعداد کاراکتر 10 عدد است")
+    .max(10, "حداکثر تعداد کاراکتر 10 عدد میباشد"),
+  desc: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .required("این فیلد الزامی است")
+    .min(10, "حداقل تعداد کاراکتر 10 عدد است")
+    .max(1000, "حداکثر تعداد کاراکتر 1000 عدد میباشد"),
+});
+
+export type sellerAddressInfoType = yup.InferType<typeof sellerAddressInfo>;
