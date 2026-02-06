@@ -5,6 +5,7 @@ import { SiGooglemaps } from "react-icons/si";
 import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import RegisterTitle from "./RegisterTitle";
 import Button from "@/components/ui/Button";
+import { usePathname, useRouter } from "next/navigation";
 
 function LocationTracker({ setPosition }) {
   const map = useMapEvents({
@@ -18,6 +19,8 @@ function LocationTracker({ setPosition }) {
 }
 
 const SellerLocation = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [position, setPosition] = useState<[number, number]>([35.7, 51.39]);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -32,6 +35,10 @@ const SellerLocation = () => {
       </div>
     );
   }
+
+  const saveLocation = () => {
+    router.push(`${pathname}?step=3&subStep=1`);
+  };
 
   return (
     <div>
@@ -50,11 +57,15 @@ const SellerLocation = () => {
       </div>
 
       <div className="flex items-center justify-center gap-x-4">
-        <Button type="submit" className="!w-[200px] text-sm md:text-base">
+        <Button
+          onClick={saveLocation}
+          type="submit"
+          className="!w-[200px] text-sm md:text-base"
+        >
           ذخیره لوکیشن
         </Button>
         <Button
-          type="reset"
+          onClick={() => router.back()}
           className="!w-[200px] !bg-red-500 text-sm md:text-base"
         >
           لغو
