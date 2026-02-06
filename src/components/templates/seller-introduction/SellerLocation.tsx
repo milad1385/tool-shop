@@ -1,11 +1,10 @@
+import Button from "@/components/ui/Button";
 import "leaflet/dist/leaflet.css";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { PiMapPinFill } from "react-icons/pi";
 import { SiGooglemaps } from "react-icons/si";
 import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import RegisterTitle from "./RegisterTitle";
-import Button from "@/components/ui/Button";
-import { usePathname, useRouter } from "next/navigation";
 
 function LocationTracker({ setPosition }) {
   const map = useMapEvents({
