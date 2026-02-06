@@ -6,6 +6,14 @@ import SellerInformation from "./SellerInformation";
 import SellerRegisterContainer from "./SellerRegisterContainer";
 import SellerStatus from "./SellerStatus";
 import SellerAddress from "./SellerAddress";
+import dynamic from "next/dynamic";
+const SellerLocation = dynamic(
+  () => import('./SellerLocation'),
+  { 
+    ssr: false,
+    loading: () => <div>در حال بارگذاری نقشه...</div>
+  }
+);
 
 function RegisterationSteps() {
   const searchParam = useSearchParams();
@@ -29,6 +37,8 @@ function renderStep(step: number, subStep: number) {
     return <SellerInformation />;
   } else if (step === 2 && subStep === 1) {
     return <SellerAddress />;
+  } else if (step === 2 && subStep === 2) {
+    return <SellerLocation />;
   }
 }
 
