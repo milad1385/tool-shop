@@ -27,14 +27,6 @@ const SellerLocation = () => {
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) {
-    return (
-      <div className="flex h-96 items-center justify-center text-gray-600">
-        در حال بارگذاری نقشه...
-      </div>
-    );
-  }
-
   const saveLocation = () => {
     router.push(`${pathname}?step=3&subStep=1`);
   };
@@ -42,7 +34,7 @@ const SellerLocation = () => {
   return (
     <div>
       <RegisterTitle content="لوکیشن خود را در نقشه زیر انتخاب کنید" />
-      <div className="max-w-4xl mx-auto p-5 mt-8 md:mt-10">
+      <div className="max-w-4xl mx-auto p-5 mt-3 md:mt-8">
         <div className="relative h-[400px] border-2 border-gray-300 rounded-lg overflow-hidden">
           <MapContainer center={position} zoom={13} className="h-full w-full">
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -59,13 +51,13 @@ const SellerLocation = () => {
         <Button
           onClick={saveLocation}
           type="submit"
-          className="!w-[200px] text-sm md:text-base"
+          className="!w-[150px] text-sm md:text-base"
         >
           ذخیره لوکیشن
         </Button>
         <Button
           onClick={() => router.back()}
-          className="!w-[200px] !bg-red-500 text-sm md:text-base"
+          className="!w-[150px] !bg-red-500 text-sm md:text-base"
         >
           لغو
         </Button>

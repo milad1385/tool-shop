@@ -3,7 +3,7 @@ import { MdLockOutline } from "react-icons/md";
 
 function MobileMenuBar() {
   return (
-    <div className="flex lg:hidden">
+    <div className="flex lg:hidden justify-center">
       {sideBarLinks.map((link, index) => (
         <div key={link.id} className="flex items-center gap-1 mt-8">
           <div className="flex items-center gap-x-1.5">

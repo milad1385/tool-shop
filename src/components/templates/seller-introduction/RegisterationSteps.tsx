@@ -1,16 +1,17 @@
 "use client";
+import Loading from "@/components/modules/main/Loading";
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import CancelSellerRegisteration from "./CancelSellerRegisteration";
 import MobileMenuBar from "./MobileMenuBar";
+import PanelEducation from "./PanelEducation";
+import SellerAddress from "./SellerAddress";
 import SellerInformation from "./SellerInformation";
 import SellerRegisterContainer from "./SellerRegisterContainer";
 import SellerStatus from "./SellerStatus";
-import SellerAddress from "./SellerAddress";
-import dynamic from "next/dynamic";
-import PanelEducation from "./PanelEducation";
 const SellerLocation = dynamic(() => import("./SellerLocation"), {
   ssr: false,
-  loading: () => <div>در حال بارگذاری نقشه...</div>,
+  loading: () => <Loading/>,
 });
 
 function RegisterationSteps() {
