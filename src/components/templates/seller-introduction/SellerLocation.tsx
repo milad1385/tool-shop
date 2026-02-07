@@ -1,7 +1,7 @@
 import Button from "@/components/ui/Button";
 import "leaflet/dist/leaflet.css";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SiGooglemaps } from "react-icons/si";
 import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import RegisterTitle from "./RegisterTitle";
@@ -21,12 +21,6 @@ const SellerLocation = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [position, setPosition] = useState<[number, number]>([35.7, 51.39]);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const saveLocation = () => {
     router.push(`${pathname}?step=3&subStep=1`);
   };
