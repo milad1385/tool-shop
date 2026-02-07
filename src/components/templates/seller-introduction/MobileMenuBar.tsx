@@ -1,10 +1,22 @@
 import { sideBarLinks } from "@/constants/data";
+import { useSearchParams } from "next/navigation";
 import { MdLockOutline } from "react-icons/md";
 
 function MobileMenuBar() {
+  const searchParams = useSearchParams();
+
+  const step = Number(searchParams.get("step")) || 1;
+  const updatedLinks = sideBarLinks.map((link) => {
+    const isStepActive = link.id <= step;
+
+    return {
+      ...link,
+      isActive: isStepActive,
+    };
+  });
   return (
     <div className="flex lg:hidden justify-center">
-      {sideBarLinks.map((link, index) => (
+      {updatedLinks.map((link, index) => (
         <div key={link.id} className="flex items-center gap-1 mt-8">
           <div className="flex items-center gap-x-1.5">
             <div
