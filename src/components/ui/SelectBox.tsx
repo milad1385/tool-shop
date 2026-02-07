@@ -62,11 +62,11 @@ function SelectBox({
       <div className="flex w-full flex-col gap-y-3  relative">
         <label htmlFor="">{title}</label>
         <div
-          className={`  h-[52px] px-2.5 rounded-xl flex items-center justify-between gap-x-2`}
+          className={`  h-[52px]  rounded-xl flex items-center justify-between gap-x-2`}
         >
           <Select
             defaultValue={selected}
-            className="w-full"
+            className="w-full text-sm md:text-base"
             isMulti={multiple}
             options={options}
             onChange={handleSelectChange}

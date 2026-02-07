@@ -1,7 +1,7 @@
 "use client";
 import Loading from "@/components/modules/main/Loading";
 import dynamic from "next/dynamic";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import CancelSellerRegisteration from "./CancelSellerRegisteration";
 import MobileMenuBar from "./MobileMenuBar";
 import PanelEducation from "./PanelEducation";
@@ -9,16 +9,25 @@ import SellerAddress from "./SellerAddress";
 import SellerInformation from "./SellerInformation";
 import SellerRegisterContainer from "./SellerRegisterContainer";
 import SellerStatus from "./SellerStatus";
+import { useEffect } from "react";
 const SellerLocation = dynamic(() => import("./SellerLocation"), {
   ssr: false,
-  loading: () => <Loading/>,
+  loading: () => <Loading />,
 });
 
 function RegisterationSteps() {
   const searchParam = useSearchParams();
-
+  const pathname = usePathname();
   const step = Number(searchParam.get("step")) || 1;
   const subStep = Number(searchParam.get("substep")) || 1;
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [pathname]);
 
   return (
     <SellerRegisterContainer>

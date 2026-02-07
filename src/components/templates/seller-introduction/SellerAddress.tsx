@@ -105,7 +105,7 @@ function SellerAddress() {
           className="!text-sm"
         />
 
-        <div className="flex items-center gap-x-4 mt-[158px]">
+        <div className="flex items-center gap-x-4 md:mt-[158px]">
           <Button type="submit" className="!w-[200px] text-sm md:text-base">
             ذخیره اطلاعات
           </Button>
