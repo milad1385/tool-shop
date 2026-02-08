@@ -1,7 +1,7 @@
 "use client";
 import Loading from "@/components/modules/main/Loading";
 import dynamic from "next/dynamic";
-import { usePathname, useSearchParams } from "next/navigation";
+import { notFound, usePathname, useSearchParams } from "next/navigation";
 import CancelSellerRegisteration from "./CancelSellerRegisteration";
 import MobileMenuBar from "./MobileMenuBar";
 import PanelEducation from "./PanelEducation";
@@ -10,6 +10,7 @@ import SellerInformation from "./SellerInformation";
 import SellerRegisterContainer from "./SellerRegisterContainer";
 import SellerStatus from "./SellerStatus";
 import { useEffect } from "react";
+import WelcomeToPanel from "./WelcomeToPanel";
 const SellerLocation = dynamic(() => import("./SellerLocation"), {
   ssr: false,
   loading: () => <Loading />,
@@ -49,6 +50,10 @@ function renderStep(step: number, subStep: number) {
     return <SellerLocation />;
   } else if (step === 3 && subStep === 1) {
     return <PanelEducation />;
+  } else if (step === 4 && subStep === 1) {
+    return <WelcomeToPanel />;
+  } else {
+    return notFound();
   }
 }
 
