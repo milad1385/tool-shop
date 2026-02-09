@@ -14,11 +14,8 @@ function CheckoutBox() {
             <span>مبلغ کل:</span>
             <span>300.000 تومان</span>
           </div>
-          <div className="flex items-center justify-between p-4 bg-yellow-100 rounded-lg">
-            <span>هزینه ارسال:</span>
-            <span>140.000</span>
-          </div>
-          <div className="flex items-center justify-between p-4">
+
+          <div className="flex items-center justify-between p-4 bg-yellow-100 rounded-lg mb-4">
             <span>مبلغ نهایی:</span>
             <span>440.000</span>
           </div>
