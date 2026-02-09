@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 function CheckoutBox() {
@@ -21,9 +22,12 @@ function CheckoutBox() {
             <span>مبلغ نهایی:</span>
             <span>440.000</span>
           </div>
-          <button className="py-2 rounded-md bg-stone-800 hover:bg-stone-900 text-white">
+          <Link
+            href="/checkout"
+            className="flex items-center justify-center py-2 rounded-md bg-stone-800 hover:bg-stone-900 text-white"
+          >
             پرداخت
-          </button>
+          </Link>
         </div>
       </div>
     </div>
