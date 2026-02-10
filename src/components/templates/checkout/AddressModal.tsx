@@ -2,6 +2,8 @@ import React from "react";
 import { FaXmark } from "react-icons/fa6";
 import AddressItem from "./AddressItem";
 import { FaPlus } from "react-icons/fa";
+import Modal from "@/components/modules/main/Modal";
+import AddAddressModal from "./AddAddressModal";
 
 function AddressModal({ onClose }: { onClose?: any }) {
   return (
@@ -17,10 +19,17 @@ function AddressModal({ onClose }: { onClose?: any }) {
         <AddressItem />
       </div>
       <div className="border-t-2 border-b-gray-200 mt-5 pt-5 pb-2">
-        <button className="flex items-center gap-x-2 text-red-600 font-bold">
-          <FaPlus className="text-lg" />
-          افزودن آدرس جدید
-        </button>
+        <Modal>
+          <Modal.Open name="addAddress">
+            <button className="flex items-center gap-x-2 text-red-600 font-bold">
+              <FaPlus className="text-lg" />
+              افزودن آدرس جدید
+            </button>
+          </Modal.Open>
+          <Modal.Page name="addAddress">
+            <AddAddressModal />
+          </Modal.Page>
+        </Modal>
       </div>
     </div>
   );
