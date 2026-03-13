@@ -6,6 +6,7 @@ import { HiChevronLeft } from "react-icons/hi";
 import AddressModal from "./AddressModal";
 import Orders from "./Orders";
 import Title from "./Title";
+import ChooseTime from "./ChooseTime";
 
 function MainBox() {
   return (
@@ -38,6 +39,8 @@ function MainBox() {
       </Modal>
 
       <Orders />
+
+      <ChooseTime/>
     </div>
   );
 }
