@@ -21,8 +21,8 @@ function AddressModal({ onClose }: { onClose?: any }) {
       <div className="border-t-2 border-b-gray-200 mt-5 pt-5 pb-2">
         <Modal>
           <Modal.Open name="addAddress">
-            <button className="flex items-center gap-x-2 text-red-600 font-bold">
-              <FaPlus className="text-lg" />
+            <button className="flex items-center gap-x-2 text-sm md:text-base text-red-600 font-bold">
+              <FaPlus className="text-base md:text-lg" />
               افزودن آدرس جدید
             </button>
           </Modal.Open>

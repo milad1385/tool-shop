@@ -7,8 +7,8 @@ import AddressModal from "./AddressModal";
 
 function MainBox() {
   return (
-    <div className="col-span-12 md:col-span-9 bg-white rounded-3xl p-8">
-      <h2 className="text-lg text-zinc-800 font-bold">آدرس و زمان ارسال</h2>
+    <div className="col-span-12 md:col-span-9 bg-white rounded-3xl p-5 md:p-8">
+      <h2 className="text-base md:text-lg text-zinc-800 font-bold">آدرس و زمان ارسال</h2>
 
       <Modal>
         <Modal.Open name="address">
@@ -16,13 +16,13 @@ function MainBox() {
             <FaTruck className="text-zinc-700 text-lg" />
             <div className="space-y-3 flex-1">
               <div className="flex items-center justify-between">
-                <h3 className="text-yellow-500">ارسال به آدرس انتخاب شده</h3>
-                <span className="flex items-center text-sm gap-x-1 text-yellow-500">
+                <h3 className="text-xs md:text-base text-yellow-500">ارسال به آدرس انتخاب شده</h3>
+                <span className="text-xs md:text-sm flex items-center gap-x-1 text-yellow-500">
                   تغییر آدرس
                   <HiChevronLeft />
                 </span>
               </div>
-              <h4 className="text-zinc-700">
+              <h4 className="text-zinc-600 text-sm">
                 استان البرز ، کرج ، ساختمان شماره 135
               </h4>
             </div>
