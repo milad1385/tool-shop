@@ -23,7 +23,7 @@ function CheckoutBox() {
             href="/checkout"
             className="flex items-center justify-center py-2 rounded-md bg-stone-800 hover:bg-stone-900 text-white"
           >
-            پرداخت
+            ادامه دادن
           </Link>
         </div>
       </div>
