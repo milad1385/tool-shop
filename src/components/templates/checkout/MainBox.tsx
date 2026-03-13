@@ -1,14 +1,16 @@
-"use client"
+"use client";
 import Modal from "@/components/modules/main/Modal";
 import React from "react";
 import { FaTruck } from "react-icons/fa";
 import { HiChevronLeft } from "react-icons/hi";
 import AddressModal from "./AddressModal";
+import Orders from "./Orders";
+import Title from "./Title";
 
 function MainBox() {
   return (
     <div className="col-span-12 md:col-span-9 bg-white rounded-3xl p-5 md:p-8">
-      <h2 className="text-base md:text-lg text-zinc-800 font-bold">آدرس و زمان ارسال</h2>
+      <Title title="آدرس و زمان ارسال" />
 
       <Modal>
         <Modal.Open name="address">
@@ -16,7 +18,9 @@ function MainBox() {
             <FaTruck className="text-zinc-700 text-lg" />
             <div className="space-y-3 flex-1">
               <div className="flex items-center justify-between">
-                <h3 className="text-xs md:text-base text-yellow-500">ارسال به آدرس انتخاب شده</h3>
+                <h3 className="text-xs md:text-base text-yellow-500">
+                  ارسال به آدرس انتخاب شده
+                </h3>
                 <span className="text-xs md:text-sm flex items-center gap-x-1 text-yellow-500">
                   تغییر آدرس
                   <HiChevronLeft />
@@ -32,6 +36,8 @@ function MainBox() {
           <AddressModal />
         </Modal.Page>
       </Modal>
+
+      <Orders />
     </div>
   );
 }
