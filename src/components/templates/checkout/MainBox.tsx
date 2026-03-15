@@ -7,6 +7,8 @@ import AddressModal from "./AddressModal";
 import Orders from "./Orders";
 import Title from "./Title";
 import ChooseTime from "./ChooseTime";
+import Button from "@/components/ui/Button";
+import Link from "next/link";
 
 function MainBox() {
   return (
@@ -40,7 +42,14 @@ function MainBox() {
 
       <Orders />
 
-      <ChooseTime/>
+      <ChooseTime />
+
+      <div className="flex gap-x-4">
+        <Button className="!w-[150px] mt-10">تایید اطلاعات</Button>
+        <Link href="/cart">
+          <Button className="!w-[150px] mt-10 !bg-red-600">برگشت</Button>
+        </Link>
+      </div>
     </div>
   );
 }

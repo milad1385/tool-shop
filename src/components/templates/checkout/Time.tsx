@@ -6,7 +6,7 @@ function Time({ clocks, weekName }) {
       <h2 className="text-center font-Lalezar text-zinc-700">{weekName}</h2>
       <ul className="mt-4 space-y-3.5">
         {clocks.map((clock) => (
-          <li className="flex items-center gap-x-2">
+          <li key={clock.id} className="flex items-center gap-x-2">
             <input disabled={clock.isDisable} type="radio" className="accent-black" name="time" id={`clock-${clock.id}`} />
             <label htmlFor={`clock-${clock.id}`} className="text-sm">
               از {clock.minTime} تا {clock.maxTime}
