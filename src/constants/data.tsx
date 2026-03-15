@@ -1296,3 +1296,60 @@ export const provinceData = () => {
 
   return stateOptions;
 };
+
+export const deliverTimes = [
+  {
+    id: 1,
+    weekName: "شنبه",
+    clocks: [
+      { id: 1, minTime: 8, maxTime: 12, isDisable: true },
+      { id: 2, minTime: 15, maxTime: 18, isDisable: false },
+      { id: 3, minTime: 19, maxTime: 21, isDisable: false },
+    ],
+  },
+  {
+    id: 2,
+    weekName: "یکشنبه",
+    clocks: [
+      { id: 4, minTime: 8, maxTime: 12, isDisable: false },
+      { id: 5, minTime: 15, maxTime: 18, isDisable: false },
+      { id: 6, minTime: 19, maxTime: 21, isDisable: false },
+    ],
+  },
+  {
+    id: 3,
+    weekName: "دوشنبه",
+    clocks: [
+      { id: 7, minTime: 8, maxTime: 12, isDisable: true },
+      { id: 8, minTime: 15, maxTime: 18, isDisable: false },
+      { id: 9, minTime: 19, maxTime: 21, isDisable: false },
+    ],
+  },
+  {
+    id: 4,
+    weekName: "سه شنبه",
+    clocks: [
+      { id: 10, minTime: 8, maxTime: 12, isDisable: true },
+      { id: 11, minTime: 15, maxTime: 18, isDisable: false },
+      { id: 12, minTime: 19, maxTime: 21, isDisable: false },
+    ],
+  },
+  {
+    id: 5,
+    weekName: "چهارشنبه",
+    clocks: [
+      { id: 14, minTime: 8, maxTime: 12, isDisable: true },
+      { id: 15, minTime: 15, maxTime: 18, isDisable: false },
+      { id: 16, minTime: 19, maxTime: 21, isDisable: false },
+    ],
+  },
+  {
+    id: 6,
+    weekName: "پنچ شنبه",
+    clocks: [
+      { id: 17, minTime: 8, maxTime: 12, isDisable: true },
+      { id: 18, minTime: 15, maxTime: 18, isDisable: false },
+      { id: 19, minTime: 19, maxTime: 21, isDisable: false },
+    ],
+  },
+];
