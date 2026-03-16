@@ -18,7 +18,10 @@ function OrderItem() {
         25%
       </div>
       <div className="leading-10 flex flex-col md:block gap-y-3 space-y-3 md:mt-10">
-        <Link href="/products/1" className="font-Lalezar text-center md:text-right  text-base md:text-xl">
+        <Link
+          href="/products/1"
+          className="font-Lalezar text-center md:text-right  text-base md:text-xl"
+        >
           دریل شارژِ مدل رونیکس
         </Link>
         <Link
@@ -27,6 +30,10 @@ function OrderItem() {
         >
           دسته بندی: دریل ها
         </Link>
+        <div className="text-sm text-zinc-700">
+          <span>تعداد : </span>
+          <span>2 عدد</span>
+        </div>
         <Link
           href="/seller/1"
           className="flex items-center justify-center md:justify-start gap-x-2 text-center md:text-right text-zinc-700 text-xs md:text-sm"
@@ -36,7 +43,7 @@ function OrderItem() {
         </Link>
 
         <div className="flex gap-4 text-base mt-4 pb-2">
-          <span className="line-through">360.000 تومان</span>
+          <span className="line-through text-zinc-700">360.000</span>
           <span className="text-yellow-500">280.000 تومان</span>
         </div>
       </div>
