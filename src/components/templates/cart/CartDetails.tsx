@@ -3,7 +3,7 @@ import CheckoutBox from "./CheckoutBox";
 import EmptyCart from "./EmptyCart";
 
 function CartDetails() {
-  return false ? (
+  return true ? (
     <div className="grid grid-cols-12 gap-4">
       <Carts />
       <CheckoutBox />
