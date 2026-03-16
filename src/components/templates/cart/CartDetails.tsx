@@ -1,13 +1,15 @@
-import React from "react";
 import Carts from "./Carts";
 import CheckoutBox from "./CheckoutBox";
+import EmptyCart from "./EmptyCart";
 
 function CartDetails() {
-  return (
+  return false ? (
     <div className="grid grid-cols-12 gap-4">
-      <Carts/>
-      <CheckoutBox/>
+      <Carts />
+      <CheckoutBox />
     </div>
+  ) : (
+    <EmptyCart/>
   );
 }
 
