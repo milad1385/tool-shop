@@ -130,6 +130,7 @@ export interface IStatBox {
 export interface IUserPanelTitle {
   content: string;
   children?: React.ReactNode;
+  isBack?: boolean;
 }
 
 export interface IFilters {
