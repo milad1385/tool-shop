@@ -342,3 +342,9 @@ table {
   width: 10px;
   height: 10px;
 }
+
+@media print {
+  .print-btn {
+    display: none;
+  }
+}
