@@ -1,7 +1,10 @@
+"use client"
+import Modal from "@/components/modules/main/Modal";
+import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { FaRegStar } from "react-icons/fa";
+import CommentModal from "./CommentModal";
 
 function CommentItem() {
   return (
@@ -49,9 +52,15 @@ function CommentItem() {
           </Link>
         </div>
         <div>
-          <button className="px-8 py-2 bg-stone-800 rounded-xl text-white">
-            مشاهده کامنت
-          </button>
+          <Modal>
+            <Modal.Open name="comment">
+              <Button className="!w-[145px] !rounded-xl"> مشاهده کامنت</Button>
+            </Modal.Open>
+
+            <Modal.Page name="comment">
+              <CommentModal />
+            </Modal.Page>
+          </Modal>
         </div>
       </div>
     </div>
