@@ -1353,3 +1353,12 @@ export const deliverTimes = [
     ],
   },
 ];
+
+export const limitedRoute = [
+  "/auth",
+  "/p-user",
+  "/p-admin",
+  "/seller-introduction",
+  "/factor",
+  "/seller-introduction/register",
+];
