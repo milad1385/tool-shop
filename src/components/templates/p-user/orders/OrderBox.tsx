@@ -62,7 +62,10 @@ function OrderBox({ className }: IOrderBox) {
           </Link>
         </div>
         <div>
-          <Link href="/p-user/orders/1" className="px-8 py-2 bg-stone-800 rounded-xl text-white">
+          <Link
+            href="/factor"
+            className="px-8 py-2 bg-stone-800 rounded-xl text-white"
+          >
             مشاهده فاکتور
           </Link>
         </div>
