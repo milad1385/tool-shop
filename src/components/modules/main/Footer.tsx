@@ -11,16 +11,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import FooterMenu from "./FooterMenu";
 import FooterSlider from "./FooterSlider";
+import { limitedRoute } from "@/constants/data";
 
 function Footer() {
   const pathname = usePathname();
-  if (
-    pathname.includes("/auth") ||
-    pathname.includes("/p-user") ||
-    pathname.includes("/p-admin") ||
-    pathname.includes("/seller-introduction/register")
-  )
+  const result = limitedRoute.some((route) => pathname.includes(route));
+  if (result) {
     return null;
+  }
   return (
     <>
       <footer className="bg-stone-800 mt-10  py-10 md:py-8 md:pb-8 md:pt-[62px]">
