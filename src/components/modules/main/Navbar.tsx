@@ -10,17 +10,15 @@ import {
 import { IoChevronDown } from "react-icons/io5";
 import MobileMenu from "./MobileMenu";
 import { usePathname } from "next/navigation";
+import { limitedRoute } from "@/constants/data";
 
 function Navbar() {
   const pathname = usePathname();
-
-  if (
-    pathname.includes("/auth") ||
-    pathname.includes("/p-user") ||
-    pathname.includes("/p-admin") ||
-    pathname.includes("/seller-introduction")
-  )
+  const result = limitedRoute.some((route) => pathname.includes(route));
+  if (result) {
     return null;
+  }
+
   return (
     <div className="mb-20 md:mb-40">
       <div className="bg-white md:pb-8 shadow fixed top-0 left-0 right-0  z-30">
