@@ -13,7 +13,9 @@ function OrdersList() {
         <OrderItem />
       </div>
       <div className="flex items-center gap-x-4 px-5 mt-8">
-        <Button className="!w-[150px]">مشاهده فاکتور</Button>
+        <Link href="/factor/1">
+          <Button className="!w-[150px]">مشاهده فاکتور</Button>
+        </Link>
         <Link href="/p-user/orders/">
           <Button className="!w-[150px] !bg-red-500">بازگشت</Button>
         </Link>

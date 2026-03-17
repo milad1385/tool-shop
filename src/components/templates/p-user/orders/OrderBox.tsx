@@ -1,3 +1,4 @@
+import Button from "@/components/ui/Button";
 import { IOrderBox } from "@/libs/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -61,12 +62,16 @@ function OrderBox({ className }: IOrderBox) {
             />
           </Link>
         </div>
-        <div>
-          <Link
-            href="/factor"
-            className="px-8 py-2 bg-stone-800 rounded-xl text-white"
-          >
-            مشاهده فاکتور
+        <div className="flex items-center gap-x-4">
+          <Link href="/factor/1">
+            <Button className="!rounded-xl !w-[125px]">
+              مشاهده فاکتور
+            </Button>
+          </Link>
+          <Link href="/p-user/orders/1">
+            <Button className="!bg-red-600 !rounded-xl !w-[125px]">
+              جزییات
+            </Button>
           </Link>
         </div>
       </div>

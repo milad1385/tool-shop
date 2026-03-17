@@ -120,6 +120,55 @@ function FactorDetails() {
             <tbody className="">
               <tr className="!bg-gray-100 text-center child:p-4 !border-1">
                 <td>1</td>
+                <td>#4542558</td>
+                <td>
+                  <Link href="/products/1">دریل چند حالته رونیکس</Link>
+                </td>
+                <td>25</td>
+                <td>15,000,000</td>
+                {/* <td>
+                  {(
+                    item.product.price +
+                    ((item.product.price * item.product.off) / 100) * item.qty
+                  ).toLocaleString("fa")}
+                </td> */}
+                <td>85,000,000</td>
+                {/* <td>
+                  {(
+                    (item.product.price * item.qty * item.product.off) /
+                    100
+                  ).toLocaleString("fa")}
+                </td> */}
+                <td>25,000,000</td>
+                {/*{(item.price * item.qty).toLocaleString("fa")}</td> */}
+              </tr>
+              <tr className="!bg-gray-100 text-center child:p-4 !border-1">
+                <td>1</td>
+                <td>#4542558</td>
+                <td>
+                  <Link href="/products/1">دریل چند حالته رونیکس</Link>
+                </td>
+                <td>25</td>
+                <td>15,000,000</td>
+                {/* <td>
+                  {(
+                    item.product.price +
+                    ((item.product.price * item.product.off) / 100) * item.qty
+                  ).toLocaleString("fa")}
+                </td> */}
+                <td>85,000,000</td>
+                {/* <td>
+                  {(
+                    (item.product.price * item.qty * item.product.off) /
+                    100
+                  ).toLocaleString("fa")}
+                </td> */}
+                <td>25,000,000</td>
+                {/*{(item.price * item.qty).toLocaleString("fa")}</td> */}
+              </tr>
+              <tr className="!bg-gray-100 text-center child:p-4 !border-1">
+                <td>1</td>
+                <td>#4542558</td>
                 <td>
                   <Link href="/products/1">دریل چند حالته رونیکس</Link>
                 </td>
@@ -162,7 +211,7 @@ function FactorDetails() {
             <div>امضا فروشنده</div>
           </div>
           <button
-            className="bg-black text-white px-4 py-2 rounded-md font-DanaMedium"
+            className="bg-black text-white px-4 py-2 rounded-md font-DanaMedium print-btn"
             onClick={printFactorHandler}
           >
             پرینت فاکتور
