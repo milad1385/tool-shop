@@ -137,6 +137,10 @@ export interface ISidebar {
   title: string;
 }
 
+export interface ITopbar {
+  role: string;
+}
+
 export interface IFilters {
   items: IFilterItem[];
   slug: string;
