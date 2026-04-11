@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Logout from "@/components/templates/p-admin/Logout";
+import { ITopbar } from "@/libs/types";
 
-function Topbar() {
+function Topbar({ role }: ITopbar) {
   return (
     <div className="bg-white sticky top-0 z-40 p-4 flex items-center justify-between">
       <div className="flex items-center gap-x-3">
@@ -15,7 +16,7 @@ function Topbar() {
         <div className="flex flex-col gap-y-1">
           <span className="font-Lalezar">میلاد سلامیان</span>
           <span className="text-xs font-IranMedium text-gray-700">
-            ادمین کل
+            {role === "seller" ? "فروشنده" : "ادمین کل"}
           </span>
         </div>
       </div>

@@ -10,14 +10,18 @@ function Sidebar({ title }: ISidebar) {
       <div className="sticky top-0 p-5">
         <h1 className="font-Lalezar text-2xl text-center">{title}</h1>
         <ul className="mt-5 space-y-0.5">
-          {isAdmin
-            ? adminPanelLinks.map((link) => (
-                <MenuItem {...link} key={link.id} />
-              ))
-            : sellerPanelLinks.map((link) => (
-                <MenuItem {...link} key={link.id} />
-              ))}
-          <Logout />
+          <div>
+            {isAdmin
+              ? adminPanelLinks.map((link) => (
+                  <MenuItem {...link} key={link.id} />
+                ))
+              : sellerPanelLinks.map((link) => (
+                  <MenuItem {...link} key={link.id} />
+                ))}
+          </div>
+          <div className={!isAdmin ? "fixed bottom-3":""}>
+            <Logout />
+          </div>
         </ul>
       </div>
     </div>

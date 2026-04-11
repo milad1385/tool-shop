@@ -20,7 +20,7 @@ function layout({ children }: { children: React.ReactNode }) {
     <div className="grid grid-cols-12 h-screen">
       <Sidebar title="پنل مدیریت ادمین" />
       <div className="col-span-12 lg:col-span-10">
-        <Topbar />
+        <Topbar role="admin"/>
         <div className="p-5">{children}</div>
       </div>
     </div>
