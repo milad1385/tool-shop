@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 function layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid grid-cols-12 h-screen">
-      <Sidebar />
+      <Sidebar title="پنل مدیریت ادمین" />
       <div className="col-span-12 lg:col-span-10">
         <Topbar />
         <div className="p-5">{children}</div>
