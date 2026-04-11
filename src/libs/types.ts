@@ -133,6 +133,10 @@ export interface IUserPanelTitle {
   isBack?: boolean;
 }
 
+export interface ISidebar {
+  title: string;
+}
+
 export interface IFilters {
   items: IFilterItem[];
   slug: string;
