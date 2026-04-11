@@ -1361,4 +1361,5 @@ export const limitedRoute = [
   "/seller-introduction",
   "/factor",
   "/seller-introduction/register",
+  "/p-seller"
 ];
