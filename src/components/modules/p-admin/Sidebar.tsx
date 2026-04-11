@@ -19,7 +19,7 @@ function Sidebar({ title }: ISidebar) {
                   <MenuItem {...link} key={link.id} />
                 ))}
           </div>
-          <div className={!isAdmin ? "fixed bottom-3":""}>
+          <div className={!isAdmin ? "fixed bottom-3":"left-0 right-0"}>
             <Logout />
           </div>
         </ul>
