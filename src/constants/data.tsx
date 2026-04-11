@@ -10,7 +10,7 @@ import {
   FaRegQuestionCircle,
   FaTools,
 } from "react-icons/fa";
-import { FiShoppingCart, FiTruck } from "react-icons/fi";
+import { FiSettings, FiShoppingCart, FiTruck } from "react-icons/fi";
 import { GoCommentDiscussion, GoGift } from "react-icons/go";
 import { HiOutlineDocumentDownload, HiOutlineUsers } from "react-icons/hi";
 import {
@@ -280,6 +280,45 @@ export const adminPanelLinks = [
     title: "تنظیمات",
     href: "/p-admin/settings",
     icon: <IoSettingsOutline className="text-2xl" />,
+  },
+];
+
+export const sellerPanelLinks = [
+  {
+    id: 1,
+    title: "صفحه اصلی",
+    href: "/p-seller",
+    icon: <IoHomeOutline className="text-2xl" />,
+  },
+  {
+    id: 2,
+    title: "محصولات",
+    href: "/p-seller/products",
+    icon: <AiOutlineProduct className="text-2xl" />,
+  },
+  {
+    id: 3,
+    title: "سفارشات",
+    href: "/p-seller/orders",
+    icon: <FiShoppingCart className="text-2xl" />,
+  },
+  {
+    id: 4,
+    title: "درآمد",
+    href: "/p-seller/achivement",
+    icon: <FaMoneyBill className="text-2xl" />,
+  },
+  {
+    id: 5,
+    title: "کامنت ها",
+    href: "/p-seller/comments",
+    icon: <GoCommentDiscussion className="text-2xl" />,
+  },
+  {
+    id: 6,
+    title: "تنظیمات فروشگاه",
+    href: "/p-seller/settings",
+    icon: <FiSettings className="text-2xl" />,
   },
 ];
 
@@ -1361,5 +1400,5 @@ export const limitedRoute = [
   "/seller-introduction",
   "/factor",
   "/seller-introduction/register",
-  "/p-seller"
+  "/p-seller",
 ];
