@@ -152,6 +152,16 @@ export interface IDurationChart {
   title: string;
 }
 
+interface ISaleChart {
+  label: string;
+  totalSales: number;
+  extrasSales: number;
+}
+
+export interface ISalesChart {
+  data: ISaleChart[];
+}
+
 export interface IFilters {
   items: IFilterItem[];
   slug: string;
