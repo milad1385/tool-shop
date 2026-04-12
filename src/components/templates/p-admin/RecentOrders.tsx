@@ -16,6 +16,7 @@ function RecentOrders() {
                 <td>نام</td>
                 <td>تاریخ</td>
                 <td>قیمت</td>
+                <td>شهر</td>
                 <td>وضعیت</td>
                 <td>رویداد ها</td>
               </tr>

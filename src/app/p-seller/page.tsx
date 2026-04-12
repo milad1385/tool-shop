@@ -2,6 +2,7 @@ import Container from "@/components/modules/p-admin/Container";
 import Filters from "@/components/modules/p-admin/Filters";
 import SalesChart from "@/components/modules/p-admin/SalesChart";
 import DurationChart from "@/components/templates/p-admin/DurationChart";
+import RecentOrders from "@/components/templates/p-admin/RecentOrders";
 import RecentProducts from "@/components/templates/p-admin/RecentProducts";
 import Stats from "@/components/templates/p-seller/Stats";
 import { durationChartData, salesChartData } from "@/constants/data";
@@ -26,6 +27,9 @@ function page() {
       </div>
 
       <SalesChart data={salesChartData} />
+      <div className="my-8">
+        <RecentOrders />
+      </div>
     </Container>
   );
 }

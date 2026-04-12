@@ -9,6 +9,7 @@ function OrderRow() {
       <td>میلاد سلامیان</td>
       <td>1404/03/18</td>
       <td>25,000</td>
+      <td>کرج</td>
       <td>
         <div className="bg-green-600 text-white rounded-md text-xs py-2 w-[40px] mx-auto">
             تحویل
