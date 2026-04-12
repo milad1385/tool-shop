@@ -6,7 +6,7 @@ import { ITableOperation } from "@/libs/types";
 
 function TableOperation({ pageTitle, options }: ITableOperation) {
   return (
-    <div className="flex items-center justify-between my-8">
+    <div className="flex items-center justify-between mt-4 mb-8">
       <PageTitle content={pageTitle} />
       <div className="flex items-center gap-x-4">
         {options?.length && <Filters filterField="status" options={options} />}
