@@ -141,6 +141,17 @@ export interface ITopbar {
   role: string;
 }
 
+interface IDuration {
+  duration: string;
+  value: number;
+  color: string;
+}
+
+export interface IDurationChart {
+  data: IDuration[];
+  title: string;
+}
+
 export interface IFilters {
   items: IFilterItem[];
   slug: string;
