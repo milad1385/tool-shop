@@ -1,14 +1,24 @@
-import { Metadata } from 'next';
-import React from 'react'
+import Container from "@/components/modules/p-admin/Container";
+import TableOperation from "@/components/modules/p-admin/TableOpration";
+import OrderList from "@/components/templates/p-admin/OrderList";
+import { orderStatusFilterOptions } from "@/constants/data";
+import { Metadata } from "next";
+import React from "react";
 
 export const metadata: Metadata = {
-  title: "سفارشات"
+  title: "سفارشات",
 };
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <Container>
+      <TableOperation
+        pageTitle="لیست سفارش ها"
+        options={orderStatusFilterOptions}
+      />
+      <OrderList />
+    </Container>
+  );
 }
 
-export default page
+export default page;
