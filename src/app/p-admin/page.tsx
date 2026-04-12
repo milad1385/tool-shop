@@ -7,11 +7,12 @@ import RecentProducts from "@/components/templates/p-admin/RecentProducts";
 import RecentUser from "@/components/templates/p-admin/RecentUsers";
 
 import Stats from "@/components/templates/p-admin/Stats";
+import { durationChartData } from "@/constants/data";
 import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "پنل ادمین"
+  title: "پنل ادمین",
 };
 
 function page() {
@@ -29,7 +30,7 @@ function page() {
       <Stats />
       {/* charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
-        <DurationChart />
+        <DurationChart title="میزان فروش کالا" data={durationChartData} />
         <RecentUser />
       </div>
       <SalesChart />
