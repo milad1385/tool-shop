@@ -1402,3 +1402,26 @@ export const limitedRoute = [
   "/seller-introduction/register",
   "/p-seller",
 ];
+
+export const durationChartData = [
+  {
+    duration: "دریل رویال",
+    value: 3,
+    color: "#b91c1c",
+  },
+  {
+    duration: "دریل نوین",
+    value: 5,
+    color: "#7e22ce",
+  },
+  {
+    duration: "دریل رونیکس",
+    value: 2,
+    color: "#1d4ed8",
+  },
+  {
+    duration: "اره برقی رویال",
+    value: 3,
+    color: "#a16207",
+  },
+];
