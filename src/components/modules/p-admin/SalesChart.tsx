@@ -1,4 +1,5 @@
 "use client";
+import { ISalesChart } from "@/libs/types";
 import {
   Area,
   AreaChart,
@@ -10,9 +11,9 @@ import {
   YAxis,
 } from "recharts";
 
-function SalesChart() {
+function SalesChart({ data }: ISalesChart) {
   const windowWidth: number = Number(
-    typeof window !== "undefined" && window.innerWidth
+    typeof window !== "undefined" && window.innerWidth,
   );
 
   const colors = {
@@ -21,54 +22,6 @@ function SalesChart() {
     text: "#374151",
     background: "#fff",
   };
-
-  const data = [
-    {
-      label: "10 خرداد",
-      totalSales: 20000,
-      extrasSales: 30000,
-    },
-    {
-      label: "11 خرداد",
-      totalSales: 35000,
-      extrasSales: 10000,
-    },
-    {
-      label: "12 خرداد",
-      totalSales: 38000,
-      extrasSales: 5000,
-    },
-    {
-      label: "13 خرداد",
-      totalSales: 85000,
-      extrasSales: 2000,
-    },
-    {
-      label: "14 خرداد",
-      totalSales: 36000,
-      extrasSales: 10000,
-    },
-    {
-      label: "15 خرداد",
-      totalSales: 85000,
-      extrasSales: 35000,
-    },
-    {
-      label: "16 خرداد",
-      totalSales: 35000,
-      extrasSales: 2300,
-    },
-    {
-      label: "17 خرداد",
-      totalSales: 78000,
-      extrasSales: 32500,
-    },
-    {
-      label: "18 خرداد",
-      totalSales: 12000,
-      extrasSales: 0,
-    },
-  ];
 
   //   const allDates = eachDayOfInterval({
   //     start: subDays(new Date(), numDays - 1),
