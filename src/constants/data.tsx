@@ -451,6 +451,14 @@ export const productFilterOptions = [
   { label: "فعال", slug: "not-exist", color: "green-500" },
   { label: "غیر فعال", slug: "not-exist", color: "yellow-500" },
 ];
+export const requestProductFilterOptions = [
+  { label: "همه", slug: "all", color: "black" },
+  { label: "موجود", slug: "exist", color: "green-500" },
+  { label: "ناموجود", slug: "not-exist", color: "red-500" },
+  { label: "تایید شده", slug: "accepted", color: "green-500" },
+  { label: "رد شده", slug: "rejected", color: "red-500" },
+  { label: "در حال پردازش", slug: "rejected", color: "yellow-500" },
+];
 
 export const sliderFilterOptions = [
   { label: "همه", slug: "all", color: "black" },
@@ -1426,50 +1434,50 @@ export const durationChartData = [
   },
 ];
 
-export  const salesChartData = [
-    {
-      label: "10 خرداد",
-      totalSales: 20000,
-      extrasSales: 30000,
-    },
-    {
-      label: "11 خرداد",
-      totalSales: 35000,
-      extrasSales: 10000,
-    },
-    {
-      label: "12 خرداد",
-      totalSales: 38000,
-      extrasSales: 5000,
-    },
-    {
-      label: "13 خرداد",
-      totalSales: 85000,
-      extrasSales: 2000,
-    },
-    {
-      label: "14 خرداد",
-      totalSales: 36000,
-      extrasSales: 10000,
-    },
-    {
-      label: "15 خرداد",
-      totalSales: 85000,
-      extrasSales: 35000,
-    },
-    {
-      label: "16 خرداد",
-      totalSales: 35000,
-      extrasSales: 2300,
-    },
-    {
-      label: "17 خرداد",
-      totalSales: 78000,
-      extrasSales: 32500,
-    },
-    {
-      label: "18 خرداد",
-      totalSales: 12000,
-      extrasSales: 0,
-    },
-  ];
+export const salesChartData = [
+  {
+    label: "10 خرداد",
+    totalSales: 20000,
+    extrasSales: 30000,
+  },
+  {
+    label: "11 خرداد",
+    totalSales: 35000,
+    extrasSales: 10000,
+  },
+  {
+    label: "12 خرداد",
+    totalSales: 38000,
+    extrasSales: 5000,
+  },
+  {
+    label: "13 خرداد",
+    totalSales: 85000,
+    extrasSales: 2000,
+  },
+  {
+    label: "14 خرداد",
+    totalSales: 36000,
+    extrasSales: 10000,
+  },
+  {
+    label: "15 خرداد",
+    totalSales: 85000,
+    extrasSales: 35000,
+  },
+  {
+    label: "16 خرداد",
+    totalSales: 35000,
+    extrasSales: 2300,
+  },
+  {
+    label: "17 خرداد",
+    totalSales: 78000,
+    extrasSales: 32500,
+  },
+  {
+    label: "18 خرداد",
+    totalSales: 12000,
+    extrasSales: 0,
+  },
+];
