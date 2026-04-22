@@ -36,9 +36,9 @@ export const createProductSchema = yup.object({
           return true;
         const filesArray = Array.from(value);
         return filesArray.every((file) =>
-          ACCEPTED_IMAGE_TYPES.includes(file.type)
+          ACCEPTED_IMAGE_TYPES.includes(file.type),
         );
-      }
+      },
     ),
 });
 
@@ -84,7 +84,32 @@ export const productFeatureSchema = yup.object({
   slug: yup.string().required("این فیلد الزامی است"),
   parent: yup.string().required("این فیلد الزامی است"),
 });
+export const createRequestProductSchema = yup.object({
+  product: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(5, "حداقل عنوان 5 کاراکتر است")
+    .max(200, "حداکثر عنوان 200 کاراکتر است"),
+  
+  colors: yup
+    .array()
+    .of(
+      yup.object({
+        label: yup.string().required("نام رنگ الزامی است"),
+        color: yup.string().required("کد رنگ الزامی است"),
+        qty: yup
+          .number()
+          .required("موجودی الزامی است")
+          .min(0, "موجودی نمی‌تواند منفی باشد"),
+      }),
+    )
+    .required("حداقل یک رنگ باید تعریف شود")
+    .min(1, "حداقل یک رنگ باید تعریف شود"),
+});
+
+export type TRequestProductSchema = yup.InferType<typeof createRequestProductSchema>;
 
 export type TProductSchema = yup.InferType<typeof createProductSchema>;
 export type TProductDetailSchema = yup.InferType<typeof productDetailSchema>;
 export type TProductFeatureSchema = yup.InferType<typeof productFeatureSchema>;
+
