@@ -2,18 +2,17 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import {
-  createRequestProductSchema,
-  TRequestProductSchema,
+    createRequestProductSchema,
+    TRequestProductSchema,
 } from "@/validators/frontend/product.validator";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaPlus, FaMinus } from "react-icons/fa"; // آیکون‌های ساده برای دکمه‌ها
+import { FaMinus, FaPlus } from "react-icons/fa"; // آیکون‌های ساده برای دکمه‌ها
 
 function RequestNewProduct() {
   const [colorCount, setColorCount] = useState(1);
-  const router = useRouter();
+
 
   const {
     register,
