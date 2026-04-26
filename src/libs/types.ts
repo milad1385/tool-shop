@@ -197,6 +197,10 @@ export interface IInput {
   labelClassName?: string;
 }
 
+export interface IIOrderList {
+  panel?: "seller" | "admin" | "user";
+}
+
 export interface IAnswerBox {
   body?: string;
   creator?: string;
