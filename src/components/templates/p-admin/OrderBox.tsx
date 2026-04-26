@@ -1,9 +1,11 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
 import OrderBoxItem from "./OrderBoxItem";
 
 function OrderBox() {
+  const router = useRouter();
   return (
     <div className="p-6 border rounded-2xl bg-white relative">
       <div className="bg-green-500 rounded-tl-2xl font-Lalezar text-sm text-white py-3 px-6 rounded-br-2xl absolute top-0 left-0">
@@ -74,7 +76,10 @@ function OrderBox() {
         <OrderBoxItem />
       </div>
       <div className="flex items-center justify-end">
-        <button className="px-8 py-2 bg-stone-800 rounded-xl text-white">
+        <button
+          onClick={() => router.push(`/factor/1`)}
+          className="px-8 py-2 bg-stone-800 rounded-xl text-white"
+        >
           مشاهده فاکتور
         </button>
       </div>
