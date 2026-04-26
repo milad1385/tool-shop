@@ -16,7 +16,7 @@ function page() {
         pageTitle="لیست سفارش ها"
         options={orderStatusFilterOptions}
       />
-      <OrderList />
+      <OrderList panel="seller" />
     </Container>
   );
 }
