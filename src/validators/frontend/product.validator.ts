@@ -90,7 +90,7 @@ export const createRequestProductSchema = yup.object({
     .required("این فیلد الزامی است")
     .min(5, "حداقل عنوان 5 کاراکتر است")
     .max(200, "حداکثر عنوان 200 کاراکتر است"),
-  
+
   colors: yup
     .array()
     .of(
@@ -98,18 +98,28 @@ export const createRequestProductSchema = yup.object({
         label: yup.string().required("نام رنگ الزامی است"),
         color: yup.string().required("کد رنگ الزامی است"),
         qty: yup
-          .number()
+          .string()
           .required("موجودی الزامی است")
           .min(0, "موجودی نمی‌تواند منفی باشد"),
+        price: yup
+          .string()
+          .required("قیمت اجباری است")
+          .min(1000, "حداقل قیمت از 1000 می باشد"),
+        discount: yup
+          .string()
+          .required("وارد کردن تخفیف است")
+          .min(0, "تخفیف نمی تواند منفی باشد")
+          .max(100, "تخفیف نمی تواند بیشتر از 100 درصد باشد."),
       }),
     )
     .required("حداقل یک رنگ باید تعریف شود")
     .min(1, "حداقل یک رنگ باید تعریف شود"),
 });
 
-export type TRequestProductSchema = yup.InferType<typeof createRequestProductSchema>;
+export type TRequestProductSchema = yup.InferType<
+  typeof createRequestProductSchema
+>;
 
 export type TProductSchema = yup.InferType<typeof createProductSchema>;
 export type TProductDetailSchema = yup.InferType<typeof productDetailSchema>;
 export type TProductFeatureSchema = yup.InferType<typeof productFeatureSchema>;
-
