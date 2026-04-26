@@ -1,10 +1,11 @@
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
+import { IIOrderList } from "@/libs/types";
 import Link from "next/link";
 import { FaBan, FaCheck, FaEye, FaTrash } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
-function OrderList() {
+function OrderList({ panel }: IIOrderList) {
   return (
     <div className="section-box">
       <div className="admin-table discount mt-5 overflow-hidden  rounded-md">
@@ -41,7 +42,16 @@ function OrderList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <Link href="/p-admin/orders/1"> <FaEye className="text-sky-500 text-base md:text-xl" /></Link>
+                  <Link
+                    href={
+                      panel === "seller"
+                        ? "/p-seller/orders/1"
+                        : "/p-admin/orders/1"
+                    }
+                  >
+                    {" "}
+                    <FaEye className="text-sky-500 text-base md:text-xl" />
+                  </Link>
                   <FaBan className="text-gray-500 text-base md:text-xl" />
                 </div>
               </td>
@@ -64,7 +74,16 @@ function OrderList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <Link href="/p-admin/orders/1"> <FaEye className="text-sky-500 text-base md:text-xl" /></Link>
+                  <Link
+                    href={
+                      panel === "seller"
+                        ? "/p-seller/orders/1"
+                        : "/p-admin/orders/1"
+                    }
+                  >
+                    {" "}
+                    <FaEye className="text-sky-500 text-base md:text-xl" />
+                  </Link>
                   <FaCheck className="text-green-500 text-base md:text-xl" />
                 </div>
               </td>
@@ -87,7 +106,16 @@ function OrderList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <Link href="/p-admin/orders/1"> <FaEye className="text-sky-500 text-base md:text-xl" /></Link>
+                  <Link
+                    href={
+                      panel === "seller"
+                        ? "/p-seller/orders/1"
+                        : "/p-admin/orders/1"
+                    }
+                  >
+                    {" "}
+                    <FaEye className="text-sky-500 text-base md:text-xl" />
+                  </Link>
                   <FaXmark className="text-yellow-500 text-base md:text-2xl" />
                 </div>
               </td>
@@ -110,7 +138,16 @@ function OrderList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <Link href="/p-admin/orders/1"> <FaEye className="text-sky-500 text-base md:text-xl" /></Link>
+                  <Link
+                    href={
+                      panel === "seller"
+                        ? "/p-seller/orders/1"
+                        : "/p-admin/orders/1"
+                    }
+                  >
+                    {" "}
+                    <FaEye className="text-sky-500 text-base md:text-xl" />
+                  </Link>
                   <FaBan className="text-gray-500 text-base md:text-xl" />
                 </div>
               </td>
@@ -133,7 +170,16 @@ function OrderList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <Link href="/p-admin/orders/1"> <FaEye className="text-sky-500 text-base md:text-xl" /></Link>
+                  <Link
+                    href={
+                      panel === "seller"
+                        ? "/p-seller/orders/1"
+                        : "/p-admin/orders/1"
+                    }
+                  >
+                    {" "}
+                    <FaEye className="text-sky-500 text-base md:text-xl" />
+                  </Link>
                   <FaBan className="text-gray-500 text-base md:text-xl" />
                 </div>
               </td>
@@ -156,7 +202,16 @@ function OrderList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <Link href="/p-admin/orders/1"> <FaEye className="text-sky-500 text-base md:text-xl" /></Link>
+                  <Link
+                    href={
+                      panel === "seller"
+                        ? "/p-seller/orders/1"
+                        : "/p-admin/orders/1"
+                    }
+                  >
+                    {" "}
+                    <FaEye className="text-sky-500 text-base md:text-xl" />
+                  </Link>
                   <FaBan className="text-gray-500 text-base md:text-xl" />
                 </div>
               </td>
@@ -179,7 +234,16 @@ function OrderList() {
               <td>
                 <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <Link href="/p-admin/orders/1"> <FaEye className="text-sky-500 text-base md:text-xl" /></Link>
+                  <Link
+                    href={
+                      panel === "seller"
+                        ? "/p-seller/orders/1"
+                        : "/p-admin/orders/1"
+                    }
+                  >
+                    {" "}
+                    <FaEye className="text-sky-500 text-base md:text-xl" />
+                  </Link>
                   <FaCheck className="text-green-500 text-base md:text-xl" />
                 </div>
               </td>
