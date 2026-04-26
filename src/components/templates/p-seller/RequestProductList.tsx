@@ -1,8 +1,11 @@
+"use client";
+import Modal from "@/components/modules/main/Modal";
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
 import Image from "next/image";
 import Link from "next/link";
 import { FaEye, FaTrash } from "react-icons/fa";
+import ProductInfoModal from "./ProductInfoModal";
 
 function RequestProductList() {
   return (
@@ -16,7 +19,6 @@ function RequestProductList() {
             <th>لینک</th>
             <th>دسته بندی</th>
             <th>تاریخ</th>
-            <th>موجودی</th>
             <th>وضعیت</th>
 
             <th>عملیات</th>
@@ -40,22 +42,7 @@ function RequestProductList() {
               <td>دریل</td>
 
               <td>1404/04/25</td>
-              <td className="flex-center my-3">
-                <div className="flex flex-col space-y-3 py-3">
-                  <div className="flex items-center gap-x-2">
-                    <span className="block w-[15px] h-[15px] bg-red-500 rounded-full"></span>
-                    <span> قرمز : 5</span>
-                  </div>
-                  <div className="flex items-center gap-x-2">
-                    <span className="block w-[15px] h-[15px] bg-sky-500 rounded-full"></span>
-                    <span> آبی : 10</span>
-                  </div>
-                  <div className="flex items-center gap-x-2">
-                    <span className="block w-[15px] h-[15px] bg-yellow-500 rounded-full"></span>
-                    <span> زرد : 8</span>
-                  </div>
-                </div>
-              </td>
+
               <td>
                 <div className="bg-green-500 text-white rounded-3xl py-2">
                   تایید شده
@@ -64,7 +51,14 @@ function RequestProductList() {
               <td>
                 <div className="flex-center my-3 gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <FaEye className="text-sky-500 text-base md:text-xl" />
+                  <Modal>
+                    <Modal.Open name="productInfo">
+                      <FaEye className="text-sky-500 text-base md:text-xl" />
+                    </Modal.Open>
+                    <Modal.Page name="productInfo">
+                      <ProductInfoModal />
+                    </Modal.Page>
+                  </Modal>
                 </div>
               </td>
             </Table.Row>
@@ -86,31 +80,23 @@ function RequestProductList() {
               <td>دریل</td>
 
               <td>1404/04/25</td>
-              <td className="flex-center my-3">
-                <div className="flex flex-col space-y-3 py-3">
-                  <div className="flex items-center gap-x-2">
-                    <span className="block w-[15px] h-[15px] bg-red-500 rounded-full"></span>
-                    <span> قرمز : 5</span>
-                  </div>
-                  <div className="flex items-center gap-x-2">
-                    <span className="block w-[15px] h-[15px] bg-sky-500 rounded-full"></span>
-                    <span> آبی : 10</span>
-                  </div>
-                  <div className="flex items-center gap-x-2">
-                    <span className="block w-[15px] h-[15px] bg-yellow-500 rounded-full"></span>
-                    <span> زرد : 8</span>
-                  </div>
-                </div>
-              </td>
+
               <td>
                 <div className="bg-yellow-500 text-white rounded-3xl py-2">
-                  بررسی کنید
+                  در حال بررسی
                 </div>
               </td>
               <td>
                 <div className="flex-center my-3 gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <FaEye className="text-sky-500 text-base md:text-xl" />
+                  <Modal>
+                    <Modal.Open name="productInfo">
+                      <FaEye className="text-sky-500 text-base md:text-xl" />
+                    </Modal.Open>
+                    <Modal.Page name="productInfo">
+                      <ProductInfoModal />
+                    </Modal.Page>
+                  </Modal>
                 </div>
               </td>
             </Table.Row>
@@ -132,22 +118,7 @@ function RequestProductList() {
               <td>دریل</td>
 
               <td>1404/04/25</td>
-              <td className="flex-center my-3">
-                <div className="flex flex-col space-y-3 py-3">
-                  <div className="flex items-center gap-x-2">
-                    <span className="block w-[15px] h-[15px] bg-red-500 rounded-full"></span>
-                    <span> قرمز : 5</span>
-                  </div>
-                  <div className="flex items-center gap-x-2">
-                    <span className="block w-[15px] h-[15px] bg-sky-500 rounded-full"></span>
-                    <span> آبی : 10</span>
-                  </div>
-                  <div className="flex items-center gap-x-2">
-                    <span className="block w-[15px] h-[15px] bg-yellow-500 rounded-full"></span>
-                    <span> زرد : 8</span>
-                  </div>
-                </div>
-              </td>
+
               <td>
                 <div className="bg-red-500 text-white rounded-3xl py-2">
                   رد شده
@@ -156,7 +127,14 @@ function RequestProductList() {
               <td>
                 <div className="flex-center my-3 gap-x-3 md:gap-x-6 child:cursor-pointer">
                   <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <FaEye className="text-sky-500 text-base md:text-xl" />
+                  <Modal>
+                    <Modal.Open name="productInfo">
+                      <FaEye className="text-sky-500 text-base md:text-xl" />
+                    </Modal.Open>
+                    <Modal.Page name="productInfo">
+                      <ProductInfoModal />
+                    </Modal.Page>
+                  </Modal>
                 </div>
               </td>
             </Table.Row>
