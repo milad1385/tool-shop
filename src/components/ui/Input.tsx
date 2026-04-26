@@ -1,5 +1,6 @@
 import { IInput } from "@/libs/types";
 import React from "react";
+import { get } from "react-hook-form";
 
 function Input({
   label,
@@ -15,6 +16,8 @@ function Input({
   setImage,
   options,
 }: IInput) {
+  const errorMessage = get(errors, name)?.message;
+
   if (type === "text" || type === "number") {
     return (
       <div className="flex flex-col gap-y-4 relative">
@@ -35,11 +38,12 @@ function Input({
           className={`input text-right p-2 border border-gray-300 rounded-md ${className}`}
         />
 
-        {errors[name] && (
+        {errorMessage && (
           <span
             className={`absolute -bottom-6  text-xs md:text-sm text-red-600`}
           >
-            {errors[name].message}
+            {/* {errors[name].message} */}
+            {errorMessage}
           </span>
         )}
       </div>
