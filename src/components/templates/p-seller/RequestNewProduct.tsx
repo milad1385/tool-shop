@@ -2,24 +2,22 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import {
-    createRequestProductSchema,
-    TRequestProductSchema,
+  createRequestProductSchema,
+  TRequestProductSchema,
 } from "@/validators/frontend/product.validator";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaMinus, FaPlus } from "react-icons/fa"; // آیکون‌های ساده برای دکمه‌ها
+import { FaMinus, FaPlus } from "react-icons/fa";
 
 function RequestNewProduct() {
   const [colorCount, setColorCount] = useState(1);
-
 
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
-    setValue,
   } = useForm<any>({
     resolver: yupResolver(createRequestProductSchema),
     defaultValues: {
@@ -27,7 +25,6 @@ function RequestNewProduct() {
       colors: [{ label: "", color: "", qty: 0 }],
     },
   });
-  console.log(errors);
 
   const createProductHandler = (data: TRequestProductSchema) => {
     console.log("Submitted Data:", data);
@@ -66,7 +63,7 @@ function RequestNewProduct() {
         {Array.from({ length: colorCount }).map((_, index) => (
           <div
             key={index}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 border rounded bg-gray-50"
+            className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-6 px-4 pt-4 pb-10 border rounded bg-gray-50"
           >
             <Input
               register={register}
@@ -78,6 +75,7 @@ function RequestNewProduct() {
               disable={false}
               labelClassName="!text-sm"
             />
+
             <Input
               register={register}
               errors={errors}
@@ -87,6 +85,27 @@ function RequestNewProduct() {
               className="bg-white h-10 p-1"
               disable={false}
               labelClassName="!text-sm"
+            />
+            <Input
+              register={register}
+              errors={errors}
+              name={`colors.${index}.price`}
+              type="number"
+              label="قیمت"
+              className="bg-white"
+              disable={false}
+              labelClassName="!text-sm"
+            />
+            <Input
+              register={register}
+              errors={errors}
+              name={`colors.${index}.discount`}
+              type="number"
+              label="تخفیف"
+              className="bg-white"
+              disable={false}
+              labelClassName="!text-sm"
+             
             />
             <Input
               register={register}
