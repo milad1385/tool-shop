@@ -4,8 +4,9 @@ import AddressItem from "./AddressItem";
 import { FaPlus } from "react-icons/fa";
 import Modal from "@/components/modules/main/Modal";
 import AddAddressModal from "./AddAddressModal";
+import { IModal } from "@/libs/types";
 
-function AddressModal({ onClose }: { onClose?: any }) {
+function AddressModal({ onClose }: IModal) {
   return (
     <div className="w-[340px] md:w-[500px] rounded-md bg-white px-4 py-5">
       <div className="flex items-center justify-between border-b-2 border-b-gray-200 pb-4">
