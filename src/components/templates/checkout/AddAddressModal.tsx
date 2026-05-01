@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { IModal } from "@/libs/types";
 import {
   userAddress,
   UserAddressType,
@@ -18,7 +19,7 @@ const ChooseLocation = dynamic(
   },
 );
 
-function AddAddressModal({ onClose }: { onClose?: any }) {
+function AddAddressModal({ onClose }: IModal) {
   const [position, setPosition] = useState<[number, number]>([35.7, 51.39]);
   const [isActive, setIsActive] = useState(false);
 
