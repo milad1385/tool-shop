@@ -18,7 +18,7 @@ function Input({
 }: IInput) {
   const errorMessage = get(errors, name)?.message;
 
-  if (type === "text" || type === "number") {
+  if (type === "text" || type === "number" || type === "email") {
     return (
       <div className="flex flex-col gap-y-4 relative">
         <label
@@ -64,7 +64,7 @@ function Input({
         ></textarea>
         {errors[name] && (
           <span
-            className={`absolute -bottom-3 text-xs md:text-sm text-red-600`}
+            className={`absolute -bottom-7 text-xs md:text-sm text-red-600`}
           >
             {errors[name].message}
           </span>
