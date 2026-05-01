@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaEye, FaTrash } from "react-icons/fa";
 import ProductInfoModal from "./ProductInfoModal";
+import DeleteModal from "@/components/modules/main/DeleteModal";
 
 function RequestProductList() {
   return (
@@ -49,17 +50,22 @@ function RequestProductList() {
                 </div>
               </td>
               <td>
-                <div className="flex-center my-3 gap-x-3 md:gap-x-6 child:cursor-pointer">
-                  <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <Modal>
+                <Modal>
+                  <div className="flex-center my-3 gap-x-3 md:gap-x-6 child:cursor-pointer">
+                    <Modal.Open name="deleteProduct">
+                      <FaTrash className="text-red-600 text-base md:text-xl" />
+                    </Modal.Open>
+                    <Modal.Page name="deleteProduct">
+                      <DeleteModal isQuestion />
+                    </Modal.Page>
                     <Modal.Open name="productInfo">
                       <FaEye className="text-sky-500 text-base md:text-xl" />
                     </Modal.Open>
                     <Modal.Page name="productInfo">
                       <ProductInfoModal />
                     </Modal.Page>
-                  </Modal>
-                </div>
+                  </div>
+                </Modal>
               </td>
             </Table.Row>
             <Table.Row>
@@ -87,17 +93,22 @@ function RequestProductList() {
                 </div>
               </td>
               <td>
-                <div className="flex-center my-3 gap-x-3 md:gap-x-6 child:cursor-pointer">
-                  <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <Modal>
+                <Modal>
+                  <div className="flex-center my-3 gap-x-3 md:gap-x-6 child:cursor-pointer">
+                    <Modal.Open name="deleteProduct">
+                      <FaTrash className="text-red-600 text-base md:text-xl" />
+                    </Modal.Open>
+                    <Modal.Page name="deleteProduct">
+                      <DeleteModal isQuestion />
+                    </Modal.Page>
                     <Modal.Open name="productInfo">
                       <FaEye className="text-sky-500 text-base md:text-xl" />
                     </Modal.Open>
                     <Modal.Page name="productInfo">
                       <ProductInfoModal />
                     </Modal.Page>
-                  </Modal>
-                </div>
+                  </div>
+                </Modal>
               </td>
             </Table.Row>
             <Table.Row>
@@ -125,17 +136,22 @@ function RequestProductList() {
                 </div>
               </td>
               <td>
-                <div className="flex-center my-3 gap-x-3 md:gap-x-6 child:cursor-pointer">
-                  <FaTrash className="text-red-600 text-base md:text-xl" />
-                  <Modal>
+                <Modal>
+                  <div className="flex-center my-3 gap-x-3 md:gap-x-6 child:cursor-pointer">
+                    <Modal.Open name="deleteProduct">
+                      <FaTrash className="text-red-600 text-base md:text-xl" />
+                    </Modal.Open>
+                    <Modal.Page name="deleteProduct">
+                      <DeleteModal isQuestion />
+                    </Modal.Page>
                     <Modal.Open name="productInfo">
                       <FaEye className="text-sky-500 text-base md:text-xl" />
                     </Modal.Open>
                     <Modal.Page name="productInfo">
                       <ProductInfoModal />
                     </Modal.Page>
-                  </Modal>
-                </div>
+                  </div>
+                </Modal>
               </td>
             </Table.Row>
           </Table.Body>
