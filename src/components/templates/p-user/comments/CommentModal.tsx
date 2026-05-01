@@ -1,8 +1,9 @@
 import Button from "@/components/ui/Button";
+import { IModal } from "@/libs/types";
 import React from "react";
 import { FaXmark } from "react-icons/fa6";
 
-function CommentModal({ onClose }: { onClose?: any }) {
+function CommentModal({ onClose }: IModal) {
   return (
     <div className="w-[340px] md:w-[500px] rounded-md bg-white px-4 py-5">
       <div className="flex items-center justify-between border-b-2 border-b-gray-200 pb-4">
