@@ -201,6 +201,11 @@ export interface IIOrderList {
   panel?: "seller" | "admin" | "user";
 }
 
+export interface IModal {
+  onClose?: any;
+  isQuestion?: boolean;
+}
+
 export interface IAnswerBox {
   body?: string;
   creator?: string;
