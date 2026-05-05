@@ -19,17 +19,15 @@ function EditCommentModal({ onClose }: IModal) {
           rows={8}
           defaultValue=" با سلام ، نظر من راجع به محصول دریل شارژی زرد رنگ می باشد. بهترین
           محصولی بود که خریداری کردم ، با تشکر از زحمات شما"
-          className={`input w-full resize-none  p-2 border border-gray-300 rounded-md`}
+          className={`input w-full resize-none mt-4  p-2 border border-gray-300 rounded-md`}
         ></textarea>
 
-        <div className="flex items-center gap-x-8">
-          <Button
-            className="!w-[200px] !bg-black-600 !rounded-lg"
-            onClick={() => onClose()}
-          >
-            ویرایش کردن
-          </Button>
-        </div>
+        <Button
+          className="!w-full !bg-black-600 !rounded-lg"
+          onClick={() => onClose()}
+        >
+          ویرایش کردن
+        </Button>
       </div>
     </div>
   );
