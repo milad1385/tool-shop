@@ -1,3 +1,7 @@
+"use client";
+import DeleteModal from "@/components/modules/main/DeleteModal";
+import Modal from "@/components/modules/main/Modal";
+import ShowCommentModal from "@/components/modules/main/ShowCommentModal";
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
 import { FaCheck, FaEye, FaStar, FaTrash } from "react-icons/fa";
@@ -45,12 +49,24 @@ function CommentList() {
                 </div>
               </td>
               <td>
-                <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-                  <FaXmark className="text-red-500 text-base md:text-2xl" />
-                  <FaPencil className="text-yellow-500 text-base md:text-xl" />
-                  <FaEye className="text-sky-500 text-base md:text-xl" />
-                  <FaTrash className="text-red-600 text-base md:text-xl" />
-                </div>
+                <Modal>
+                  <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
+                    <FaXmark className="text-red-500 text-base md:text-2xl" />
+                    <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                    <Modal.Open name="showComment">
+                      <FaEye className="text-sky-500 text-base md:text-xl" />
+                    </Modal.Open>
+                    <Modal.Page name="showComment">
+                      <ShowCommentModal/>
+                    </Modal.Page>
+                    <Modal.Open name="deleteComment">
+                      <FaTrash className="text-red-600 text-base md:text-xl" />
+                    </Modal.Open>
+                    <Modal.Page name="deleteComment">
+                      <DeleteModal isQuestion />
+                    </Modal.Page>
+                  </div>
+                </Modal>
               </td>
             </Table.Row>
             <Table.Row>
