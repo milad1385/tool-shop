@@ -7,7 +7,6 @@ import RecentOrders from "@/components/templates/p-admin/RecentOrders";
 import RecentProducts from "@/components/templates/p-admin/RecentProducts";
 import { durationChartData, salesChartData } from "@/constants/data";
 import { Metadata } from "next";
-import React from "react";
 
 export const metadata: Metadata = {
   title: "درآمد",
