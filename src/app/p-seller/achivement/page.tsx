@@ -1,6 +1,9 @@
 import Container from "@/components/modules/p-admin/Container";
 import Filters from "@/components/modules/p-admin/Filters";
 import PageTitle from "@/components/modules/p-admin/PageTitle";
+import DurationChart from "@/components/templates/p-admin/DurationChart";
+import RecentProducts from "@/components/templates/p-admin/RecentProducts";
+import { durationChartData } from "@/constants/data";
 import { Metadata } from "next";
 import React from "react";
 
@@ -22,6 +25,10 @@ function page() {
             { label: "120 روز گذشته", slug: "120" },
           ]}
         />
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
+        <DurationChart title="میزان فروش کالا" data={durationChartData} />
+        <RecentProducts title="محصولات خریداری شده اخیر" />
       </div>
     </Container>
   );
