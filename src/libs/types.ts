@@ -206,6 +206,9 @@ export interface IModal {
   isQuestion?: boolean;
 }
 
+export interface IRecentProducts {
+  title?: string;
+}
 export interface IAnswerBox {
   body?: string;
   creator?: string;
