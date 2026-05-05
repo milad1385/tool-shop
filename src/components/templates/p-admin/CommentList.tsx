@@ -1,6 +1,7 @@
 "use client";
 import ConfirmModal from "@/components/modules/main/ConfirmModal";
 import DeleteModal from "@/components/modules/main/DeleteModal";
+import EditCommentModal from "@/components/modules/main/EditCommentModal";
 import Modal from "@/components/modules/main/Modal";
 import ShowCommentModal from "@/components/modules/main/ShowCommentModal";
 import Pagination from "@/components/modules/p-admin/Pagination";
@@ -56,9 +57,14 @@ function CommentList() {
                       <FaXmark className="text-red-500 text-base md:text-2xl" />
                     </Modal.Open>
                     <Modal.Page name="declineModal">
-                      <ConfirmModal status="رد"/>
+                      <ConfirmModal status="رد" />
                     </Modal.Page>
-                    <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                    <Modal.Open name="editModalComment">
+                      <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                    </Modal.Open>
+                    <Modal.Page name="editModalComment">
+                      <EditCommentModal />
+                    </Modal.Page>
                     <Modal.Open name="showComment">
                       <FaEye className="text-sky-500 text-base md:text-xl" />
                     </Modal.Open>
@@ -98,16 +104,21 @@ function CommentList() {
                   رد شده
                 </div>
               </td>
-               <td>
+              <td>
                 <Modal>
                   <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
                     <Modal.Open name="declineModal">
-                     <FaCheck className="text-green-500 text-base md:text-xl" />
+                      <FaCheck className="text-green-500 text-base md:text-xl" />
                     </Modal.Open>
                     <Modal.Page name="declineModal">
-                      <ConfirmModal status="تایید"/>
+                      <ConfirmModal status="تایید" />
                     </Modal.Page>
-                    <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                    <Modal.Open name="editModalComment">
+                      <FaPencil className="text-yellow-500 text-base md:text-xl" />
+                    </Modal.Open>
+                    <Modal.Page name="editModalComment">
+                      <EditCommentModal />
+                    </Modal.Page>
                     <Modal.Open name="showComment">
                       <FaEye className="text-sky-500 text-base md:text-xl" />
                     </Modal.Open>
