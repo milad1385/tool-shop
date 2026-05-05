@@ -1,13 +1,13 @@
 import Title from "@/components/modules/p-admin/Title";
-import React from "react";
-import EmptyRecentUsersError from "./EmptyRecentError";
+import { IRecentProducts } from "@/libs/types";
 import { LuSquare } from "react-icons/lu";
+import EmptyRecentUsersError from "./EmptyRecentError";
 import ProductRow from "./ProductRow";
 
-function RecentProducts() {
+function RecentProducts({ title }: IRecentProducts) {
   return (
     <div className="rounded-3xl bg-white  py-4 md:py-6 px-3 md:px-6">
-      <Title content="محصولات اخیر" />
+      <Title content={title ? title : "محصولات اخیر"} />
       {true ? (
         <div className="overflow-hidden max-h-[225px] md:max-h-[250px] overflow-y-auto table-container">
           <table className="w-full mt-5 recent-table text-xs md:text-sm lg:text-base">
