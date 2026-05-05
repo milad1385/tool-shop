@@ -204,6 +204,7 @@ export interface IIOrderList {
 export interface IModal {
   onClose?: any;
   isQuestion?: boolean;
+  status?: string;
 }
 
 export interface IRecentProducts {
