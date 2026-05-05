@@ -33,6 +33,9 @@ function page() {
         <RecentProducts title="محصولات خریداری شده اخیر" />
       </div>
       <SalesChart data={salesChartData} />
+      <div className="my-8">
+        <RecentOrders />
+      </div>
     </Container>
   );
 }
