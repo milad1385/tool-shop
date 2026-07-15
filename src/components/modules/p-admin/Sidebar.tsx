@@ -6,7 +6,7 @@ import { ISidebar } from "@/libs/types";
 function Sidebar({ title }: ISidebar) {
   const isAdmin = title === "پنل مدیریت ادمین";
   return (
-    <div className="col-span-2 bg-white">
+    <div className="col-span-2 bg-white hidden md:block">
       <div className="sticky top-0 p-5">
         <h1 className="font-Lalezar text-2xl text-center">{title}</h1>
         <ul className="mt-5 space-y-0.5">
