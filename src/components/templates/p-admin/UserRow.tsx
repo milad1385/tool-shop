@@ -4,7 +4,7 @@ import { FaEye, FaTrash } from "react-icons/fa";
 
 function UserRow() {
   return (
-    <tr>
+    <tr className="border-b border-gray-100 last:!border-none">
       <td>1</td>
       <td>
         <Image
@@ -19,8 +19,8 @@ function UserRow() {
       <td>12 خرداد 1403</td>
       <td>
         <div className="flex items-center gap-x-3 justify-center">
-          <FaTrash className="-mt-1 text-red-700" />
-          <FaEye className="-mt-1 text-yellow-500 md:cursor-pointer" />
+          <FaTrash className="-mt-1 text-base text-red-700" />
+          <FaEye className="-mt-1 text-base text-yellow-500 md:cursor-pointer" />
         </div>
       </td>
     </tr>
