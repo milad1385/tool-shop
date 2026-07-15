@@ -381,3 +381,8 @@ interface ISellerStepOption {
   id: number;
   isActive: boolean;
 }
+
+export interface IAdminPanelContext {
+  isOpenMenu: boolean;
+  setIsOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}
