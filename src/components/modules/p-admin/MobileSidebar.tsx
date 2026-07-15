@@ -18,7 +18,7 @@ function MobileSidebar({ isShowMenu, onShow }) {
         <div
           className={`fixed md:hidden bg-white ${
             isShowMenu ? "right-0" : "right-[-260px] "
-          } md:right-0 overflow-y-auto z-40 bottom-0 transition-all top-0  border-l  border-l-gray-700 w-[260px] gap-2  flex flex-col  md:py-[1.2rem] p-2 md:px-[1rem] text-lg`}
+          } md:right-0 overflow-y-auto z-40 bottom-0 transition-all top-0   w-[260px] gap-2  flex flex-col  md:py-[1.2rem] p-2 md:px-[1rem] text-lg`}
         >
           <div className="px-[13px] pt-2 pb-3 flex border-b-2 md:border-0 border-b-gray-300 items-center justify-between md:mx-auto">
             <h2 className="font-Lalezar">پنل مدیریت ادمین</h2>
