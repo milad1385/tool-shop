@@ -5,20 +5,20 @@ import OrderRow from "./OrderRow";
 
 function RecentOrders() {
   return (
-    <div className="rounded-3xl bg-white  py-4 md:py-6 px-3 md:px-6">
+    <div className="rounded-3xl bg-white py-4 md:py-6 px-3 md:px-6">
       <Title content="سفارشات اخیر" />
       {true ? (
-        <div className="overflow-hidden max-h-[225px] md:max-h-[250px] overflow-y-auto table-container">
-          <table className="w-full mt-5 recent-table text-xs md:text-sm lg:text-base">
-            <thead>
+        <div className="overflow-x-auto max-h-[225px] md:max-h-[250px] overflow-y-auto table-container">
+          <table className="w-full md:mt-5 recent-table text-sm lg:text-base min-w-[600px]">
+            <thead className="bg-gray-100">
               <tr className="font-Lalezar text-lg text-zinc-700">
-                <td>شماره</td>
-                <td>نام</td>
-                <td>تاریخ</td>
-                <td>قیمت</td>
-                <td>شهر</td>
-                <td>وضعیت</td>
-                <td>رویداد ها</td>
+                <td className="px-2 py-2">شماره</td>
+                <td className="px-2 py-2">نام</td>
+                <td className="px-2 py-2">تاریخ</td>
+                <td className="px-2 py-2">قیمت</td>
+                <td className="px-2 py-2">شهر</td>
+                <td className="px-2 py-2">وضعیت</td>
+                <td className="px-2 py-2">رویداد ها</td>
               </tr>
             </thead>
             <tbody>
