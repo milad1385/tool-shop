@@ -21,7 +21,7 @@ function layout({ children }: { children: React.ReactNode }) {
       <Sidebar title="پنل مدیریت ادمین" />
       <div className="col-span-12 lg:col-span-10">
         <Topbar role="admin"/>
-        <div className="p-5">{children}</div>
+        <div className="lg:p-5">{children}</div>
       </div>
     </div>
   );
