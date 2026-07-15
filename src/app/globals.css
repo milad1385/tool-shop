@@ -87,7 +87,7 @@ body {
 
   .table-container::-webkit-scrollbar {
     width: 0.5vw;
-    height: 0.1vw !important;
+    height: 0vw !important;
   }
   .table-container::-webkit-scrollbar-thumb {
     background-color: #6a6a6e;
