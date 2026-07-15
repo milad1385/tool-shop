@@ -6,7 +6,6 @@ import React from "react";
 type Option = {
   label: string;
   slug: string;
-  color?: string;
 };
 
 type TFilter = {
@@ -14,7 +13,7 @@ type TFilter = {
   options: Option[];
 };
 
-function Filters({ filterField, options }: TFilter) {
+function Filter({ filterField, options }: TFilter) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -23,22 +22,16 @@ function Filters({ filterField, options }: TFilter) {
 
   const handleFilterParm = (slug: string) => {
     params.set(filterField, slug);
-    router.push(`${pathname}?${params}`, { scroll: false });
+    router.replace(`${pathname}?${params}`);
   };
   return (
-    <div className="bg-white inline-flex items-center gap-x-2 p-1 child:transition-all child:cursor-pointer text-xs md:text-sm rounded-md">
+    <div className="inline-flex items-center gap-x-2 font-Dana bg-white p-1 child:transition-all child:cursor-pointer text-xs md:text-sm rounded-md mt-5 lg:mt-0">
       {options.map((option, index) => (
         <div
           key={index}
-          className={`text-black !text-nowrap ${
-            option.color ? `hover:bg-${option?.color}` : "hover:bg-yellow-500"
-          } px-2 ${
-            option.slug === paramValue
-              ? `${
-                  option.color ? `bg-${option.color}` : "bg-yellow-500"
-                } text-white`
-              : ""
-          } hover:text-white py-1.5 px-2 rounded-md`}
+          className={`text-zinc-800 hover:bg-yellow-500 ${
+            option.slug === paramValue ? "bg-yellow-500 !text-white" : ""
+          } hover:text-white py-1 px-1 rounded-md`}
           onClick={() => handleFilterParm(option.slug)}
         >
           {option.label}
@@ -48,4 +41,4 @@ function Filters({ filterField, options }: TFilter) {
   );
 }
 
-export default Filters;
+export default Filter;
