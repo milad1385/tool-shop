@@ -114,9 +114,12 @@ body {
 .table-container {
   overflow-x: auto !important;
 }
+.recharts-legend-item {
+  margin-bottom: 10px;
+}
 
-.table-container::-webkit-scrollbar {
-  height: 10px !important;
+.recharts-surface {
+  margin-left: 10px;
 }
 table {
   width: 100% !important;
