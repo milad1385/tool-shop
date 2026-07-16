@@ -25,7 +25,7 @@ function SliderList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/slider-2.jpg"
-                  className="w-[200px] h-[90px] object-cover rounded-md mx-auto"
+                  className="w-[100px] h-[50px] md:w-[200px] md:h-[90px] my-2 md:my-0 object-cover rounded-md mx-auto"
                   alt="slider-2.jpg"
                   width={1920}
                   height={1080}
@@ -56,7 +56,7 @@ function SliderList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/slider-2.jpg"
-                  className="w-[200px] h-[90px] object-cover rounded-md mx-auto"
+                  className="w-[100px] h-[50px] md:w-[200px] md:h-[90px] my-2 md:my-0 object-cover rounded-md mx-auto"
                   alt="slider-2.jpg"
                   width={1920}
                   height={1080}
@@ -87,7 +87,7 @@ function SliderList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/slider-2.jpg"
-                  className="w-[200px] h-[90px] object-cover rounded-md mx-auto"
+                  className="w-[100px] h-[50px] md:w-[200px] md:h-[90px] my-2 md:my-0 object-cover rounded-md mx-auto"
                   alt="slider-2.jpg"
                   width={1920}
                   height={1080}
@@ -118,7 +118,7 @@ function SliderList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/slider-2.jpg"
-                  className="w-[200px] h-[90px] object-cover rounded-md mx-auto"
+                  className="w-[100px] h-[50px] md:w-[200px] md:h-[90px] my-2 md:my-0 object-cover rounded-md mx-auto"
                   alt="slider-2.jpg"
                   width={1920}
                   height={1080}
@@ -149,7 +149,7 @@ function SliderList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/slider-2.jpg"
-                  className="w-[200px] h-[90px] object-cover rounded-md mx-auto"
+                  className="w-[100px] h-[50px] md:w-[200px] md:h-[90px] my-2 md:my-0 object-cover rounded-md mx-auto"
                   alt="slider-2.jpg"
                   width={1920}
                   height={1080}
@@ -180,7 +180,7 @@ function SliderList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/slider-2.jpg"
-                  className="w-[200px] h-[90px] object-cover rounded-md mx-auto"
+                  className="w-[100px] h-[50px] md:w-[200px] md:h-[90px] my-2 md:my-0 object-cover rounded-md mx-auto"
                   alt="slider-2.jpg"
                   width={1920}
                   height={1080}
