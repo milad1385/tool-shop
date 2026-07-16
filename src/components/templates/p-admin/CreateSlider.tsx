@@ -28,7 +28,7 @@ function CreateSlider() {
   };
   return (
     <form className="section-box" onSubmit={handleSubmit(createSliderHandler)}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input
           register={register}
           errors={errors}
@@ -37,7 +37,7 @@ function CreateSlider() {
           label="عنوان"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -47,7 +47,7 @@ function CreateSlider() {
           label="لینک"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -57,7 +57,7 @@ function CreateSlider() {
           label="اولویت"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <div></div>
         <Input
@@ -67,7 +67,7 @@ function CreateSlider() {
           type="file"
           label="تصویر"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
           setImage={setImage}
         />
 
