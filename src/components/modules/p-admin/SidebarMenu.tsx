@@ -7,7 +7,7 @@ import MobileSidebar from "./MobileSidebar";
 function SidebarMenu() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="block md:hidden">
+    <div className="block lg:hidden">
       <HiMiniBars3BottomRight
         onClick={() => setIsOpen((prev) => !prev)}
         className="text-2xl"
