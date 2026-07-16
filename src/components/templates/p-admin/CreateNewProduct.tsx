@@ -41,7 +41,7 @@ function CreateNewProduct() {
 
   return (
     <form onSubmit={handleSubmit(createProductHandler)} className="section-box">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-7 py-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input
           register={register}
           errors={errors}
