@@ -38,7 +38,7 @@ function ChangeShopSettings() {
           label="عنوان فروشگاه"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
         <Input
           register={register}
@@ -48,7 +48,7 @@ function ChangeShopSettings() {
           label="استان"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
         <Input
           register={register}
@@ -58,7 +58,7 @@ function ChangeShopSettings() {
           label="شهر"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
         <Input
           register={register}
@@ -68,7 +68,7 @@ function ChangeShopSettings() {
           label="ایمیل"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
         <Input
           register={register}
@@ -78,7 +78,7 @@ function ChangeShopSettings() {
           label="تلفن ثابت"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
         <Input
           register={register}
@@ -88,7 +88,7 @@ function ChangeShopSettings() {
           label="شماره همراه"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
 
         <Input
@@ -99,7 +99,7 @@ function ChangeShopSettings() {
           label="آیدی اینستاگرام"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
 
         <Input
@@ -110,7 +110,7 @@ function ChangeShopSettings() {
           label="آیدی تلگرام"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
         <Input
           register={register}
@@ -120,7 +120,7 @@ function ChangeShopSettings() {
           label="تگ ها"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
         <Input
           register={register}
@@ -130,7 +130,7 @@ function ChangeShopSettings() {
           label="توضیحات"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
 
         <Input
@@ -141,7 +141,7 @@ function ChangeShopSettings() {
           label="آدرس"
           className="bg-white"
           disable={false}
-          labelClassName="!text-lg"
+          labelClassName="md:!text-lg"
         />
        <div></div>
         <Input
@@ -151,7 +151,7 @@ function ChangeShopSettings() {
           type="file"
           label="تصویر فروشگاه"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
           setImage={setImage}
         />
 
