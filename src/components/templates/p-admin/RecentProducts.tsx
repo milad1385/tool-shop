@@ -9,8 +9,8 @@ function RecentProducts({ title }: IRecentProducts) {
     <div className="rounded-3xl bg-white py-4 md:py-6 px-3 md:px-6">
       <Title content={title ? title : "محصولات اخیر"} />
       {true ? (
-        <div className="overflow-x-auto max-h-[225px] md:max-h-[250px] overflow-y-auto table-container">
-          <table className="w-full md:mt-5 recent-table text-xs md:text-sm lg:text-base min-w-[450px]">
+        <div className="overflow-x-auto odd:bg-gray-100 max-h-[225px] md:max-h-[250px] overflow-y-auto table-container">
+          <table className="w-full  md:mt-5 recent-table text-xs md:text-sm lg:text-base min-w-[450px]">
             <thead className="bg-gray-100">
               <tr className="font-Lalezar text-lg text-zinc-700">
                 <td className="px-2 py-2">شماره</td>
