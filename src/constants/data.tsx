@@ -437,11 +437,11 @@ export const userStatusFilterOptions = [
 
 export const orderStatusFilterOptions = [
   { label: "همه", slug: "all", color: "black" },
-  { label: "تحویل داده", slug: "delivered", color: "green-500" },
-  { label: "در حال پردازش", slug: "pending", color: "yellow-500" },
-  { label: "آماده ارسال", slug: "shipped", color: "green-500" },
-  { label: "لغو شده", slug: "canceled", color: "red-500" },
-  { label: "مرجوع شده", slug: "deported", color: "red-500" },
+  { label: "تحویل", slug: "delivered", color: "green-500" },
+  { label: "پردازش", slug: "pending", color: "yellow-500" },
+  { label: "آماده", slug: "shipped", color: "green-500" },
+  { label: "لغو", slug: "canceled", color: "red-500" },
+  { label: "مرجوع", slug: "deported", color: "red-500" },
 ];
 
 export const productFilterOptions = [
