@@ -24,14 +24,15 @@ function Filter({ filterField, options }: TFilter) {
     params.set(filterField, slug);
     router.replace(`${pathname}?${params}`);
   };
+
   return (
-    <div className="flex !w-full md:inline-flex items-center gap-x-0.5 md:gap-x-2 font-Dana bg-white p-1 child:transition-all child:cursor-pointer text-xs md:text-sm rounded-md mt-5 lg:mt-0">
+    <div className="flex w-full md:inline-flex items-center gap-x-0.5 md:gap-x-2 font-Dana bg-white p-1 child:transition-all child:cursor-pointer text-xs md:text-sm rounded-md mt-5 lg:mt-0">
       {options.map((option, index) => (
         <div
           key={index}
-          className={`text-zinc-800 flex items-center justify-center flex-1 hover:bg-yellow-500 ${
+          className={`text-zinc-800 flex items-center justify-center flex-1 md:flex-initial hover:bg-yellow-500 ${
             option.slug === paramValue ? "bg-yellow-500 !text-white" : ""
-          } hover:text-white py-1 px-1 lg:px-2 rounded-md line-clamp-1`}
+          } hover:text-white py-1 px-1 md:px-2 rounded-md whitespace-nowrap`}
           onClick={() => handleFilterParm(option.slug)}
         >
           {option.label}
