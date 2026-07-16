@@ -26,7 +26,7 @@ function CategoryList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/ca-2.png"
-                  className="w-16 rounded-md mx-auto"
+                  className="w-12 md:w-16 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
@@ -50,7 +50,7 @@ function CategoryList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/ca-1.png"
-                  className="w-16 rounded-md mx-auto"
+                  className="w-12 md:w-16 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
@@ -74,7 +74,7 @@ function CategoryList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/ca-3.png"
-                  className="w-16 rounded-md mx-auto"
+                  className="w-12 md:w-16 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
@@ -98,7 +98,7 @@ function CategoryList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/ca-4.png"
-                  className="w-16 rounded-md mx-auto"
+                  className="w-12 md:w-16 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
@@ -122,7 +122,7 @@ function CategoryList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/ca-5.png"
-                  className="w-16 rounded-md mx-auto"
+                  className="w-12 md:w-16 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
