@@ -41,7 +41,7 @@ function CreateNewProduct() {
 
   return (
     <form onSubmit={handleSubmit(createProductHandler)} className="section-box">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-7 py-2">
         <Input
           register={register}
           errors={errors}
@@ -50,7 +50,7 @@ function CreateNewProduct() {
           label="نام"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -60,7 +60,7 @@ function CreateNewProduct() {
           label="لینک"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
 
         <Input
@@ -75,7 +75,7 @@ function CreateNewProduct() {
           ]}
           label="دسته بندی"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <div></div>
 
@@ -87,7 +87,7 @@ function CreateNewProduct() {
           label="توضیحات"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <div></div>
 
@@ -98,7 +98,7 @@ function CreateNewProduct() {
           type="file"
           label="تصاویر"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
           setImage={setImages}
           multiple
           setValue={setValue}
@@ -125,8 +125,8 @@ function CreateNewProduct() {
           </div>
         )}
       </div>
-      <div className="flex items-center gap-x-4">
-        <Button type="submit" className="!w-[200px] mt-10">
+      <div className="gap-x-4 grid grid-cols-2 pb-5">
+        <Button type="submit" className="md:!w-[200px] mt-10">
           ایجاد محصول
         </Button>
         <Button
@@ -135,21 +135,21 @@ function CreateNewProduct() {
             setImages([]);
           }}
           type="reset"
-          className="!w-[200px] mt-10 !bg-red-500"
+          className="md:!w-[200px] mt-10 !bg-red-500"
         >
           لغو
         </Button>
         <Button
           onClick={() => router.push("/p-admin/products/details")}
           type="reset"
-          className="!w-[200px] mt-10 !bg-yellow-500"
+          className="md:!w-[200px] mt-10 !bg-yellow-500"
         >
           ایجاد جزییات
         </Button>
         <Button
           onClick={() => router.push("/p-admin/products/feature")}
           type="reset"
-          className="!w-[200px] mt-10 !bg-purple-600"
+          className="md:!w-[200px] mt-10 !bg-purple-600"
         >
           ایجاد ویژگی
         </Button>
