@@ -130,12 +130,12 @@ export const changeShopSettingsSchema = yup.object({
     .test("required", "آپلود عکس الزامی است", (value) => {
       if (!value || !(value instanceof FileList || Array.isArray(value)))
         return false;
-      return value.length > 0;
+      return value?.length > 0;
     })
     .test("fileSize", "حداکثر حجم فایل 5MB است", (value) => {
       if (!value || !(value instanceof FileList || Array.isArray(value)))
         return false;
-      return value[0].size <= MAX_FILE_SIZE;
+      return value?.[0]?.size <= MAX_FILE_SIZE;
     })
     .test(
       "fileType",
@@ -143,7 +143,7 @@ export const changeShopSettingsSchema = yup.object({
       (value) => {
         if (!value || !(value instanceof FileList || Array.isArray(value)))
           return false;
-        return ACCEPTED_IMAGE_TYPES.includes(value[0].type);
+        return ACCEPTED_IMAGE_TYPES?.includes(value?.[0]?.type);
       },
     ),
 });
