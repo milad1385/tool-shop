@@ -35,7 +35,7 @@ function Input({
           name={name}
           disabled={disable}
           placeholder={placeholder}
-          className={`input text-right p-2 border border-gray-300 rounded-md ${className}`}
+          className={`input text-sm md:text-base text-right p-2 border border-gray-300 rounded-md ${className}`}
         />
 
         {errorMessage && (
@@ -103,7 +103,7 @@ function Input({
               />
             </svg>
 
-            <p className="mt-4 text-lg font-medium text-slate-700">
+            <p className="mt-4 text-base md:text-lg font-medium text-slate-700">
               فایل خود را{" "}
               <label
                 htmlFor={name}
@@ -114,7 +114,7 @@ function Input({
               آپلود کنید
             </p>
 
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-xs/[28px] md:text-sm text-slate-500">
               میتوانید از دایرکتوری فایل خود را انتخاب کنید
             </p>
 
@@ -167,7 +167,7 @@ function Input({
             name={name}
             disabled={disable}
             defaultValue=""
-            className={`appearance-none input mt-[8px] w-full bg-white text-right p-2 border border-gray-300 rounded-md  transition duration-300 ${className}`}
+            className={`appearance-none text-sm md:text-base input mt-[8px] w-full bg-white text-right p-2 border border-gray-300 rounded-md  transition duration-300 ${className}`}
           >
             {/* Add your options here */}
             <option value="" disabled>
