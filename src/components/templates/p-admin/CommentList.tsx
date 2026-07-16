@@ -46,7 +46,7 @@ function CommentList() {
               <td>1404/04/12</td>
 
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl px-4 py-2">
                   تایید شده
                 </div>
               </td>
