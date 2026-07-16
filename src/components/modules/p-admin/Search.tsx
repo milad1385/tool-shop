@@ -26,7 +26,7 @@ function Search() {
     setSearch("");
   };
   return (
-    <div className="bg-white w-full rounded-md px-3 py-2">
+    <div className="bg-white w-[85%] md:w-full rounded-md px-3 py-2 mt-5 md:!mt-0">
       <div className="flex items-center gap-x-2 relative">
         <FaMagnifyingGlass className="text-zinc-700" />
         <input
