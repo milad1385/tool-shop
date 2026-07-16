@@ -31,7 +31,7 @@ function DiscountList() {
               <td>دریل</td>
               <td>1404/04/25</td>
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-2.5">
                   فعال
                 </div>
               </td>
@@ -53,7 +53,7 @@ function DiscountList() {
               <td>دریل</td>
               <td>1404/04/25</td>
               <td>
-                <div className="bg-red-500 text-white rounded-3xl py-2">
+                <div className="bg-red-500 text-white rounded-3xl py-2 px-2.5">
                   غیر فعال
                 </div>
               </td>
@@ -75,7 +75,7 @@ function DiscountList() {
               <td>دریل</td>
               <td>1404/04/25</td>
               <td>
-                <div className="bg-yellow-500 text-white rounded-3xl py-2">
+                <div className="bg-yellow-500 text-white rounded-3xl py-2 px-2.5">
                   منقضی شده
                 </div>
               </td>
@@ -97,7 +97,7 @@ function DiscountList() {
               <td>دریل</td>
               <td>1404/04/25</td>
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-2.5">
                   فعال
                 </div>
               </td>
@@ -119,7 +119,7 @@ function DiscountList() {
               <td>دریل</td>
               <td>1404/04/25</td>
               <td>
-                <div className="bg-yellow-500 text-white rounded-3xl py-2">
+                <div className="bg-yellow-500 text-white rounded-3xl py-2 px-2.5">
                   منقضی شده
                 </div>
               </td>
