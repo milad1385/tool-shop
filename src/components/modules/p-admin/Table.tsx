@@ -7,7 +7,7 @@ type TableProps = {
 const Table = ({ children }: TableProps) => {
   return (
     <div className="table-container text-sm md:text-base bg-secondary-100 font-Dana  text-center text-black">
-      <table>{children}</table>
+      <table className="min-w-[800px]">{children}</table>
     </div>
   );
 };
