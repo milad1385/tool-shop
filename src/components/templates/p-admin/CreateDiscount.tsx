@@ -36,7 +36,7 @@ function CreateDiscount() {
           label="عنوان کد"
           disable={false}
           className="bg-gray-50"
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -46,7 +46,7 @@ function CreateDiscount() {
           label="درصد"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
 
         <Input
@@ -57,7 +57,7 @@ function CreateDiscount() {
           className="bg-gray-50"
           label="تعداد مصرف"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
 
         <Input
@@ -71,7 +71,7 @@ function CreateDiscount() {
           ]}
           label="محصول"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
           className="!bg-gray-50"
         />
       </div>
