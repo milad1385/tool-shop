@@ -32,7 +32,7 @@ function CreateQuestion() {
           label="سوال"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -42,7 +42,7 @@ function CreateQuestion() {
           label="جواب"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -52,7 +52,7 @@ function CreateQuestion() {
           label="اولویت"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
       </div>
       <div className="flex items-center gap-x-4">
