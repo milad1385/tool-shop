@@ -40,7 +40,7 @@ function CreateCategory() {
           label="نام"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -50,7 +50,7 @@ function CreateCategory() {
           label="لینک"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -61,7 +61,7 @@ function CreateCategory() {
           className="bg-gray-50"
           placeholder="تگ ها را به صورت تگ 1 , تگ 2 , تگ 3 بنویسید"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -71,7 +71,7 @@ function CreateCategory() {
           label="توضیحات"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
 
         <Input
@@ -86,7 +86,7 @@ function CreateCategory() {
           ]}
           label="دسته بندی پرنت"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <div></div>
         <Input
@@ -96,7 +96,7 @@ function CreateCategory() {
           type="file"
           label="آیکون"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
           setImage={setImage}
         />
 
