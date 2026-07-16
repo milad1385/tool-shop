@@ -30,7 +30,7 @@ function RequestProductList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/product-7.jpg"
-                  className="w-20 rounded-md mx-auto"
+                  className="w-20 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
@@ -73,7 +73,7 @@ function RequestProductList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/product-7.jpg"
-                  className="w-20 rounded-md mx-auto"
+                  className="w-20 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
@@ -116,7 +116,7 @@ function RequestProductList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/product-7.jpg"
-                  className="w-20 rounded-md mx-auto"
+                  className="w-20 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
