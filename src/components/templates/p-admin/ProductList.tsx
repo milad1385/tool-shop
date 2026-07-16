@@ -1,4 +1,3 @@
-
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
 import Image from "next/image";
@@ -25,8 +24,8 @@ function ProductList() {
               <td>1</td>
               <td className="!p-0 md:!p-5">
                 <Image
-     src="/images/product-7.jpg"
-                  className="w-20 rounded-md mx-auto"
+                  src="/images/product-7.jpg"
+                  className="w-20 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
@@ -50,7 +49,7 @@ function ProductList() {
               <td className="!p-0 md:!p-5">
                 <Image
                   src="/images/product-1.jpg"
-                  className="w-20 rounded-md mx-auto"
+                  className="w-20 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
@@ -73,8 +72,8 @@ function ProductList() {
               <td>3</td>
               <td className="!p-0 md:!p-5">
                 <Image
-                   src="/images/product-2.jpg"
-                  className="w-20 rounded-md mx-auto"
+                  src="/images/product-2.jpg"
+                  className="w-20 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
@@ -97,8 +96,8 @@ function ProductList() {
               <td>4</td>
               <td className="!p-0 md:!p-5">
                 <Image
-                       src="/images/product-4.jpg"
-                  className="w-20 rounded-md mx-auto"
+                  src="/images/product-4.jpg"
+                  className="w-20 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
@@ -121,8 +120,8 @@ function ProductList() {
               <td>5</td>
               <td className="!p-0 md:!p-5">
                 <Image
-                    src="/images/product-6.jpg"
-                  className="w-20 rounded-md mx-auto"
+                  src="/images/product-6.jpg"
+                  className="w-20 rounded-md mx-auto my-2 md:my-0"
                   alt=""
                   width={1920}
                   height={1080}
