@@ -2,9 +2,9 @@ import React from "react";
 
 function OrderDetails() {
   return (
-    <div className="mt-5 space-y-4 divide-y-2 px-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+    <div className="mt-5 space-y-4 divide-y-2 px-4 text-sm md:text-base">
+      <div className="flex flex-col md:flex-row md:items-center justify-between">
+        <div className="flex flex-col md:flex-row md:items-center gap-4">
           <h2>
             <span className="font-Lalezar">شناسه سفارش </span>: #652655
           </h2>
@@ -14,12 +14,12 @@ function OrderDetails() {
           </h3>
         </div>
         <div>
-          <div className="bg-green-500 px-4 py-2 rounded-md text-white">
+          <div className="bg-green-500 px-4 py-2.5 md:py-2 rounded-md text-white flex-center mt-5 md:mt-0">
             وضعیت سفارش : پرداخت شده
           </div>
         </div>
       </div>
-      <div className="flex items-center gap-6 pt-3">
+      <div className="flex flex-col md:flex-rowmd:items-center gap-6 pt-3">
         <h2>
           <span className="font-Lalezar">نام سفارش دهنده </span>: میلاد سلامیان
         </h2>
@@ -41,7 +41,7 @@ function OrderDetails() {
           <span className="font-Lalezar">ساعت سفارش </span> : 16:18
         </h3>
       </div>
-      <div className="flex items-center gap-4 pt-3">
+      <div className="flex flex-col md:flex-row md:items-center gap-4 pt-3">
         <h2>
           <span className="font-Lalezar">تاریخ دریافت </span>: 1404/5/16
         </h2>
@@ -52,7 +52,7 @@ function OrderDetails() {
           <span className="font-Lalezar">کد جهت تحویل </span> : 256568
         </h3>
       </div>
-      <div className="flex items-center gap-4 pt-3">
+      <div className="flex flex-col md:flex-row md:items-center gap-4 pt-3">
         <h2>
           <span className="font-Lalezar">مبلغ کل سفارش </span>: 12,000,000 تومان
         </h2>
