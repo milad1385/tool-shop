@@ -5,7 +5,7 @@ function Button({ className, children, ...rest }: TButton) {
   return (
     <button
       {...rest}
-      className={`p-3 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-full my-4 ${className}`}
+      className={`p-3 rounded-md text-sm md:text-base bg-stone-800 hover:bg-stone-900 text-white w-full  ${className}`}
     >
       {children}
     </button>
