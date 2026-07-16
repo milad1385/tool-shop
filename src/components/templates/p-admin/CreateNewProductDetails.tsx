@@ -40,7 +40,7 @@ function CreateNewProductDetails() {
           ]}
           label="نام محصول"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -50,7 +50,7 @@ function CreateNewProductDetails() {
           label="قیمت"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -60,7 +60,7 @@ function CreateNewProductDetails() {
           label="درصد تخفیف"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -70,7 +70,7 @@ function CreateNewProductDetails() {
           label="تعداد موجودی"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -80,7 +80,7 @@ function CreateNewProductDetails() {
           label="نام رنگ"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -90,7 +90,7 @@ function CreateNewProductDetails() {
           label="کد رنگ"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
       </div>
       <div className="flex items-center gap-x-4">
