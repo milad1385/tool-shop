@@ -125,7 +125,7 @@ function CreateNewProduct() {
           </div>
         )}
       </div>
-      <div className="gap-x-4 grid grid-cols-2 pb-5">
+      <div className="gap-x-4 grid md:flex grid-cols-2 pb-5">
         <Button type="submit" className="md:!w-[200px] mt-10">
           ایجاد محصول
         </Button>
