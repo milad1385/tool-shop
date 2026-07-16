@@ -35,7 +35,7 @@ function OrderList({ panel }: IIOrderList) {
               <td>308,000 تومان</td>
               <td>1404/04/25</td>
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-4">
                   تحویل
                 </div>
               </td>
@@ -67,7 +67,7 @@ function OrderList({ panel }: IIOrderList) {
               <td>350,000 تومان</td>
               <td>1404/04/26</td>
               <td>
-                <div className="bg-yellow-500 text-white rounded-3xl py-2">
+                <div className="bg-yellow-500 text-white rounded-3xl py-2 px-4">
                   پردازش
                 </div>
               </td>
@@ -99,7 +99,7 @@ function OrderList({ panel }: IIOrderList) {
               <td>475,000 تومان</td>
               <td>1404/04/27</td>
               <td>
-                <div className="bg-gray-500 text-white rounded-3xl py-2">
+                <div className="bg-gray-500 text-white rounded-3xl py-2 px-4">
                   آماده
                 </div>
               </td>
@@ -131,7 +131,7 @@ function OrderList({ panel }: IIOrderList) {
               <td>790,000 تومان</td>
               <td>1404/04/25</td>
               <td>
-                <div className="bg-red-500 text-white rounded-3xl py-2">
+                <div className="bg-red-500 text-white rounded-3xl py-2 px-4">
                   لغو شده
                 </div>
               </td>
@@ -163,7 +163,7 @@ function OrderList({ panel }: IIOrderList) {
               <td>900,000 تومان</td>
               <td>1404/04/29</td>
               <td>
-                <div className="bg-purple-500 text-white rounded-3xl py-2">
+                <div className="bg-purple-500 text-white rounded-3xl py-2 px-4">
                   مرجوع
                 </div>
               </td>
@@ -195,7 +195,7 @@ function OrderList({ panel }: IIOrderList) {
               <td>850,000 تومان</td>
               <td>1404/04/30</td>
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-4">
                   تحویل
                 </div>
               </td>
@@ -227,7 +227,7 @@ function OrderList({ panel }: IIOrderList) {
               <td>450,000 تومان</td>
               <td>1404/04/29</td>
               <td>
-                <div className="bg-yellow-500 text-white rounded-3xl py-2">
+                <div className="bg-yellow-500 text-white rounded-3xl py-2 px-4">
                   پردازش
                 </div>
               </td>
