@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 function MobileSidebar({ isShowMenu, onShow }) {
   const pathname = usePathname();
+  const isAdmin = pathname.includes("/p-admin")
 
   useEffect(() => {
     onShow(false);
@@ -30,7 +31,7 @@ function MobileSidebar({ isShowMenu, onShow }) {
           <div>
             <ul>
               <div className="space-y-2">
-                {true
+                {isAdmin
                   ? adminPanelLinks.map((link) => (
                       <MenuItem {...link} key={link.id} />
                     ))
