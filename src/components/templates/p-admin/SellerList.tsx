@@ -33,7 +33,7 @@ function SellerList() {
               <td>1404/06/15</td>
 
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-2.5">
                   تایید شده
                 </div>
               </td>
@@ -57,7 +57,7 @@ function SellerList() {
               <td>1404/06/15</td>
 
               <td>
-                <div className="bg-yellow-500 text-white rounded-3xl py-2">
+                <div className="bg-yellow-500 text-white rounded-3xl py-2 px-2.5">
                   بررسی کنید
                 </div>
               </td>
@@ -81,7 +81,7 @@ function SellerList() {
               <td>1404/06/15</td>
 
               <td>
-                <div className="bg-red-500 text-white rounded-3xl py-2">
+                <div className="bg-red-500 text-white rounded-3xl py-2 px-2.5">
                   رد شده
                 </div>
               </td>
@@ -105,7 +105,7 @@ function SellerList() {
               <td>1404/06/15</td>
 
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-2.5">
                   تایید شده
                 </div>
               </td>
@@ -129,7 +129,7 @@ function SellerList() {
               <td>1404/06/15</td>
 
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-2.5">
                   تایید شده
                 </div>
               </td>
@@ -153,7 +153,7 @@ function SellerList() {
               <td>1404/06/15</td>
 
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-2.5">
                   تایید شده
                 </div>
               </td>
