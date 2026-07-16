@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 function page() {
   return (
     <Container>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between">
         <PageTitle content="میزان درآمد" />
         <Filters
           filterField="last"
