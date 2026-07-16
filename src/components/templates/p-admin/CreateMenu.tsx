@@ -38,7 +38,7 @@ function CreateMenu() {
           label="نام"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -48,7 +48,7 @@ function CreateMenu() {
           label="لینک"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         
         <Input
@@ -59,7 +59,7 @@ function CreateMenu() {
           label="توضیحات"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
 
         <Input
@@ -74,7 +74,7 @@ function CreateMenu() {
           ]}
           label="منو پرنت"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
      
         <Input
@@ -84,7 +84,7 @@ function CreateMenu() {
           type="file"
           label="آیکون"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
           setImage={setImage}
         />
 
