@@ -31,7 +31,7 @@ function Filter({ filterField, options }: TFilter) {
           key={index}
           className={`text-zinc-800 flex items-center justify-center flex-1 hover:bg-yellow-500 ${
             option.slug === paramValue ? "bg-yellow-500 !text-white" : ""
-          } hover:text-white py-1 px-1 rounded-md line-clamp-1`}
+          } hover:text-white py-1 px-1 lg:px-2 rounded-md line-clamp-1`}
           onClick={() => handleFilterParm(option.slug)}
         >
           {option.label}
