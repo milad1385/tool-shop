@@ -38,7 +38,7 @@ function CreateProductFeature() {
           ]}
           label="نام محصول"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -48,7 +48,7 @@ function CreateProductFeature() {
           label="عنوان"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -58,7 +58,7 @@ function CreateProductFeature() {
           label="مقدار"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -68,7 +68,7 @@ function CreateProductFeature() {
           label="اسلاگ"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -78,7 +78,7 @@ function CreateProductFeature() {
           label="دسته بندی"
           className="bg-gray-50"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
       </div>
       <div className="flex items-center gap-x-4">
