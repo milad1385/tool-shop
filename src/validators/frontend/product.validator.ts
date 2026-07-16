@@ -103,8 +103,7 @@ export const createRequestProductSchema = yup.object({
           .min(0, "موجودی نمی‌تواند منفی باشد"),
         price: yup
           .string()
-          .required("قیمت اجباری است")
-          .min(1000, "حداقل قیمت از 1000 می باشد"),
+          .required("قیمت اجباری است"),
         discount: yup
           .string()
           .required("وارد کردن تخفیف است")
