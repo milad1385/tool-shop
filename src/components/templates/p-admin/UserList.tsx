@@ -31,7 +31,7 @@ function UserList() {
               <td>1404/04/12</td>
 
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-4">
                   فعال
                 </div>
               </td>
@@ -53,7 +53,7 @@ function UserList() {
               <td>1404/06/18</td>
 
               <td>
-                <div className="bg-yellow-500 text-white rounded-3xl py-2">
+                <div className="bg-yellow-500 text-white rounded-3xl py-2 px-4">
                   بن شده
                 </div>
               </td>
@@ -75,7 +75,7 @@ function UserList() {
               <td>1404/05/03</td>
 
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-4">
                   فعال
                 </div>
               </td>
@@ -97,7 +97,7 @@ function UserList() {
               <td>1404/06/18</td>
 
               <td>
-                <div className="bg-yellow-500 text-white rounded-3xl py-2">
+                <div className="bg-yellow-500 text-white rounded-3xl py-2 px-4">
                   بن شده
                 </div>
               </td>
@@ -119,7 +119,7 @@ function UserList() {
               <td>1404/04/12</td>
 
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-4">
                   فعال
                 </div>
               </td>
@@ -141,7 +141,7 @@ function UserList() {
               <td>1404/06/18</td>
 
               <td>
-                <div className="bg-yellow-500 text-white rounded-3xl py-2">
+                <div className="bg-yellow-500 text-white rounded-3xl py-2 px-4">
                   بن شده
                 </div>
               </td>
@@ -163,7 +163,7 @@ function UserList() {
               <td>1404/05/03</td>
 
               <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2">
+                <div className="bg-green-500 text-white rounded-3xl py-2 px-4">
                   فعال
                 </div>
               </td>
@@ -185,7 +185,7 @@ function UserList() {
               <td>1404/06/18</td>
 
               <td>
-                <div className="bg-yellow-500 text-white rounded-3xl py-2">
+                <div className="bg-yellow-500 text-white rounded-3xl py-2 px-4">
                   بن شده
                 </div>
               </td>
