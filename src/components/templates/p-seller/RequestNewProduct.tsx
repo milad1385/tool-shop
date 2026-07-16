@@ -134,14 +134,14 @@ function RequestNewProduct() {
         ))}
       </div>
 
-      <div className="flex items-center gap-x-4 mt-6">
-        <Button type="submit" className="!w-[200px]">
+      <div className="flex flex-col md:items-center gap-4 mt-6">
+        <Button type="submit" className="!w-full md:!w-[200px]">
           درخواست محصول
         </Button>
         <Button
           type="button"
           onClick={addColor}
-          className="!w-[200px] !bg-green-500 !text-white flex items-center gap-x-4"
+          className="!w-full md:!w-[200px] !bg-green-500 !text-white flex items-center justify-center gap-x-4"
         >
           <FaPlus className="mr-2" /> افزودن رنگ دیگر
         </Button>
@@ -151,7 +151,7 @@ function RequestNewProduct() {
             setColorCount(1);
           }}
           type="button"
-          className="!w-[200px] !bg-red-500 !text-white"
+          className="!w-full md:!w-[200px] !bg-red-500 justify-center !text-white"
         >
           لغو
         </Button>
