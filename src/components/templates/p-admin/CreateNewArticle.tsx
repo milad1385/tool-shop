@@ -41,7 +41,7 @@ function CreateNewArticle() {
           label="عنوان"
           disable={false}
           className="bg-gray-50"
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -51,7 +51,7 @@ function CreateNewArticle() {
           label="لینک"
           disable={false}
           className="bg-gray-50"
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -62,7 +62,7 @@ function CreateNewArticle() {
           placeholder="تگ اول ، تگ دوم ، تگ سوم"
           disable={false}
           className="bg-gray-50"
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
         <Input
           register={register}
@@ -73,7 +73,7 @@ function CreateNewArticle() {
           placeholder="23 دقیقه"
           disable={false}
           className="bg-gray-50"
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
 
         <Input
@@ -84,7 +84,7 @@ function CreateNewArticle() {
           label="توضیحات کوتاه"
           disable={false}
           className="bg-gray-50"
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
         />
 
         <Input
@@ -98,7 +98,7 @@ function CreateNewArticle() {
           ]}
           label="دسته بندی"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
           className="!bg-gray-50"
         />
 
@@ -109,7 +109,7 @@ function CreateNewArticle() {
           type="file"
           label="کاور اصلی"
           disable={false}
-          labelClassName="!text-lg font-Iran"
+          labelClassName="md:!text-lg font-Iran"
           setImage={setImage}
         />
 
