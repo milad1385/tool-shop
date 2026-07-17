@@ -444,6 +444,12 @@ export const orderStatusFilterOptions = [
   { label: "مرجوع", slug: "deported", color: "red-500" },
 ];
 
+export const MenuFilterOptions = [
+  { label: "همه", slug: "all", color: "black" },
+  { label: "منو اصلی", slug: "delivered", color: "green-500" },
+  { label: "زیر منو", slug: "pending", color: "yellow-500" },
+];
+
 export const productFilterOptions = [
   { label: "همه", slug: "all", color: "black" },
   { label: "موجود", slug: "exist", color: "green-500" },
