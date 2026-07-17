@@ -16,9 +16,9 @@ function ProductInfoModal({ onClose }: IModal) {
         />
       </div>
       <div className="pt-5 flex flex-col items-start px-4">
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center gap-x-2 justify-between w-full">
           <h2>نام محصول : دریل شارژی مدل kl5852</h2>
-          <div className="bg-green-500 text-white text-sm rounded-3xl py-2 px-5">تایید شده</div>
+          <div className="bg-green-500 text-white text-xs md:text-sm rounded-3xl py-2 px-2 md:px-5">تایید شده</div>
         </div>
         <div className="my-3 w-full">
           <div className="flex flex-col space-y-6 py-3 text-[13px] md:text-base">
@@ -51,7 +51,7 @@ function ProductInfoModal({ onClose }: IModal) {
               <span>تخفیف : ندارد</span>
             </div>
           </div>
-          <Button onClick={() => onClose()}>مشاهده کردم</Button>
+          <Button className="my-4" onClick={() => onClose()}>مشاهده کردم</Button>
         </div>
       </div>
     </div>
