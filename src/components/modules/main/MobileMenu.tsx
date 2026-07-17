@@ -19,12 +19,17 @@ import {
 } from "react-icons/hi2";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { LuArrowDownUp, LuMenu } from "react-icons/lu";
+import { RiAdminLine } from "react-icons/ri";
 import MenuOverlay from "./Overlay";
 
 function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
   const pathname = usePathname();
+
+  const isActive = (linkHref) => {
+    return linkHref === pathname ? "text-yellow-500" : "text-zinc-800";
+  };
 
   useEffect(() => {
     setIsOpen(false);
@@ -100,49 +105,73 @@ function MobileMenu() {
             </ul>
           </li>
           <li>
-            <Link href="/category/1" className="flex items-center gap-x-2">
+            <Link
+              href="/category/1"
+              className={`flex items-center gap-x-2 ${isActive("/category/1")}`}
+            >
               <HiOutlineChatBubbleLeftEllipsis className="text-xl" />
               دسته بندی
             </Link>
           </li>
           <li>
-            <Link href="/about" className="flex items-center gap-x-2">
+            <Link
+              href="/about"
+              className={`flex items-center gap-x-2 ${isActive("/about")}`}
+            >
               <HiOutlineBriefcase className="text-xl" />
               درباره ما
             </Link>
           </li>
           <li>
-            <Link href="/blog" className="flex items-center gap-x-2">
+            <Link
+              href="/blog"
+              className={`flex items-center gap-x-2 ${isActive("/blog")}`}
+            >
               <IoDocumentTextOutline className="text-xl" />
               بلاگ
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="flex items-center gap-x-2">
+            <Link
+              href="/contact"
+              className={`flex items-center gap-x-2 ${isActive("/contact")}`}
+            >
               <HiOutlinePhoneArrowUpRight className="text-xl" />
               تماس با ما
             </Link>
           </li>
           <li>
-            <Link href="/seller" className="flex items-center gap-x-2">
+            <Link
+              href="/seller"
+              className={`flex items-center gap-x-2 ${isActive("/seller")}`}
+            >
               <BsShop className="text-xl" />
               فروشنده ها
             </Link>
           </li>
           <li>
-            <Link href="/products" className="flex items-center gap-x-2">
+            <Link
+              href="/products"
+              className={`flex items-center gap-x-2 ${isActive("/products")}`}
+            >
               <AiOutlineProduct className="text-2xl" />
               محصولات
             </Link>
           </li>
           <li>
-            <Link href="/comparison" className="flex items-center gap-x-2">
+            <Link
+              href="/comparison"
+              className={`flex items-center gap-x-2 ${isActive("/comparison")}`}
+            >
               <LuArrowDownUp className="text-2xl" />
               مقایسه
             </Link>
           </li>
           <li>
-            <Link href="/seller-introduction" className="flex items-center gap-x-2">
+            <Link
+              href="/seller-introduction"
+              className={`flex items-center gap-x-2 ${isActive("/seller-introduction")}`}
+            >
               <BsShopWindow className="text-xl" />
               فروشنده باش
             </Link>
@@ -160,14 +189,20 @@ function MobileMenu() {
             ورود و ثبت نام
           </Link>
 
-          <Link href="/cart" className="inline-flex items-center gap-x-2">
+          <Link
+            href="/cart"
+            className={`inline-flex items-center gap-x-2 ${isActive("/cart")}`}
+          >
             <HiOutlineShoppingCart className="text-xl" />
             سبد خرید
           </Link>
-          {/* <Link href="/" className="inline-flex items-center gap-x-2">
-            <IoSettingsOutline className="text-xl" />
+          <Link
+            href="/p-admin"
+            className={`inline-flex items-center gap-x-2 ${isActive("/p-admin")}`}
+          >
+            <RiAdminLine className="text-xl" />
             پنل مدیریت
-          </Link> */}
+          </Link>
         </div>
       </div>
 
