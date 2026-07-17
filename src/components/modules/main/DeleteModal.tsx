@@ -13,15 +13,15 @@ function DeleteModal({ onClose , isQuestion }: IModal) {
         />
       </div>
       <div className="flex flex-col items-center">
-        <p className={`text-sm ${isQuestion ?"md:text-xl font-bold pt-6 pb-8" :"md:text-base/[32px]"} p-2 text-justify`}>
+        <p className={`text-base ${isQuestion ?"md:text-xl font-bold pt-4 md:pt-6 pb-8" :"md:text-base/[32px]"} p-2 text-justify`}>
           آیا از حذف کردن اطمینان دارید ؟
         </p>
 
         <div className="flex items-center gap-x-8">
-          <Button className="!w-[200px] !bg-green-600 !rounded-lg" onClick={() => onClose()}>
+          <Button className="!w-[125px] md:!w-[200px] !bg-green-600 !rounded-lg" onClick={() => onClose()}>
             بله
           </Button>
-          <Button className="!w-[200px] !bg-red-600 !rounded-lg" onClick={() => onClose()}>
+          <Button className="!w-[125px] md:!w-[200px] !bg-red-600 !rounded-lg" onClick={() => onClose()}>
             خیر
           </Button>
         </div>
