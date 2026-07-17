@@ -10,7 +10,7 @@ import DeleteModal from "@/components/modules/main/DeleteModal";
 
 function RequestProductList() {
   return (
-    <div className="section-box">
+    <div className="md:md:section-box">
       <div className="admin-table mt-5 overflow-hidden  rounded-md">
         <Table>
           <Table.Header>

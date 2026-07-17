@@ -4,7 +4,7 @@ import { FaTrash } from "react-icons/fa";
 
 function ProductDetailList() {
   return (
-    <div className="section-box">
+    <div className="md:section-box">
       <div className="admin-table discount mt-5 overflow-hidden  rounded-md">
         <Table>
           <Table.Header>

@@ -27,7 +27,7 @@ function CreateSlider() {
     console.log(data);
   };
   return (
-    <form className="section-box" onSubmit={handleSubmit(createSliderHandler)}>
+    <form className="md:section-box" onSubmit={handleSubmit(createSliderHandler)}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input
           register={register}

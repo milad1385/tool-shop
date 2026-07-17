@@ -40,7 +40,7 @@ function CreateNewProduct() {
   console.log(errors);
 
   return (
-    <form onSubmit={handleSubmit(createProductHandler)} className="section-box">
+    <form onSubmit={handleSubmit(createProductHandler)} className="md:section-box">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input
           register={register}

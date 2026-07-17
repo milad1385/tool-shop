@@ -11,7 +11,7 @@ import { FaPencil, FaXmark } from "react-icons/fa6";
 
 function CommentList() {
   return (
-    <div className="section-box">
+    <div className="md:section-box">
       <div className="admin-table discount mt-5 overflow-hidden  rounded-md">
         <Table>
           <Table.Header>

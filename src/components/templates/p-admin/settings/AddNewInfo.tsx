@@ -23,7 +23,7 @@ function AddNewInfo() {
     console.log(data);
   };
   return (
-    <form onSubmit={handleSubmit(saveSiteInfoHandler)} className="section-box">
+    <form onSubmit={handleSubmit(saveSiteInfoHandler)} className="md:section-box">
       <PageTitle content="اطلاعات فوتر" className="!text-3xl mb-5" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input

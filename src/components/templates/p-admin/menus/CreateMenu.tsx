@@ -27,7 +27,7 @@ function CreateMenu() {
   return (
     <form
       onSubmit={handleSubmit(createMenuHandler)}
-      className="section-box"
+      className="md:section-box"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input

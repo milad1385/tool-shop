@@ -22,7 +22,7 @@ function CreateQuestion() {
     console.log(data);
   };
   return (
-    <form onSubmit={handleSubmit(createProductFeature)} className="section-box">
+    <form onSubmit={handleSubmit(createProductFeature)} className="md:section-box">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input
           register={register}

@@ -5,7 +5,7 @@ import { FaTrash } from "react-icons/fa6";
 
 function ProductFeatureList() {
   return (
-    <div className="section-box">
+    <div className="md:section-box">
       <div className="admin-table discount mt-5 overflow-hidden  rounded-md">
         <Table>
           <Table.Header>

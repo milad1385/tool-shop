@@ -26,7 +26,7 @@ function CreateNewProductDetails() {
   console.log(errors);
 
   return (
-    <form onSubmit={handleSubmit(createProductDetails)} className="section-box">
+    <form onSubmit={handleSubmit(createProductDetails)} className="md:section-box">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input
           register={register}

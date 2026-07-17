@@ -31,7 +31,7 @@ function CreateNewArticle() {
   };
 
   return (
-    <form className="section-box" onSubmit={handleSubmit(createNewArticle)}>
+    <form className="md:section-box" onSubmit={handleSubmit(createNewArticle)}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
         <Input
           register={register}

@@ -7,7 +7,7 @@ import { FaPencil } from "react-icons/fa6";
 
 function CategoryList() {
   return (
-    <div className="section-box">
+    <div className="md:section-box">
       <div className="admin-table mt-5 overflow-hidden  rounded-md">
         <Table>
           <Table.Header>
