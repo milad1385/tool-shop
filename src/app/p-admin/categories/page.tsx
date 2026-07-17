@@ -1,8 +1,8 @@
 import Container from "@/components/modules/p-admin/Container";
 import PageTitle from "@/components/modules/p-admin/PageTitle";
 import TableOperation from "@/components/modules/p-admin/TableOpration";
-import CategoryList from "@/components/templates/p-admin/CategoryList";
-import CreateCategory from "@/components/templates/p-admin/CreateCategory";
+import CategoryList from "@/components/templates/p-admin/categories/CategoryList";
+import CreateCategory from "@/components/templates/p-admin/categories/CreateCategory";
 import { Metadata } from "next";
 
 
