@@ -1,8 +1,8 @@
 import Container from "@/components/modules/p-admin/Container";
 import PageTitle from "@/components/modules/p-admin/PageTitle";
 import TableOperation from "@/components/modules/p-admin/TableOpration";
-import CreateSlider from "@/components/templates/p-admin/CreateSlider";
-import SliderList from "@/components/templates/p-admin/SliderList";
+import CreateSlider from "@/components/templates/p-admin/sliders/CreateSlider";
+import SliderList from "@/components/templates/p-admin/sliders/SliderList";
 import { sliderFilterOptions } from "@/constants/data";
 
 function page() {
