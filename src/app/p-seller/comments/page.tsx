@@ -1,6 +1,6 @@
 import Container from "@/components/modules/p-admin/Container";
 import TableOperation from "@/components/modules/p-admin/TableOpration";
-import CommentList from "@/components/templates/p-admin/CommentList";
+import CommentList from "@/components/templates/p-admin/comments/CommentList";
 import { statusFilterOptions } from "@/constants/data";
 import { Metadata } from "next";
 import React from "react";

@@ -1,7 +1,7 @@
 import Container from "@/components/modules/p-admin/Container";
 import PageTitle from "@/components/modules/p-admin/PageTitle";
 import TableOperation from "@/components/modules/p-admin/TableOpration";
-import CreateNewProductDetails from "@/components/templates/p-admin/CreateNewProductDetails";
+import CreateNewProductDetails from "@/components/templates/p-admin/products/CreateNewProductDetails";
 import ProductDetailList from "@/components/templates/p-admin/products/ProductDetailList";
 import React from "react";
 

@@ -1,6 +1,6 @@
 import Container from "@/components/modules/p-admin/Container";
 import PageTitle from "@/components/modules/p-admin/PageTitle";
-import OrderBox from "@/components/templates/p-admin/OrderBox";
+import OrderBox from "@/components/templates/p-admin/orders/OrderBox";
 
 function page() {
   return (
