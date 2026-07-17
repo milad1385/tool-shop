@@ -1,8 +1,8 @@
 import Container from "@/components/modules/p-admin/Container";
 import PageTitle from "@/components/modules/p-admin/PageTitle";
 import TableOperation from "@/components/modules/p-admin/TableOpration";
-import CreateQuestion from "@/components/templates/p-admin/CreateQuestion";
-import QuestionList from "@/components/templates/p-admin/QuestionList";
+import CreateQuestion from "@/components/templates/p-admin/questions/CreateQuestion";
+import QuestionList from "@/components/templates/p-admin/questions/QuestionList";
 import { questionFilterOptions } from "@/constants/data";
 
 function page() {
