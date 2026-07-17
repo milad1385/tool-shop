@@ -134,7 +134,7 @@ function RequestNewProduct() {
         ))}
       </div>
 
-      <div className="flex flex-col md:items-center gap-4 mt-6">
+      <div className="flex flex-col md:flex-row md:items-center gap-4 mt-6">
         <Button type="submit" className="!w-full md:!w-[200px]">
           درخواست محصول
         </Button>
