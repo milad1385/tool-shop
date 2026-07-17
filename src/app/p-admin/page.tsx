@@ -1,12 +1,12 @@
 import Container from "@/components/modules/p-admin/Container";
 import Filters from "@/components/modules/p-admin/Filters";
 import SalesChart from "@/components/modules/p-admin/SalesChart";
-import DurationChart from "@/components/templates/p-admin/DurationChart";
-import RecentOrders from "@/components/templates/p-admin/RecentOrders";
-import RecentProducts from "@/components/templates/p-admin/RecentProducts";
-import RecentUser from "@/components/templates/p-admin/RecentUsers";
+import DurationChart from "@/components/templates/p-admin/index/DurationChart";
+import RecentOrders from "@/components/templates/p-admin/index/RecentOrders";
+import RecentProducts from "@/components/templates/p-admin/index/RecentProducts";
+import RecentUser from "@/components/templates/p-admin/index/RecentUsers";
 
-import Stats from "@/components/templates/p-admin/Stats";
+import Stats from "@/components/templates/p-admin/index/Stats";
 import { durationChartData, salesChartData } from "@/constants/data";
 import { Metadata } from "next";
 

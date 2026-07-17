@@ -2,7 +2,7 @@ import Title from "@/components/modules/p-admin/Title";
 import { IRecentProducts } from "@/libs/types";
 import { LuSquare } from "react-icons/lu";
 import EmptyRecentUsersError from "./EmptyRecentError";
-import ProductRow from "./products/ProductRow";
+import ProductRow from "../products/ProductRow";
 
 function RecentProducts({ title }: IRecentProducts) {
   return (

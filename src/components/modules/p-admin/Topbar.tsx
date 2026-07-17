@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Logout from "@/components/templates/p-admin/Logout";
+import Logout from "@/components/templates/p-admin/index/Logout";
 import { ITopbar } from "@/libs/types";
 import SidebarMenu from "./SidebarMenu";
 

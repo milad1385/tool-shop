@@ -2,9 +2,9 @@ import Container from "@/components/modules/p-admin/Container";
 import Filters from "@/components/modules/p-admin/Filters";
 import PageTitle from "@/components/modules/p-admin/PageTitle";
 import SalesChart from "@/components/modules/p-admin/SalesChart";
-import DurationChart from "@/components/templates/p-admin/DurationChart";
-import RecentOrders from "@/components/templates/p-admin/RecentOrders";
-import RecentProducts from "@/components/templates/p-admin/RecentProducts";
+import DurationChart from "@/components/templates/p-admin/index/DurationChart";
+import RecentOrders from "@/components/templates/p-admin/index/RecentOrders";
+import RecentProducts from "@/components/templates/p-admin/index/RecentProducts";
 import { durationChartData, salesChartData } from "@/constants/data";
 import { Metadata } from "next";
 

@@ -1,7 +1,7 @@
 import Title from "@/components/modules/p-admin/Title";
 import EmptyRecentUsersError from "./EmptyRecentError";
 import { FaBasketShopping } from "react-icons/fa6";
-import OrderRow from "./orders/OrderRow";
+import OrderRow from "../orders/OrderRow";
 
 function RecentOrders() {
   return (
