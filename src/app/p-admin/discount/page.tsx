@@ -1,8 +1,8 @@
 import Container from "@/components/modules/p-admin/Container";
 import PageTitle from "@/components/modules/p-admin/PageTitle";
 import TableOpration from "@/components/modules/p-admin/TableOpration";
-import CreateDiscount from "@/components/templates/p-admin/CreateDiscount";
-import DiscountList from "@/components/templates/p-admin/DiscountList";
+import CreateDiscount from "@/components/templates/p-admin/discount/CreateDiscount";
+import DiscountList from "@/components/templates/p-admin/discount/DiscountList";
 import { DiscountFilterOptions } from "@/constants/data";
 
 function page() {
