@@ -14,6 +14,9 @@ import { limitedRoute } from "@/constants/data";
 
 function Navbar() {
   const pathname = usePathname();
+  const isActive = (linkHref) => {
+    return linkHref === pathname ? "text-yellow-500" : "text-zinc-800";
+  };
   const result = limitedRoute.some((route) => pathname.includes(route));
   if (result) {
     return null;
@@ -69,26 +72,43 @@ function Navbar() {
           <div className="hidden md:block">
             <ul className="flex items-center gap-x-8">
               <li>
-                <Link href="/">صفحه اصلی</Link>
+                <Link href="/" className={isActive("/")}>
+                  صفحه اصلی
+                </Link>
               </li>
               <li>
-                <Link href="/products">فروشگاه</Link>
+                <Link href="/products" className={isActive("/products")}>
+                  فروشگاه
+                </Link>
               </li>
               <li>
-                <Link href="/blog">وبلاگ</Link>
+                <Link href="/blog" className={isActive("/blog")}>
+                  وبلاگ
+                </Link>
               </li>
               <li>
-                <Link href="/comparison">مقایسه محصول</Link>
+                <Link href="/comparison" className={isActive("/comparison")}>
+                  مقایسه محصول
+                </Link>
               </li>
               <li>
-                <Link href="/about">درباره ما</Link>
+                <Link href="/about" className={isActive("/about")}>
+                  درباره ما
+                </Link>
               </li>
 
               <li>
-                <Link href="/contact">ارتباط با ما</Link>
+                <Link href="/contact" className={isActive("/contact")}>
+                  ارتباط با ما
+                </Link>
               </li>
               <li>
-                <Link href="/seller-introduction">در ترازو بفروشید</Link>
+                <Link
+                  href="/seller-introduction"
+                  className={isActive("/seller-introduction")}
+                >
+                  در ترازو بفروشید
+                </Link>
               </li>
               <li className="flex items-center gap-x-2 relative group">
                 <Link href="/">بیشتر</Link>
