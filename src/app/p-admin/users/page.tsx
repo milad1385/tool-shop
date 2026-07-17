@@ -1,6 +1,6 @@
 import Container from "@/components/modules/p-admin/Container";
 import TableOperation from "@/components/modules/p-admin/TableOpration";
-import UserList from "@/components/templates/p-admin/UserList";
+import UserList from "@/components/templates/p-admin/users/UserList";
 import { userStatusFilterOptions } from "@/constants/data";
 
 function page() {
