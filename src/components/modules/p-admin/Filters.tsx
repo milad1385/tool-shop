@@ -22,7 +22,7 @@ function Filter({ filterField, options }: TFilter) {
 
   const handleFilterParm = (slug: string) => {
     params.set(filterField, slug);
-    router.replace(`${pathname}?${params}`);
+    router.replace(`${pathname}?${params}`, { scroll: false });
   };
 
   return (
