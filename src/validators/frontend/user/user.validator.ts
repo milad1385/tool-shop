@@ -143,5 +143,15 @@ export const userAddress = yup.object({
     .max(3, "حداکثر تعداد کاراکتر 3 عدد میباشد"),
 });
 
+export const forgotUserPassword = yup.object({
+  email: yup
+    .string()
+    .email("ایمیل معتبر نمیباشد")
+    .required("این فیلد الزامی است")
+    .min(1, "حداقل تعداد کاراکتر 1 عدد است")
+    .max(100, "حداکثر تعداد کاراکتر 100 عدد میباشد"),
+});
+
 export type sellerAddressInfoType = yup.InferType<typeof sellerAddressInfo>;
 export type UserAddressType = yup.InferType<typeof userAddress>;
+export type forgotUserPasswordType = yup.InferType<typeof forgotUserPassword>;
