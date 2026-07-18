@@ -157,7 +157,7 @@ export const changePassword = yup.object({
     .string()
     .required("رمز عبور الزامی است")
     .min(8, "رمز عبور باید حداقل ۸ کاراکتر باشد")
-    .max(100, "رمز عبور نمی‌تواند بیشتر از ۱۰۰ کاراکتر باشد")
+    .max(100, "رمز عبور نمی‌تواند بیشتر از 100 کاراکتر باشد")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
       "رمز عبور باید شامل حروف بزرگ، کوچک، عدد و کاراکتر خاص باشد",
@@ -168,7 +168,7 @@ export const changePassword = yup.object({
     .required("تکرار رمز عبور الزامی است")
     .oneOf([yup.ref("password")], "رمز عبور و تکرار آن مطابقت ندارند")
     .min(8, "تکرار رمز عبور باید حداقل ۸ کاراکتر باشد")
-    .max(100, "تکرار رمز عبور نمی‌تواند بیشتر از ۱۰۰ کاراکتر باشد"),
+    .max(100, "تکرار رمز عبور نمی‌تواند بیشتر از 100 کاراکتر باشد"),
 });
 
 export const userLogin = yup.object({
@@ -182,7 +182,31 @@ export const userLogin = yup.object({
     .string()
     .required(" رمز عبور الزامی است")
     .min(8, "رمز عبور باید حداقل ۸ کاراکتر باشد")
-    .max(100, "رمز عبور نمی‌تواند بیشتر از ۱۰۰ کاراکتر باشد"),
+    .max(100, "رمز عبور نمی‌تواند بیشتر از 100 کاراکتر باشد"),
+});
+
+export const registerUser = yup.object({
+  username: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(1, "حداقل تعداد کاراکتر 1 عدد است")
+    .max(100, "حداکثر تعداد کاراکتر 100 عدد میباشد"),
+  email: yup
+    .string()
+    .email("ایمیل معتبر نمیباشد")
+    .required("این فیلد الزامی است")
+    .min(1, "حداقل تعداد کاراکتر 1 عدد است")
+    .max(100, "حداکثر تعداد کاراکتر 100 عدد میباشد"),
+  password: yup
+    .string()
+    .required(" رمز عبور الزامی است")
+    .min(8, "رمز عبور باید حداقل ۸ کاراکتر باشد")
+    .max(100, "رمز عبور نمی‌تواند بیشتر از 100 کاراکتر باشد"),
+  phone: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(11, "حداقل تعداد کاراکتر 11 عدد است")
+    .max(11, "حداکثر تعداد کاراکتر 11 عدد میباشد"),
 });
 
 export type sellerAddressInfoType = yup.InferType<typeof sellerAddressInfo>;
@@ -190,3 +214,4 @@ export type UserAddressType = yup.InferType<typeof userAddress>;
 export type forgotUserPasswordType = yup.InferType<typeof forgotUserPassword>;
 export type changePasswordType = yup.InferType<typeof changePassword>;
 export type userLoginType = yup.InferType<typeof userLogin>;
+export type registerUserType = yup.InferType<typeof registerUser>;
