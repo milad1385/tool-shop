@@ -32,7 +32,7 @@ function ChangePasswordForgotForm() {
         label="رمز عبور جدید"
         className="bg-gray-50"
         disable={false}
-        labelClassName="md:!text-lg font-Iran"
+        labelClassName="font-Iran"
       />
       <Input
         register={register}
@@ -42,7 +42,7 @@ function ChangePasswordForgotForm() {
         label="تایید رمز عبور"
         className="bg-gray-50"
         disable={false}
-        labelClassName="md:!text-lg font-Iran"
+        labelClassName="font-Iran"
       />
       <button className="p-3 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-full my-4">
         تایید کردن
