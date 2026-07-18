@@ -1,3 +1,4 @@
+import LoginForm from "@/components/templates/auth/LoginForm";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,36 +24,7 @@ function page() {
                 <h2 className="text-center text-2xl lg:text-4xl font-Lalezar">
                   صفحه ورود
                 </h2>
-                <form className="flex flex-col gap-y-5 mt-8">
-                  <div className="flex flex-col gap-y-4">
-                    <label htmlFor="username" className="text-sm text-zinc-800">
-                      نام کاربری
-                    </label>
-                    <input
-                      type="text"
-                      id="username"
-                      name="username"
-                      dir="ltr"
-                      className="input text-left p-2 border border-gray-300 rounded-md"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-y-4">
-                    <label htmlFor="password" className="text-sm text-zinc-800">
-                      رمز عبور
-                    </label>
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      className="input text-left p-2 border border-gray-300 rounded-md"
-                      autoComplete="off"
-                      dir="ltr"
-                    />
-                  </div>
-                  <button className="p-3 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-full my-4">
-                    ورود
-                  </button>
-                </form>
+                <LoginForm/>
                 <div className="flex flex-col gap-y-2 mt-5">
                   <Link href="/auth/forget" className="text-center text-sm">
                     رمز عبور خود را فراموش کرده اید ؟
