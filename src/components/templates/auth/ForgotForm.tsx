@@ -32,7 +32,7 @@ function ForgotForm() {
         label="ایمیل ثبت نام شده"
         className="bg-gray-50"
         disable={false}
-        labelClassName="md:!text-lg font-Iran"
+        labelClassName="font-Iran"
       />
       <button className="p-3 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-full my-4">
         ارسال درخواست
