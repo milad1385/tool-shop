@@ -171,7 +171,22 @@ export const changePassword = yup.object({
     .max(100, "تکرار رمز عبور نمی‌تواند بیشتر از ۱۰۰ کاراکتر باشد"),
 });
 
+export const userLogin = yup.object({
+  username: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(1, "حداقل تعداد کاراکتر 1 عدد است")
+    .max(100, "حداکثر تعداد کاراکتر 100 عدد میباشد"),
+
+  password: yup
+    .string()
+    .required(" رمز عبور الزامی است")
+    .min(8, "رمز عبور باید حداقل ۸ کاراکتر باشد")
+    .max(100, "رمز عبور نمی‌تواند بیشتر از ۱۰۰ کاراکتر باشد"),
+});
+
 export type sellerAddressInfoType = yup.InferType<typeof sellerAddressInfo>;
 export type UserAddressType = yup.InferType<typeof userAddress>;
 export type forgotUserPasswordType = yup.InferType<typeof forgotUserPassword>;
 export type changePasswordType = yup.InferType<typeof changePassword>;
+export type userLoginType = yup.InferType<typeof userLogin>;
