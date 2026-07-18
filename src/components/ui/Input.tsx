@@ -18,7 +18,7 @@ function Input({
 }: IInput) {
   const errorMessage = get(errors, name)?.message;
 
-  if (type === "text" || type === "number" || type === "email") {
+  if (type === "text" || type === "number" || type === "email" || type === "password") {
     return (
       <div className="flex flex-col gap-y-4 relative">
         <label
