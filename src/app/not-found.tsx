@@ -1,4 +1,3 @@
-// app/not-found.tsx
 import Link from "next/link";
 import { FaShop } from "react-icons/fa6";
 
@@ -19,7 +18,9 @@ export default function NotFound() {
               </div>
               <div>
                 <p className="text-[10px] md:text-xs text-gray-400">کد خطا</p>
-                <p className="text-xs md:text-sm font-bold text-gray-900">۴۰۴</p>
+                <p className="text-xs md:text-sm font-bold text-gray-900">
+                  ۴۰۴
+                </p>
               </div>
             </div>
             <span className="px-2.5 py-1 md:px-3 md:py-1 bg-yellow-100 text-yellow-700 text-[10px] md:text-xs font-medium rounded-full whitespace-nowrap">
@@ -40,7 +41,9 @@ export default function NotFound() {
 
             {/* Search suggestion */}
             <div className="bg-gray-50 rounded-xl p-3 md:p-4 flex items-start md:items-center gap-2 md:gap-3">
-              <span className="text-yellow-500 text-base md:text-lg flex-shrink-0 mt-0.5 md:mt-0">💡</span>
+              <span className="text-yellow-500 text-base md:text-lg flex-shrink-0 mt-0.5 md:mt-0">
+                💡
+              </span>
               <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
                 پیشنهاد: از{" "}
                 <span className="font-medium text-gray-800">صفحه اصلی</span> یا{" "}
