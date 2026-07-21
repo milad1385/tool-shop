@@ -1,11 +1,14 @@
 import Container from "@/components/modules/p-admin/Container";
-import PageTitle from "@/components/modules/p-admin/PageTitle";
-import React from "react";
+import TableOperation from "@/components/modules/p-admin/TableOpration";
+import { ticketStatusFilter } from "@/constants/data";
 
 function page() {
   return (
     <Container>
-      <PageTitle content="لیست تیکت ها" />
+      <TableOperation
+        pageTitle="لیست تیکت ها"
+        options={ticketStatusFilter}
+      />
     </Container>
   );
 }
