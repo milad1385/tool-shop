@@ -92,6 +92,11 @@ function Navbar() {
                 </Link>
               </li>
               <li>
+                <Link href="/category" className={isActive("/category")}>
+                  دسته بندی ها
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className={isActive("/about")}>
                   درباره ما
                 </Link>
