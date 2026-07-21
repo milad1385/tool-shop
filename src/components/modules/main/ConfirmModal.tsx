@@ -17,7 +17,7 @@ function ConfirmModal({ onClose , isQuestion ,status}: IModal) {
         <p
           className={`text-sm md:text-xl font-bold pt-6 pb-8 p-2 text-justify`}
         >
-          آیا از {status} کردن اطمینان دارید ؟
+          آیا از {status}  اطمینان دارید ؟
         </p>
 
         <div className="flex items-center gap-x-8">
