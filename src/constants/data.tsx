@@ -1487,3 +1487,10 @@ export const salesChartData = [
     extrasSales: 0,
   },
 ];
+
+export const ticketStatusFilter = [
+  { label: "همه", slug: "all", color: "black" },
+  { label: "پاسخ داده شده", slug: "answered", color: "green-500" },
+  { label: "پاسخ داده نشده", slug: "not-answered", color: "red-500" },
+  { label: "بسته شده", slug: "closed", color: "yellow-500" },
+];
