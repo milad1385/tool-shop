@@ -5,7 +5,7 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 
 function AiComment() {
   return (
-    <div className="w-full lg:w-[65%]">
+    <div className="w-full lg:w-[65%] mt-10 md:mt-0">
       <div className="flex items-center gap-x-2">
         <Image
           alt="ai"
