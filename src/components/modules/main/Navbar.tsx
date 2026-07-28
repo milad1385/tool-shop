@@ -1,16 +1,16 @@
 "use client";
+import { limitedRoute } from "@/constants/data";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BsQuestionCircle } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 import {
-  HiOutlineMagnifyingGlass,
-  HiOutlineShoppingCart,
+  HiOutlineShoppingCart
 } from "react-icons/hi2";
 import { IoChevronDown } from "react-icons/io5";
 import MobileMenu from "./MobileMenu";
-import { usePathname } from "next/navigation";
-import { limitedRoute } from "@/constants/data";
+import Search from "./Search";
 
 function Navbar() {
   const pathname = usePathname();
@@ -36,16 +36,7 @@ function Navbar() {
                 width={1920}
                 height={1080}
               />
-              <div className=" h-[48px] w-[65%] border border-gray-300 hidden md:flex items-center rounded-md overflow-hidden justify-between">
-                <input
-                  type="text"
-                  placeholder="جستجو کنید در ترازو ..."
-                  className="outline-none h-full w-full px-4"
-                />
-                <button className="bg-gray-100 hover:bg-gray-200 transition-all h-full px-4">
-                  <HiOutlineMagnifyingGlass className="text-[24px]" />
-                </button>
-              </div>
+              <Search />
             </div>
             <div className="flex items-center gap-x-7">
               <div>
