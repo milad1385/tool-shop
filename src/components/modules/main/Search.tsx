@@ -176,7 +176,7 @@ function Search() {
               <Link
                 href={`/search?q=${encodeURIComponent(search)}`}
                 onClick={() => setIsOpen(false)}
-                className="block text-center text-sm text-blue-600 hover:text-blue-800 py-1"
+                className="block text-center text-sm text-yellow-600 hover:text-yellow-800 py-1"
               >
                 مشاهده همه نتایج ({results.length})
               </Link>
