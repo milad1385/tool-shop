@@ -1494,3 +1494,30 @@ export const ticketStatusFilter = [
   { label: "پاسخ داده نشده", slug: "not-answered", color: "red-500" },
   { label: "بسته شده", slug: "closed", color: "yellow-500" },
 ];
+
+export const articles = [
+  {
+    id: 1,
+    title: "راهنمای خرید انواع مته",
+    link: "/blog/1",
+    image: "blog-1.jpg",
+  },
+  {
+    id: 2,
+    title: "تعمیر قلاب ماهیگیری",
+    link: "/blog/2",
+    image: "blog-2.jpg",
+  },
+  {
+    id: 3,
+    title: "تمیز کردن لوازم کارگاهی",
+    link: "/blog/3",
+    image: "blog-3.jpg",
+  },
+  {
+    id: 4,
+    title: "راهنمای خرید انواع مته",
+    link: "/blog/4",
+    image: "blog-1.jpg",
+  },
+];
