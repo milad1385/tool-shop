@@ -2,11 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaArrowTrendUp } from "react-icons/fa6";
 
-function ProductSearchBox({ item, setIsOpen }) {
+function ProductSearchBox({ item, setIsOpen, onSearch }) {
   return (
     <Link
       href={`/products/${item.slug}`}
-      onClick={() => setIsOpen(false)}
+      onClick={() => {
+        setIsOpen(false);
+        onSearch(item.title);
+      }}
       className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-all"
     >
       {item.image && (
