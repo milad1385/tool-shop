@@ -78,6 +78,7 @@ function Search() {
 
   useEffect(() => {
     setIsOpen(false);
+    setSearch("");
   }, [pathname]);
 
   const handleSearch = useDebouncedCallback((value: string) => {
