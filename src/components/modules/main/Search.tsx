@@ -124,12 +124,9 @@ function Search() {
 
     return (
       <div className="p-2">
-        {/* محصولات */}
         {products.length > 0 && (
           <ProductSearch products={products} setIsOpen={setSearch} />
         )}
-
-        {/* مقالات */}
         {articles.length > 0 && (
           <ArticleSearch articles={articles} setIsOpen={setIsOpen} />
         )}
@@ -165,18 +162,15 @@ function Search() {
         </button>
       </div>
 
-      {/* باکس نتایج */}
       {isOpen && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-2xl max-h-96 overflow-y-auto z-50">
           {renderResults()}
-
-          {/* دکمه مشاهده همه نتایج */}
           {results.length > 0 && (
             <div className="border-t border-gray-100 p-2">
               <Link
                 href={`/search?q=${encodeURIComponent(search)}`}
                 onClick={() => setIsOpen(false)}
-                className="block text-center text-sm text-yellow-600 hover:text-yellow-800 py-1"
+                className="block text-center text-sm text-yellow-600 py-1"
               >
                 مشاهده همه نتایج ({results.length})
               </Link>
