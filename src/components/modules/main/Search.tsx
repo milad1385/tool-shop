@@ -1,12 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { FaArrowTrendUp } from "react-icons/fa6";
 import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { useDebouncedCallback } from "use-debounce";
-import ProductSearch from "./ProductSearch";
 import ArticleSearch from "./ArticleSearch";
+import ProductSearch from "./ProductSearch";
 
 type SearchItem = {
   id: string;
@@ -78,6 +76,10 @@ function Search() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
   const handleSearch = useDebouncedCallback((value: string) => {
     const trimmedValue = value.trim();
 
@@ -125,10 +127,18 @@ function Search() {
     return (
       <div className="p-2">
         {products.length > 0 && (
-          <ProductSearch products={products} setIsOpen={setSearch} />
+          <ProductSearch
+            products={products}
+            setIsOpen={setSearch}
+            onSearch={setSearch}
+          />
         )}
         {articles.length > 0 && (
-          <ArticleSearch articles={articles} setIsOpen={setIsOpen} />
+          <ArticleSearch
+            articles={articles}
+            setIsOpen={setIsOpen}
+            onSearch={setSearch}
+          />
         )}
       </div>
     );
