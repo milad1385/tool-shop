@@ -1,11 +1,16 @@
 import ArticleSearchBox from "./ArticleSearchBox";
 
-function ArticleSearch({ articles, setIsOpen }) {
+function ArticleSearch({ articles, setIsOpen, onSearch }) {
   return (
     <div>
       <div className="text-base text-gray-400 px-3 py-1">مقالات</div>
       {articles.map((item) => (
-        <ArticleSearchBox item={item} setIsOpen={setIsOpen} key={item.id} />
+        <ArticleSearchBox
+          item={item}
+          setIsOpen={setIsOpen}
+          onSearch={onSearch}
+          key={item.id}
+        />
       ))}
     </div>
   );

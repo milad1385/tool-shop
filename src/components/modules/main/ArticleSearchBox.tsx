@@ -3,11 +3,14 @@ import Link from "next/link";
 import React from "react";
 import { FaArrowTrendUp } from "react-icons/fa6";
 
-function ArticleSearchBox({ item , setIsOpen }) {
+function ArticleSearchBox({ item, setIsOpen, onSearch }) {
   return (
     <Link
       href={`/blog/${item.slug}`}
-      onClick={() => setIsOpen(false)}
+      onClick={() => {
+        setIsOpen(false);
+        onSearch(item.title);
+      }}
       className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-all"
     >
       {item.image && (
