@@ -35,7 +35,13 @@ export interface IArticle {
 }
 
 export interface IPage {
-  params: Promise<{ id?: string }>;
+  params: Promise<{
+    id?: string;
+    [key: string]: string | undefined;
+  }>;
+  searchParams?: Promise<{
+    [key: string]: string | string[] | undefined;
+  }>;
 }
 
 interface ILink {
