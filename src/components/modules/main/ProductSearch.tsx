@@ -1,7 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { FaArrowTrendUp } from "react-icons/fa6";
 import ProductSearchBox from "./ProductSearchBox";
 
 function ProductSearch({ products, setIsOpen }) {
