@@ -1,36 +1,10 @@
 "use client";
 import ArticleBox from "@/components/modules/main/ArticleBox";
-import React from "react";
+import { articles } from "@/constants/data";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 function ArticleSlider() {
-  const articles = [
-    {
-      id: 1,
-      title: "راهنمای خرید انواع مته",
-      link: "/blog/1",
-      image: "blog-1.jpg",
-    },
-    {
-      id: 2,
-      title: "تعمیر قلاب ماهیگیری",
-      link: "/blog/2",
-      image: "blog-2.jpg",
-    },
-    {
-      id: 3,
-      title: "تمیز کردن لوازم کارگاهی",
-      link: "/blog/3",
-      image: "blog-3.jpg",
-    },
-    {
-      id: 4,
-      title: "راهنمای خرید انواع مته",
-      link: "/blog/4",
-      image: "blog-1.jpg",
-    },
-  ];
   return (
     <Swiper
       slidesPerView={3}
