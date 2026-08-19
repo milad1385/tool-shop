@@ -1,0 +1,90 @@
+"use server";
+
+import connectDB from "@/configs/db";
+import User from "@/models/User";
+import { registerSchema } from "@/validators/backend/user/user.validator";
+import { hash } from "bcryptjs";
+import { z } from "zod";
+import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
+
+export async function registerUser(formData: FormData) {
+  try {
+    const rawData = {
+      username: formData.get("username") as string,
+      phone: formData.get("phone") as string,
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+    };
+
+    const validatedData = registerSchema.parse(rawData);
+    await connectDB();
+
+    const existingUser = await User.findOne({
+      $or: [{ phone: validatedData.phone }, { email: validatedData.email }],
+    });
+
+    if (existingUser) {
+      return { success: false, message: "این مشخصات قبلاً ثبت شده است" };
+    }
+
+    const hashedPassword = await hash(validatedData.password, 12);
+
+    const isAdmin = await User.countDocuments({});
+
+    const user = await User.create({
+      username: validatedData.username,
+      phone: validatedData.phone,
+      email: validatedData.email,
+      password: hashedPassword,
+      roles: isAdmin > 0 ? ["USER"] : ["SUPER_ADMIN"],
+    });
+
+    const accessToken = jwt.sign(
+      {
+        id: user._id,
+        username: user.username,
+        phone: user.phone,
+        email: user.email,
+        roles: user.roles,
+      },
+      process.env.JWT_SECRET!,
+      { expiresIn: "1d" },
+    );
+
+    const cookieStore = await cookies();
+    cookieStore.set("accessToken", accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24,
+      path: "/",
+    });
+
+    const userObject = {
+      id: user._id.toString(),
+      username: user.username,
+      phone: user.phone,
+      email: user.email,
+      roles: user.roles,
+    };
+
+    return {
+      success: true,
+      message: "ثبت نام با موفقیت انجام شد",
+      user: userObject,
+    };
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return {
+        success: false,
+        message: error.errors[0].message,
+      };
+    }
+    console.error("خطا در ثبت نام:", error);
+    return {
+      success: false,
+      message: "خطا در ثبت نام، لطفاً دوباره تلاش کنید",
+    };
+  }
+}
