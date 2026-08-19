@@ -12,10 +12,12 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 import { useTransition } from "react";
+import { useAuthStore } from "@/stores/auth.store";
 
 function LoginForm() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const { setUser } = useAuthStore();
 
   const {
     register,
@@ -36,6 +38,7 @@ function LoginForm() {
         const result = await loginAction(formData);
 
         if (result.success) {
+          setUser(result.user || null);
           reset();
           router.push("/");
           toast.success(result.message);
