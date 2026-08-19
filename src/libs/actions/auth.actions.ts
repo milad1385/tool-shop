@@ -9,6 +9,7 @@ import {
 import { hash, compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function registerUser(formData: FormData) {
   try {
@@ -180,4 +181,10 @@ export async function loginUser(formData: FormData) {
       message: "خطا در ورود، لطفاً دوباره تلاش کنید",
     };
   }
+}
+
+export async function logoutUser() {
+  const cookieStore = await cookies();
+  cookieStore.delete("accessToken");
+  redirect("/auth/login");
 }
