@@ -110,10 +110,6 @@ const userSchema = new Schema<IUser>(
   { timestamps: true },
 );
 
-userSchema.index({ phone: 1 });
-userSchema.index({ email: 1 });
-userSchema.index({ "addresses.cityId": 1 });
-
 const User: Model<IUser> =
   mongoose.models.User || mongoose.model<IUser>("User", userSchema);
 
