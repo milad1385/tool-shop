@@ -2,8 +2,11 @@
 
 import connectDB from "@/configs/db";
 import User from "@/models/User";
-import { registerSchema } from "@/validators/backend/user/user.validator";
-import { hash } from "bcryptjs";
+import {
+  loginSchema,
+  registerSchema,
+} from "@/validators/backend/user/user.validator";
+import { hash, compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
@@ -88,6 +91,93 @@ export async function registerUser(formData: FormData) {
     return {
       success: false,
       message: "خطا در ثبت نام، لطفاً دوباره تلاش کنید",
+    };
+  }
+}
+
+export async function loginUser(formData: FormData) {
+  try {
+    const rawData = {
+      identifier: formData.get("identifier") as string,
+      password: formData.get("password") as string,
+    };
+
+    const validationResult = loginSchema.safeParse(rawData);
+
+    if (!validationResult.success) {
+      const firstError = validationResult.error.errors[0].message;
+      return {
+        success: false,
+        message: firstError,
+      };
+    }
+
+    const validatedData = validationResult.data;
+    await connectDB();
+
+    const user = await User.findOne({
+      $or: [
+        { username: validatedData.identifier },
+        { email: validatedData.identifier },
+      ],
+    });
+
+    if (!user) {
+      return {
+        success: false,
+        message: "ایمیل یا رمز عبور اشتباه است",
+      };
+    }
+
+    const isPasswordValid = await compare(
+      validatedData.password,
+      user.password,
+    );
+
+    if (!isPasswordValid) {
+      return {
+        success: false,
+        message: "ایمیل یا رمز عبور اشتباه است",
+      };
+    }
+
+    const accessToken = jwt.sign(
+      {
+        id: user._id.toString(),
+        username: user.username,
+        phone: user.phone,
+        email: user.email,
+        roles: user.roles,
+      },
+      process.env.JWT_SECRET!,
+      { expiresIn: "1d" },
+    );
+
+    const cookieStore = await cookies();
+    cookieStore.set("accessToken", accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24,
+      path: "/",
+    });
+
+    return {
+      success: true,
+      message: "ورود با موفقیت انجام شد",
+      user: {
+        id: user._id.toString(),
+        username: user.username,
+        phone: user.phone,
+        email: user.email,
+        roles: user.roles,
+      },
+    };
+  } catch (error) {
+    console.error("خطا در ورود:", error);
+    return {
+      success: false,
+      message: "خطا در ورود، لطفاً دوباره تلاش کنید",
     };
   }
 }
