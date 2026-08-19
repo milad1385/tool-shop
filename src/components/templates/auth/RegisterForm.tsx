@@ -110,7 +110,7 @@ function RegisterForm() {
         <button
           type="submit"
           disabled={isLoading}
-          className="p-3 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-full my-4 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+          className="p-3 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-full my-4 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 h-[48px]"
         >
           {isLoading ? (
             <>
