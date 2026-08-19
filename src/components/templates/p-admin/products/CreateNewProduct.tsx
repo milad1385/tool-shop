@@ -257,17 +257,18 @@ function CreateNewProduct() {
           </div>
         </div>
 
-        <Input
-          register={register}
-          errors={errors}
-          name="description"
-          type="textarea"
-          label="توضیحات"
-          className="bg-gray-50"
-          disable={false}
-          labelClassName="md:!text-lg font-Iran"
-        />
-        <div></div>
+        <div className="col-span-1 md:col-span-2">
+          <Input
+            register={register}
+            errors={errors}
+            name="description"
+            type="textarea"
+            label="توضیحات"
+            className="bg-gray-50"
+            disable={false}
+            labelClassName="md:!text-lg font-Iran"
+          />
+        </div>
         <Input
           register={register}
           errors={errors}
