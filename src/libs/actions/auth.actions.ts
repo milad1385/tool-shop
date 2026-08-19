@@ -17,7 +17,17 @@ export async function registerUser(formData: FormData) {
       password: formData.get("password") as string,
     };
 
-    const validatedData = registerSchema.parse(rawData);
+    const validationResult = registerSchema.safeParse(rawData);
+
+    if (!validationResult.success) {
+      const firstError = validationResult.error.errors[0].message;
+      return {
+        success: false,
+        message: firstError,
+      };
+    }
+
+    const validatedData = validationResult.data;
     await connectDB();
 
     const existingUser = await User.findOne({
@@ -42,7 +52,7 @@ export async function registerUser(formData: FormData) {
 
     const accessToken = jwt.sign(
       {
-        id: user._id,
+        id: user._id.toString(),
         username: user.username,
         phone: user.phone,
         email: user.email,
@@ -75,12 +85,6 @@ export async function registerUser(formData: FormData) {
       user: userObject,
     };
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return {
-        success: false,
-        message: error.errors[0].message,
-      };
-    }
     console.error("خطا در ثبت نام:", error);
     return {
       success: false,
