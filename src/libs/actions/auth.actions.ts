@@ -4,7 +4,6 @@ import connectDB from "@/configs/db";
 import User from "@/models/User";
 import { registerSchema } from "@/validators/backend/user/user.validator";
 import { hash } from "bcryptjs";
-import { z } from "zod";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 

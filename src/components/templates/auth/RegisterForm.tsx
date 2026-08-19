@@ -11,13 +11,13 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { registerUser as registerAction } from "@/libs/actions/auth.actions";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
+import { useTransition } from "react";
 
 function RegisterForm() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const {
     register,
@@ -28,29 +28,28 @@ function RegisterForm() {
     resolver: yupResolver(registerUser),
   });
 
-  const handleRegisterUser = async (data: registerUserType) => {
-    setIsLoading(true);
-    try {
-      const formData = new FormData();
-      formData.append("username", data.username);
-      formData.append("phone", data.phone);
-      formData.append("email", data.email);
-      formData.append("password", data.password);
+  const onSubmit = (data: registerUserType) => {
+    startTransition(async () => {
+      try {
+        const formData = new FormData();
+        formData.append("username", data.username);
+        formData.append("phone", data.phone);
+        formData.append("email", data.email);
+        formData.append("password", data.password);
 
-      const result = await registerAction(formData);
+        const result = await registerAction(formData);
 
-      if (result.success) {
-        reset();
-        router.push("/");
-        toast.success(result.message);
-      } else {
-        toast.error(result.message);
+        if (result.success) {
+          reset();
+          router.push("/");
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error("خطا در ارتباط با سرور");
       }
-    } catch (error) {
-      toast.error("خطا در ارتباط با سرور");
-    } finally {
-      setIsLoading(false);
-    }
+    });
   };
 
   return (
@@ -60,7 +59,7 @@ function RegisterForm() {
       </h2>
 
       <form
-        onSubmit={handleSubmit(handleRegisterUser)}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-y-5 mt-3"
       >
         <Input
@@ -70,7 +69,7 @@ function RegisterForm() {
           type="text"
           label="نام کاربری"
           className="bg-gray-50"
-          disable={isLoading}
+          disable={isPending}
           labelClassName="font-Iran"
         />
 
@@ -81,7 +80,7 @@ function RegisterForm() {
           type="text"
           label="ایمیل"
           className="bg-gray-50"
-          disable={isLoading}
+          disable={isPending}
           labelClassName="font-Iran"
         />
 
@@ -92,7 +91,7 @@ function RegisterForm() {
           type="text"
           label="شماره همراه"
           className="bg-gray-50"
-          disable={isLoading}
+          disable={isPending}
           labelClassName="font-Iran"
         />
 
@@ -103,19 +102,17 @@ function RegisterForm() {
           type="password"
           label="رمز عبور"
           className="bg-gray-50"
-          disable={isLoading}
+          disable={isPending}
           labelClassName="font-Iran"
         />
 
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={isPending}
           className="p-3 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-full my-4 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 h-[48px]"
         >
-          {isLoading ? (
-            <>
-              <FaSpinner className="animate-spin h-5 w-5" />
-            </>
+          {isPending ? (
+            <FaSpinner className="animate-spin h-5 w-5" />
           ) : (
             "ثبت نام"
           )}
