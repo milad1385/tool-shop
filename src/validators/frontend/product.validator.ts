@@ -82,7 +82,6 @@ export const productFeatureSchema = yup.object({
     .max(200, "حداکثر تعداد مقدار ویژگی 200 کاراکتر عدد میباشد"),
   product: yup.string().required("باید یک محصول را انتخاب کنید"),
   slug: yup.string().required("این فیلد الزامی است"),
-  parent: yup.string().required("این فیلد الزامی است"),
 });
 export const createRequestProductSchema = yup.object({
   product: yup
@@ -101,9 +100,7 @@ export const createRequestProductSchema = yup.object({
           .string()
           .required("موجودی الزامی است")
           .min(0, "موجودی نمی‌تواند منفی باشد"),
-        price: yup
-          .string()
-          .required("قیمت اجباری است"),
+        price: yup.string().required("قیمت اجباری است"),
         discount: yup
           .string()
           .required("وارد کردن تخفیف است")

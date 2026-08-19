@@ -70,16 +70,6 @@ function CreateProductFeature() {
           disable={false}
           labelClassName="md:!text-lg font-Iran"
         />
-        <Input
-          register={register}
-          errors={errors}
-          name="parent"
-          type="text"
-          label="دسته بندی"
-          className="bg-gray-50"
-          disable={false}
-          labelClassName="md:!text-lg font-Iran"
-        />
       </div>
       <div className="flex items-center gap-x-4">
         <Button type="submit" className="!w-[200px] mt-10">
