@@ -11,5 +11,10 @@ export const registerSchema = z.object({
   email: z.string().email("ایمیل معتبر نیست"),
   password: z.string().min(8, "رمز عبور حداقل ۸ کاراکتر باید باشد"),
 });
+export const loginSchema = z.object({
+  identifier: z.string().min(1, "فرستادن ایمیل یا نام کاربری اجباری است"),
+  password: z.string().min(8, "رمز عبور حداقل ۸ کاراکتر باید باشد"),
+});
 
-export type RegisterInput = z.infer<typeof registerSchema>;
+export type RegisterSchemaType = z.infer<typeof registerSchema>;
+export type LoginSchemaType = z.infer<typeof loginSchema>;

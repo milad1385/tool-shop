@@ -172,7 +172,7 @@ export const changePassword = yup.object({
 });
 
 export const userLogin = yup.object({
-  username: yup
+  identifier: yup
     .string()
     .required("این فیلد الزامی است")
     .min(1, "حداقل تعداد کاراکتر 1 عدد است")
