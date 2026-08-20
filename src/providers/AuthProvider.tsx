@@ -1,6 +1,5 @@
 "use client";
 
-import Loading from "@/components/modules/main/Loading";
 import { hasToken } from "@/libs/actions/auth.actions";
 import { useAuthStore } from "@/stores/auth.store";
 import { usePathname } from "next/navigation";
@@ -39,10 +38,6 @@ export default function AuthProvider({
 
     verifyAuth();
   }, [pathname, isAuthenticated, checkAuth]);
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return <>{children}</>;
 }
