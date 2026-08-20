@@ -188,3 +188,48 @@ export async function logoutUser() {
   cookieStore.delete("accessToken");
   redirect("/auth/login");
 }
+
+export async function getCurrentUser() {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("accessToken")?.value;
+
+    if (!token) {
+      return { success: false, user: null };
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
+      id: string;
+      username: string;
+      phone: string;
+      email: string;
+      roles: string[];
+    };
+
+    await connectDB();
+    const user = await User.findById(decoded.id).select("-password");
+
+    if (!user) {
+      return { success: false, user: null };
+    }
+
+    return {
+      success: true,
+      user: {
+        id: user._id.toString(),
+        username: user.username,
+        phone: user.phone,
+        email: user.email,
+        roles: user.roles,
+      },
+    };
+  } catch (error) {
+    if (error instanceof jwt.TokenExpiredError) {
+      const cookieStore = await cookies();
+      cookieStore.delete("accessToken");
+      return { success: false, user: null, expired: true };
+    }
+
+    return { success: false, user: null };
+  }
+}
