@@ -5,15 +5,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BsQuestionCircle } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
-import {
-  HiOutlineShoppingCart
-} from "react-icons/hi2";
+import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { IoChevronDown } from "react-icons/io5";
 import MobileMenu from "./MobileMenu";
 import Search from "./Search";
+import { useAuthStore } from "@/stores/auth.store";
+import { HiOutlineUser } from "react-icons/hi2";
+import ProfileBox from "./ProfileBox";
 
 function Navbar() {
   const pathname = usePathname();
+  const { user } = useAuthStore();
   const isActive = (linkHref) => {
     return linkHref === pathname ? "text-yellow-500" : "text-zinc-800";
   };
@@ -38,20 +40,24 @@ function Navbar() {
               />
               <Search />
             </div>
-            <div className="flex items-center gap-x-7">
+            <div className="flex items-center gap-x-6">
               <div>
                 <Link href="/questions">
-                  <BsQuestionCircle className="text-xl text-[#1f2937]" />
+                  <BsQuestionCircle className="text-2xl text-[#1f2937]" />
                 </Link>
               </div>
-              <div className="hidden md:block text-sm">
-                <Link href="/auth/login">ثبت نام | ورود</Link>
-              </div>
-              <div className="block md:hidden">
-                <Link href="/auth/login">
-                  <FaRegUser className="text-xl text-[#1f2937]" />
-                </Link>
-              </div>
+              {!user ? (
+                <div className="hidden md:block text-sm">
+                  <Link href="/auth/login">ثبت نام | ورود</Link>
+                </div>
+              ) : (
+                <div className="block group relative">
+                  <button className="flex items-center justify-center size-10 lg:size-11 cursor-pointer group-hover:text-brand transition-colors">
+                    <HiOutlineUser className="text-3xl text-[#1f2937]" />
+                  </button>
+                  <ProfileBox />
+                </div>
+              )}
               <Link href="/cart" className="block relative md:cursor-pointer">
                 <span className="absolute -top-4 left-4 size-5 rounded-full  flex items-center justify-center text-xs bg-yellow-400">
                   3
