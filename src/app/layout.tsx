@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/modules/main/Footer";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
+import AuthProvider from "@/providers/AuthProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -29,10 +30,12 @@ export default function RootLayout({
     <html lang="fa" dir="rtl" className="overflow-x-hidden select-none">
       <body className={`font-dana bg-gray-100 antialiased overflow-x-hidden`}>
         <NextTopLoader color="#eab308" showSpinner={false} />
-        <Navbar />
-        {children}
-        <Footer />
-        <Toaster />
+        <AuthProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );
