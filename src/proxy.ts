@@ -10,8 +10,14 @@ export function proxy(request: NextRequest) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   }
+
+  if (pathname.startsWith("/p-user")) {
+    if (!accessToken) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
 }
 
 export const config = {
-  matcher: ["/auth/:path*"],
+  matcher: ["/auth/:path*", "/p-user/:path*"],
 };
