@@ -233,3 +233,10 @@ export async function getCurrentUser() {
     return { success: false, user: null };
   }
 }
+
+export async function hasToken() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+
+  return !!token;
+}
