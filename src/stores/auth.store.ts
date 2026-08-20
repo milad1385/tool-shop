@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@/libs/actions/auth.actions";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -16,6 +17,7 @@ type AuthState = {
   setUser: (user: User | null) => void;
   setLoading: (isLoading: boolean) => void;
   logout: () => void;
+  checkAuth: () => Promise<void>;
 };
 
 export const useAuthStore = create<AuthState>()(
@@ -41,6 +43,34 @@ export const useAuthStore = create<AuthState>()(
           user: null,
           isAuthenticated: false,
         }),
+
+      checkAuth: async () => {
+        set({ isLoading: true });
+
+        try {
+          const result = await getCurrentUser();
+
+          if (result.success && result.user) {
+            set({
+              user: result.user,
+              isAuthenticated: true,
+              isLoading: false,
+            });
+          } else {
+            set({
+              user: null,
+              isAuthenticated: false,
+              isLoading: false,
+            });
+          }
+        } catch (error) {
+          set({
+            user: null,
+            isAuthenticated: false,
+            isLoading: false,
+          });
+        }
+      },
     }),
     {
       name: "auth-storage",
