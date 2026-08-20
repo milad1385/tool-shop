@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/libs/actions/auth.actions";
+import { getCurrentUser, logoutUser } from "@/libs/actions/auth.actions";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -38,11 +38,13 @@ export const useAuthStore = create<AuthState>()(
           isLoading,
         }),
 
-      logout: () =>
+      logout: async () => {
+        await logoutUser();
         set({
           user: null,
           isAuthenticated: false,
-        }),
+        });
+      },
 
       checkAuth: async () => {
         set({ isLoading: true });
