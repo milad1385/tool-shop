@@ -54,7 +54,7 @@ export async function createCategory(
     await connectDB();
 
     const tagsArray = validatedData.tags
-      .split(",")
+      .split(/[،,]+/)
       .map((tag) => tag.trim())
       .filter((tag) => tag !== "");
 
