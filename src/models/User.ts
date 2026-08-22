@@ -1,3 +1,4 @@
+import { UserRoleEnums } from "@/libs/types";
 import mongoose, { Schema, Model, Document } from "mongoose";
 
 export interface IAddress {
@@ -16,7 +17,7 @@ export interface IUser extends Document {
   phone: string;
   email: string;
   password: string;
-  roles: ("SUPER_ADMIN" | "ADMIN" | "SELLER" | "USER")[];
+  roles: UserRoleEnums[];
   addresses: IAddress[];
   createdAt?: Date;
   updatedAt?: Date;
@@ -102,8 +103,8 @@ const userSchema = new Schema<IUser>(
     },
     roles: {
       type: [String],
-      enum: ["SUPER_ADMIN", "ADMIN", "SELLER", "USER"],
-      default: ["USER"],
+      enum: Object.values(UserRoleEnums),
+      default: [UserRoleEnums.USER],
     },
     addresses: [addressSchema],
   },
