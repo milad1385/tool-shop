@@ -1,13 +1,18 @@
+import { UserRoleEnums } from "@/libs/types";
 import { useAuthStore } from "@/stores/auth.store";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineProduct } from "react-icons/ai";
+import { FiSettings } from "react-icons/fi";
 import { HiOutlineHome, HiOutlineLogout } from "react-icons/hi";
 import { IoTicketOutline } from "react-icons/io5";
 import { LiaComments } from "react-icons/lia";
 
 function ProfileBox() {
   const { user, logout } = useAuthStore();
+  const isAdmin = user.roles.some((role) =>
+    [UserRoleEnums.SUPER_ADMIN, UserRoleEnums.ADMIN].includes(role),
+  );
   return (
     <div
       id="profile"
@@ -37,6 +42,15 @@ function ProfileBox() {
             <span className="text-zinc-800">پیشخوان</span>
           </Link>
 
+          {isAdmin && (
+            <Link
+              href="/p-admin"
+              className="flex items-center gap-x-3 py-2.5 px-3 hover:bg-black-5 transition-colors rounded-lg"
+            >
+              <FiSettings className="size-6 text-yellow-500" />
+              <span className="text-zinc-800">پنل مدیریت</span>
+            </Link>
+          )}
           <Link
             href="/p-user/orders"
             className="flex items-center gap-x-3 py-2.5 px-3 hover:bg-black-5 transition-colors rounded-lg"
