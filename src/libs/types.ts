@@ -392,3 +392,20 @@ export interface IAdminPanelContext {
   isOpenMenu: boolean;
   setIsOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface IVerifyUser {
+  id: string;
+  username: string;
+  phone: string;
+  email: string;
+  roles: UserRoleEnums[];
+  iat: number;
+  exp: number;
+}
+
+export enum UserRoleEnums {
+  SUPER_ADMIN = "SUPER_ADMIN",
+  ADMIN = "ADMIN",
+  USER = "USER",
+  SELLER = "SELLER",
+}
