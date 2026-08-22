@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
-import { IVerifyUser, UserRoleEnums } from "./libs/types";
+import { UserRoleEnums } from "./libs/types";
 import { verifyToken } from "./utils/helper";
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
