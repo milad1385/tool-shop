@@ -18,7 +18,12 @@ function Input({
 }: IInput) {
   const errorMessage = get(errors, name)?.message;
 
-  if (type === "text" || type === "number" || type === "email" || type === "password") {
+  if (
+    type === "text" ||
+    type === "number" ||
+    type === "email" ||
+    type === "password"
+  ) {
     return (
       <div className="flex flex-col gap-y-4 relative">
         <label
@@ -42,7 +47,6 @@ function Input({
           <span
             className={`absolute -bottom-6  text-xs md:text-sm text-red-600`}
           >
-            {/* {errors[name].message} */}
             {errorMessage}
           </span>
         )}
@@ -82,12 +86,10 @@ function Input({
           {multiple && <span className="text-gray-500 text-xs">(چند عکس)</span>}
         </label>
 
-        {/* بخش آپلود - از قابلیت multiple استفاده می‌کند */}
         <div className="relative flex flex-col items-center justify-center w-full p-8 transition-colors duration-300 bg-white border-2 border-dashed rounded-xl border-slate-300 hover:border-yellow-500 group">
           <div className="absolute inset-0 transition-colors duration-300 bg-yellow-50 group-hover:bg-yellow-100 opacity-50"></div>
 
           <div className="relative z-10 text-center">
-            {/* SVG icon */}
             <svg
               className="w-16 h-16 mx-auto text-slate-400 group-hover:text-yellow-500"
               xmlns="http://www.w3.org/2000/svg"
@@ -121,13 +123,21 @@ function Input({
             <input
               {...register(`${name}`, {
                 onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (e.target.files && e.target.files.length > 0) {
+                  const files = e.target.files;
+
+                  if (files && files.length > 0) {
                     if (multiple) {
-                      setImage(Array.from(e.target.files));
+                      // ✅ برای چند فایل - آرایه‌ای از فایل‌ها
+                      const fileArray = Array.from(files);
+                      if (setImage) {
+                        setImage(fileArray);
+                      }
                     } else {
-                      const file = e.target.files[0];
-                      const objUrl = URL.createObjectURL(file);
-                      setImage(objUrl);
+                      // ✅ برای یک فایل - خود فایل رو پاس بده
+                      const file = files[0];
+                      if (setImage) {
+                        setImage(file);
+                      }
                     }
                   }
                 },
@@ -138,13 +148,10 @@ function Input({
               disabled={disable}
               className="sr-only"
               accept="image/*"
-              // 👈 فعال سازی آپلود چندگانه
               multiple={multiple}
             />
           </div>
         </div>
-
-        {/* بخش پیش نمایش زنده عکس‌ها */}
 
         {errors[name] && (
           <span className="text-sm text-red-600">{errors[name].message}</span>
@@ -169,11 +176,9 @@ function Input({
             defaultValue=""
             className={`appearance-none text-sm md:text-base input mt-[8px] w-full bg-white text-right p-2 border border-gray-300 rounded-md  transition duration-300 ${className}`}
           >
-            {/* Add your options here */}
             <option value="" disabled>
               {placeholder || "یک گزینه را انتخاب کنید"}
             </option>
-            {/* Example options: */}
             {options?.map((option) => (
               <option key={option.id} value={option.value}>
                 {option.label}
