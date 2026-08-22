@@ -1,3 +1,6 @@
+import { IVerifyUser } from "@/libs/types";
+import jwt from "jsonwebtoken";
+
 export const formattedPrice = (price: number, locale = "fa-IR") => {
   return price.toLocaleString(locale);
 };
@@ -29,3 +32,21 @@ export const getFromLocalStorage = (key: string) => {
   const value = JSON.parse(localStorage.getItem(key));
   return value ? value : null;
 };
+
+export function verifyToken(token: string): IVerifyUser {
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+  if (typeof decoded === "string") {
+    throw new Error("Invalid token format");
+  }
+
+  return {
+    id: decoded.id,
+    username: decoded.username,
+    phone: decoded.phone,
+    email: decoded.email,
+    roles: decoded.roles,
+    iat: decoded.iat,
+    exp: decoded.exp,
+  };
+}
