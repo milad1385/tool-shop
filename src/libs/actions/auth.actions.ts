@@ -79,7 +79,6 @@ export async function registerUser(formData: FormData) {
       username: user.username,
       phone: user.phone,
       email: user.email,
-      roles: user.roles,
     };
 
     return {
@@ -171,7 +170,6 @@ export async function loginUser(formData: FormData) {
         username: user.username,
         phone: user.phone,
         email: user.email,
-        roles: user.roles,
       },
     };
   } catch (error) {
