@@ -1,4 +1,5 @@
 import { getCurrentUser, logoutUser } from "@/libs/actions/auth.actions";
+import { UserRoleEnums } from "@/libs/types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -7,6 +8,7 @@ export type User = {
   username: string;
   phone: string;
   email: string;
+  roles: UserRoleEnums[];
 };
 
 type AuthState = {
