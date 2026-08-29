@@ -1,4 +1,4 @@
-import { IVerifyUser } from "@/libs/types";
+import { ICreatePagination, IPagination, IVerifyUser } from "@/libs/types";
 import jwt from "jsonwebtoken";
 
 export const formattedPrice = (price: number, locale = "fa-IR") => {
@@ -53,4 +53,25 @@ export function verifyToken(token: string): IVerifyUser {
 
 export const normalizeData = (data) => {
   return JSON.parse(JSON.stringify(data));
+};
+
+export const createPagination = ({
+  page,
+  count,
+  limit,
+}: ICreatePagination): IPagination => {
+  const totalPages = Math.ceil(count / limit);
+  return {
+    currentPage: page,
+    totalPages,
+    totalItems: count,
+    itemsPerPage: limit,
+    hasNextPage: page < totalPages,
+    hasPrevPage: page > 1,
+    count,
+  };
+};
+
+export const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString("fa-IR");
 };
