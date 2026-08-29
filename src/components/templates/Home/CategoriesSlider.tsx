@@ -1,11 +1,10 @@
 "use client";
-import React from "react";
 import CategoryBox from "@/components/modules/main/CategoryBox";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import { categories } from "@/constants/data";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { ICategoriesSlider } from "@/libs/types";
 
-function CategoriesSlider() {
+function CategoriesSlider({ categories }: ICategoriesSlider) {
   return (
     <Swiper
       slidesPerView={6}
