@@ -3,7 +3,7 @@ import { ICategory, IGetCategories, IPaginatedResponse } from "@/libs/types";
 import Category from "@/models/Category";
 import { createPagination, normalizeData } from "@/utils/helper";
 
-export const getAllCategories = async () => {
+export const getAllCategories = async (): Promise<ICategory[]> => {
   try {
     await connectToDB();
     const categories = await Category.find({ parent: null }).populate("parent");
@@ -37,6 +37,16 @@ export const getCategoriesWithPagination = async ({
       data: normalizeData(categories),
       pagination: createPagination({ page, limit, count }),
     };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getOneCategoryById = async (id: string): Promise<ICategory> => {
+  try {
+    await connectToDB();
+    const category = await Category.findOne({ _id: id }).populate("parent");
+    return normalizeData(category);
   } catch (error) {
     throw new Error(error.message);
   }
