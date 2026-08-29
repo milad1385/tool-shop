@@ -50,3 +50,7 @@ export function verifyToken(token: string): IVerifyUser {
     exp: decoded.exp,
   };
 }
+
+export const normalizeData = (data) => {
+  return JSON.parse(JSON.stringify(data));
+};
