@@ -89,7 +89,7 @@ function Input({
         <div className="relative flex flex-col items-center justify-center w-full p-8 transition-colors duration-300 bg-white border-2 border-dashed rounded-xl border-slate-300 hover:border-yellow-500 group">
           <div className="absolute inset-0 transition-colors duration-300 bg-yellow-50 group-hover:bg-yellow-100 opacity-50"></div>
 
-          <div className="relative z-10 text-center">
+          <div className="relative z-0 text-center">
             <svg
               className="w-16 h-16 mx-auto text-slate-400 group-hover:text-yellow-500"
               xmlns="http://www.w3.org/2000/svg"
