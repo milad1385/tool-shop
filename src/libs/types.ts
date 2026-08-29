@@ -1,8 +1,8 @@
 export interface ICategory {
   id: number;
-  title: string;
+  name: string;
   image: string;
-  link: string;
+  href: string;
 }
 
 export interface IProduct {
@@ -408,4 +408,20 @@ export enum UserRoleEnums {
   ADMIN = "ADMIN",
   USER = "USER",
   SELLER = "SELLER",
+}
+
+export interface ICategory {
+  _id: string;
+  name: string;
+  href: string;
+  desc: string;
+  parent: string | null;
+  tags: string[];
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ICategoriesSlider {
+  categories: ICategory[];
 }
