@@ -6,7 +6,7 @@ import { createPagination, normalizeData } from "@/utils/helper";
 export const getAllCategories = async () => {
   try {
     await connectToDB();
-    const categories = await Category.find({}).populate("parent");
+    const categories = await Category.find({ parent: null }).populate("parent");
     return normalizeData(categories);
   } catch (error) {
     throw new Error(error.message);
