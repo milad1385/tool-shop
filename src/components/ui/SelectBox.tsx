@@ -35,7 +35,7 @@ function SelectBox({
     }
     return null;
   };
-  if (!multiple && !searchable) {
+  if (!searchable) {
     return (
       <div className="flex w-full flex-col gap-y-3  relative">
         <label className={`text-sm ${className}`}>{title}</label>
