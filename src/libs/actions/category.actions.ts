@@ -3,10 +3,13 @@
 import connectDB from "@/configs/db";
 import Category from "@/models/Category";
 import { deleteFile, uploadFile } from "@/utils/uploads";
-import { createCategorySchema } from "@/validators/backend/category.validator";
+import {
+  createCategorySchema,
+  updateCategorySchema,
+} from "@/validators/backend/category.validator";
+import { isValidObjectId } from "mongoose";
 import { revalidatePath } from "next/cache";
 import { checkAdminAccess } from "./admin.actions";
-import { isValidObjectId } from "mongoose";
 
 export type CategoryState = {
   success: boolean;
@@ -143,3 +146,122 @@ export const deleteCategory = async (id: string): Promise<CategoryState> => {
     };
   }
 };
+export async function updateCategory(
+  formData: FormData,
+): Promise<CategoryState> {
+  try {
+    const adminCheck = await checkAdminAccess();
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    const categoryId = formData.get("categoryId") as string;
+    if (!categoryId) {
+      return {
+        success: false,
+        message: "شناسه دسته بندی الزامی است",
+      };
+    }
+
+    await connectDB();
+    const existingCategory = await Category.findById(categoryId);
+    if (!existingCategory) {
+      return {
+        success: false,
+        message: "دسته بندی یافت نشد",
+      };
+    }
+
+    const rawData = {
+      name: formData.get("name") as string,
+      href: formData.get("href") as string,
+      desc: formData.get("desc") as string,
+      tags: formData.get("tags") as string,
+      category: formData.get("category") as string,
+      image: formData.get("image"),
+    };
+
+    const validationResult = updateCategorySchema.safeParse(rawData);
+
+    if (!validationResult.success) {
+      const errors: Record<string, string> = {};
+      validationResult.error.errors.forEach((err) => {
+        const field = err.path[0] as string;
+        errors[field] = err.message;
+      });
+      return {
+        success: false,
+        message: "اطلاعات وارد شده معتبر نیست",
+        errors,
+      };
+    }
+
+    const validatedData = validationResult.data;
+
+    const tagsArray = validatedData.tags
+      .split(/[،,]+/)
+      .map((tag) => tag.trim())
+      .filter((tag) => tag !== "");
+
+    let imageUrl = existingCategory.image;
+
+    const imageFile = validatedData.image;
+    if (imageFile && imageFile instanceof File && imageFile.size > 0) {
+      if (existingCategory.image) {
+        try {
+          await deleteFile(existingCategory.image);
+        } catch (error) {
+          console.error("خطا در حذف تصویر قبلی:", error);
+        }
+      }
+
+      const uploadResult = await uploadFile(imageFile, "uploads/categories");
+
+      if (!uploadResult.success) {
+        return {
+          success: false,
+          message: uploadResult.error || "خطا در آپلود تصویر",
+        };
+      }
+
+      imageUrl = uploadResult.url;
+    }
+
+    const updatedCategory = await Category.findByIdAndUpdate(
+      categoryId,
+      {
+        name: validatedData.name,
+        href: validatedData.href,
+        desc: validatedData.desc,
+        parent: validatedData.category || null,
+        tags: tagsArray,
+        image: imageUrl,
+      },
+      { new: true, runValidators: true },
+    );
+
+    if (!updatedCategory) {
+      return {
+        success: false,
+        message: "خطا در به‌روزرسانی دسته بندی",
+      };
+    }
+
+    revalidatePath("/p-admin/categories");
+    revalidatePath("/categories");
+    revalidatePath(`/categories/${updatedCategory.href}`);
+    return {
+      success: true,
+      message: `دسته بندی با موفقیت به‌روزرسانی شد`,
+    };
+  } catch (error) {
+    console.error("خطا در به‌روزرسانی دسته بندی:", error);
+    return {
+      success: false,
+      message: "خطا در به‌روزرسانی دسته بندی، لطفاً دوباره تلاش کنید",
+    };
+  }
+}
