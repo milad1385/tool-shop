@@ -2,10 +2,11 @@
 
 import connectDB from "@/configs/db";
 import Category from "@/models/Category";
-import { uploadFile } from "@/utils/uploads";
+import { deleteFile, uploadFile } from "@/utils/uploads";
 import { createCategorySchema } from "@/validators/backend/category.validator";
 import { revalidatePath } from "next/cache";
 import { checkAdminAccess } from "./admin.actions";
+import { isValidObjectId } from "mongoose";
 
 export type CategoryState = {
   success: boolean;
@@ -99,3 +100,46 @@ export async function createCategory(
     };
   }
 }
+
+export const deleteCategory = async (id: string): Promise<CategoryState> => {
+  try {
+    const adminCheck = await checkAdminAccess();
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    if (!isValidObjectId(id)) {
+      return {
+        success: false,
+        message: "آیدی ارسال شده معتبر نیست",
+      };
+    }
+
+    const category = await Category.findByIdAndDelete(id);
+    if (category.parent) {
+      await Category.deleteMany({ parent: category._id });
+    }
+    if (!category) {
+      return {
+        success: false,
+        message: `دسته بندی با این آیدی یافت نشد : ${id}`,
+      };
+    }
+
+    await deleteFile(category.image);
+    revalidatePath("/p-admin/categories");
+    return {
+      success: true,
+      message: "دسته بندی با موفقیت حذف شد",
+    };
+  } catch (error) {
+    console.error("خطا در حذف دسته بندی:", error);
+    return {
+      success: false,
+      message: "خطا در حذف دسته بندی، لطفاً دوباره تلاش کنید",
+    };
+  }
+};
