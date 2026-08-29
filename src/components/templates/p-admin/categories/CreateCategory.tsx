@@ -2,6 +2,9 @@
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import SelectBox from "@/components/ui/SelectBox";
+import { createCategory } from "@/libs/actions/category.actions";
+import { ICreateCategory, ISelectBox } from "@/libs/types";
 import {
   createCategorySchema,
   TCategorySchema,
@@ -10,15 +13,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaRegTrashAlt, FaSpinner } from "react-icons/fa";
-import { createCategory } from "@/libs/actions/category.actions";
 import toast from "react-hot-toast";
-import { ICreateCategory } from "@/libs/types";
+import { FaRegTrashAlt, FaSpinner } from "react-icons/fa";
 
 function CreateCategory({ categories }: ICreateCategory) {
   const [image, setImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isPending, setIsPending] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<ISelectBox>(null);
 
   const {
     register,
@@ -32,9 +34,8 @@ function CreateCategory({ categories }: ICreateCategory) {
   });
 
   const categoriesOption = categories.map((category, index) => ({
-    id: index + 1,
-    label: category.name,
-    value: category.href,
+    label: category.href,
+    value: category._id,
   }));
 
   const onSubmit = async (data: TCategorySchema) => {
@@ -46,7 +47,7 @@ function CreateCategory({ categories }: ICreateCategory) {
       formData.append("href", data.href);
       formData.append("desc", data.desc);
       formData.append("tags", data.tags);
-      formData.append("category", data.category || "");
+      formData.append("category", selectedOption?.value || "");
 
       if (imageFile) {
         formData.append("image", imageFile);
@@ -71,6 +72,8 @@ function CreateCategory({ categories }: ICreateCategory) {
         toast.error(result.message);
       }
     } catch (error) {
+      console.log(error);
+      
       toast.error("خطا در ارتباط با سرور");
     } finally {
       setIsPending(false);
@@ -125,7 +128,7 @@ function CreateCategory({ categories }: ICreateCategory) {
           labelClassName="md:!text-lg font-Iran"
         />
 
-        <Input
+        {/* <Input
           register={register}
           errors={errors}
           name="category"
@@ -135,6 +138,19 @@ function CreateCategory({ categories }: ICreateCategory) {
           label="دسته بندی پرنت"
           disable={isPending}
           labelClassName="md:!text-lg font-Iran"
+        /> */}
+
+        <SelectBox
+          register={register}
+          errors={errors}
+          placeholder="پرنت دسته بندی را انتخاب کنید"
+          name="stars"
+          options={categoriesOption}
+          title="پرنت دسته بندی"
+          multiple
+          selected={selectedOption}
+          onSelected={setSelectedOption}
+          disable={isPending}
         />
 
         <div></div>
