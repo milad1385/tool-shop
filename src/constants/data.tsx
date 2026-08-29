@@ -1521,3 +1521,14 @@ export const articles = [
     image: "blog-1.jpg",
   },
 ];
+
+export const categoryTableHeader = [
+  "شماره",
+  "عکس",
+  "عنوان",
+  "لینک",
+  "پرنت",
+  "تگ ها",
+  "تاریخ",
+  "عملیات",
+];
