@@ -1,3 +1,4 @@
+import { customStyles } from "@/constants/data";
 import { TSelectBox } from "@/libs/types";
 import dynamic from "next/dynamic";
 const Select = dynamic(() => import("react-select"), {
@@ -22,7 +23,18 @@ function SelectBox({
   className,
   searchable,
   noOptionMsg,
+  defaultValue,
 }: TSelectBox) {
+  const getDefaultValue = () => {
+    if (selected) return selected;
+    if (defaultValue) {
+      if (Array.isArray(defaultValue)) {
+        return options.filter((opt) => defaultValue.includes(opt.value));
+      }
+      return options.find((opt) => opt.value === defaultValue);
+    }
+    return null;
+  };
   if (!multiple && !searchable) {
     return (
       <div className="flex w-full flex-col gap-y-3  relative">
@@ -65,14 +77,34 @@ function SelectBox({
           className={`  h-[52px]  rounded-xl flex items-center justify-between gap-x-2`}
         >
           <Select
-            defaultValue={selected}
-            className="w-full text-sm md:text-base"
+            defaultValue={getDefaultValue()}
+            className="w-full"
+            classNamePrefix="react-select"
             isMulti={multiple}
+            noOptionsMessage={() => "موردی یافت نشد"}
             options={options}
+            {...register(`${name}`)}
             onChange={handleSelectChange}
             placeholder={placeholder}
-            noOptionsMessage={() => noOptionMsg}
-            isDisabled={disable}
+            styles={customStyles}
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 14,
+              colors: {
+                ...theme.colors,
+                primary: "#121212",
+                primary25: "#1a1a2e",
+                primary50: "#121212",
+                neutral0: "#000000",
+                neutral5: "#1a1a2e",
+                neutral10: "#2a2a4e",
+                neutral20: "#333333",
+                neutral30: "#444444",
+                neutral40: "#888888",
+                neutral50: "#aaaaaa",
+                neutral80: "#ffffff",
+              },
+            })}
           />
         </div>
       </div>
