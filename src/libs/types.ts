@@ -1,9 +1,9 @@
-export interface ICategory {
-  id: number;
-  name: string;
-  image: string;
-  href: string;
-}
+// export interface ICategory {
+//   id: number;
+//   name: string;
+//   image: string;
+//   href: string;
+// }
 
 export interface IProduct {
   id: number;
@@ -415,13 +415,45 @@ export interface ICategory {
   name: string;
   href: string;
   desc: string;
-  parent: string | null;
+  parent: ICategory;
   tags: string[];
   image: string;
   createdAt: string;
   updatedAt: string;
+  index?: number;
 }
 
 export interface ICategoriesSlider {
   categories: ICategory[];
+}
+
+export interface IGetCategories {
+  page?: number;
+  limit?: number;
+  search?: string | string[];
+}
+
+export interface IPagination {
+  currentPage: number;
+  totalPages: number;
+  totalItems: number;
+  itemsPerPage: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
+
+export interface IPaginatedResponse<T> {
+  data: T[];
+  pagination: IPagination;
+}
+
+export interface ICreatePagination {
+  page: number;
+  count: number;
+  limit: number;
+}
+
+export interface ICategoryList {
+  data: ICategory[];
+  pagination: IPagination;
 }
