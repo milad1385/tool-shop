@@ -457,3 +457,7 @@ export interface ICategoryList {
   data: ICategory[];
   pagination: IPagination;
 }
+
+export interface ICreateCategory {
+  categories: ICategory[];
+}
