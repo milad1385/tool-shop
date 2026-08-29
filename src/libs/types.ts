@@ -470,3 +470,8 @@ export interface ICategoryList {
 export interface ICreateCategory {
   categories: ICategory[];
 }
+
+export interface IUpdateCategory {
+  category: ICategory;
+  categories: ICategory[];
+}
