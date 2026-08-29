@@ -1521,6 +1521,104 @@ export const articles = [
     image: "blog-1.jpg",
   },
 ];
+export const customStyles = {
+  control: (provided: any, state: any) => ({
+    ...provided,
+    backgroundColor: "#f9fafb",
+    borderRadius: "8px",
+    padding: "4px 4px",
+    borderColor: "#d1d5db",
+    borderWidth: "1px",
+    boxShadow: "none",
+    "&:hover": {
+      borderColor: "#d1d5db", 
+    },
+    "&:focus": {
+      borderColor: "#d1d5db", 
+    },
+    "@media (max-width: 576px)": {
+      fontSize: "12px",
+      padding: "4px 2px",
+    },
+  }),
+  menu: (provided: any) => ({
+    ...provided,
+    backgroundColor: "#ffffff",
+    border: "1px solid #d1d5db",
+    borderRadius: "8px",
+    marginTop: "4px",
+    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+    "@media (max-width: 576px)": {
+      fontSize: "12px",
+    },
+  }),
+  option: (provided: any, state: any) => ({
+    ...provided,
+    backgroundColor: state.isFocused ? "#f3f4f6" : "#ffffff",
+    color: state.isSelected ? "#ffffff" : "#1f2937",
+    padding: "10px 12px",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#e5e7eb",
+    },
+    ...(state.isSelected && {
+      backgroundColor: "#1993ff",
+      color: "#ffffff",
+    }),
+    "@media (max-width: 576px)": {
+      fontSize: "14px",
+    },
+  }),
+  singleValue: (provided: any) => ({
+    ...provided,
+    color: "#1f2937",
+  }),
+  multiValue: (provided: any) => ({
+    ...provided,
+    backgroundColor: "#e5e7eb",
+    borderRadius: "4px",
+  }),
+  multiValueLabel: (provided: any) => ({
+    ...provided,
+    color: "#1f2937",
+    padding: "2px 6px",
+  }),
+  multiValueRemove: (provided: any) => ({
+    ...provided,
+    color: "#6b7280",
+    "&:hover": {
+      backgroundColor: "#ef4444",
+      color: "#ffffff",
+      borderRadius: "4px",
+    },
+  }),
+  placeholder: (provided: any) => ({
+    ...provided,
+    color: "#9ca3af",
+  }),
+  input: (provided: any) => ({
+    ...provided,
+    color: "#1f2937",
+  }),
+  indicatorSeparator: (provided: any) => ({
+    ...provided,
+    backgroundColor: "#d1d5db",
+  }),
+  dropdownIndicator: (provided: any) => ({
+    ...provided,
+    color: "#6b7280",
+    "&:hover": {
+      color: "#6b7280",
+    },
+  }),
+  clearIndicator: (provided: any) => ({
+    ...provided,
+    color: "#6b7280",
+    "&:hover": {
+      color: "#ef4444",
+    },
+  }),
+};
 
 export const categoryTableHeader = [
   "شماره",
