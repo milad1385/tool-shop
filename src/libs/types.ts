@@ -246,7 +246,13 @@ export type TSelectBox = {
   className?: string;
   searchable?: boolean;
   noOptionMsg?: string;
+  defaultValue?: any;
 };
+
+export interface ISelectBox {
+  label: string;
+  value: string;
+}
 
 export type TRadioButton = {
   className?: string;
