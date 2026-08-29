@@ -34,7 +34,7 @@ function CreateCategory({ categories }: ICreateCategory) {
   });
 
   const categoriesOption = categories.map((category, index) => ({
-    label: category.href,
+    label: category.name,
     value: category._id,
   }));
 
@@ -73,7 +73,7 @@ function CreateCategory({ categories }: ICreateCategory) {
       }
     } catch (error) {
       console.log(error);
-      
+
       toast.error("خطا در ارتباط با سرور");
     } finally {
       setIsPending(false);
@@ -128,18 +128,6 @@ function CreateCategory({ categories }: ICreateCategory) {
           labelClassName="md:!text-lg font-Iran"
         />
 
-        {/* <Input
-          register={register}
-          errors={errors}
-          name="category"
-          type="select"
-          className="!bg-gray-50"
-          options={categoriesOption}
-          label="دسته بندی پرنت"
-          disable={isPending}
-          labelClassName="md:!text-lg font-Iran"
-        /> */}
-
         <SelectBox
           register={register}
           errors={errors}
@@ -147,10 +135,10 @@ function CreateCategory({ categories }: ICreateCategory) {
           name="stars"
           options={categoriesOption}
           title="پرنت دسته بندی"
-          multiple
           selected={selectedOption}
           onSelected={setSelectedOption}
           disable={isPending}
+          searchable
         />
 
         <div></div>
