@@ -61,7 +61,9 @@ function CategoryRow({
       <td>{formatDate(createdAt)}</td>
       <td>
         <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-          <FaPencil className="text-yellow-500 text-base md:text-xl" />
+          <Link href={`/p-admin/categories/${_id}`}>
+            <FaPencil className="text-yellow-500 text-base md:text-xl" />
+          </Link>
           <Modal>
             <Modal.Open name="delete">
               <FaTrash className="text-red-600 text-base md:text-xl" />
