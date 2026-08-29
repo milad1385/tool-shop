@@ -13,8 +13,9 @@ import { useForm } from "react-hook-form";
 import { FaRegTrashAlt, FaSpinner } from "react-icons/fa";
 import { createCategory } from "@/libs/actions/category.actions";
 import toast from "react-hot-toast";
+import { ICreateCategory } from "@/libs/types";
 
-function CreateCategory() {
+function CreateCategory({ categories }: ICreateCategory) {
   const [image, setImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isPending, setIsPending] = useState(false);
@@ -29,6 +30,12 @@ function CreateCategory() {
   } = useForm({
     resolver: yupResolver(createCategorySchema),
   });
+
+  const categoriesOption = categories.map((category, index) => ({
+    id: index + 1,
+    label: category.name,
+    value: category.href,
+  }));
 
   const onSubmit = async (data: TCategorySchema) => {
     setIsPending(true);
@@ -124,10 +131,7 @@ function CreateCategory() {
           name="category"
           type="select"
           className="!bg-gray-50"
-          options={[
-            { id: 1, label: "دریل", value: "deral" },
-            { id: 2, label: "سنگ بر", value: "stone" },
-          ]}
+          options={categoriesOption}
           label="دسته بندی پرنت"
           disable={isPending}
           labelClassName="md:!text-lg font-Iran"
