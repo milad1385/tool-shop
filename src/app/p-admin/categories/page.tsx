@@ -12,6 +12,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "دسته بندی",
+  description: "در این صفحه می توانید به مدیریت دسته بندی های سایت بپردازید",
 };
 
 async function page({ searchParams }: IPage) {
