@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function CategoryBox({ title, image, link }: ICategory) {
+function CategoryBox({ name, image, href }: ICategory) {
   return (
     <Link
-      href={link}
+      href={`/category/${href}`}
       className="block bg-white   py-3 border border-slate-200  rounded-3xl leading-10 md:cursor-pointer"
     >
       <Image
@@ -14,9 +14,9 @@ function CategoryBox({ title, image, link }: ICategory) {
         height={1080}
         className="w-[64px] h-[64px] mx-auto"
         alt="images"
-        src={`/images/${image}`}
+        src={image}
       />
-      <h3 className="font-Lalezar text-center text-lg mt-3">{title}</h3>
+      <h3 className="font-Lalezar text-center text-lg mt-3">{name}</h3>
     </Link>
   );
 }
