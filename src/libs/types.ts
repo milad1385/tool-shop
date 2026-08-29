@@ -211,6 +211,8 @@ export interface IModal {
   onClose?: any;
   isQuestion?: boolean;
   status?: string;
+  onSubmit?: any;
+  isLoading?: boolean;
 }
 
 export interface IRecentProducts {
@@ -421,6 +423,7 @@ export interface ICategory {
   createdAt: string;
   updatedAt: string;
   index?: number;
+  onDelete: (id: string) => void;
 }
 
 export interface ICategoriesSlider {
