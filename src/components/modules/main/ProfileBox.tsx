@@ -28,7 +28,7 @@ function ProfileBox() {
             alt="پروفایل کاربر"
           />
           <div className="flex flex-col space-y-1 cursor-default">
-            <span className="">{user?.username}</span>
+            <span className="">{user?.fullname}</span>
             <span className="text-sm">{user?.phone}</span>
           </div>
         </div>
