@@ -37,6 +37,7 @@ function RegisterForm() {
         formData.append("phone", data.phone);
         formData.append("email", data.email);
         formData.append("password", data.password);
+        formData.append("fullname", data.fullname);
 
         const result = await registerAction(formData);
 
@@ -55,7 +56,7 @@ function RegisterForm() {
   };
 
   return (
-    <div className="flex-1 p-6 md:p-4 lg:p-14 lg:pb-0">
+    <div className="flex-1 p-6 md:p-4 lg:px-14 lg:py-8 lg:pb-0">
       <h2 className="text-center text-2xl lg:text-4xl font-Lalezar">
         صفحه ثبت نام
       </h2>
@@ -64,6 +65,16 @@ function RegisterForm() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-y-5 mt-3"
       >
+        <Input
+          register={register}
+          errors={errors}
+          name="fullname"
+          type="text"
+          label="نام و نام خانوادگی"
+          className="bg-gray-50"
+          disable={isPending}
+          labelClassName="font-Iran"
+        />
         <Input
           register={register}
           errors={errors}
