@@ -1531,10 +1531,10 @@ export const customStyles = {
     borderWidth: "1px",
     boxShadow: "none",
     "&:hover": {
-      borderColor: "#d1d5db", 
+      borderColor: "#d1d5db",
     },
     "&:focus": {
-      borderColor: "#d1d5db", 
+      borderColor: "#d1d5db",
     },
     "@media (max-width: 576px)": {
       fontSize: "12px",
@@ -1628,5 +1628,15 @@ export const categoryTableHeader = [
   "پرنت",
   "تگ ها",
   "تاریخ",
+  "عملیات",
+];
+
+export const sliderTableHeader = [
+  "شماره",
+  "عکس",
+  "عنوان",
+  "تاریخ",
+  "اولویت",
+  "وضعیت",
   "عملیات",
 ];
