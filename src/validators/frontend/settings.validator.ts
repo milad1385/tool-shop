@@ -29,7 +29,7 @@ export const sliderSchema = yup.object({
     .required("این فیلد الزامی است")
     .min(3, "حداقل تعداد لینک اسلایدر کاراکتر 3 عدد است")
     .max(100, "حداکثر تعداد لینک اسلایدر 100 کاراکتر عدد میباشد"),
-  order: yup.string().required("وارد کردن اولویت اسلایدر الزامی است"),
+  priority: yup.string().required("وارد کردن اولویت اسلایدر الزامی است"),
 });
 export const siteInfoSchema = yup.object({
   address: yup
