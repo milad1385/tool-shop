@@ -138,7 +138,6 @@ function CreateSlider() {
               />
               <FaRegTrashAlt
                 onClick={() => {
-                  // پاک کردن URL Object برای جلوگیری از نشتی حافظه
                   URL.revokeObjectURL(image);
                   setImage(null);
                   setImageFile(null);
