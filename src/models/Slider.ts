@@ -7,6 +7,7 @@ export interface ISlider extends Document {
   image: string;
   createdAt?: Date;
   updatedAt?: Date;
+  status: "ACCEPT" | "PENDING" | "REJECT";
 }
 
 const sliderSchema = new Schema<ISlider>(
@@ -36,6 +37,11 @@ const sliderSchema = new Schema<ISlider>(
     image: {
       type: String,
       required: [true, "تصویر اسلایدر الزامی است"],
+    },
+    status: {
+      type: String,
+      enum: ["ACCEPT", "PENDING", "REJECT"],
+      default: "PENDING",
     },
   },
   { timestamps: true },
