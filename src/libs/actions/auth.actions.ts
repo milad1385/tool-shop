@@ -18,6 +18,7 @@ export async function registerUser(formData: FormData) {
       phone: formData.get("phone") as string,
       email: formData.get("email") as string,
       password: formData.get("password") as string,
+      fullname: formData.get("fullname") as string,
     };
 
     const validationResult = registerSchema.safeParse(rawData);
@@ -50,6 +51,7 @@ export async function registerUser(formData: FormData) {
       phone: validatedData.phone,
       email: validatedData.email,
       password: hashedPassword,
+      fullname: validatedData.fullname,
       roles: isAdmin > 0 ? ["USER"] : ["SUPER_ADMIN"],
     });
 
@@ -57,6 +59,7 @@ export async function registerUser(formData: FormData) {
       {
         id: user._id.toString(),
         username: user.username,
+        fullname: user.fullname,
         phone: user.phone,
         email: user.email,
         roles: user.roles,
@@ -77,6 +80,7 @@ export async function registerUser(formData: FormData) {
     const userObject = {
       id: user._id.toString(),
       username: user.username,
+      fullname: user.fullname,
       phone: user.phone,
       email: user.email,
       roles: user.roles,
@@ -146,6 +150,7 @@ export async function loginUser(formData: FormData) {
       {
         id: user._id.toString(),
         username: user.username,
+        fullname: user.fullname,
         phone: user.phone,
         email: user.email,
         roles: user.roles,
@@ -172,6 +177,7 @@ export async function loginUser(formData: FormData) {
         phone: user.phone,
         email: user.email,
         roles: user.roles,
+        fullname: user.fullname,
       },
     };
   } catch (error) {
@@ -201,6 +207,7 @@ export async function getCurrentUser() {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
       id: string;
       username: string;
+      fullname: string;
       phone: string;
       email: string;
       roles: string[];
@@ -218,6 +225,7 @@ export async function getCurrentUser() {
       user: {
         id: user._id.toString(),
         username: user.username,
+        fullname: user.fullname,
         phone: user.phone,
         email: user.email,
         roles: user.roles,

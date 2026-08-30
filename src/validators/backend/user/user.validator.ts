@@ -1,6 +1,10 @@
 import { z } from "zod";
 
 export const registerSchema = z.object({
+  fullname: z
+    .string()
+    .min(3, "نام کامل حداقل ۳ کاراکتر باید باشد")
+    .max(50, "نام کامل حداکثر ۵۰ کاراکتر باید باشد"),
   username: z
     .string()
     .min(3, "نام کاربری حداقل ۳ کاراکتر باید باشد")

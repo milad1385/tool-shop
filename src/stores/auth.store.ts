@@ -6,6 +6,7 @@ import { persist } from "zustand/middleware";
 export type User = {
   id: string;
   username: string;
+  fullname: string;
   phone: string;
   email: string;
   roles: UserRoleEnums[];

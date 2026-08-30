@@ -13,6 +13,7 @@ export interface IAddress {
 }
 
 export interface IUser extends Document {
+  fullname: string;
   username: string;
   phone: string;
   email: string;
@@ -70,6 +71,13 @@ const addressSchema = new Schema<IAddress>(
 
 const userSchema = new Schema<IUser>(
   {
+    fullname: {
+      type: String,
+      required: [true, "نام کامل الزامی است"],
+      trim: true,
+      minlength: [3, "نام کامل حداقل ۳ کاراکتر باید باشد"],
+      maxlength: [50, "نام کامل حداکثر ۵۰ کاراکتر باید باشد"],
+    },
     username: {
       type: String,
       required: [true, "نام کاربری الزامی است"],

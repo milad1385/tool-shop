@@ -186,6 +186,11 @@ export const userLogin = yup.object({
 });
 
 export const registerUser = yup.object({
+  fullname: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(1, "حداقل تعداد کاراکتر 1 عدد است")
+    .max(100, "حداکثر تعداد کاراکتر 100 عدد میباشد"),
   username: yup
     .string()
     .required("این فیلد الزامی است")
