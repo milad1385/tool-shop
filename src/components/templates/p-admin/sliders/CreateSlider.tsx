@@ -2,11 +2,8 @@
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import {
-  sliderSchema,
-  TSliderSchema,
-} from "@/validators/frontend/settings.validator";
-import { yupResolver } from "@hookform/resolvers/yup";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -14,6 +11,7 @@ import toast from "react-hot-toast";
 import { FaRegTrashAlt, FaSpinner } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { createSlider } from "@/libs/actions/slider.action";
+import { sliderSchema, TSliderSchema } from "@/validators/backend/slider.validator";
 
 function CreateSlider() {
   const [image, setImage] = useState<string | null>(null);
@@ -29,7 +27,7 @@ function CreateSlider() {
     setValue,
     setError,
   } = useForm({
-    resolver: yupResolver(sliderSchema),
+    resolver: zodResolver(sliderSchema),
   });
 
   const createSliderHandler = async (data: TSliderSchema) => {
