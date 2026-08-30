@@ -72,6 +72,6 @@ export const createPagination = ({
   };
 };
 
-export const formatDate = (date: string) => {
+export const formatDate = (date: Date | string) => {
   return new Date(date).toLocaleDateString("fa-IR");
 };
