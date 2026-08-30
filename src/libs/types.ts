@@ -442,6 +442,12 @@ export interface IGetCategories {
   search?: string | string[];
 }
 
+export interface IGetSliders {
+  page?: number;
+  limit?: number;
+  search?: string | string[];
+}
+
 export interface IPagination {
   currentPage: number;
   totalPages: number;
@@ -477,12 +483,18 @@ export interface IUpdateCategory {
 }
 
 export interface ISlider {
-  _id : string;
+  _id: string;
   title: string;
   href: string;
   priority: number;
   image: string;
   createdAt?: Date;
   updatedAt?: Date;
-}[]
+  status: "ACCEPT" | "PENDING" | "REJECT";
+  index?: number;
+}
 
+export interface ISliderList {
+  data: ISlider[];
+  pagination: IPagination;
+}

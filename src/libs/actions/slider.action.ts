@@ -71,6 +71,7 @@ export async function createSlider(formData: FormData): Promise<SliderState> {
       href: validatedData.href,
       priority: validatedData.priority,
       image: imageUrl,
+      status: "PENDING",
     });
 
     revalidatePath("/p-admin/sliders");
