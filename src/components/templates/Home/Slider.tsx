@@ -1,16 +1,12 @@
 "use client";
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { ISlider } from "@/libs/types";
+import Image from "next/image";
 import "swiper/css";
 import "swiper/css/pagination";
-import Image from "next/image";
+import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-function Slider() {
-  const images = [
-    { id: 1, url: "/images/slider-2.jpg", alt: "image1" },
-    { id: 2, url: "/images/slider-1.jpg", alt: "image2" },
-  ];
+function Slider({ sliders }: { sliders: ISlider[] }) {
   return (
     <Swiper
       pagination={{
@@ -20,14 +16,15 @@ function Slider() {
       modules={[Pagination]}
       className="mySwiper mt-28 md:mt-48"
     >
-      {images.map((image) => (
-        <SwiperSlide key={image.id}>
+      {sliders.map((slider) => (
+        <SwiperSlide key={slider._id}>
           <Image
             className="rounded-xl h-[160px] object-cover md:h-full"
             width={1920}
             height={1080}
-            src={image.url}
-            alt={image.url}
+            src={slider.image}
+            alt={slider.title}
+            title={slider.title}
           />
         </SwiperSlide>
       ))}

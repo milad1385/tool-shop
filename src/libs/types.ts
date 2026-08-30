@@ -475,3 +475,14 @@ export interface IUpdateCategory {
   category: ICategory;
   categories: ICategory[];
 }
+
+export interface ISlider {
+  _id : string;
+  title: string;
+  href: string;
+  priority: number;
+  image: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}[]
+
