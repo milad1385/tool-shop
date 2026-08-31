@@ -467,9 +467,10 @@ export const requestProductFilterOptions = [
 ];
 
 export const sliderFilterOptions = [
-  { label: "همه", slug: "all", color: "black" },
-  { label: "فعال", slug: "active", color: "green-500" },
-  { label: "غیر فعال", slug: "not-active", color: "red-500" },
+  { label: "همه", slug: "ALL", color: "black" },
+  { label: "فعال", slug: "ACCEPT", color: "green-500" },
+  { label: "غیر فعال", slug: "REJECT", color: "red-500" },
+  { label: "در حال بررسی", slug: "PENDING", color: "yellow-500" },
 ];
 
 export const questionFilterOptions = [
