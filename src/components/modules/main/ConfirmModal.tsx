@@ -30,7 +30,10 @@ function ConfirmModal({
         <div className="flex items-center gap-x-8">
           <Button
             className="!w-[200px] !bg-green-600 !rounded-lg flex-center h-[48px]"
-            onClick={onSubmit}
+            onClick={() => {
+              onSubmit();
+              onClose();
+            }}
           >
             {isLoading ? <FaSpinner className="animate-spin h-5 w-5" /> : "بله"}
           </Button>
