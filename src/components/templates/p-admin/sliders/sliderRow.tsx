@@ -1,14 +1,14 @@
 import ConfirmModal from "@/components/modules/main/ConfirmModal";
 import Modal from "@/components/modules/main/Modal";
 import Table from "@/components/modules/p-admin/Table";
-import { deleteSlider } from "@/libs/actions/slider.action";
+import { changeStatus, deleteSlider } from "@/libs/actions/slider.action";
 import { ISlider } from "@/libs/types";
 import { formatDate } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 import { useTransition } from "react";
 import toast from "react-hot-toast";
-import { FaTrash } from "react-icons/fa";
+import { FaCheck, FaTrash } from "react-icons/fa";
 import { FaPencil, FaXmark } from "react-icons/fa6";
 
 function SliderRow({
@@ -30,6 +30,22 @@ function SliderRow({
       try {
         onDelete(_id);
         const result = await deleteSlider(_id);
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error("خطا در ارتباط با سرور");
+      }
+    });
+  };
+
+  const changeSliderStatusHandler = () => {
+    startTransition(async () => {
+      if (!_id) return;
+      try {
+        const result = await changeStatus(_id);
         if (result.success) {
           toast.success(result.message);
         } else {
@@ -82,6 +98,13 @@ function SliderRow({
             <Modal.Open name="delete">
               <FaTrash className="text-red-600 text-base md:text-xl" />
             </Modal.Open>
+            <Modal.Open name="status">
+              {status === "ACCEPT" ? (
+                <FaXmark className="text-yellow-500 text-base md:text-2xl" />
+              ) : (
+                <FaCheck className="text-green-500 text-base md:text-xl" />
+              )}
+            </Modal.Open>
             <Modal.Page name="delete">
               <ConfirmModal
                 status="حذف کردن"
@@ -89,9 +112,14 @@ function SliderRow({
                 isLoading={isPending}
               />
             </Modal.Page>
+            <Modal.Page name="status">
+              <ConfirmModal
+                status={status === "ACCEPT" ? "رد کردن" : "تایید کردن"}
+                onSubmit={changeSliderStatusHandler}
+                isLoading={isPending}
+              />
+            </Modal.Page>
           </Modal>
-
-          <FaXmark className="text-yellow-500 text-base md:text-2xl" />
         </div>
       </td>
     </Table.Row>
