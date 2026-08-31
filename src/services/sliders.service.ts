@@ -6,7 +6,9 @@ import { createPagination, normalizeData } from "@/utils/helper";
 export const getAllSliders = async (): Promise<ISlider[]> => {
   try {
     await connectToDB();
-    const sliders = await Slider.find({}).sort({ priority: 1 });
+    const sliders = await Slider.find({ status: "ACCEPT" }).sort({
+      priority: 1,
+    });
     return normalizeData(sliders);
   } catch (err) {
     throw new Error(err?.message);
@@ -32,7 +34,7 @@ export const getSliders = async ({
     }
 
     const count = await Slider.countDocuments(filters);
-    
+
     const sliders = await Slider.find(filters)
       .skip((page - 1) * limit)
       .limit(limit)
