@@ -131,3 +131,52 @@ export const deleteSlider = async (id: string): Promise<SliderState> => {
     };
   }
 };
+
+export const changeStatus = async (id: string): Promise<SliderState> => {
+  try {
+    const adminCheck = await checkAdminAccess();
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    if (!isValidObjectId(id)) {
+      return {
+        success: false,
+        message: "آیدی ارسال شده معتبر نیست",
+      };
+    }
+
+    const slider = await Slider.findById(id);
+
+    if (!slider) {
+      return {
+        success: false,
+        message: `اسلایدر با این آیدی یافت نشد : ${id}`,
+      };
+    }
+
+    await Slider.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          status: slider.status === "ACCEPT" ? "REJECT" : "ACCEPT",
+        },
+      },
+    );
+
+    revalidatePath("/p-admin/sliders");
+    return {
+      success: true,
+      message: `اسلایدر با موفقیت ${slider.status === "ACCEPT" ? "رد" : "تایید"} شد`,
+    };
+  } catch (error) {
+    console.error("خطا در تغییر وضعیت اسلایدر:", error);
+    return {
+      success: false,
+      message: "خطا در تغییر وضعیت اسلایدر لطفاً دوباره تلاش کنید",
+    };
+  }
+};
