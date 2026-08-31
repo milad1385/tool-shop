@@ -3,6 +3,7 @@ import Table from "@/components/modules/p-admin/Table";
 import { ISliderList } from "@/libs/types";
 import SliderRow from "./SliderRow";
 import { sliderTableHeader } from "@/constants/data";
+import EmptyError from "@/components/modules/p-admin/EmptyError";
 
 function SliderList({ data, pagination }: ISliderList) {
   return (
@@ -20,7 +21,8 @@ function SliderList({ data, pagination }: ISliderList) {
             ))}
           </Table.Body>
         </Table>
-        <Pagination count={pagination.totalItems} />
+        {!data.length && <EmptyError />}
+        {data.length > 0 && <Pagination count={pagination.totalItems} />}
       </div>
     </div>
   );
