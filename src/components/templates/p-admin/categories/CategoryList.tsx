@@ -5,6 +5,7 @@ import { ICategory, ICategoryList } from "@/libs/types";
 import CategoryRow from "./CategoryRow";
 import { categoryTableHeader } from "@/constants/data";
 import { useOptimistic } from "react";
+import EmptyError from "@/components/modules/p-admin/EmptyError";
 
 function CategoryList({ data, pagination }: ICategoryList) {
   const [optimisticCategory, deleteOptimistc] = useOptimistic(
@@ -33,7 +34,8 @@ function CategoryList({ data, pagination }: ICategoryList) {
             ))}
           </Table.Body>
         </Table>
-        <Pagination count={pagination.totalItems} />
+        {!data.length && <EmptyError />}
+        {data.length > 0 && <Pagination count={pagination.totalItems} />}
       </div>
     </div>
   );
