@@ -446,6 +446,7 @@ export interface IGetSliders {
   page?: number;
   limit?: number;
   search?: string | string[];
+  status?: string | string[];
 }
 
 export interface IPagination {
