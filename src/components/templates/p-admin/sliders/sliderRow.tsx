@@ -93,7 +93,9 @@ function SliderRow({
       </td>
       <td>
         <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-          <FaPencil className="text-sky-500 text-base md:text-xl" />
+          <Link href={`/p-admin/sliders/${_id}`}>
+            <FaPencil className="text-sky-500 text-base md:text-xl" />
+          </Link>
           <Modal>
             <Modal.Open name="delete">
               <FaTrash className="text-red-600 text-base md:text-xl" />
