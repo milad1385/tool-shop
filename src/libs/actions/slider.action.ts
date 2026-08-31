@@ -2,10 +2,11 @@
 
 import connectDB from "@/configs/db";
 import Slider from "@/models/Slider";
-import { uploadFile } from "@/utils/uploads";
+import { deleteFile, uploadFile } from "@/utils/uploads";
 import { revalidatePath } from "next/cache";
 import { checkAdminAccess } from "./admin.actions";
 import { sliderSchema } from "@/validators/backend/slider.validator";
+import { isValidObjectId } from "mongoose";
 
 export type SliderState = {
   success: boolean;
@@ -89,3 +90,44 @@ export async function createSlider(formData: FormData): Promise<SliderState> {
     };
   }
 }
+
+export const deleteSlider = async (id: string): Promise<SliderState> => {
+  try {
+    const adminCheck = await checkAdminAccess();
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    if (!isValidObjectId(id)) {
+      return {
+        success: false,
+        message: "آیدی ارسال شده معتبر نیست",
+      };
+    }
+
+    const slider = await Slider.findByIdAndDelete(id);
+
+    if (!slider) {
+      return {
+        success: false,
+        message: `اسلایدر با این آیدی یافت نشد : ${id}`,
+      };
+    }
+
+    await deleteFile(slider.image);
+    revalidatePath("/p-admin/sliders");
+    return {
+      success: true,
+      message: "اسلایدر با موفقیت حذف شد",
+    };
+  } catch (error) {
+    console.error("خطا در حذف اسلایدر:", error);
+    return {
+      success: false,
+      message: "خطا در حذف اسلایدر لطفاً دوباره تلاش کنید",
+    };
+  }
+};
