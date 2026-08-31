@@ -493,6 +493,7 @@ export interface ISlider {
   updatedAt?: Date;
   status: "ACCEPT" | "PENDING" | "REJECT";
   index?: number;
+  onDelete: (id: string) => void;
 }
 
 export interface ISliderList {
