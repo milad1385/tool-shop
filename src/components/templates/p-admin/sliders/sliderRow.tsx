@@ -1,12 +1,18 @@
+import ConfirmModal from "@/components/modules/main/ConfirmModal";
+import Modal from "@/components/modules/main/Modal";
 import Table from "@/components/modules/p-admin/Table";
+import { deleteSlider } from "@/libs/actions/slider.action";
 import { ISlider } from "@/libs/types";
 import { formatDate } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
+import { useTransition } from "react";
+import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa";
 import { FaPencil, FaXmark } from "react-icons/fa6";
 
 function SliderRow({
+  _id,
   index,
   title,
   href,
@@ -14,8 +20,26 @@ function SliderRow({
   priority,
   status,
   createdAt,
+  onDelete,
 }: ISlider) {
-  console.log(status);
+  const [isPending, startTransition] = useTransition();
+
+  const deleteSliderHandler = () => {
+    startTransition(async () => {
+      if (!_id) return;
+      try {
+        onDelete(_id);
+        const result = await deleteSlider(_id);
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error("خطا در ارتباط با سرور");
+      }
+    });
+  };
 
   const getMainBgColor = (status) => {
     if (status === "ACCEPT") {
@@ -39,7 +63,7 @@ function SliderRow({
         />
       </td>
       <td>
-        <Link href={href}>{title}</Link>
+        <Link href={`/category/${href}`}>{title}</Link>
       </td>
 
       <td>{formatDate(createdAt)}</td>
@@ -54,7 +78,18 @@ function SliderRow({
       <td>
         <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
           <FaPencil className="text-sky-500 text-base md:text-xl" />
-          <FaTrash className="text-red-600 text-base md:text-xl" />
+          <Modal>
+            <Modal.Open name="delete">
+              <FaTrash className="text-red-600 text-base md:text-xl" />
+            </Modal.Open>
+            <Modal.Page name="delete">
+              <ConfirmModal
+                status="حذف کردن"
+                onSubmit={deleteSliderHandler}
+                isLoading={isPending}
+              />
+            </Modal.Page>
+          </Modal>
 
           <FaXmark className="text-yellow-500 text-base md:text-2xl" />
         </div>
