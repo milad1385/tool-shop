@@ -1,9 +1,5 @@
 import connectToDB from "@/configs/db";
-import {
-    IGetSliders,
-    IPaginatedResponse,
-    ISlider
-} from "@/libs/types";
+import { IGetSliders, IPaginatedResponse, ISlider } from "@/libs/types";
 import Slider from "@/models/Slider";
 import { createPagination, normalizeData } from "@/utils/helper";
 
@@ -21,16 +17,22 @@ export const getSliders = async ({
   page = 1,
   limit = 10,
   search = "",
+  status = "ALL",
 }: IGetSliders = {}): Promise<IPaginatedResponse<ISlider>> => {
   try {
     await connectToDB();
     let filters: any = {};
 
-    const count = await Slider.countDocuments({});
-
     if (search) {
       filters.title = { $regex: search };
     }
+
+    if (status !== "ALL") {
+      filters.status = status;
+    }
+
+    const count = await Slider.countDocuments(filters);
+    
     const sliders = await Slider.find(filters)
       .skip((page - 1) * limit)
       .limit(limit)
