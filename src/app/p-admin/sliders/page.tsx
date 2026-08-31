@@ -12,8 +12,9 @@ async function page({ searchParams }: IPage) {
   const page = Number(params.page) || 1;
   const limit = Number(params.limit) || 10;
   const search = params.q;
+  const status = params.status;
 
-  const sliders = await getSliders({ page, limit, search });
+  const sliders = await getSliders({ page, limit, search, status });
   return (
     <Container>
       <PageTitle content="ایجاد اسلایدر" />
