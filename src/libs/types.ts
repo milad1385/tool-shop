@@ -496,7 +496,23 @@ export interface ISlider {
   onDelete: (id: string) => void;
 }
 
+export interface IUpdateSlider{
+  slider: ISlider;
+}
+
 export interface ISliderList {
   data: ISlider[];
   pagination: IPagination;
+}
+
+export interface IImagePreview {
+  src: string;
+  alt: string;
+  onRemove?: () => void;
+  showRemoveButton?: boolean;
+  className?: string;
+  imageClassName?: string;
+  width?: number;
+  height?: number;
+  disabled?: boolean;
 }
