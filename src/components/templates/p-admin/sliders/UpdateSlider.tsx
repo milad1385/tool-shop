@@ -151,6 +151,7 @@ function UpdateSlider({ slider }: IUpdateSlider) {
             onRemove={handleRemoveImage}
             showRemoveButton={!!imageFile}
             disabled={isPending}
+            width={600}
           />
         )}
       </div>
