@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from "@/constants/data";
-
 export const createCategorySchema = z.object({
   name: z
     .string()
@@ -30,6 +29,8 @@ export const createCategorySchema = z.object({
       (file) => ACCEPTED_IMAGE_TYPES.includes(file.type),
       "فقط فرمت‌های .jpg, .jpeg, .png و .webp پشتیبانی می‌شوند",
     ),
+
+  filters: z.string().optional(),
 });
 
 export const updateCategorySchema = z.object({

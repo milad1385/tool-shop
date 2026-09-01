@@ -59,6 +59,34 @@ export const createCategorySchema = yup.object({
         return ACCEPTED_IMAGE_TYPES.includes(file.type);
       },
     ),
+
+  filters: yup.array().of(
+    yup.object({
+      name: yup
+        .string()
+        .required("نام فیلتر الزامی است")
+        .min(2, "نام فیلتر حداقل ۲ کاراکتر باید باشد")
+        .max(100, "نام فیلتر حداکثر ۱۰۰ کاراکتر باید باشد"),
+      slug: yup
+        .string()
+        .required("مقدار اسلاگ فیلتر الزامی است")
+        .min(1, "مقدار اسلاگ فیلتر حداقل ۱ کاراکتر باید باشد")
+        .max(200, "مقدار اسلاگ فیلتر حداکثر ۲۰۰ کاراکتر باید باشد"),
+      type: yup
+        .string()
+        .oneOf(
+          ["selectbox", "radio", "checkbox"],
+          "نوع فیلتر باید بین selectbox , radio , checkbox باشد",
+        )
+        .required("نوع فیلتر الزامی است"),
+
+      options: yup
+        .string()
+        .required("مقدار فیلتر الزامی است")
+        .min(1, "مقدار فیلتر حداقل ۱ کاراکتر باید باشد")
+        .max(200, "مقدار فیلتر حداکثر ۲۰۰ کاراکتر باید باشد"),
+    }),
+  ),
 });
 
 export type TCategorySchema = yup.InferType<typeof createCategorySchema>;
