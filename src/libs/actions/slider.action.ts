@@ -5,7 +5,10 @@ import Slider from "@/models/Slider";
 import { deleteFile, uploadFile } from "@/utils/uploads";
 import { revalidatePath } from "next/cache";
 import { checkAdminAccess } from "./admin.actions";
-import { sliderSchema } from "@/validators/backend/slider.validator";
+import {
+  sliderSchema,
+  updateSliderSchema,
+} from "@/validators/backend/slider.validator";
 import { isValidObjectId } from "mongoose";
 
 export type SliderState = {
@@ -180,3 +183,107 @@ export const changeStatus = async (id: string): Promise<SliderState> => {
     };
   }
 };
+
+export async function updateSlider(formData: FormData): Promise<SliderState> {
+  try {
+    const adminCheck = await checkAdminAccess();
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    const sliderId = formData.get("sliderId") as string;
+    if (!sliderId) {
+      return {
+        success: false,
+        message: "شناسه اسلایدر الزامی است",
+      };
+    }
+
+    await connectDB();
+    const existingSlider = await Slider.findById(sliderId);
+    if (!existingSlider) {
+      return {
+        success: false,
+        message: "اسلایدر یافت نشد",
+      };
+    }
+
+    const rawData = {
+      title: formData.get("title") as string,
+      href: formData.get("href") as string,
+      priority: parseInt(formData.get("priority") as string) || 3,
+      image: formData.get("image"),
+    };
+
+    const validationResult = updateSliderSchema.safeParse(rawData);
+
+    if (!validationResult.success) {
+      const errors: Record<string, string> = {};
+      validationResult.error.errors.forEach((err) => {
+        const field = err.path[0] as string;
+        errors[field] = err.message;
+      });
+      return {
+        success: false,
+        message: "اطلاعات وارد شده معتبر نیست",
+        errors,
+      };
+    }
+
+    const validatedData = validationResult.data;
+
+    let imageUrl = existingSlider.image;
+
+    const imageFile = validatedData.image;
+    if (imageFile && imageFile instanceof File && imageFile.size > 0) {
+      if (existingSlider.image) {
+        await deleteFile(existingSlider.image);
+      }
+
+      const uploadResult = await uploadFile(imageFile, "uploads/sliders");
+
+      if (!uploadResult.success) {
+        return {
+          success: false,
+          message: uploadResult.error || "خطا در آپلود تصویر",
+        };
+      }
+
+      imageUrl = uploadResult.url;
+    }
+
+    const updatedSlider = await Slider.findByIdAndUpdate(
+      sliderId,
+      {
+        title: validatedData.title,
+        href: validatedData.href,
+        priority: validatedData.priority,
+        image: imageUrl,
+      },
+      { new: true, runValidators: true },
+    );
+
+    if (!updatedSlider) {
+      return {
+        success: false,
+        message: "خطا در به‌روزرسانی اسلایدر",
+      };
+    }
+
+    revalidatePath("/p-admin/sliders");
+    revalidatePath("/");
+
+    return {
+      success: true,
+      message: `اسلایدر با موفقیت به‌روزرسانی شد`,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "خطا در به‌روزرسانی اسلایدر، لطفاً دوباره تلاش کنید",
+    };
+  }
+}
