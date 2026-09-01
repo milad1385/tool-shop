@@ -15,6 +15,16 @@ export const getAllSliders = async (): Promise<ISlider[]> => {
   }
 };
 
+export const getOneSlider = async (id: string): Promise<ISlider> => {
+  try {
+    await connectToDB();
+    const slider = await Slider.findOne({ _id: id });
+    return normalizeData(slider);
+  } catch (err) {
+    throw new Error(err?.message);
+  }
+};
+
 export const getSliders = async ({
   page = 1,
   limit = 10,
