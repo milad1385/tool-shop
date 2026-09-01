@@ -75,3 +75,24 @@ export const createPagination = ({
 export const formatDate = (date: Date | string) => {
   return new Date(date).toLocaleDateString("fa-IR");
 };
+
+export const parseFilters = (filtersString: string) => {
+  if (!filtersString) return [];
+
+  try {
+    const parsed = JSON.parse(filtersString);
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed.map((filter) => ({
+      ...filter,
+      options: filter.options
+        ? String(filter.options)
+            .split(/[،,]+/)
+            .map((s: string) => s.trim())
+            .filter(Boolean)
+        : [],
+    }));
+  } catch {
+    return [];
+  }
+};
