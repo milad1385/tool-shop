@@ -10,6 +10,7 @@ import {
 import { isValidObjectId } from "mongoose";
 import { revalidatePath } from "next/cache";
 import { checkAdminAccess } from "./admin.actions";
+import { parseFilters } from "@/utils/helper";
 
 export type CategoryState = {
   success: boolean;
@@ -36,6 +37,7 @@ export async function createCategory(
       tags: formData.get("tags") as string,
       category: formData.get("category") as string,
       image: formData.get("image") as File,
+      filters: formData.get("filters") as string,
     };
 
     const validationResult = createCategorySchema.safeParse(rawData);
@@ -62,6 +64,8 @@ export async function createCategory(
       .map((tag) => tag.trim())
       .filter((tag) => tag !== "");
 
+    const filtersArray = parseFilters(validatedData.filters);
+
     let imageUrl = "";
     if (validatedData.image && validatedData.image.size > 0) {
       const uploadResult = await uploadFile(
@@ -86,6 +90,7 @@ export async function createCategory(
       parent: validatedData.category || null,
       tags: tagsArray,
       image: imageUrl,
+      filters: filtersArray,
     });
 
     revalidatePath("/p-admin/categories");
@@ -93,7 +98,7 @@ export async function createCategory(
 
     return {
       success: true,
-      message: `دسته بندی با موفقیت ایجاد شد`,
+      message: `دسته بندی  با موفقیت ایجاد شد`,
     };
   } catch (error) {
     console.error("خطا در ساخت دسته بندی:", error);
