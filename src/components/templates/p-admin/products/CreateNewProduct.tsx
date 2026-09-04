@@ -142,7 +142,7 @@ function CreateNewProduct() {
                 فروشندگان :
               </label>
               <span className="text-sm text-gray-500">
-                {featureCount} از ۱۰
+                {sellerCount} از ۱۰
               </span>
             </div>
 
