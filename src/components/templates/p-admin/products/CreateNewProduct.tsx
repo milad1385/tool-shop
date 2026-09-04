@@ -17,6 +17,7 @@ function CreateNewProduct() {
   const [images, setImages] = useState<File[]>([]);
   const [featureCount, setFeatureCount] = useState(1);
   const [customFeatureCount, setCustomFeatureCount] = useState(1);
+  const [sellerCount, setSellerCount] = useState(1);
   const router = useRouter();
 
   const {
@@ -30,6 +31,7 @@ function CreateNewProduct() {
     defaultValues: {
       features: [{ name: "", value: "" }],
       customFeatures: [{ name: "", value: "" }],
+      sellers: [{ name: "", stock: 0, price: 0 }],
     },
   });
 
@@ -48,6 +50,7 @@ function CreateNewProduct() {
       ...data,
       features: filteredFeatures || [],
       customFeatures: filteredCustomFeatures || [],
+      sellers: data.sellers || [],
     };
 
     console.log("داده‌های نهایی:", finalData);
@@ -77,6 +80,17 @@ function CreateNewProduct() {
   const removeCustomFeature = () => {
     if (customFeatureCount > 1) {
       setCustomFeatureCount((prev) => prev - 1);
+    }
+  };
+
+  const addSeller = () => {
+    if (sellerCount >= 10) return false;
+    setSellerCount((prev) => prev + 1);
+  };
+
+  const removeSeller = () => {
+    if (sellerCount > 1) {
+      setSellerCount((prev) => prev - 1);
     }
   };
 
@@ -121,7 +135,98 @@ function CreateNewProduct() {
           disable={false}
           labelClassName="md:!text-lg font-Iran"
         />
-        <div></div>
+        <div className="col-span-1">
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <label className="text-sm md:text-lg text-zinc-800">
+                فروشندگان :
+              </label>
+              <span className="text-sm text-gray-500">
+                {featureCount} از ۱۰
+              </span>
+            </div>
+
+            {Array.from({ length: sellerCount }).map((_, index) => (
+              <div
+                key={index}
+                className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 pt-4 pb-6 mb-4 border rounded-lg bg-gray-50 relative"
+              >
+                <Input
+                  register={register}
+                  errors={errors}
+                  name={`sellers.${index}.name`}
+                  type="select"
+                  className="!bg-gray-50"
+                  options={[
+                    { id: 1, label: "فروشنده اول", value: "seller1" },
+                    { id: 2, label: "فروشنده دوم", value: "seller2" },
+                  ]}
+                  label="فروشنده"
+                  disable={false}
+                  labelClassName="md:!text-sm font-Iran"
+                />
+
+                <Input
+                  register={register}
+                  errors={errors}
+                  name={`sellers.${index}.stock`}
+                  type="number"
+                  label="موجودی"
+                  placeholder="مثال: 10"
+                  className="bg-white"
+                  disable={false}
+                  labelClassName="!text-sm"
+                />
+                <Input
+                  register={register}
+                  errors={errors}
+                  name={`sellers.${index}.price`}
+                  type="number"
+                  label="قیمت"
+                  placeholder="مثال: 10000"
+                  className="bg-white"
+                  disable={false}
+                  labelClassName="!text-sm"
+                />
+                <Input
+                  register={register}
+                  errors={errors}
+                  name={`sellers.${index}.discount`}
+                  type="number"
+                  label="تخفیف"
+                  placeholder="مثال: 10%"
+                  className="bg-white"
+                  disable={false}
+                  labelClassName="!text-sm"
+                />
+
+                {sellerCount > 1 && (
+                  <button
+                    type="button"
+                    onClick={removeSeller}
+                    className="absolute -top-3 -left-3 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-colors shadow-md"
+                    title="حذف فروشنده"
+                  >
+                    <FaMinus size={12} />
+                  </button>
+                )}
+              </div>
+            ))}
+
+            <Button
+              type="button"
+              onClick={addSeller}
+              disabled={sellerCount >= 10}
+              className={`!w-full md:!w-[200px] !text-white flex items-center justify-center gap-2 ${
+                sellerCount >= 10
+                  ? "!bg-gray-400 cursor-not-allowed"
+                  : "!bg-sky-500 hover:!bg-sky-600"
+              }`}
+            >
+              <FaPlus /> افزودن فروشنده جدید
+            </Button>
+          </div>
+        </div>
         <div className="col-span-1">
           <div>
             <div className="flex items-center justify-between mb-3">
