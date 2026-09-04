@@ -71,6 +71,44 @@ export const createProductSchema = yup.object({
         .max(200, "مقدار ویژگی سفارشی حداکثر ۲۰۰ کاراکتر باید باشد"),
     }),
   ),
+  sellers: yup.array().of(
+    yup.object({
+      name: yup
+        .string()
+        .required("فروشنده الزامی است")
+        .min(2, "فروشنده الزامی است"),
+      stock: yup
+        .number()
+        .required("موجودی الزامی است")
+        .positive("موجودی باید عدد مثبت باشد")
+        .integer("قیمت باید عدد صحیح باشد")
+        .min(1, "موجودی حداقل 1 است.")
+        .max(10000000000, "مقدار موجودی حداکثر 10000000000 باید باشد"),
+      price: yup
+        .number()
+        .positive("قیمت باید عدد مثبت باشد")
+        .integer("قیمت باید عدد صحیح باشد")
+        .required("قیمت الزامی است")
+        .min(1, "قیمت حداقل ۱ است")
+        .max(10000000000, "مقدار قیمت حداکثر 10000000000 باید باشد"),
+      discount: yup
+        .number()
+        .nullable()
+        .transform((value, originalValue) => {
+          if (
+            originalValue === "" ||
+            originalValue === null ||
+            originalValue === undefined
+          ) {
+            return 0;
+          }
+          return value;
+        })
+        .default(0)
+        .min(0, "تخفیف حداقل 0 است")
+        .max(100, "تخفیف حداکثر 100 است"),
+    }),
+  ),
 });
 
 export const productDetailSchema = yup.object({
