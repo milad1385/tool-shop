@@ -35,7 +35,7 @@ function Input({
         <input
           {...register(`${name}`)}
           type={type}
-          min={1}
+          min={0}
           id={name}
           name={name}
           disabled={disable}
@@ -177,7 +177,7 @@ function Input({
             className={`appearance-none text-sm md:text-base input mt-[8px] w-full bg-white text-right p-2 border border-gray-300 rounded-md  transition duration-300 ${className}`}
           >
             <option value="" disabled>
-              {placeholder || "یک گزینه را انتخاب کنید"}
+              {placeholder || "انتخاب کنید"}
             </option>
             {options?.map((option) => (
               <option key={option.id} value={option.value}>
