@@ -7,14 +7,16 @@ export interface ISeller {
   stock: number;
 }
 
-export interface IFilterValue {
-  key: string;
-  value: string | string[];
+export interface IFeature {
+  name: string;
+  value: string;
+  slug: string;
 }
 
-export interface ICustomFilter {
-  key: string;
+export interface ICustomFeature {
+  name: string;
   value: string;
+  slug: string;
 }
 
 export interface IProduct extends Document {
@@ -24,8 +26,8 @@ export interface IProduct extends Document {
   images: string[];
   description: string;
   category: mongoose.Types.ObjectId;
-  filterValues: IFilterValue[];
-  customFilters: ICustomFilter[];
+  features: IFeature[];
+  customFeatures: ICustomFeature[];
   shortIdentifier: string;
   status?: "active" | "inactive" | "draft";
   createdAt?: Date;
@@ -57,36 +59,43 @@ const SellerSchema = new Schema<ISeller>({
   },
 });
 
-const FilterValueSchema = new Schema<IFilterValue>({
-  key: {
+const FeatureSchema = new Schema<IFeature>({
+  name: {
     type: String,
-    required: [true, "کلید فیلتر الزامی است"],
+    required: [true, "نام ویژگی الزامی است"],
     trim: true,
   },
   value: {
-    type: Schema.Types.Mixed,
-    required: [true, "مقدار فیلتر الزامی است"],
-    validate: {
-      validator: function (value: any) {
-        if (typeof value === "string") return value.trim().length > 0;
-        if (Array.isArray(value)) return value.length > 0;
-        return false;
-      },
-      message: "مقدار فیلتر باید یک رشته یا آرایه غیر خالی باشد",
-    },
+    type: String,
+    required: [true, "مقدار ویژگی الزامی است"],
+    trim: true,
+  },
+  slug: {
+    type: String,
+    required: [true, "اسلاگ ویژگی الزامی است"],
+    trim: true,
+    lowercase: true,
+    match: [/^[a-z0-9\-]+$/, "اسلاگ فقط شامل حروف کوچک، اعداد و خط تیره باشد"],
   },
 });
 
-const CustomFilterSchema = new Schema<ICustomFilter>({
-  key: {
+const CustomFeatureSchema = new Schema<ICustomFeature>({
+  name: {
     type: String,
-    required: [true, "کلید ویژگی سفارشی الزامی است"],
+    required: [true, "نام ویژگی سفارشی الزامی است"],
     trim: true,
   },
   value: {
     type: String,
     required: [true, "مقدار ویژگی سفارشی الزامی است"],
     trim: true,
+  },
+  slug: {
+    type: String,
+    required: [true, "اسلاگ ویژگی سفارشی الزامی است"],
+    trim: true,
+    lowercase: true,
+    match: [/^[a-z0-9\-]+$/, "اسلاگ فقط شامل حروف کوچک، اعداد و خط تیره باشد"],
   },
 });
 
@@ -138,14 +147,14 @@ const productSchema = new Schema<IProduct>(
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
-      required: [true, "زیردسته بندی الزامی است"],
+      required: [true, "دسته بندی الزامی است"],
     },
-    filterValues: {
-      type: [FilterValueSchema],
+    features: {
+      type: [FeatureSchema],
       default: [],
     },
-    customFilters: {
-      type: [CustomFilterSchema],
+    customFeatures: {
+      type: [CustomFeatureSchema],
       default: [],
     },
     shortIdentifier: {
