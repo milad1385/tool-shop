@@ -1,116 +1,120 @@
-import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from "@/constants/data";
 import * as yup from "yup";
+import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from "@/constants/data";
 
 export const createProductSchema = yup.object({
-  title: yup
+  name: yup
     .string()
     .required("این فیلد الزامی است")
-    .min(5, "حداقل تعداد عنوان 5 کاراکتر است")
-    .max(200, "حداکثر تعداد عنوان 200 کاراکتر میباشد"),
+    .min(3, "حداقل تعداد نام 3 کاراکتر است")
+    .max(200, "حداکثر تعداد نام 200 کاراکتر میباشد"),
 
-  slug: yup.string().required("این فیلد الزامی است"),
+  slug: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(3, "لینک حداقل 3 کاراکتر باید باشد")
+    .max(200, "لینک حداکثر 200 کاراکتر باید باشد")
+    .matches(/^[a-z0-9\-]+$/, "لینک فقط شامل حروف کوچک، اعداد و خط تیره باشد"),
 
-  category: yup.string().required("این فیلد الزامی است"),
+  category: yup.string().required("انتخاب دسته بندی الزامی است"),
 
   description: yup
     .string()
-    .required("این فیلد الزامی است")
-    .min(50, "حداقل تعداد توضیحات 50 کاراکتر است")
-    .max(2000, "حداکثر تعداد توضیحات 2000 کاراکتر میباشد"),
+    .required("توضیحات الزامی است")
+    .min(10, "توضیحات حداقل 10 کاراکتر باید باشد")
+    .max(5000, "توضیحات حداکثر 5000 کاراکتر باید باشد"),
 
   images: yup
     .mixed()
     .test("required", "آپلود حداقل یک عکس الزامی است", (value) => {
-      if (!value || !(value instanceof FileList || Array.isArray(value)))
-        return false;
-      return value.length > 0;
+      if (!value) return false;
+      if (value instanceof FileList) return value.length > 0;
+      if (Array.isArray(value)) return value.length > 0;
+      return false;
     })
-    .test("fileSize", "حداکثر حجم فایل 5MB است", (value) => {
-      if (!value || !(value instanceof FileList || Array.isArray(value)))
-        return true;
-      const filesArray = Array.from(value);
-      return filesArray.every((file) => file.size <= MAX_FILE_SIZE);
+    .test("fileSize", "حداکثر حجم هر فایل 5MB است", (value) => {
+      if (!value) return true;
+      const files = value instanceof FileList ? Array.from(value) : value;
+      if (!Array.isArray(files)) return true;
+      return files.every((file: File) => file.size <= MAX_FILE_SIZE);
     })
     .test(
       "fileType",
       "فقط فرمت‌های .jpg, .jpeg, .png و .webp پشتیبانی می‌شوند",
       (value) => {
-        if (!value || !(value instanceof FileList || Array.isArray(value)))
-          return true;
-        const filesArray = Array.from(value);
-        return filesArray.every((file) =>
+        if (!value) return true;
+        const files = value instanceof FileList ? Array.from(value) : value;
+        if (!Array.isArray(files)) return true;
+        return files.every((file: File) =>
           ACCEPTED_IMAGE_TYPES.includes(file.type),
         );
       },
     ),
-  features: yup.array().of(
-    yup.object({
-      name: yup
-        .string()
-        .required("نام ویژگی الزامی است")
-        .min(2, "نام ویژگی حداقل ۲ کاراکتر باید باشد")
-        .max(100, "نام ویژگی حداکثر ۱۰۰ کاراکتر باید باشد"),
-      value: yup
-        .string()
-        .required("مقدار ویژگی الزامی است")
-        .min(1, "مقدار ویژگی حداقل ۱ کاراکتر باید باشد")
-        .max(200, "مقدار ویژگی حداکثر ۲۰۰ کاراکتر باید باشد"),
-    }),
-  ),
-  customFeatures: yup.array().of(
-    yup.object({
-      name: yup
-        .string()
-        .required("نام ویژگی سفارشی الزامی است")
-        .min(2, "نام ویژگی سفارشی حداقل ۲ کاراکتر باید باشد")
-        .max(100, "نام ویژگی سفارشی حداکثر ۱۰۰ کاراکتر باید باشد"),
-      value: yup
-        .string()
-        .required("مقدار ویژگی سفارشی الزامی است")
-        .min(1, "مقدار ویژگی سفارشی حداقل ۱ کاراکتر باید باشد")
-        .max(200, "مقدار ویژگی سفارشی حداکثر ۲۰۰ کاراکتر باید باشد"),
-    }),
-  ),
-  sellers: yup.array().of(
-    yup.object({
-      name: yup
-        .string()
-        .required("فروشنده الزامی است")
-        .min(2, "فروشنده الزامی است"),
-      stock: yup
-        .number()
-        .required("موجودی الزامی است")
-        .positive("موجودی باید عدد مثبت باشد")
-        .integer("قیمت باید عدد صحیح باشد")
-        .min(1, "موجودی حداقل 1 است.")
-        .max(10000000000, "مقدار موجودی حداکثر 10000000000 باید باشد"),
-      price: yup
-        .number()
-        .positive("قیمت باید عدد مثبت باشد")
-        .integer("قیمت باید عدد صحیح باشد")
-        .required("قیمت الزامی است")
-        .min(1, "قیمت حداقل ۱ است")
-        .max(10000000000, "مقدار قیمت حداکثر 10000000000 باید باشد"),
-      discount: yup
-        .number()
-        .nullable()
-        .transform((value, originalValue) => {
-          if (
-            originalValue === "" ||
-            originalValue === null ||
-            originalValue === undefined
-          ) {
-            return 0;
-          }
-          return value;
-        })
-        .default(0)
-        .min(0, "تخفیف حداقل 0 است")
-        .max(100, "تخفیف حداکثر 100 است"),
-    }),
-  ),
-});
 
+  features: yup
+    .array()
+    .of(
+      yup.object({
+        name: yup.string().required("این فیلد الزامی است"),
+        value: yup.string().required("این فیلد الزامی است"),
+        slug: yup.string().matches(/^[a-z0-9\-]+$/, "این فیلد الزامی است"),
+      }),
+    )
+
+    .default([]),
+
+  customFeatures: yup
+    .array()
+    .of(
+      yup.object({
+        name: yup.string().required("این فیلد الزامی است"),
+        value: yup.string().required("این فیلد الزامی است"),
+        slug: yup
+          .string()
+
+          .matches(/^[a-z0-9\-]+$/, "اسلاگ را وارد کنید"),
+      }),
+    )
+
+    .default([]),
+
+  sellers: yup
+    .array()
+    .of(
+      yup.object({
+        seller: yup.string().required("فروشنده الزامی است"),
+        stock: yup
+          .number()
+          .typeError("موجودی باید عدد باشد")
+          .required("موجودی الزامی است")
+          .min(0, "موجودی نمیتواند منفی باشد")
+          .max(10000000000, "موجودی حداکثر 10 میلیارد است"),
+        price: yup
+          .number()
+          .typeError("قیمت باید عدد باشد")
+          .required("قیمت الزامی است")
+          .min(0, "قیمت نمیتواند منفی باشد")
+          .max(10000000000, "قیمت حداکثر 10 میلیارد است"),
+        discount: yup
+          .number()
+          .typeError("تخفیف باید عدد باشد")
+          .optional()
+          .transform((value, originalValue) => {
+            if (
+              originalValue === "" ||
+              originalValue === null ||
+              originalValue === undefined
+            ) {
+              return 0;
+            }
+            return value;
+          })
+          .default(0)
+          .min(0, "تخفیف حداقل 0 است")
+          .max(100, "تخفیف حداکثر 100 است"),
+      }),
+    )
+    .min(1, "حداقل یک فروشنده الزامی است"),
+});
 export const productDetailSchema = yup.object({
   price: yup
     .number()
