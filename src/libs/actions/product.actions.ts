@@ -1,4 +1,3 @@
-// app/actions/product.actions.ts
 "use server";
 
 import connectDB from "@/configs/db";
