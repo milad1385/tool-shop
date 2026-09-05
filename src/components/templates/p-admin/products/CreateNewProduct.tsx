@@ -1,6 +1,8 @@
 "use client";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import SelectBox from "@/components/ui/SelectBox";
+import { ICreateNewProduct } from "@/libs/types";
 import {
   createProductSchema,
   TProductSchema,
@@ -9,15 +11,18 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { FaRegTrashAlt, FaPlus, FaMinus } from "react-icons/fa";
 
-function CreateNewProduct() {
+function CreateNewProduct({ categories }: ICreateNewProduct) {
   const [images, setImages] = useState<File[]>([]);
   const [featureCount, setFeatureCount] = useState(1);
   const [customFeatureCount, setCustomFeatureCount] = useState(1);
   const [sellerCount, setSellerCount] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
   const {
@@ -35,7 +40,14 @@ function CreateNewProduct() {
     },
   });
 
+  const categoriesOption = categories.map((category, index) => ({
+    label: category.name,
+    value: category._id,
+  }));
+
   const createProductHandler = (data: TProductSchema) => {
+    if (!selectedCategory?.value)
+      return toast.error("یک دسته بندی انتخاب کنید");
     const filteredFeatures = data.features?.filter(
       (feature: any) =>
         feature.name?.trim() !== "" || feature.value?.trim() !== "",
@@ -51,6 +63,7 @@ function CreateNewProduct() {
       features: filteredFeatures || [],
       customFeatures: filteredCustomFeatures || [],
       sellers: data.sellers || [],
+      category: selectedCategory.value,
     };
 
     console.log("داده‌های نهایی:", finalData);
@@ -121,19 +134,17 @@ function CreateNewProduct() {
           labelClassName="md:!text-lg font-Iran"
         />
 
-        <Input
+        <SelectBox
           register={register}
           errors={errors}
+          placeholder="دسته بندی را انتخاب کنید"
           name="category"
-          type="select"
-          className="!bg-gray-50"
-          options={[
-            { id: 1, label: "دسته بندی اول", value: "category1" },
-            { id: 2, label: "دسته بندی دوم", value: "category2" },
-          ]}
-          label="دسته بندی"
-          disable={false}
-          labelClassName="md:!text-lg font-Iran"
+          options={categoriesOption}
+          title="دسته بندی"
+          searchable
+          selected={selectedCategory}
+          onSelected={setSelectedCategory}
+          disable={isPending}
         />
         <div className="col-span-1">
           <div>
@@ -141,9 +152,7 @@ function CreateNewProduct() {
               <label className="text-sm md:text-lg text-zinc-800">
                 فروشندگان :
               </label>
-              <span className="text-sm text-gray-500">
-                {sellerCount} از ۱۰
-              </span>
+              <span className="text-sm text-gray-500">{sellerCount} از ۱۰</span>
             </div>
 
             {Array.from({ length: sellerCount }).map((_, index) => (
