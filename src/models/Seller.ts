@@ -61,7 +61,6 @@ const sellerSchema = new Schema<ISeller>(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: [true, "کاربر الزامی است"],
-      unique: true,
     },
     contactDetails: {
       type: ContactDetailsSchema,
