@@ -1,6 +1,8 @@
 import { customStyles } from "@/constants/data";
 import { TSelectBox } from "@/libs/types";
 import dynamic from "next/dynamic";
+import { Controller } from "react-hook-form";
+
 const Select = dynamic(() => import("react-select"), {
   ssr: false,
   loading: () => (
@@ -24,6 +26,8 @@ function SelectBox({
   searchable,
   noOptionMsg,
   defaultValue,
+  control,
+  labelClassName,
 }: TSelectBox) {
   const getDefaultValue = () => {
     if (selected) return selected;
@@ -35,11 +39,11 @@ function SelectBox({
     }
     return null;
   };
+
   if (!searchable) {
     return (
-      <div className="flex w-full flex-col gap-y-3  relative">
+      <div className="flex w-full flex-col gap-y-3 relative">
         <label className={`text-sm ${className}`}>{title}</label>
-
         <select
           disabled={disable}
           className={`p-2 input border border-gray-300 text-black rounded-md w-full text-sm md:text-base ${className}`}
@@ -58,7 +62,6 @@ function SelectBox({
             </option>
           ))}
         </select>
-
         {errors[name] && (
           <span className="absolute top-[80px] text-xs md:text-sm text-red-600">
             {errors[name].message}
@@ -66,50 +69,102 @@ function SelectBox({
         )}
       </div>
     );
-  } else {
-    const handleSelectChange = (e: unknown) => {
-      onSelected(e);
-    };
+  }
+  if (control) {
     return (
-      <div className="flex w-full flex-col gap-y-3  relative">
-        <label htmlFor="">{title}</label>
-        <div
-          className={`  h-[52px]  rounded-xl flex items-center justify-between gap-x-2`}
-        >
-          <Select
-            defaultValue={getDefaultValue()}
-            className="w-full"
-            classNamePrefix="react-select"
-            isMulti={multiple}
-            noOptionsMessage={() => "موردی یافت نشد"}
-            options={options}
-            {...register(`${name}`)}
-            onChange={handleSelectChange}
-            placeholder={placeholder}
-            styles={customStyles}
-            theme={(theme) => ({
-              ...theme,
-              borderRadius: 14,
-              colors: {
-                ...theme.colors,
-                primary: "#121212",
-                primary25: "#1a1a2e",
-                primary50: "#121212",
-                neutral0: "#000000",
-                neutral5: "#1a1a2e",
-                neutral10: "#2a2a4e",
-                neutral20: "#333333",
-                neutral30: "#444444",
-                neutral40: "#888888",
-                neutral50: "#aaaaaa",
-                neutral80: "#ffffff",
-              },
-            })}
-          />
-        </div>
-      </div>
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <div className="flex w-full flex-col gap-y-3 relative">
+            <label htmlFor="" className={labelClassName}>
+              {title}
+            </label>
+            <div className="h-[52px] rounded-xl flex items-center justify-between gap-x-2">
+              <Select
+                defaultValue={getDefaultValue()}
+                className="w-full"
+                classNamePrefix="react-select"
+                isMulti={multiple}
+                noOptionsMessage={() => "موردی یافت نشد"}
+                options={options}
+                onChange={(selected: any) => {
+                  field.onChange(selected?.value || "");
+                  onSelected?.(selected);
+                }}
+                onBlur={field.onBlur}
+                value={options.find((opt) => opt.value === field.value) || null}
+                placeholder={placeholder}
+                styles={customStyles}
+                isDisabled={disable}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 14,
+                  colors: {
+                    ...theme.colors,
+                    primary: "#121212",
+                    primary25: "#1a1a2e",
+                    primary50: "#121212",
+                    neutral0: "#000000",
+                    neutral5: "#1a1a2e",
+                    neutral10: "#2a2a4e",
+                    neutral20: "#333333",
+                    neutral30: "#444444",
+                    neutral40: "#888888",
+                    neutral50: "#aaaaaa",
+                    neutral80: "#ffffff",
+                  },
+                })}
+              />
+            </div>
+            {errors[name] && (
+              <span className="text-xs md:text-sm text-red-600">
+                {errors[name].message}
+              </span>
+            )}
+          </div>
+        )}
+      />
     );
   }
+
+  return (
+    <div className="flex w-full flex-col gap-y-3 relative">
+      <label htmlFor="">{title}</label>
+      <div className="h-[52px] rounded-xl flex items-center justify-between gap-x-2">
+        <Select
+          defaultValue={getDefaultValue()}
+          className="w-full"
+          classNamePrefix="react-select"
+          isMulti={multiple}
+          noOptionsMessage={() => "موردی یافت نشد"}
+          options={options}
+          {...register(`${name}`)}
+          onChange={(e) => onSelected?.(e)}
+          placeholder={placeholder}
+          styles={customStyles}
+          theme={(theme) => ({
+            ...theme,
+            borderRadius: 14,
+            colors: {
+              ...theme.colors,
+              primary: "#121212",
+              primary25: "#1a1a2e",
+              primary50: "#121212",
+              neutral0: "#000000",
+              neutral5: "#1a1a2e",
+              neutral10: "#2a2a4e",
+              neutral20: "#333333",
+              neutral30: "#444444",
+              neutral40: "#888888",
+              neutral50: "#aaaaaa",
+              neutral80: "#ffffff",
+            },
+          })}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default SelectBox;
