@@ -496,7 +496,7 @@ export interface ISlider {
   onDelete: (id: string) => void;
 }
 
-export interface IUpdateSlider{
+export interface IUpdateSlider {
   slider: ISlider;
 }
 
@@ -515,4 +515,8 @@ export interface IImagePreview {
   width?: number;
   height?: number;
   disabled?: boolean;
+}
+
+export interface ICreateNewProduct {
+  categories: ICategory[];
 }
