@@ -2,26 +2,27 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import SelectBox from "@/components/ui/SelectBox";
-import { ICreateNewProduct } from "@/libs/types";
+import { createProduct } from "@/libs/actions/product.actions";
+import { ICreateNewProduct, ISelectOption } from "@/libs/types";
 import {
   createProductSchema,
   TProductSchema,
 } from "@/validators/frontend/product.validator";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import toast from "react-hot-toast";
-import { FaRegTrashAlt, FaPlus, FaMinus } from "react-icons/fa";
+import { FaMinus, FaPlus, FaRegTrashAlt, FaSpinner } from "react-icons/fa";
 
-function CreateNewProduct({ categories }: ICreateNewProduct) {
+function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
   const [images, setImages] = useState<File[]>([]);
+  const [selectedCategory, setSelectedCategory] =
+    useState<ISelectOption | null>(null);
+
   const [featureCount, setFeatureCount] = useState(1);
   const [customFeatureCount, setCustomFeatureCount] = useState(1);
-  const [sellerCount, setSellerCount] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
@@ -31,42 +32,115 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
     handleSubmit,
     setValue,
     reset,
-  } = useForm({
-    resolver: yupResolver(createProductSchema),
+    setError,
+    control,
+  } = useForm<TProductSchema>({
+    resolver: yupResolver(createProductSchema) as any,
     defaultValues: {
-      features: [{ name: "", value: "" }],
-      customFeatures: [{ name: "", value: "" }],
-      sellers: [{ name: "", stock: 0, price: 0 }],
+      name: "",
+      slug: "",
+      category: "",
+      description: "",
+      sellers: [{ seller: "", stock: 0, price: 0, discount: 0 }],
     },
   });
 
-  const categoriesOption = categories.map((category, index) => ({
+  const {
+    fields: sellerFields,
+    append: appendSeller,
+    remove: removeSeller,
+  } = useFieldArray({
+    control,
+    name: "sellers",
+  });
+
+  const categoriesOption = categories.map((category) => ({
     label: category.name,
     value: category._id,
   }));
 
-  const createProductHandler = (data: TProductSchema) => {
-    if (!selectedCategory?.value)
+  const sellersOptions = sellers.map((seller) => ({
+    label: seller.name,
+    value: seller._id,
+  }));
+
+  
+  console.log(errors);
+  
+  const createProductHandler = async (data: TProductSchema) => {
+    console.log(data);
+    
+    if (!selectedCategory?.value) {
       return toast.error("یک دسته بندی انتخاب کنید");
-    const filteredFeatures = data.features?.filter(
-      (feature: any) =>
-        feature.name?.trim() !== "" || feature.value?.trim() !== "",
-    );
+    }
 
-    const filteredCustomFeatures = data.customFeatures?.filter(
-      (feature: any) =>
-        feature.name?.trim() !== "" || feature.value?.trim() !== "",
-    );
+    startTransition(async () => {
+      try {
+        const formData = new FormData();
 
-    const finalData = {
-      ...data,
-      features: filteredFeatures || [],
-      customFeatures: filteredCustomFeatures || [],
-      sellers: data.sellers || [],
-      category: selectedCategory.value,
-    };
+        formData.append("name", data.name);
+        formData.append("slug", data.slug);
+        formData.append("category", selectedCategory.value);
+        formData.append("description", data.description || "");
 
-    console.log("داده‌های نهایی:", finalData);
+        const filteredSellers =
+          data.sellers?.filter(
+            (seller: any) =>
+              seller.seller && (seller.price > 0 || seller.stock > 0),
+          ) || [];
+
+        const filteredFeatures =
+          data.features?.filter(
+            (feature: any) =>
+              feature.name?.trim() !== "" || feature.value?.trim() !== "",
+          ) || [];
+
+        const filteredCustomFeatures =
+          data.customFeatures?.filter(
+            (feature: any) =>
+              feature.name?.trim() !== "" || feature.value?.trim() !== "",
+          ) || [];
+
+        formData.append("sellers", JSON.stringify(filteredSellers));
+        formData.append("features", JSON.stringify(filteredFeatures));
+        formData.append(
+          "customFeatures",
+          JSON.stringify(filteredCustomFeatures),
+        );
+
+        if (images && images.length > 0) {
+          for (const image of images) {
+            formData.append("imageFiles", image);
+          }
+        }
+
+        const result = await createProduct(formData);
+
+        if (result.success) {
+          toast.success(result.message);
+          reset();
+          setImages([]);
+          setFeatureCount(1);
+          setCustomFeatureCount(1);
+          router.push("/p-admin/products");
+        } else if (result.errors) {
+          Object.entries(result.errors).forEach(([field, message]) => {
+            setError(field as any, {
+              type: "server",
+              message,
+            });
+          });
+          console.log(result.errors);
+          
+          toast.error("اطلاعات وارد شده معتبر نیست");
+        } else if (!result.success && result.message) {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        console.error("خطا:", error);
+        toast.error("خطا در ارتباط با سرور");
+      }
+    });
   };
 
   const deleteImage = (indexToDelete: number) => {
@@ -96,15 +170,8 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
     }
   };
 
-  const addSeller = () => {
-    if (sellerCount >= 10) return false;
-    setSellerCount((prev) => prev + 1);
-  };
-
-  const removeSeller = () => {
-    if (sellerCount > 1) {
-      setSellerCount((prev) => prev - 1);
-    }
+  const handleAddSeller = () => {
+    appendSeller({ seller: "", stock: 0, price: 0, discount: 0 } as any);
   };
 
   return (
@@ -116,11 +183,11 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
         <Input
           register={register}
           errors={errors}
-          name="title"
+          name="name"
           type="text"
           label="نام"
           className="bg-gray-50"
-          disable={false}
+          disable={isPending}
           labelClassName="md:!text-lg font-Iran"
         />
         <Input
@@ -130,11 +197,12 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
           type="text"
           label="لینک"
           className="bg-gray-50"
-          disable={false}
+          disable={isPending}
           labelClassName="md:!text-lg font-Iran"
         />
 
         <SelectBox
+          control={control}
           register={register}
           errors={errors}
           placeholder="دسته بندی را انتخاب کنید"
@@ -146,33 +214,34 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
           onSelected={setSelectedCategory}
           disable={isPending}
         />
+
         <div className="col-span-1">
           <div>
             <div className="flex items-center justify-between mb-3">
               <label className="text-sm md:text-lg text-zinc-800">
                 فروشندگان :
               </label>
-              <span className="text-sm text-gray-500">{sellerCount} از ۱۰</span>
+              <span className="text-sm text-gray-500">
+                {sellerFields.length} از ۱۰
+              </span>
             </div>
 
-            {Array.from({ length: sellerCount }).map((_, index) => (
+            {sellerFields.map((field, index) => (
               <div
-                key={index}
-                className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 pt-4 pb-6 mb-4 border rounded-lg bg-gray-50 relative"
+                key={field.id}
+                className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 pt-4 pb-6 mb-4 border rounded-lg bg-gray-50 relative"
               >
-                <Input
+                <SelectBox
+                  control={control}
                   register={register}
                   errors={errors}
-                  name={`sellers.${index}.name`}
-                  type="select"
-                  className="!bg-gray-50"
-                  options={[
-                    { id: 1, label: "فروشنده اول", value: "seller1" },
-                    { id: 2, label: "فروشنده دوم", value: "seller2" },
-                  ]}
-                  label="فروشنده"
-                  disable={false}
-                  labelClassName="md:!text-sm font-Iran"
+                  placeholder="فروشنده را انتخاب کنید"
+                  name={`sellers.${index}.seller`}
+                  options={sellersOptions}
+                  title="فروشنده"
+                  searchable
+                  disable={isPending}
+                  labelClassName="!text-sm"
                 />
 
                 <Input
@@ -183,9 +252,10 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
                   label="موجودی"
                   placeholder="مثال: 10"
                   className="bg-white"
-                  disable={false}
+                  disable={isPending}
                   labelClassName="!text-sm"
                 />
+
                 <Input
                   register={register}
                   errors={errors}
@@ -194,9 +264,10 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
                   label="قیمت"
                   placeholder="مثال: 10000"
                   className="bg-white"
-                  disable={false}
+                  disable={isPending}
                   labelClassName="!text-sm"
                 />
+
                 <Input
                   register={register}
                   errors={errors}
@@ -205,14 +276,14 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
                   label="تخفیف"
                   placeholder="مثال: 10%"
                   className="bg-white"
-                  disable={false}
+                  disable={isPending}
                   labelClassName="!text-sm"
                 />
 
-                {sellerCount > 1 && (
+                {sellerFields.length > 1 && (
                   <button
                     type="button"
-                    onClick={removeSeller}
+                    onClick={() => removeSeller(index)}
                     className="absolute -top-3 -left-3 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-colors shadow-md"
                     title="حذف فروشنده"
                   >
@@ -224,10 +295,10 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
 
             <Button
               type="button"
-              onClick={addSeller}
-              disabled={sellerCount >= 10}
+              onClick={handleAddSeller}
+              disabled={sellerFields.length >= 10}
               className={`!w-full md:!w-[200px] !text-white flex items-center justify-center gap-2 ${
-                sellerCount >= 10
+                sellerFields.length >= 10
                   ? "!bg-gray-400 cursor-not-allowed"
                   : "!bg-sky-500 hover:!bg-sky-600"
               }`}
@@ -260,7 +331,7 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
                   label="نام ویژگی"
                   placeholder="مثال: حافظه"
                   className="bg-white"
-                  disable={false}
+                  disable={isPending}
                   labelClassName="!text-sm"
                 />
 
@@ -272,7 +343,18 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
                   label="مقدار"
                   placeholder="مثال: 256"
                   className="bg-white"
-                  disable={false}
+                  disable={isPending}
+                  labelClassName="!text-sm"
+                />
+                <Input
+                  register={register}
+                  errors={errors}
+                  name={`features.${index}.slug`}
+                  type="text"
+                  label="اسلاگ"
+                  placeholder="مثال: type"
+                  className="bg-white"
+                  disable={isPending}
                   labelClassName="!text-sm"
                 />
 
@@ -303,6 +385,7 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
             </Button>
           </div>
         </div>
+
         <div className="col-span-1">
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -327,7 +410,7 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
                   label="نام ویژگی"
                   placeholder="مثال: برند"
                   className="bg-white"
-                  disable={false}
+                  disable={isPending}
                   labelClassName="!text-sm"
                 />
 
@@ -339,7 +422,19 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
                   label="مقدار"
                   placeholder="مثال: سامسونگ"
                   className="bg-white"
-                  disable={false}
+                  disable={isPending}
+                  labelClassName="!text-sm"
+                />
+
+                 <Input
+                  register={register}
+                  errors={errors}
+                  name={`customFeatures.${index}.slug`}
+                  type="text"
+                  label="اسلاگ"
+                  placeholder="مثال: type"
+                  className="bg-white"
+                  disable={isPending}
                   labelClassName="!text-sm"
                 />
 
@@ -379,7 +474,7 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
             type="textarea"
             label="توضیحات"
             className="bg-gray-50"
-            disable={false}
+            disable={isPending}
             labelClassName="md:!text-lg font-Iran"
           />
         </div>
@@ -389,28 +484,27 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
           name="images"
           type="file"
           label="تصاویر"
-          disable={false}
+          disable={isPending}
           labelClassName="md:!text-lg font-Iran"
           setImage={setImages}
           multiple
           setValue={setValue}
         />
 
-        {images && (
-          <div className="flex items-end justify-end gap-x-2">
-            {images?.map((image, index) => (
-              <div className="relative" key={index + 1}>
+        {images && images.length > 0 && (
+          <div className="flex items-end justify-end gap-x-2 flex-wrap">
+            {images.map((image, index) => (
+              <div className="relative" key={index}>
                 <Image
                   src={URL.createObjectURL(image)}
-                  width={1920}
-                  height={1080}
+                  width={100}
+                  height={100}
                   className="w-[100px] h-[100px] object-cover rounded-md"
                   alt="image"
                 />
-
                 <FaRegTrashAlt
                   onClick={() => deleteImage(index)}
-                  className="text-red-500 absolute -top-8 right-0 text-xl md:cursor-pointer"
+                  className="text-red-500 absolute -top-8 right-0 text-xl md:cursor-pointer hover:text-red-700 transition-colors"
                 />
               </div>
             ))}
@@ -419,8 +513,16 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
       </div>
 
       <div className="gap-x-4 grid md:flex grid-cols-2 pb-5">
-        <Button type="submit" className="md:!w-[200px] mt-10">
-          ایجاد محصول
+        <Button
+          type="submit"
+          className="md:!w-[200px] mt-10 flex items-center justify-center h-[48px]"
+          disabled={isPending}
+        >
+          {isPending ? (
+            <FaSpinner className="animate-spin text-xl" />
+          ) : (
+            "ایجاد محصول"
+          )}
         </Button>
         <Button
           onClick={() => {
@@ -431,22 +533,9 @@ function CreateNewProduct({ categories }: ICreateNewProduct) {
           }}
           type="reset"
           className="md:!w-[200px] mt-10 !bg-red-500"
+          disabled={isPending}
         >
           لغو
-        </Button>
-        <Button
-          onClick={() => router.push("/p-admin/products/details")}
-          type="reset"
-          className="md:!w-[200px] mt-10 !bg-yellow-500"
-        >
-          ایجاد جزییات
-        </Button>
-        <Button
-          onClick={() => router.push("/p-admin/products/feature")}
-          type="reset"
-          className="md:!w-[200px] mt-10 !bg-purple-600"
-        >
-          ایجاد ویژگی
         </Button>
       </div>
     </form>

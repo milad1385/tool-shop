@@ -5,13 +5,17 @@ import CreateNewProduct from "@/components/templates/p-admin/products/CreateNewP
 import ProductList from "@/components/templates/p-admin/products/ProductList";
 import { productFilterOptions } from "@/constants/data";
 import { getAllCategories } from "@/services/categories.service";
+import { getAllSellers } from "@/services/sellers.service";
 
 async function page() {
-  const categories = await getAllCategories();
+  const [categories, sellers] = await Promise.all([
+    getAllCategories(),
+    getAllSellers(),
+  ]);
   return (
     <Container>
       <PageTitle content="ایجاد محصول جدید" />
-      <CreateNewProduct categories={categories} />
+      <CreateNewProduct sellers={sellers} categories={categories} />
       <TableOperation pageTitle="لیست محصولات" options={productFilterOptions} />
       <ProductList />
     </Container>

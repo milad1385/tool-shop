@@ -5,6 +5,8 @@
 //   href: string;
 // }
 
+import { Control } from "react-hook-form";
+
 export interface IProduct {
   id: number;
   title: string;
@@ -247,6 +249,8 @@ export type TSelectBox = {
   searchable?: boolean;
   noOptionMsg?: string;
   defaultValue?: any;
+  control?: Control<any>;
+  labelClassName?: string;
 };
 
 export interface ISelectBox {
@@ -519,4 +523,44 @@ export interface IImagePreview {
 
 export interface ICreateNewProduct {
   categories: ICategory[];
+  sellers: ISeller[];
+}
+
+export interface ISelectOption {
+  label: string;
+  value: string;
+}
+
+export interface ISellerContactDetails {
+  phone: string;
+  email: string;
+  address?: string;
+  postalCode?: string;
+}
+
+export interface ISeller {
+  _id: string;
+  name: string;
+  user: {
+    username: string;
+    email: string;
+    fullname: string;
+    phone: string;
+  };
+  contactDetails: {
+    phone: string;
+    email: string;
+    address?: string;
+    postalCode?: string;
+  };
+  city: string;
+  logo?: string;
+  description?: string;
+  status?: "active" | "inactive" | "pending";
+  verified?: boolean;
+  rating?: number;
+  reviewCount?: number;
+  commission?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
