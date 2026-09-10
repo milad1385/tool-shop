@@ -1,5 +1,4 @@
 import { IInput } from "@/libs/types";
-import React from "react";
 import { get } from "react-hook-form";
 
 function Input({
@@ -13,8 +12,8 @@ function Input({
   multiple,
   placeholder,
   labelClassName,
-  setImage,
   options,
+  setImage,
 }: IInput) {
   const errorMessage = get(errors, name)?.message;
 
@@ -42,11 +41,8 @@ function Input({
           placeholder={placeholder}
           className={`input text-sm md:text-base text-right p-2 border border-gray-300 rounded-md ${className}`}
         />
-
         {errorMessage && (
-          <span
-            className={`absolute -bottom-6  text-xs md:text-sm text-red-600`}
-          >
+          <span className="absolute -bottom-6 text-xs md:text-sm text-red-600">
             {errorMessage}
           </span>
         )}
@@ -61,16 +57,14 @@ function Input({
         <textarea
           rows={8}
           {...register(`${name}`)}
-          className={`input w-full resize-none  p-2 border border-gray-300 rounded-md ${className}`}
+          className={`input w-full resize-none p-2 border border-gray-300 rounded-md ${className}`}
           placeholder={placeholder}
           id={name}
           name={name}
         ></textarea>
-        {errors[name] && (
-          <span
-            className={`absolute -bottom-7 text-xs md:text-sm text-red-600`}
-          >
-            {errors[name].message}
+        {errorMessage && (
+          <span className="absolute -bottom-7 text-xs md:text-sm text-red-600">
+            {errorMessage}
           </span>
         )}
       </div>
@@ -120,28 +114,9 @@ function Input({
               میتوانید از دایرکتوری فایل خود را انتخاب کنید
             </p>
 
+            {/* ✅ input با onChange برای setImage */}
             <input
-              {...register(`${name}`, {
-                onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-                  const files = e.target.files;
-
-                  if (files && files.length > 0) {
-                    if (multiple) {
-                      // ✅ برای چند فایل - آرایه‌ای از فایل‌ها
-                      const fileArray = Array.from(files);
-                      if (setImage) {
-                        setImage(fileArray);
-                      }
-                    } else {
-                      // ✅ برای یک فایل - خود فایل رو پاس بده
-                      const file = files[0];
-                      if (setImage) {
-                        setImage(file);
-                      }
-                    }
-                  }
-                },
-              })}
+              {...register(`${name}`)}
               id={name}
               name={name}
               type="file"
@@ -149,12 +124,29 @@ function Input({
               className="sr-only"
               accept="image/*"
               multiple={multiple}
+              onChange={(e) => {
+                // ✅ register رو صدا بزن
+                const { onChange: registerOnChange } = register(`${name}`);
+                registerOnChange(e);
+
+                // ✅ فایل‌ها رو به state بده
+                const files = e.target.files;
+                if (files && files.length > 0 && setImage) {
+                  if (multiple) {
+                    const fileArray = Array.from(files);
+                    setImage(fileArray);
+                  } else {
+                    const file = files[0];
+                    setImage(file);
+                  }
+                }
+              }}
             />
           </div>
         </div>
 
-        {errors[name] && (
-          <span className="text-sm text-red-600">{errors[name].message}</span>
+        {errorMessage && (
+          <span className="text-sm text-red-600">{errorMessage}</span>
         )}
       </div>
     );
@@ -174,7 +166,7 @@ function Input({
             name={name}
             disabled={disable}
             defaultValue=""
-            className={`appearance-none text-sm md:text-base input mt-[8px] w-full bg-white text-right p-2 border border-gray-300 rounded-md  transition duration-300 ${className}`}
+            className={`appearance-none text-sm md:text-base input mt-[8px] w-full bg-white text-right p-2 border border-gray-300 rounded-md transition duration-300 ${className}`}
           >
             <option value="" disabled>
               {placeholder || "انتخاب کنید"}
@@ -195,9 +187,9 @@ function Input({
             </svg>
           </div>
         </div>
-        {errors[name] && (
+        {errorMessage && (
           <span className="absolute -bottom-5 text-xs text-red-600">
-            {errors[name].message}
+            {errorMessage}
           </span>
         )}
       </div>
@@ -218,14 +210,11 @@ function Input({
           name={name}
           disabled={disable}
           placeholder={placeholder}
-          className={`input w-full h-[40px] p-2 text-right  border border-gray-300 rounded-md ${className}`}
+          className={`input w-full h-[40px] p-2 text-right border border-gray-300 rounded-md ${className}`}
         />
-
-        {errors[name] && (
-          <span
-            className={`absolute -bottom-6  text-xs md:text-sm text-red-600`}
-          >
-            {errors[name].message}
+        {errorMessage && (
+          <span className="absolute -bottom-6 text-xs md:text-sm text-red-600">
+            {errorMessage}
           </span>
         )}
       </div>
