@@ -451,12 +451,11 @@ export const MenuFilterOptions = [
 ];
 
 export const productFilterOptions = [
-  { label: "همه", slug: "all", color: "black" },
-  { label: "موجود", slug: "exist", color: "green-500" },
-  { label: "ناموجود", slug: "not-exist", color: "red-500" },
-  { label: "فعال", slug: "not-exist", color: "green-500" },
-  { label: "غیر فعال", slug: "not-exist", color: "yellow-500" },
+  { label: "همه", slug: "ALL", color: "black" },
+  { label: "فعال", slug: "active", color: "green-500" },
+  { label: "غیر فعال", slug: "inactive", color: "yellow-500" },
 ];
+
 export const requestProductFilterOptions = [
   { label: "همه", slug: "all", color: "black" },
   { label: "موجود", slug: "exist", color: "green-500" },
