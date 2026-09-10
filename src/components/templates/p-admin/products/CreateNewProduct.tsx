@@ -64,14 +64,13 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
     value: seller._id,
   }));
 
-  
-  console.log(errors);
-  
   const createProductHandler = async (data: TProductSchema) => {
-    console.log(data);
-    
     if (!selectedCategory?.value) {
       return toast.error("یک دسته بندی انتخاب کنید");
+    }
+
+    if (images.length === 0) {
+      return toast.error("حداقل یک تصویر آپلود کنید");
     }
 
     startTransition(async () => {
@@ -108,10 +107,8 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
           JSON.stringify(filteredCustomFeatures),
         );
 
-        if (images && images.length > 0) {
-          for (const image of images) {
-            formData.append("imageFiles", image);
-          }
+        for (let i = 0; i < images.length; i++) {
+          formData.append("imageFiles", images[i]);
         }
 
         const result = await createProduct(formData);
@@ -122,6 +119,7 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
           setImages([]);
           setFeatureCount(1);
           setCustomFeatureCount(1);
+          setSelectedCategory(null);
           router.push("/p-admin/products");
         } else if (result.errors) {
           Object.entries(result.errors).forEach(([field, message]) => {
@@ -130,8 +128,6 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
               message,
             });
           });
-          console.log(result.errors);
-          
           toast.error("اطلاعات وارد شده معتبر نیست");
         } else if (!result.success && result.message) {
           toast.error(result.message);
@@ -146,6 +142,16 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
   const deleteImage = (indexToDelete: number) => {
     const newImages = images.filter((_, index) => index !== indexToDelete);
     setImages(newImages);
+    setValue("images", newImages as any, { shouldValidate: true });
+  };
+
+  const setAsMain = (index: number) => {
+    if (index === 0) return;
+    const newImages = [...images];
+    const [selected] = newImages.splice(index, 1);
+    newImages.unshift(selected);
+    setImages(newImages);
+    setValue("images", newImages as any, { shouldValidate: true });
   };
 
   const addFeature = () => {
@@ -214,7 +220,6 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
           onSelected={setSelectedCategory}
           disable={isPending}
         />
-
         <div className="col-span-1">
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -307,6 +312,7 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
             </Button>
           </div>
         </div>
+
         <div className="col-span-1">
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -426,7 +432,7 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
                   labelClassName="!text-sm"
                 />
 
-                 <Input
+                <Input
                   register={register}
                   errors={errors}
                   name={`customFeatures.${index}.slug`}
@@ -478,6 +484,7 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
             labelClassName="md:!text-lg font-Iran"
           />
         </div>
+
         <Input
           register={register}
           errors={errors}
@@ -488,24 +495,47 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
           labelClassName="md:!text-lg font-Iran"
           setImage={setImages}
           multiple
-          setValue={setValue}
         />
 
         {images && images.length > 0 && (
-          <div className="flex items-end justify-end gap-x-2 flex-wrap">
+          <div className="flex items-end justify-end gap-x-6 flex-wrap gap-y-10 mt-10">
             {images.map((image, index) => (
-              <div className="relative" key={index}>
-                <Image
-                  src={URL.createObjectURL(image)}
-                  width={100}
-                  height={100}
-                  className="w-[100px] h-[100px] object-cover rounded-md"
-                  alt="image"
-                />
+              <div className="relative group" key={`${image.name}-${index}`}>
+                <div
+                  onClick={() => setAsMain(index)}
+                  className="cursor-pointer"
+                  title={index === 0 ? "عکس اصلی" : "کلیک کنید تا عکس اصلی شود"}
+                >
+                  <Image
+                    src={URL.createObjectURL(image)}
+                    width={100}
+                    height={100}
+                    className={`w-[100px] h-[100px] object-cover rounded-md transition-all duration-200 ${
+                      index === 0
+                        ? "border-4 border-green-500 scale-105 shadow-lg"
+                        : "border-2 border-gray-200 hover:border-blue-400 hover:scale-105"
+                    }`}
+                    alt={`image-${index}`}
+                  />
+                </div>
+
                 <FaRegTrashAlt
-                  onClick={() => deleteImage(index)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteImage(index);
+                  }}
                   className="text-red-500 absolute -top-8 right-0 text-xl md:cursor-pointer hover:text-red-700 transition-colors"
                 />
+
+                {index === 0 ? (
+                  <span className="absolute -bottom-6 right-0 text-xs text-green-600 font-bold whitespace-nowrap">
+                    عکس اصلی
+                  </span>
+                ) : (
+                  <span className="absolute -bottom-6 right-0 text-[10px] text-blue-500 font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                    عکس اصلی
+                  </span>
+                )}
               </div>
             ))}
           </div>
@@ -530,6 +560,7 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
             setImages([]);
             setFeatureCount(1);
             setCustomFeatureCount(1);
+            setSelectedCategory(null);
           }}
           type="reset"
           className="md:!w-[200px] mt-10 !bg-red-500"
