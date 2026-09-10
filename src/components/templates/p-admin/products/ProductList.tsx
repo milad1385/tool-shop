@@ -1,34 +1,35 @@
+"use client";
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
-import Image from "next/image";
-import { FaEye, FaTrash } from "react-icons/fa";
-import { FaPencil } from "react-icons/fa6";
+import { IProductList } from "@/libs/types";
 import ProductItemRow from "./ProductItemRow";
+import EmptyError from "@/components/modules/p-admin/EmptyError";
+import { productTableHeader } from "@/constants/data";
 
-function ProductList() {
+function ProductList({ data, pagination }: IProductList) {
+  console.log(data);
+
   return (
     <div className="md:section-box">
       <div className="admin-table mt-5 overflow-hidden  rounded-md">
         <Table>
           <Table.Header>
-            <th>شماره</th>
-            <th>عکس</th>
-            <th>عنوان</th>
-            <th>لینک</th>
-            <th>دسته بندی</th>
-            <th>تگ ها</th>
-            <th>تاریخ</th>
-            <th>عملیات</th>
+            {productTableHeader.map((header, index) => (
+              <th key={index + 1}>{header}</th>
+            ))}
           </Table.Header>
           <Table.Body>
-            <ProductItemRow />
-            <ProductItemRow />
-            <ProductItemRow />
-            <ProductItemRow />
-            <ProductItemRow />
+            {data.map((product, index) => (
+              <ProductItemRow
+                {...product}
+                index={index + 1}
+                key={product._id}
+              />
+            ))}
           </Table.Body>
         </Table>
-        <Pagination count={10} />
+        {!data.length && <EmptyError />}
+        {data.length > 0 && <Pagination count={pagination.totalItems} />}
       </div>
     </div>
   );
