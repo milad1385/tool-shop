@@ -7,13 +7,44 @@
 
 import { Control } from "react-hook-form";
 
-export interface IProduct {
-  id: number;
-  title: string;
-  link: string;
-  image: string;
+export interface IProductSeller {
+  seller:
+    | string
+    | {
+        _id: string;
+        name: string;
+        city?: string;
+      };
   price: number;
   discount: number;
+  stock: number;
+}
+
+export interface IFeature {
+  name: string;
+  value: string;
+  slug: string;
+}
+
+export interface IProduct {
+  _id: string;
+  name: string;
+  slug: string;
+  sellers: IProductSeller[];
+  images: string[];
+  description: string;
+  category: {
+    _id: string;
+    name: string;
+    slug: string;
+  };
+  features: IFeature[];
+  customFeatures: IFeature[];
+  shortIdentifier: string;
+  status?: "active" | "inactive" | "draft";
+  createdAt?: Date;
+  updatedAt?: Date;
+  index?: number;
 }
 
 export interface ITitle {
@@ -67,6 +98,7 @@ export interface IFeature {
   _id: number;
   name: string;
   value: string;
+  slug: string;
 }
 
 export interface IFeatureList {
@@ -563,4 +595,16 @@ export interface ISeller {
   commission?: number;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface IGetProducts {
+  page?: number;
+  limit?: number;
+  search?: string | string[];
+  status?: string | string[];
+}
+
+export interface IProductList {
+  data: IProduct[];
+  pagination: IPagination;
 }
