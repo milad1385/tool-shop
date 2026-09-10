@@ -1641,6 +1641,16 @@ export const sliderTableHeader = [
   "عملیات",
 ];
 
+export const productTableHeader = [
+  "شماره",
+  "عکس",
+  "عنوان",
+  "لینک",
+  "دسته بندی",
+  "تاریخ",
+  "عملیات",
+];
+
 export const filterCategoryType = [
   { label: "سلکت باکس", value: "selectbox" },
   { label: "چک باکس", value: "checkbox" },
