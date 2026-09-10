@@ -37,7 +37,7 @@ export const createProductSchema = z.object({
   features: z.array(featureSchema).optional().default([]), // ✅ optional
   customFeatures: z.array(customFeatureSchema).optional().default([]), // ✅ optional
   shortIdentifier: z.string().min(1, "شناسه کوتاه الزامی است"),
-  status: z.enum(["active", "inactive", "draft"]).default("draft"),
+  status: z.enum(["active", "inactive", "draft"]).default("active"),
 });
 
 export type TCreateProductSchema = z.infer<typeof createProductSchema>;
