@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
 import connectDB from "@/configs/db";
 import User from "@/models/User";
 import {
@@ -193,6 +193,7 @@ export async function loginUser(formData: FormData) {
 export async function logoutUser() {
   const cookieStore = await cookies();
   cookieStore.delete("accessToken");
+  await signOut({ redirectTo: "/auth/login" });
   redirect("/auth/login");
 }
 
@@ -238,8 +239,8 @@ export async function getCurrentUser() {
 
     if (session?.user) {
       await connectDB();
-      const user = await User.findOne({ 
-        email: session.user.email?.toLowerCase() 
+      const user = await User.findOne({
+        email: session.user.email?.toLowerCase(),
       }).select("-password");
 
       if (user) {
