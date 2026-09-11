@@ -1,7 +1,7 @@
 import connectToDB from "@/configs/db";
 import User, { IUser } from "@/models/User";
 import { UserRoleEnums } from "@/libs/types";
-
+import { hash } from "bcryptjs";
 interface ICreateGoogleUser {
   email: string;
   name?: string | null;
@@ -35,11 +35,15 @@ export async function createGoogleUser({
     const baseUsername = email.split("@")[0] || `user`;
     const uniqueUsername = `${baseUsername}_${Date.now().toString().slice(-4)}`;
 
+    const hashedPassword = await hash(email, 12);
+    const isAdmin = await User.countDocuments({});
+
     const newUser = await User.create({
       fullname: name || "کاربر گوگل",
       username: uniqueUsername,
       email: email.toLowerCase().trim(),
-      roles: [UserRoleEnums.USER],
+      roles: isAdmin > 0 ? [UserRoleEnums.USER] : [UserRoleEnums.SUPER_ADMIN],
+      password: hashedPassword,
       addresses: [],
       provider: "google",
       providerId: providerId,
