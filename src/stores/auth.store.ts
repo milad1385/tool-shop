@@ -7,7 +7,8 @@ export type User = {
   id: string;
   username: string;
   fullname: string;
-  phone: string;
+  image?: string;
+  phone?: string;
   email: string;
   roles: UserRoleEnums[];
 };
