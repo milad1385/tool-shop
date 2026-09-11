@@ -7,13 +7,12 @@ import {
   userLoginType,
 } from "@/validators/frontend/user/user.validator";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import GoogleButton from "./GoogleButton";
 
 function LoginForm() {
   const router = useRouter();
@@ -86,15 +85,7 @@ function LoginForm() {
       >
         {isPending ? <FaSpinner className="animate-spin h-5 w-5" /> : "ورود"}
       </button>
-      <div
-        className="bg-gray-200  py-2.5 rounded-md cursor-pointer"
-        onClick={() => signIn("google", { callbackUrl: "/" })}
-      >
-        <div className="flex items-center gap-x-2 justify-center">
-          <span className="text-sm">ورود با گوگل</span>
-          <FcGoogle className="text-[28px] cursor-pointer" />
-        </div>
-      </div>
+      <GoogleButton text="ورود با گوگل" />
     </form>
   );
 }
