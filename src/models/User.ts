@@ -20,6 +20,12 @@ export interface IUser extends Document {
   password: string;
   roles: UserRoleEnums[];
   addresses: IAddress[];
+  provider: "google" | "credentials";
+  providerId?: string;
+  image?: string;
+  emailVerified?: boolean;
+  status: "active" | "inactive" | "banned";
+  lastLogin?: Date;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -81,14 +87,16 @@ const userSchema = new Schema<IUser>(
     username: {
       type: String,
       required: [true, "نام کاربری الزامی است"],
+      unique: true,
       trim: true,
       minlength: [3, "نام کاربری حداقل ۳ کاراکتر باید باشد"],
       maxlength: [50, "نام کاربری حداکثر ۵۰ کاراکتر باید باشد"],
     },
     phone: {
       type: String,
-      required: [true, "شماره تلفن الزامی است"],
+      required: false,
       unique: true,
+      sparse: true,
       trim: true,
       match: [/^09[0-9]{9}$/, "شماره تلفن باید با ۰۹ شروع شود و ۱۱ رقم باشد"],
     },
@@ -105,7 +113,6 @@ const userSchema = new Schema<IUser>(
     },
     password: {
       type: String,
-      required: [true, "رمز عبور الزامی است"],
       trim: true,
       minlength: [8, "رمز عبور حداقل ۸ کاراکتر باید باشد"],
     },
@@ -115,6 +122,32 @@ const userSchema = new Schema<IUser>(
       default: [UserRoleEnums.USER],
     },
     addresses: [addressSchema],
+
+    provider: {
+      type: String,
+      enum: ["google", "credentials"],
+      default: "credentials",
+    },
+    providerId: {
+      type: String,
+      trim: true,
+    },
+    image: {
+      type: String,
+      trim: true,
+    },
+    emailVerified: {
+      type: Boolean,
+      default: false,
+    },
+    status: {
+      type: String,
+      enum: ["active", "inactive", "banned"],
+      default: "active",
+    },
+    lastLogin: {
+      type: Date,
+    },
   },
   { timestamps: true },
 );
