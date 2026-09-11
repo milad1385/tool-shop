@@ -55,7 +55,6 @@ export async function createGoogleUser({
 
     return newUser;
   } catch (error: any) {
-    console.error("خطا در ساخت کاربر گوگل:", error);
     throw new Error(error.message);
   }
 }
