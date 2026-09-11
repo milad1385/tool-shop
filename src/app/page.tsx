@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import AdsSection from "@/components/templates/Home/AdsSection";
 import Articles from "@/components/templates/Home/Articles";
 import Banner from "@/components/templates/Home/Banner";
@@ -8,7 +9,7 @@ import NewestProduct from "@/components/templates/Home/NewestProduct";
 import SalesProducts from "@/components/templates/Home/SalesProducts";
 import SuggestedProduct from "@/components/templates/Home/SuggestedProduct";
 
-function page() {
+async function page() {
   return (
     <div className="container">
       <HeaderSlider />
