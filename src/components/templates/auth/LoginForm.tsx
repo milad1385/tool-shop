@@ -86,13 +86,13 @@ function LoginForm() {
       >
         {isPending ? <FaSpinner className="animate-spin h-5 w-5" /> : "ورود"}
       </button>
-      <div className="bg-gray-200  py-2.5 rounded-md cursor-pointer">
+      <div
+        className="bg-gray-200  py-2.5 rounded-md cursor-pointer"
+        onClick={() => signIn("google", { callbackUrl: "/" })}
+      >
         <div className="flex items-center gap-x-2 justify-center">
           <span className="text-sm">ورود با گوگل</span>
-          <FcGoogle
-            onClick={() => signIn("google", { callbackUrl: "/" })}
-            className="text-[28px] cursor-pointer"
-          />
+          <FcGoogle className="text-[28px] cursor-pointer" />
         </div>
       </div>
     </form>
