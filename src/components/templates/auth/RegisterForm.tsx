@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 import { useTransition } from "react";
 import { useAuthStore } from "@/stores/auth.store";
+import GoogleButton from "./GoogleButton";
 
 function RegisterForm() {
   const router = useRouter();
@@ -130,11 +131,12 @@ function RegisterForm() {
             "ثبت نام"
           )}
         </button>
+        <GoogleButton text="ثبت نام با گوگل" />
       </form>
 
       <Link
         href="/auth/login"
-        className="text-center mx-auto block text-sm mt-2 mb-4 hover:text-stone-600 transition-colors"
+        className="text-center mx-auto block text-sm mt-6 mb-4 hover:text-stone-600 transition-colors"
       >
         قبلا ثبت نام کرده اید؟ وارد شوید
       </Link>
