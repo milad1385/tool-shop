@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@/auth";
 import connectDB from "@/configs/db";
 import User from "@/models/User";
 import {
@@ -200,44 +201,65 @@ export async function getCurrentUser() {
     const cookieStore = await cookies();
     const token = cookieStore.get("accessToken")?.value;
 
-    if (!token) {
-      return { success: false, user: null };
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
+          id: string;
+          username: string;
+          fullname: string;
+          phone: string;
+          email: string;
+          roles: string[];
+        };
+
+        await connectDB();
+        const user = await User.findById(decoded.id).select("-password");
+
+        if (user) {
+          return {
+            success: true,
+            user: {
+              id: user._id.toString(),
+              username: user.username,
+              fullname: user.fullname,
+              phone: user.phone,
+              email: user.email,
+              roles: user.roles,
+            },
+          };
+        }
+      } catch (error) {
+        if (error instanceof jwt.TokenExpiredError) {
+          cookieStore.delete("accessToken");
+        }
+      }
+    }
+    const session = await auth();
+
+    if (session?.user) {
+      await connectDB();
+      const user = await User.findOne({ 
+        email: session.user.email?.toLowerCase() 
+      }).select("-password");
+
+      if (user) {
+        return {
+          success: true,
+          user: {
+            id: user._id.toString(),
+            username: user.username,
+            fullname: user.fullname,
+            phone: user.phone || "",
+            email: user.email,
+            roles: user.roles,
+            image: user.image,
+          },
+        };
+      }
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
-      id: string;
-      username: string;
-      fullname: string;
-      phone: string;
-      email: string;
-      roles: string[];
-    };
-
-    await connectDB();
-    const user = await User.findById(decoded.id).select("-password");
-
-    if (!user) {
-      return { success: false, user: null };
-    }
-
-    return {
-      success: true,
-      user: {
-        id: user._id.toString(),
-        username: user.username,
-        fullname: user.fullname,
-        phone: user.phone,
-        email: user.email,
-        roles: user.roles,
-      },
-    };
+    return { success: false, user: null };
   } catch (error) {
-    if (error instanceof jwt.TokenExpiredError) {
-      const cookieStore = await cookies();
-      cookieStore.delete("accessToken");
-      return { success: false, user: null, expired: true };
-    }
-
     return { success: false, user: null };
   }
 }
