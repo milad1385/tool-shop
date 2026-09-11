@@ -36,13 +36,13 @@ export async function createGoogleUser({
     const uniqueUsername = `${baseUsername}_${Date.now().toString().slice(-4)}`;
 
     const hashedPassword = await hash(email, 12);
-    const isAdmin = await User.countDocuments({});
+    const usersCount = await User.countDocuments({});
 
     const newUser = await User.create({
       fullname: name || "کاربر گوگل",
       username: uniqueUsername,
       email: email.toLowerCase().trim(),
-      roles: isAdmin > 0 ? [UserRoleEnums.USER] : [UserRoleEnums.SUPER_ADMIN],
+      roles: usersCount > 0 ? [UserRoleEnums.USER] : [UserRoleEnums.SUPER_ADMIN],
       password: hashedPassword,
       addresses: [],
       provider: "google",
