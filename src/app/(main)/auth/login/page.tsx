@@ -20,7 +20,7 @@ function page() {
         <div className="container mx-auto max-w-screen-lg">
           <div className="bg-white shadow rounded-2xl overflow-hidden">
             <div className="flex flex-col md:flex-row gap-8">
-              <div className="flex-1 p-8 md:p-4 lg:p-16 lg:pb-0">
+              <div className="flex-1 p-8 md:p-4 lg:p-16 lg:pb-0 lg:pt-10">
                 <h2 className="text-center text-2xl lg:text-4xl font-Lalezar">
                   صفحه ورود
                 </h2>
