@@ -608,3 +608,7 @@ export interface IProductList {
   data: IProduct[];
   pagination: IPagination;
 }
+
+export interface IGoogleButton {
+  text: string;
+}
