@@ -51,3 +51,15 @@ export const getOneCategoryById = async (id: string): Promise<ICategory> => {
     throw new Error(error.message);
   }
 };
+
+export const getOneCategoryBySlug = async (
+  slug: string,
+): Promise<ICategory> => {
+  try {
+    await connectToDB();
+    const category = await Category.findOne({ href: slug }).populate("parent");
+    return normalizeData(category);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
