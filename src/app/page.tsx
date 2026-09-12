@@ -17,7 +17,7 @@ async function page() {
       <SalesProducts />
       <BestSeller />
       <Banner src="pic.jpg" />
-      {/* <NewestProduct /> */}
+      <NewestProduct />
       <AdsSection />
       {/* <SuggestedProduct /> */}
       <Articles />
