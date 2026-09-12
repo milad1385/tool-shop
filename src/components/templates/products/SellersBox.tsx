@@ -1,9 +1,9 @@
-import React from "react";
-import SellerBox from "./SellerBox";
+import { ISellersBox } from "@/libs/types";
 import MobileSellerBox from "./MobileSellerBox";
 import OtherSellers from "./OtherSellers";
+import SellerBox from "./SellerBox";
 
-function SellersBox() {
+function SellersBox({ sellers }: ISellersBox) {
   return (
     <div className="bg-white rounded-2xl px-5 py-4 lg:pt-7 mt-8">
       <h3 className="font-Lalezar text-xl lg:text-2xl hidden lg:block">
@@ -11,10 +11,9 @@ function SellersBox() {
       </h3>
       {/* desktop seller box */}
       <div className="divide-y-2 divide-gray-100 hidden lg:block">
-        <SellerBox />
-        <SellerBox />
-        <SellerBox />
-        <SellerBox />
+        {sellers.map((seller, index) => (
+          <SellerBox {...seller} key={index + 1} />
+        ))}
       </div>
 
       <div className="flex md:hidden items-center justify-between">
