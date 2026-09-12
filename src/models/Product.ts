@@ -30,6 +30,8 @@ export interface IProduct extends Document {
   customFeatures: ICustomFeature[];
   shortIdentifier: string;
   status?: "active" | "inactive" | "draft";
+  isFeatured: boolean;
+  isAmazingOffer: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -171,6 +173,14 @@ const productSchema = new Schema<IProduct>(
         message: "وضعیت باید active، inactive یا draft باشد",
       },
       default: "draft",
+    },
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    },
+    isAmazingOffer: {
+      type: Boolean,
+      default: false,
     },
   },
   {
