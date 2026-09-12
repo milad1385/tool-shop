@@ -2,7 +2,13 @@ import connectToDB from "@/configs/db";
 import Product from "@/models/Product";
 import { normalizeData } from "@/utils/helper";
 import { createPagination } from "@/utils/helper";
-import { IGetProducts, IPaginatedResponse, IProduct } from "@/libs/types";
+import {
+  IGetProducts,
+  IGetProductsByCategory,
+  IPaginatedResponse,
+  IProduct,
+} from "@/libs/types";
+import Category from "@/models/Category";
 
 export const getProducts = async ({
   page = 1,
@@ -104,6 +110,54 @@ export const getAllProducts = async (
       .lean();
 
     return normalizeData(products) as IProduct[];
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getProductsByCategory = async ({
+  page,
+  limit,
+  search = "",
+  categorySlug,
+}: IGetProductsByCategory): Promise<IPaginatedResponse<IProduct>> => {
+  try {
+    await connectToDB();
+
+    const category = await Category.findOne({ href: categorySlug });
+    if (!category) {
+      return {
+        data: [],
+        pagination: null,
+      };
+    }
+    let filters: any = {
+      category: category._id,
+    };
+
+    if (search) {
+      filters.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { slug: { $regex: search, $options: "i" } },
+        { shortIdentifier: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    const count = await Product.countDocuments(filters);
+
+    const products = await Product.find(filters)
+      .populate("category", "name href")
+      .populate("sellers.seller", "name city")
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .sort({
+        createdAt: -1,
+      });
+
+    return {
+      data: normalizeData(products),
+      pagination: createPagination({ page, limit, count }),
+    };
   } catch (error) {
     throw new Error(error.message);
   }
