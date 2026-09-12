@@ -19,7 +19,16 @@ async function page({ params }: IPage) {
         links={[
           { id: 1, href: "/", name: "خانه" },
           { id: 2, href: "/products", name: "محصولات" },
-          { id: 3, href: "/products/1", name: "جزییات محصول دریل" },
+          {
+            id: 3,
+            href: `/category/${product.category.href}`,
+            name: product.category.name,
+          },
+          {
+            id: 4,
+            href: `/products/${product.slug}`,
+            name: product.name,
+          },
         ]}
       />
       <div className="grid grid-cols-12 bg-white p-4 rounded-2xl">
@@ -27,7 +36,7 @@ async function page({ params }: IPage) {
         <ProductDetails {...product} />
       </div>
       <SellersBox sellers={product.sellers} />
-      <ProductTabs />
+      <ProductTabs {...product} />
       <div className="mt-16 mb-10 bg-[#eab308] rounded-2xl p-8 shadow">
         <Title title="محصولات مرتبط" />
         {/* <SameProductSlider /> */}
