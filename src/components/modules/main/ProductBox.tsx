@@ -2,41 +2,46 @@ import { IProduct } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { LuArrowDownUp } from "react-icons/lu";
 
-function ProductBox({ title, discount, image, link, price }: IProduct) {  
+function ProductBox({ name, slug, images, sellers }: IProduct) {
+  const lowestPrice = Math.min(...sellers.map((s) => s.price));
+  const maxDiscount = Math.max(...sellers.map((s) => s.discount || 0));
+  const finalPrice = lowestPrice - (lowestPrice * maxDiscount) / 100;
   return (
     <div className="bg-white space-y-3 rounded-3xl overflow-hidden p-4">
-      <Link href={link} className="relative">
+      <Link href={`/products/${slug}`} className="relative">
         <Image
-          src={`/images/${image}`}
-          alt={title}
+          src={`${images[0]}`}
+          alt={name}
           width={1920}
           height={1080}
           className="mx-auto w-[200px] md:w-[260px]"
         />
-        {discount && (
+        {maxDiscount > 0 && (
           <span className="bg-[#eab308] w-[40px]  h-[40px] flex-center text-sm rounded-full absolute top-1 right-1">
-            {discount}%
+            {maxDiscount}%
           </span>
         )}
       </Link>
       <div>
         <Link
-          href={link}
+          href={slug}
           className="flex-center font-Lalezar text-base md:text-lg"
         >
-          {title}
+          {name}
         </Link>
         <div className="flex items-center justify-center gap-x-3 mt-4">
-          <span className={`text-zinc-500 flex items-center gap-x-1 ${discount ? "line-through" : ""}`}>
-            {formattedPrice(price)}{/*  <span className="sm:hidden lg:block"></span> */}
+          <span
+            className={`text-zinc-500 flex items-center gap-x-1 ${maxDiscount ? "line-through" : ""}`}
+          >
+            {formattedPrice(lowestPrice)}
+            {/*  <span className="sm:hidden lg:block"></span> */}
           </span>
-          {discount && (
+          {maxDiscount && (
             <span className="text-yellow-500 flex items-center gap-x-1">
-              {formattedPrice(price - (price * discount) / 100)}{" "}
+              {formattedPrice(finalPrice)}{" "}
               <span className="sm:hidden lg:block">تومان</span>
             </span>
           )}
