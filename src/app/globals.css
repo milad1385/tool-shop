@@ -130,6 +130,15 @@ table {
   background-color: #eab308 !important;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .input:focus {
   outline-style: solid;
   outline-width: 2px;
