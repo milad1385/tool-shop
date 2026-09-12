@@ -20,6 +20,44 @@ export interface IProductSeller {
   stock: number;
 }
 
+export interface ISellersBox {
+  sellers: {
+    seller: {
+      _id: string;
+      name: string;
+      city?: string;
+      commission?: number;
+      contactDetails?: {
+        address?: string;
+        email?: string;
+        phone?: string;
+        postalCode?: string;
+      };
+    };
+    price: number;
+    discount: number;
+    stock: number;
+  }[];
+}
+
+export interface ISellerBox {
+  seller: {
+    _id: string;
+    name: string;
+    city?: string;
+    commission?: number;
+    contactDetails?: {
+      address?: string;
+      email?: string;
+      phone?: string;
+      postalCode?: string;
+    };
+  };
+  price: number;
+  discount: number;
+  stock: number;
+}
+
 export interface IFeature {
   name: string;
   value: string;
@@ -629,4 +667,14 @@ export interface IEmptyStateProps {
   actionLink?: string;
   className?: string;
   size?: "sm" | "md" | "lg";
+}
+
+export interface IProductSlider {
+  images: string[];
+}
+
+export interface IFactorItem {
+  name: string;
+  value: string;
+  slug: string;
 }
