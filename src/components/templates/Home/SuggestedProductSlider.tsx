@@ -1,12 +1,11 @@
 "use client";
 import ProductBox from "@/components/modules/main/ProductBox";
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
-import { products } from "@/constants/data";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-function SuggestedProductSlider() {
+
+function SuggestedProductSlider({products}) {
   
   return (
     <Swiper
