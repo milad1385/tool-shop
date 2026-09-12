@@ -34,9 +34,9 @@ function ProductBox({ name, slug, images, sellers }: IProduct) {
         </Link>
         <div className="flex items-center justify-center gap-x-3 mt-4">
           <span
-            className={`text-zinc-500 flex items-center gap-x-1 ${maxDiscount ? "line-through" : ""}`}
+            className={`text-zinc-800 flex items-center gap-x-1 ${maxDiscount ? "line-through !text-zinc-500" : ""}`}
           >
-            {formattedPrice(lowestPrice)}
+            {formattedPrice(lowestPrice)} {maxDiscount === 0 && "تومان"}
             {/*  <span className="sm:hidden lg:block"></span> */}
           </span>
           {maxDiscount > 0 && (
