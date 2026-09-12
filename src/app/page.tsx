@@ -15,11 +15,11 @@ async function page() {
       <HeaderSlider />
       <Categories />
       <SalesProducts />
-      <BestSeller />
+      {/* <BestSeller /> */}
       <Banner src="pic.jpg" />
-      <NewestProduct />
+      {/* <NewestProduct /> */}
       <AdsSection />
-      <SuggestedProduct />
+      {/* <SuggestedProduct /> */}
       <Articles />
     </div>
   );

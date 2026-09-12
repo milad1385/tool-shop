@@ -3,13 +3,15 @@ import "swiper/css";
 import "swiper/css/pagination";
 import SalesProductSlider from "./SalesProductSlider";
 import Title from "@/components/modules/main/Title";
+import { getAmazingOffers } from "@/services/products.service";
 
-function SalesProducts() {
+async function SalesProducts() {
+  const products = await getAmazingOffers();
   return (
     <div className="my-10 bg-[#eab308] rounded-lg px-8 py-8">
       <Title title="پیشنهاد شگفت انگیز" />
       <div className="grid grid-cols-12 gap-[15px]">
-        <SalesProductSlider />
+        <SalesProductSlider products={products} />
         <div className="col-span-3 bg-[#292524] shadow rounded-3xl overflow-hidden px-4 py-8 hidden lg:flex flex-col justify-between">
           <h3 className="text-white text-center text-base/[28px]">
             با 30 درصد تخفیف شگفتانه محصول خود را خریداری کنید :)
