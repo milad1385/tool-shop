@@ -4,14 +4,14 @@ import Title from "@/components/modules/main/Title";
 import ProductDetails from "@/components/templates/Product/ProductDetails";
 import ProductSlider from "@/components/templates/Product/ProductSlider";
 import ProductTabs from "@/components/templates/Product/ProductTabs";
-import SameProductSlider from "@/components/templates/Product/SameProductSlider";
 import SellersBox from "@/components/templates/products/SellersBox";
 import { IPage } from "@/libs/types";
-import React from "react";
+import { getProduct } from "@/services/products.service";
 
 async function page({ params }: IPage) {
-  const { id } = await params;
-  console.log(id);
+  const { slug } = await params;
+
+  const product = await getProduct(slug);
 
   return (
     <Container>
@@ -23,14 +23,14 @@ async function page({ params }: IPage) {
         ]}
       />
       <div className="grid grid-cols-12 bg-white p-4 rounded-2xl">
-        <ProductSlider />
-        <ProductDetails />
+        <ProductSlider images={product.images} />
+        <ProductDetails {...product} />
       </div>
-      <SellersBox />
+      <SellersBox sellers={product.sellers} />
       <ProductTabs />
       <div className="mt-16 mb-10 bg-[#eab308] rounded-2xl p-8 shadow">
         <Title title="محصولات مرتبط" />
-        <SameProductSlider />
+        {/* <SameProductSlider /> */}
       </div>
     </Container>
   );
