@@ -2,12 +2,11 @@
 import ProductBox from "@/components/modules/main/ProductBox";
 import "swiper/css";
 
-import { products } from "@/constants/data";
+// import { products } from "@/constants/data";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-function SalesProductSlider() {
-
+function SalesProductSlider({ products }) {
   return (
     <div className="col-span-12 lg:col-span-9">
       <Swiper
