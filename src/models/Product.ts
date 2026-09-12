@@ -1,5 +1,5 @@
 import mongoose, { Schema, Model, Document } from "mongoose";
-
+import "@/models/Seller";
 export interface ISeller {
   seller: mongoose.Types.ObjectId;
   price: number;
