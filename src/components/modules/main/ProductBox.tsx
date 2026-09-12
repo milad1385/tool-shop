@@ -28,7 +28,7 @@ function ProductBox({ name, slug, images, sellers }: IProduct) {
       <div>
         <Link
           href={slug}
-          className="flex-center font-Lalezar text-base md:text-lg"
+          className="flex-center font-Lalezar text-base md:text-lg line-clamp-1"
         >
           {name}
         </Link>
