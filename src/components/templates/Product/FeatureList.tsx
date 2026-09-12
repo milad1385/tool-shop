@@ -4,14 +4,14 @@ import FeatureItem from "./FeatureItem";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { LuNewspaper } from "react-icons/lu";
 
-function FeatureList({ features }: IFeatureList) {
+function FeatureList({ features, title }: IFeatureList) {
   const [isMore, setIsMore] = useState(false);
   return (
     <div className="mt-6 flex flex-col gap-y-12">
       <div>
         <h4 className="flex  gap-x-2 font-DanaDemiBold">
           <LuNewspaper className="text-lg md:text-2xl text-zinc-700" />
-          مشخصات کلی
+          {title}
         </h4>
         <ul className="features font-DanaMedium space-y-5 mt-5">
           {isMore
@@ -24,7 +24,7 @@ function FeatureList({ features }: IFeatureList) {
                   <FeatureItem key={feature._id} feature={feature} />
                 ))}
 
-          {features.length >= 3 && (
+          {features.length >= 4 && (
             <div className="flex items-center justify-center show-container relative">
               {isMore ? (
                 <div
