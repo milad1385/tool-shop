@@ -7,8 +7,6 @@ import EmptyError from "@/components/modules/p-admin/EmptyError";
 import { productTableHeader } from "@/constants/data";
 
 function ProductList({ data, pagination }: IProductList) {
-  console.log(data);
-
   return (
     <div className="md:section-box">
       <div className="admin-table mt-5 overflow-hidden  rounded-md">
