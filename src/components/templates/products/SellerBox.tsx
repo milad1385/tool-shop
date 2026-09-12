@@ -1,7 +1,11 @@
+import { ISellerBox } from "@/libs/types";
+import { formattedPrice } from "@/utils/helper";
 import { FaRegCircleCheck, FaShop } from "react-icons/fa6";
 import { LuTruck } from "react-icons/lu";
 
-function SellerBox() {
+function SellerBox({ seller, discount, price, stock }: ISellerBox) {
+  const finalPrice = price - (price * discount) / 100;
+
   return (
     <div className="flex items-center justify-between py-10">
       <div className="flex items-center gap-x-4">
@@ -10,7 +14,7 @@ function SellerBox() {
         </div>
         <div className="flex flex-col gap-y-2.5">
           <div className="flex items-center gap-x-2">
-            <p className="text-gray-700 font-bold">اسمارت تکنولوژی قشم</p>
+            <p className="text-gray-700 font-bold">{seller.name}</p>
             <div className="bg-green-500 rounded-xl text-white px-2 py-0.5 text-sm">
               منتخب
             </div>
@@ -43,14 +47,34 @@ function SellerBox() {
 
       <div className="flex items-center gap-x-5">
         <div className="flex items-center gap-x-2">
-          <span className="line-through text-zinc-400 text-xs">۷,۶۰۰,۰۰۰</span>
-          <span className="font-bold text-base md:text-lg">
-            ۶,۹۹۰,۰۰۰ <span className="text-xs tracking-tighter">تومان</span>
+          <span
+            className={
+              discount
+                ? `line-through text-zinc-400 text-xs`
+                : `font-bold text-base md:text-lg`
+            }
+          >
+            {formattedPrice(price)}{" "}
+            {discount === 0 && (
+              <span className="text-xs tracking-tighter">تومان</span>
+            )}
           </span>
-          <span className="block bg-yellow-500 text-white px-2.5 rounded-xl text-sm">۸٪</span>
+          {discount > 0 && (
+            <>
+              <span className="font-bold text-base md:text-lg">
+                {formattedPrice(finalPrice)}{" "}
+                <span className="text-xs tracking-tighter">تومان</span>
+              </span>
+              <span className="block bg-yellow-500 text-white px-2.5 rounded-xl text-sm">
+                {formattedPrice(discount)}٪
+              </span>
+            </>
+          )}
         </div>
 
-        <button className="bg-yellow-500 text-white rounded-lg px-3 py-3">افزودن به سبد خرید</button>
+        <button className="bg-yellow-500 text-white rounded-lg px-3 py-3">
+          افزودن به سبد خرید
+        </button>
       </div>
     </div>
   );
