@@ -19,7 +19,7 @@ async function page() {
       <Banner src="pic.jpg" />
       <NewestProduct />
       <AdsSection />
-      {/* <SuggestedProduct /> */}
+      <SuggestedProduct />
       <Articles />
     </div>
   );
