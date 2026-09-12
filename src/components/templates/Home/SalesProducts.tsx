@@ -14,7 +14,7 @@ async function SalesProducts() {
         <SalesProductSlider products={products} />
         <div className="col-span-3 bg-[#292524] shadow rounded-3xl overflow-hidden px-4 py-8 hidden lg:flex flex-col justify-between">
           <h3 className="text-white text-center text-base/[28px]">
-            با 30 درصد تخفیف شگفتانه محصول خود را خریداری کنید :)
+            تا 30 درصد تخفیف شگفتانه محصول خود را خریداری کنید :)
           </h3>
           <Image
             width={1920}
