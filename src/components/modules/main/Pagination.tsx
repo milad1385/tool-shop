@@ -1,8 +1,8 @@
 "use client";
-import { IPagination } from "@/libs/types";
+
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-function Pagination({ count }: IPagination) {
+function Pagination({ count }: { count: number }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
