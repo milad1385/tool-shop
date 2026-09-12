@@ -6,8 +6,9 @@ import "swiper/css";
 import { Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductActions from "./ProductActions";
+import { IProductSlider } from "@/libs/types";
 
-function ProductSlider() {
+function ProductSlider({ images }: IProductSlider) {
   const [thumbsSwiper, setThumbsSwiper] = useState<null | SwiperClass>(null);
   return (
     <div className="col-span-12 md:col-span-4">
@@ -19,62 +20,11 @@ function ProductSlider() {
           modules={[Thumbs]}
           className="mySwiper2 border border-gray-200 rounded-2xl select-none"
         >
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-1.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-2.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-3.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-4.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-6.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-7.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-8.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
+          {images.map((image, index) => (
+            <SwiperSlide key={image}>
+              <Image width={1920} height={1080} src={image} alt={image} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
       <div className="mt-4">
@@ -87,63 +37,11 @@ function ProductSlider() {
           modules={[Thumbs]}
           className="ThumbSwiper"
         >
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-1.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-2.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-3.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-4.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-6.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-7.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/product-8.jpg"
-              alt="product-1.jpg"
-            />
-          </SwiperSlide>
+          {images.map((image, index) => (
+            <SwiperSlide>
+              <Image width={1920} height={1080} src={image} alt={image} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>
