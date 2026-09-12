@@ -8,29 +8,29 @@
 import { Control } from "react-hook-form";
 
 export interface IProductSeller {
-  seller:{
-        _id: string;
-        name: string;
-        city?: string;
-      };
+  seller: {
+    _id: string;
+    name: string;
+    city?: string;
+  };
   price: number;
   discount: number;
   stock: number;
 }
 export interface ISellersBox {
   sellers: {
-    seller:{
-          _id: string;
-          name: string;
-          city?: string;
-          commission?: number;
-          contactDetails?: {
-            address?: string;
-            email?: string;
-            phone?: string;
-            postalCode?: string;
-          };
-        };
+    seller: {
+      _id: string;
+      name: string;
+      city?: string;
+      commission?: number;
+      contactDetails?: {
+        address?: string;
+        email?: string;
+        phone?: string;
+        postalCode?: string;
+      };
+    };
     price: number;
     discount: number;
     stock: number;
@@ -137,6 +137,7 @@ export interface IFeature {
 
 export interface IFeatureList {
   features: IFeature[];
+  title: string;
 }
 
 export interface IFeatureItem {
