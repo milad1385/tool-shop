@@ -20,9 +20,6 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
   const [images, setImages] = useState<File[]>([]);
   const [selectedCategory, setSelectedCategory] =
     useState<ISelectOption | null>(null);
-
-  const [featureCount, setFeatureCount] = useState(1);
-  const [customFeatureCount, setCustomFeatureCount] = useState(1);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
@@ -41,6 +38,8 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
       slug: "",
       category: "",
       description: "",
+      features: [{ name: "", value: "", slug: "" }],
+      customFeatures: [{ name: "", value: "", slug: "" }],
       sellers: [{ seller: "", stock: 0, price: 0, discount: 0 }],
     },
   });
@@ -52,6 +51,25 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
   } = useFieldArray({
     control,
     name: "sellers",
+  });
+
+
+  const {
+    fields: featureFields,
+    append: appendFeature,
+    remove: removeFeature,
+  } = useFieldArray({
+    control,
+    name: "features",
+  });
+
+  const {
+    fields: customFeatureFields,
+    append: appendCustomFeature,
+    remove: removeCustomFeature,
+  } = useFieldArray({
+    control,
+    name: "customFeatures",
   });
 
   const categoriesOption = categories.map((category) => ({
@@ -117,8 +135,6 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
           toast.success(result.message);
           reset();
           setImages([]);
-          setFeatureCount(1);
-          setCustomFeatureCount(1);
           setSelectedCategory(null);
           router.push("/p-admin/products");
         } else if (result.errors) {
@@ -133,7 +149,6 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
           toast.error(result.message);
         }
       } catch (error) {
-        console.error("خطا:", error);
         toast.error("خطا در ارتباط با سرور");
       }
     });
@@ -155,29 +170,27 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
   };
 
   const addFeature = () => {
-    if (featureCount >= 10) return false;
-    setFeatureCount((prev) => prev + 1);
+    if (featureFields.length >= 10) return;
+    appendFeature({ name: "", value: "", slug: "" });
   };
 
-  const removeFeature = () => {
-    if (featureCount > 1) {
-      setFeatureCount((prev) => prev - 1);
-    }
+  const handleRemoveFeature = (index: number) => {
+    removeFeature(index);
   };
+
 
   const addCustomFeature = () => {
-    if (customFeatureCount >= 10) return false;
-    setCustomFeatureCount((prev) => prev + 1);
+    if (customFeatureFields.length >= 10) return;
+    appendCustomFeature({ name: "", value: "", slug: "" });
   };
 
-  const removeCustomFeature = () => {
-    if (customFeatureCount > 1) {
-      setCustomFeatureCount((prev) => prev - 1);
-    }
+  const handleRemoveCustomFeature = (index: number) => {
+    removeCustomFeature(index);
   };
 
   const handleAddSeller = () => {
-    appendSeller({ seller: "", stock: 0, price: 0, discount: 0 } as any);
+    if (sellerFields.length >= 10) return;
+    appendSeller({ seller: "", stock: 0, price: 0, discount: 0 });
   };
 
   return (
@@ -220,6 +233,8 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
           onSelected={setSelectedCategory}
           disable={isPending}
         />
+
+        {/* فروشندگان */}
         <div className="col-span-1">
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -313,6 +328,7 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
           </div>
         </div>
 
+        {/* ویژگی فیلتری */}
         <div className="col-span-1">
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -320,13 +336,13 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
                 ویژگی فیلتری :
               </label>
               <span className="text-sm text-gray-500">
-                {featureCount} از ۱۰
+                {featureFields.length} از ۱۰
               </span>
             </div>
 
-            {Array.from({ length: featureCount }).map((_, index) => (
+            {featureFields.map((field, index) => (
               <div
-                key={index}
+                key={field.id}
                 className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 pt-4 pb-6 mb-4 border rounded-lg bg-gray-50 relative"
               >
                 <Input
@@ -352,6 +368,7 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
                   disable={isPending}
                   labelClassName="!text-sm"
                 />
+
                 <Input
                   register={register}
                   errors={errors}
@@ -364,10 +381,10 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
                   labelClassName="!text-sm"
                 />
 
-                {featureCount > 1 && (
+                {featureFields.length > 1 && (
                   <button
                     type="button"
-                    onClick={removeFeature}
+                    onClick={() => handleRemoveFeature(index)}
                     className="absolute -top-3 -left-3 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-colors shadow-md"
                     title="حذف این ویژگی"
                   >
@@ -380,9 +397,9 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
             <Button
               type="button"
               onClick={addFeature}
-              disabled={featureCount >= 10}
+              disabled={featureFields.length >= 10}
               className={`!w-full md:!w-[200px] !text-white flex items-center justify-center gap-2 ${
-                featureCount >= 10
+                featureFields.length >= 10
                   ? "!bg-gray-400 cursor-not-allowed"
                   : "!bg-sky-500 hover:!bg-sky-600"
               }`}
@@ -392,6 +409,7 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
           </div>
         </div>
 
+        {/* ویژگی سفارشی */}
         <div className="col-span-1">
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -399,13 +417,13 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
                 ویژگی سفارشی :
               </label>
               <span className="text-sm text-gray-500">
-                {customFeatureCount} از ۱۰
+                {customFeatureFields.length} از ۱۰
               </span>
             </div>
 
-            {Array.from({ length: customFeatureCount }).map((_, index) => (
+            {customFeatureFields.map((field, index) => (
               <div
-                key={index}
+                key={field.id}
                 className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 pt-4 pb-6 mb-4 border rounded-lg bg-gray-50 relative"
               >
                 <Input
@@ -444,10 +462,10 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
                   labelClassName="!text-sm"
                 />
 
-                {customFeatureCount > 1 && (
+                {customFeatureFields.length > 1 && (
                   <button
                     type="button"
-                    onClick={removeCustomFeature}
+                    onClick={() => handleRemoveCustomFeature(index)}
                     className="absolute -top-3 -left-3 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-colors shadow-md"
                     title="حذف این ویژگی"
                   >
@@ -460,9 +478,9 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
             <Button
               type="button"
               onClick={addCustomFeature}
-              disabled={customFeatureCount >= 10}
+              disabled={customFeatureFields.length >= 10}
               className={`!w-full md:!w-[200px] !text-white flex items-center justify-center gap-2 ${
-                customFeatureCount >= 10
+                customFeatureFields.length >= 10
                   ? "!bg-gray-400 cursor-not-allowed"
                   : "!bg-red-500 hover:!bg-red-600"
               }`}
@@ -558,8 +576,6 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
           onClick={() => {
             reset();
             setImages([]);
-            setFeatureCount(1);
-            setCustomFeatureCount(1);
             setSelectedCategory(null);
           }}
           type="reset"
