@@ -68,6 +68,27 @@ export const getAmazingOffers = async (
   }
 };
 
+export const getFeaturedProducts = async (
+  limit: number = 10,
+): Promise<IProduct[]> => {
+  try {
+    await connectToDB();
+    const products = await Product.find({
+      isFeatured: true,
+      status: "active",
+    })
+      .populate("category", "name slug")
+      .populate("sellers.seller", "name city")
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .lean();
+
+    return normalizeData(products) as IProduct[];
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export const getAllProducts = async (
   limit: number = 10,
 ): Promise<IProduct[]> => {
