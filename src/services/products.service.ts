@@ -162,3 +162,20 @@ export const getProductsByCategory = async ({
     throw new Error(error.message);
   }
 };
+
+export const getProduct = async (slug: string): Promise<IProduct> => {
+  try {
+    await connectToDB();
+    const products = await Product.findOne({
+      status: "active",
+      slug,
+    })
+      .populate("category", "name slug")
+      .populate("sellers.seller")
+      .lean();
+
+    return normalizeData(products);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
