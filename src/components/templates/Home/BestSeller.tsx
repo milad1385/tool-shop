@@ -1,12 +1,14 @@
 import Title from "@/components/modules/main/Title";
 import React from "react";
 import BestSellerSlider from "./BestSellerSlider";
+import { getAllProducts } from "@/services/products.service";
 
-function BestSeller() {
+async function BestSeller() {
+  const products = await getAllProducts();
   return (
     <div>
       <Title title="پرفروش ترین کالاها" />
-      <BestSellerSlider/>
+      <BestSellerSlider products={products} />
     </div>
   );
 }

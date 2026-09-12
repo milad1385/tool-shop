@@ -39,7 +39,7 @@ function ProductBox({ name, slug, images, sellers }: IProduct) {
             {formattedPrice(lowestPrice)}
             {/*  <span className="sm:hidden lg:block"></span> */}
           </span>
-          {maxDiscount && (
+          {maxDiscount > 0 && (
             <span className="text-yellow-500 flex items-center gap-x-1">
               {formattedPrice(finalPrice)}{" "}
               <span className="sm:hidden lg:block">تومان</span>

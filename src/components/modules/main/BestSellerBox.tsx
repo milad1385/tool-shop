@@ -4,37 +4,34 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function BestSellerBox({
-  title,
-  discount,
-  image,
-  link,
-  price,
-  quantity,
-}: IBestSellerBox) {
+function BestSellerBox({ name, slug, images, sellers }: IBestSellerBox) {
+  const lowestPrice = Math.min(...sellers.map((s) => s.price));
+  const productsQty = Math.max(...sellers.map((s) => s.stock));
+  const maxDiscount = Math.max(...sellers.map((s) => s.discount || 0));
+  const finalPrice = lowestPrice - (lowestPrice * maxDiscount) / 100;
   return (
     <div className="bg-white shadow rounded-3xl overflow-hidden p-4">
-      <Link href={link} className="flex gap-x-2">
+      <Link href={`/products/${slug}`} className="flex gap-x-2">
         <Image
           width={1920}
           height={1080}
-          src={`/images/${image}`}
+          src={`${images[0]}`}
           alt="product 2"
           className="w-[128px]"
         />
         <div className="flex flex-col gap-y-3">
-          <h2 className="font-Lalezar text-lg mt-6">{title}</h2>
+          <h2 className="font-Lalezar text-lg/[32px] mt-6">{name}</h2>
           <div className="flex items-center justify-center gap-x-3 mt-2">
             <span
               className={`text-zinc-500  text-sm lg:text-base font-IranMedium ${
-                true ? "line-through" : ""
+                maxDiscount ? "line-through" : ""
               }`}
             >
-              {formattedPrice(price)}
+              {formattedPrice(lowestPrice)} {maxDiscount === 0 && "تومان"}
             </span>
-            {true && (
+            {maxDiscount > 0 && (
               <span className="text-yellow-500  text-base font-IranMedium">
-                {formattedPrice(price - (price * discount) / 100)} تومان
+                {formattedPrice(finalPrice)} تومان
               </span>
             )}
           </div>
@@ -42,7 +39,8 @@ function BestSellerBox({
       </Link>
       <div className="flex items-center text-sm justify-center gap-4">
         <div>
-          <span className="sm:hidden xl:block">موجودی : </span> {quantity} از 20
+          <span className="sm:hidden xl:block">موجودی : </span> {productsQty}  از {" "}
+          {productsQty}
         </div>
         <div>
           <progress
