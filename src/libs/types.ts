@@ -8,9 +8,7 @@
 import { Control } from "react-hook-form";
 
 export interface IProductSeller {
-  seller:
-    | string
-    | {
+  seller:{
         _id: string;
         name: string;
         city?: string;
@@ -19,27 +17,25 @@ export interface IProductSeller {
   discount: number;
   stock: number;
 }
-
 export interface ISellersBox {
   sellers: {
-    seller: {
-      _id: string;
-      name: string;
-      city?: string;
-      commission?: number;
-      contactDetails?: {
-        address?: string;
-        email?: string;
-        phone?: string;
-        postalCode?: string;
-      };
-    };
+    seller:{
+          _id: string;
+          name: string;
+          city?: string;
+          commission?: number;
+          contactDetails?: {
+            address?: string;
+            email?: string;
+            phone?: string;
+            postalCode?: string;
+          };
+        };
     price: number;
     discount: number;
     stock: number;
   }[];
 }
-
 export interface ISellerBox {
   seller: {
     _id: string;
