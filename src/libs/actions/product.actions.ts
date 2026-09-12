@@ -141,7 +141,7 @@ export async function createProduct(formData: FormData): Promise<ProductState> {
       features: validatedData.features || [],
       customFeatures: validatedData.customFeatures || [],
       shortIdentifier: validatedData.shortIdentifier,
-      status: validatedData.status,
+      status: "active",
     });
 
     revalidatePath("/p-admin/products");
