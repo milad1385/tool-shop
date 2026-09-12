@@ -172,7 +172,7 @@ const productSchema = new Schema<IProduct>(
         values: ["active", "inactive", "draft"],
         message: "وضعیت باید active، inactive یا draft باشد",
       },
-      default: "draft",
+      default: "active",
     },
     isFeatured: {
       type: Boolean,
