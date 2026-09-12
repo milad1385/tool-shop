@@ -8,16 +8,23 @@ import { MdOutlineSupportAgent } from "react-icons/md";
 import { PiPaperPlaneRight } from "react-icons/pi";
 import AddToCart from "./AddToCart";
 import FactorItem from "./FactorItem";
+import { IProduct } from "@/libs/types";
 
-function ProductDetails() {
+function ProductDetails({
+  name,
+  category,
+  features,
+  customFeatures,
+}: IProduct) {
+  const productFeatures = [...features, ...customFeatures];
   return (
     <div className="col-span-12 md:col-span-8">
       <div className="px-1 py-3 md:py-4 md:px-4">
         <div className="bg-stone-50 rounded-xl p-4 leading-8">
-          <h1 className="text-lg lg:text-xl font-Lalezar">
-            دریل شارژِ مدل رونیکس
-          </h1>
-          <p className="text-sm md:text-[15px] mt-2">دسته بندی: دریل ها</p>
+          <h1 className="text-lg lg:text-xl font-Lalezar">{name}</h1>
+          <p className="text-sm md:text-[15px] mt-2">
+            دسته بندی: {category.name}
+          </p>
         </div>
         <div className="mt-5 md:mt-6 px-4">
           <div className="flex gap-4 text-base mb-4 md:mb-0">
@@ -37,12 +44,9 @@ function ProductDetails() {
             <div>
               <h3 className="text-xl font-Lalezar">مشخصات کالا</h3>
               <div className="grid grid-cols-3 gap-3 mt-3">
-                <FactorItem />
-                <FactorItem />
-                <FactorItem />
-                <FactorItem />
-                <FactorItem />
-                <FactorItem />
+                {productFeatures.slice(0, 6).map((feature) => (
+                  <FactorItem {...feature} key={feature._id} />
+                ))}
               </div>
             </div>
             <div className="flex items-start flex-col gap-2 md:gap-0 pt-8 md:pt-8">
