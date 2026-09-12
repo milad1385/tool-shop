@@ -36,7 +36,7 @@ export interface IProduct {
   category: {
     _id: string;
     name: string;
-    slug: string;
+    href: string;
   };
   features: IFeature[];
   customFeatures: IFeature[];
@@ -130,7 +130,7 @@ export interface IAccordionTitle {
 }
 
 export interface IPagination {
-  count: number;
+  count?: number;
 }
 
 export interface IArticleCategory {
@@ -604,6 +604,13 @@ export interface IGetProducts {
   status?: string | string[];
 }
 
+export interface IGetProductsByCategory {
+  page?: number;
+  limit?: number;
+  search?: string | string[];
+  categorySlug: string;
+}
+
 export interface IProductList {
   data: IProduct[];
   pagination: IPagination;
@@ -611,4 +618,15 @@ export interface IProductList {
 
 export interface IGoogleButton {
   text: string;
+}
+
+export interface IEmptyStateProps {
+  title?: string;
+  description?: string;
+  icon?: React.ReactNode;
+  actionText?: string;
+  onAction?: () => void;
+  actionLink?: string;
+  className?: string;
+  size?: "sm" | "md" | "lg";
 }
