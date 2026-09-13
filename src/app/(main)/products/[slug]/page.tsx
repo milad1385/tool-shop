@@ -4,14 +4,18 @@ import Title from "@/components/modules/main/Title";
 import ProductDetails from "@/components/templates/Product/ProductDetails";
 import ProductSlider from "@/components/templates/Product/ProductSlider";
 import ProductTabs from "@/components/templates/Product/ProductTabs";
+import SameProductSlider from "@/components/templates/Product/SameProductSlider";
 import SellersBox from "@/components/templates/products/SellersBox";
 import { IPage } from "@/libs/types";
-import { getProduct } from "@/services/products.service";
+import { getProduct, getRelatedProducts } from "@/services/products.service";
 
 async function page({ params }: IPage) {
   const { slug } = await params;
 
-  const product = await getProduct(slug);
+  const [product, relatedProducts] = await Promise.all([
+    getProduct(slug),
+    getRelatedProducts(slug),
+  ]);
 
   return (
     <Container>
@@ -39,7 +43,7 @@ async function page({ params }: IPage) {
       <ProductTabs {...product} />
       <div className="mt-16 mb-10 bg-[#eab308] rounded-2xl p-8 shadow">
         <Title title="محصولات مرتبط" />
-        {/* <SameProductSlider /> */}
+        <SameProductSlider products={relatedProducts}/>
       </div>
     </Container>
   );
