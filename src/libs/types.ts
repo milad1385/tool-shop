@@ -675,3 +675,7 @@ export interface IFactorItem {
   value: string;
   slug: string;
 }
+
+export interface ISameProductSlider {
+  products: IProduct[];
+}
