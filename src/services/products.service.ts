@@ -166,15 +166,36 @@ export const getProductsByCategory = async ({
 export const getProduct = async (slug: string): Promise<IProduct> => {
   try {
     await connectToDB();
-    const products = await Product.findOne({
+    const product = await Product.findOne({
       status: "active",
       slug,
+    })
+      .populate("category", "name href")
+      .populate("sellers.seller")
+      .lean();
+
+    return normalizeData(product);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getRelatedProducts = async (slug: string): Promise<IProduct[]> => {
+  try {
+    await connectToDB();
+    const product = await Product.findOne({
+      status: "active",
+      slug,
+    });
+
+    const relatedProducts = await Product.find({
+      _id: { $ne: product._id },
     })
       .populate("category", "name slug")
       .populate("sellers.seller")
       .lean();
 
-    return normalizeData(products);
+    return normalizeData(relatedProducts);
   } catch (error) {
     throw new Error(error.message);
   }
