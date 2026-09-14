@@ -26,6 +26,7 @@ export async function createGoogleUser({
         {
           $set: {
             emailVerified: true,
+            image,
           },
         },
       );
@@ -42,7 +43,8 @@ export async function createGoogleUser({
       fullname: name || "کاربر گوگل",
       username: uniqueUsername,
       email: email.toLowerCase().trim(),
-      roles: usersCount > 0 ? [UserRoleEnums.USER] : [UserRoleEnums.SUPER_ADMIN],
+      roles:
+        usersCount > 0 ? [UserRoleEnums.USER] : [UserRoleEnums.SUPER_ADMIN],
       password: hashedPassword,
       addresses: [],
       provider: "google",
