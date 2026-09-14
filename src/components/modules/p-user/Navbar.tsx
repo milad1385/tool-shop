@@ -5,7 +5,7 @@ import Image from "next/image";
 import { HiMiniArrowRightEndOnRectangle } from "react-icons/hi2";
 
 function Navbar() {
-  const { user } = useAuthStore();
+  const { user, logout } = useAuthStore();
   return (
     <div className="bg-white shadow p-5 mb-10 flex items-center justify-between">
       <div className="flex items-center gap-x-5">
@@ -27,7 +27,10 @@ function Navbar() {
         </div>
       </div>
 
-      <button className="bg-gray-100 size-10 flex-center rounded-md hover:bg-gray-200 transition-all">
+      <button
+        onClick={logout}
+        className="bg-gray-100 size-10 flex-center rounded-md hover:bg-gray-200 transition-all"
+      >
         <HiMiniArrowRightEndOnRectangle className="text-2xl text-zinc-700" />
       </button>
     </div>
