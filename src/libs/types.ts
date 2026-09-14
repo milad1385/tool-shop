@@ -679,3 +679,10 @@ export interface IFactorItem {
 export interface ISameProductSlider {
   products: IProduct[];
 }
+
+export interface IAvatarSkeletonProps {
+  src?: string;
+  alt?: string;
+  size?: number;
+  className?: string;
+}
