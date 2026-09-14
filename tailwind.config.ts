@@ -11,7 +11,6 @@ export default {
     "hover:bg-green-500",
     "hover:bg-red-500",
     "hover:bg-yellow-500",
-    // هر کلاس دیگه‌ای که داینامیک استفاده کردی
   ],
 
   theme: {
@@ -27,6 +26,15 @@ export default {
         padding: {
           DEFAULT: "18px",
         },
+      },
+      keyframes: {
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+      },
+      animation: {
+        shimmer: "shimmer 1.5s infinite",
       },
       colors: {
         background: "var(--background)",
