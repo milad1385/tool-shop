@@ -1,8 +1,11 @@
+"use client";
+import { useAuthStore } from "@/stores/auth.store";
 import { getDate } from "@/utils/helper";
 import Image from "next/image";
 import { HiMiniArrowRightEndOnRectangle } from "react-icons/hi2";
 
 function Navbar() {
+  const { user } = useAuthStore();
   return (
     <div className="bg-white shadow p-5 mb-10 flex items-center justify-between">
       <div className="flex items-center gap-x-5">
@@ -17,7 +20,7 @@ function Navbar() {
         <div>
           <p className="hidden md:block">
             <span className="font-Lalezar text-lg text-yellow-500">
-              میلاد سلامیان
+              {user?.fullname}
             </span>{" "}
             عزیز ، به پنل کاربری خود خوش آمدید ({getDate()}) 🔥
           </p>
