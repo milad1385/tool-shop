@@ -54,7 +54,7 @@ export const getProducts = async ({
 };
 
 export const getAmazingOffers = async (
-  limit: number = 8,
+  limit: number = 12,
 ): Promise<IProduct[]> => {
   try {
     await connectToDB();
@@ -190,6 +190,7 @@ export const getRelatedProducts = async (slug: string): Promise<IProduct[]> => {
 
     const relatedProducts = await Product.find({
       _id: { $ne: product._id },
+      category: product.category,
     })
       .populate("category", "name slug")
       .populate("sellers.seller")
