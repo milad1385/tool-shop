@@ -686,12 +686,14 @@ export interface IAvatarSkeletonProps {
 }
 
 export interface IContactUs {
+  _id: string;
   email: string;
   fullname: string;
   message: string;
   status: "ANSWERED" | "PENDING";
   createdAt?: Date;
   updatedAt?: Date;
+  index?: number;
 }
 
 export interface IGetContacts {
@@ -699,4 +701,9 @@ export interface IGetContacts {
   limit?: number;
   search?: string | string[];
   status?: string | string[];
+}
+
+export interface IContactList {
+  data: IContactUs[];
+  pagination: IPagination;
 }
