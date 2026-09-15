@@ -1,9 +1,5 @@
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
-import Image from "next/image";
-import React from "react";
-import { FaEye, FaTrash } from "react-icons/fa";
-import { FaPencil } from "react-icons/fa6";
 import MenuRow from "./MenuRow";
 
 function MenuList() {
