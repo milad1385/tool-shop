@@ -1,13 +1,37 @@
 import { UserRoleEnums } from "@/libs/types";
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
-import { createGoogleUser } from "./utils/auth";
+import Credentials from "next-auth/providers/credentials";
+import { createGoogleUser, authorizeCredentials } from "./utils/auth";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    Credentials({
+      name: "credentials",
+      credentials: {
+        identifier: { label: "Identifier", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.identifier || !credentials?.password) {
+          return null;
+        }
+
+        try {
+          const user = await authorizeCredentials({
+            identifier: credentials.identifier as string,
+            password: credentials.password as string,
+          });
+
+          return user;
+        } catch (error) {
+          return null;
+        }
+      },
     }),
   ],
   session: {
