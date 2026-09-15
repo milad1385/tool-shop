@@ -2,6 +2,7 @@
 
 import connectDB from "@/configs/db";
 import Category from "@/models/Category";
+import { parseFilters } from "@/utils/helper";
 import { deleteFile, uploadFile } from "@/utils/uploads";
 import {
   createCategorySchema,
@@ -10,17 +11,11 @@ import {
 import { isValidObjectId } from "mongoose";
 import { revalidatePath } from "next/cache";
 import { checkAdminAccess } from "./admin.actions";
-import { parseFilters } from "@/utils/helper";
-
-export type CategoryState = {
-  success: boolean;
-  message: string;
-  errors?: Record<string, string>;
-};
+import { IActionState } from "../types";
 
 export async function createCategory(
   formData: FormData,
-): Promise<CategoryState> {
+): Promise<IActionState> {
   try {
     const adminCheck = await checkAdminAccess();
     if (!adminCheck.success) {
@@ -109,7 +104,7 @@ export async function createCategory(
   }
 }
 
-export const deleteCategory = async (id: string): Promise<CategoryState> => {
+export const deleteCategory = async (id: string): Promise<IActionState> => {
   try {
     const adminCheck = await checkAdminAccess();
     if (!adminCheck.success) {
@@ -153,7 +148,7 @@ export const deleteCategory = async (id: string): Promise<CategoryState> => {
 };
 export async function updateCategory(
   formData: FormData,
-): Promise<CategoryState> {
+): Promise<IActionState> {
   try {
     const adminCheck = await checkAdminAccess();
     if (!adminCheck.success) {
