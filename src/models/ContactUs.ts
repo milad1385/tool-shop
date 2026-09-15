@@ -22,7 +22,6 @@ const contactUsSchema = new Schema<IContactUs>(
     email: {
       type: String,
       required: [true, "ایمیل الزامی است"],
-      unique: true,
       trim: true,
       lowercase: true,
       match: [
