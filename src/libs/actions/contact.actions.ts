@@ -5,6 +5,8 @@ import ContactUs from "@/models/ContactUs";
 import { sendContact } from "@/validators/backend/conatctus.validator";
 import { revalidatePath } from "next/cache";
 import { IActionState } from "../types";
+import { checkAdminAccess } from "./admin.actions";
+import { isValidObjectId } from "mongoose";
 
 export async function sendContactMessage(
   formData: FormData,
@@ -47,7 +49,7 @@ export async function sendContactMessage(
 
     return {
       success: true,
-      message: "پیغام شما با موفقیت ارسال شد..",
+      message: "پیغام شما با موفقیت ارسال شد.",
     };
   } catch (error: any) {
     return {
@@ -56,3 +58,43 @@ export async function sendContactMessage(
     };
   }
 }
+
+export const deleteContact = async (id: string): Promise<IActionState> => {
+  try {
+    const adminCheck = await checkAdminAccess();
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    if (!isValidObjectId(id)) {
+      return {
+        success: false,
+        message: "آیدی ارسال شده معتبر نیست",
+      };
+    }
+
+    const contact = await ContactUs.findByIdAndDelete(id);
+
+    if (!contact) {
+      return {
+        success: false,
+        message: `پیغام با این آیدی یافت نشد : ${id}`,
+      };
+    }
+
+    revalidatePath("/p-admin/contacts");
+    return {
+      success: true,
+      message: "پیغام با موفقیت حذف شد",
+    };
+  } catch (error) {
+    console.error("خطا در حذف پیغام:", error);
+    return {
+      success: false,
+      message: "خطا در حذف پیغام ، لطفاً دوباره تلاش کنید",
+    };
+  }
+};
