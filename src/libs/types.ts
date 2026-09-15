@@ -684,3 +684,19 @@ export interface IAvatarSkeletonProps {
   size?: number;
   className?: string;
 }
+
+export interface IContactUs {
+  email: string;
+  fullname: string;
+  message: string;
+  status: "ANSWERED" | "PENDING";
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface IGetContacts {
+  page?: number;
+  limit?: number;
+  search?: string | string[];
+  status?: string | string[];
+}
