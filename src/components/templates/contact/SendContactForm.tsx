@@ -1,10 +1,10 @@
 "use client";
 import Input from "@/components/ui/Input";
 import {
-    sendContact,
-    sendContactType,
-} from "@/validators/frontend/contact.validator";
-import { yupResolver } from "@hookform/resolvers/yup";
+  sendContact,
+  sendContactType,
+} from "@/validators/backend/conatctus.validator";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 function SendContactForm() {
@@ -13,7 +13,7 @@ function SendContactForm() {
     formState: { errors },
     handleSubmit,
   } = useForm({
-    resolver: yupResolver(sendContact),
+    resolver: zodResolver(sendContact),
   });
 
   const sendNewContact = async (data: sendContactType) => {
