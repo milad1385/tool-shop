@@ -1,5 +1,5 @@
 import { AiOutlineProduct } from "react-icons/ai";
-import { BiWorld } from "react-icons/bi";
+import { BiMessageDetail, BiWorld } from "react-icons/bi";
 import { BsBasket2Fill, BsBookHalf, BsShop } from "react-icons/bs";
 import {
   FaHeart,
@@ -270,6 +270,12 @@ export const adminPanelLinks = [
     icon: <HiOutlinePhoto className="text-2xl" />,
   },
   {
+    id: 20,
+    title: "ارتباط با ما",
+    href: "/p-admin/contacts",
+    icon: <BiMessageDetail className="text-2xl" />,
+  },
+  {
     id: 14,
     title: "سوالات متداول",
     href: "/p-admin/questions",
@@ -453,7 +459,7 @@ export const MenuFilterOptions = [
 export const contactFilterOptions = [
   { label: "همه", slug: "ALL", color: "black" },
   { label: "پاسخ داده شده", slug: "ANSWERED", color: "green-500" },
-  { label: "پاسخ داده نشده", slug: "PENDING", color: "yellow-500" },
+  { label: "در انتظار پاسخ", slug: "PENDING", color: "yellow-500" },
 ];
 
 export const productFilterOptions = [
@@ -1653,6 +1659,15 @@ export const productTableHeader = [
   "عنوان",
   "لینک",
   "دسته بندی",
+  "تاریخ",
+  "عملیات",
+];
+
+export const conatctTableHeader = [
+  "شماره",
+  "نام و نام خانوادگی",
+  "ایمیل",
+  "وضعیت",
   "تاریخ",
   "عملیات",
 ];
