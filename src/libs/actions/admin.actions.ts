@@ -4,6 +4,8 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import connectDB from "@/configs/db";
 import User from "@/models/User";
+import { UserRoleEnums } from "../types";
+import { auth } from "@/auth";
 
 export type AdminCheckResult = {
   success: boolean;
@@ -18,42 +20,44 @@ export type AdminCheckResult = {
 
 export async function checkAdminAccess(): Promise<AdminCheckResult> {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("accessToken")?.value;
+    const session = await auth();
 
-    if (!token) {
+    if (!session?.user?.email) {
       return {
         success: false,
         message: "احراز هویت نشده است",
       };
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
-      id: string;
-      username: string;
-      email: string;
-      roles: string[];
-    };
-
-    const isAdmin =
-      decoded.roles.includes("SUPER_ADMIN") || decoded.roles.includes("ADMIN");
-
-    if (!isAdmin) {
-      return {
-        success: false,
-        message: "دسترسی غیرمجاز. شما ادمین نیستید",
-      };
-    }
-
     await connectDB();
-    const user = await User.findById(decoded.id)
-      .select("username email roles")
+    const user = await User.findOne({
+      email: session.user.email.toLowerCase().trim(),
+    })
+      .select("username email roles status")
       .lean();
 
     if (!user) {
       return {
         success: false,
         message: "کاربر یافت نشد",
+      };
+    }
+
+    if (user.status === "banned") {
+      return {
+        success: false,
+        message: "حساب کاربری شما مسدود شده است",
+      };
+    }
+
+    const isAdmin =
+      user.roles.includes(UserRoleEnums.SUPER_ADMIN) ||
+      user.roles.includes(UserRoleEnums.ADMIN);
+
+    if (!isAdmin) {
+      return {
+        success: false,
+        message: "دسترسی غیرمجاز. شما ادمین نیستید",
       };
     }
 
@@ -68,23 +72,6 @@ export async function checkAdminAccess(): Promise<AdminCheckResult> {
       },
     };
   } catch (error) {
-    if (error instanceof jwt.TokenExpiredError) {
-      const cookieStore = await cookies();
-      cookieStore.delete("accessToken");
-      return {
-        success: false,
-        message: "توکن منقضی شده است",
-      };
-    }
-
-    if (error instanceof jwt.JsonWebTokenError) {
-      return {
-        success: false,
-        message: "توکن نامعتبر است",
-      };
-    }
-
-    console.error("خطا در چک کردن دسترسی ادمین:", error);
     return {
       success: false,
       message: "خطا در بررسی دسترسی",
