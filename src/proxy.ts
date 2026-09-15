@@ -34,7 +34,7 @@ export async function proxy(request: NextRequest) {
       try {
         const user = verifyToken(accessToken.value);
         isAdmin = user.roles.some((role: UserRoleEnums) =>
-          [UserRoleEnums.SUPER_ADMIN, UserRoleEnums.ADMIN].includes(role)
+          [UserRoleEnums.SUPER_ADMIN, UserRoleEnums.ADMIN].includes(role),
         );
       } catch (error) {
         console.error("خطا در verifyToken:", error);
@@ -45,8 +45,8 @@ export async function proxy(request: NextRequest) {
       const roles = (session.user as any).roles || [];
       isAdmin = roles.some((role: string) =>
         [UserRoleEnums.SUPER_ADMIN, UserRoleEnums.ADMIN].includes(
-          role as UserRoleEnums
-        )
+          role as UserRoleEnums,
+        ),
       );
     }
 

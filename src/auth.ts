@@ -15,7 +15,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   pages: {
     signIn: "/auth",
-    error :"/auth/error"
+    error: "/auth/error",
   },
   callbacks: {
     async signIn({ user, account, profile }) {
@@ -33,11 +33,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           }
 
           user.id = existingUser._id.toString();
-          (user as any).roles = existingUser.roles.map((r: any) =>
-            r.toString(),
-          );
-          (user as any).fullname = existingUser.fullname?.toString() || "";
-          (user as any).username = existingUser.username?.toString() || "";
+          user.roles = existingUser.roles.map((r: any) => r.toString());
+          user.fullname = existingUser.fullname?.toString() || "";
+          user.username = existingUser.username?.toString() || "";
         }
 
         return true;
@@ -49,9 +47,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id;
-        token.roles = [UserRoleEnums.USER];
-        token.fullname = (user as any).fullname;
-        token.username = (user as any).username;
+        token.roles = user.roles || [UserRoleEnums.USER];
+        token.fullname = user.fullname;
+        token.username = user.username;
         token.provider = account?.provider;
       }
       return token;
