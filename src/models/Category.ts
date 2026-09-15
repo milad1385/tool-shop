@@ -1,7 +1,5 @@
-// models/Category.ts
 import mongoose, { Schema, Model, Document } from "mongoose";
 
-// ============ تایپ فیلترها ============
 export type FilterType = "selectbox" | "radio" | "checkbox";
 
 export interface IFilterOption {
@@ -35,7 +33,10 @@ const FilterOptionSchema = new Schema<IFilterOption>({
     required: [true, "اسلاگ فیلتر الزامی است"],
     trim: true,
     lowercase: true,
-    match: [/^[a-z0-9\-]+$/, "اسلاگ فقط می‌تواند شامل حروف کوچک، اعداد و خط تیره باشد"],
+    match: [
+      /^[a-z0-9\-]+$/,
+      "اسلاگ فقط می‌تواند شامل حروف کوچک، اعداد و خط تیره باشد",
+    ],
   },
   type: {
     type: String,
@@ -51,7 +52,9 @@ const FilterOptionSchema = new Schema<IFilterOption>({
     validate: {
       validator: function (options: string[]) {
         if (!options) return true;
-        return Array.isArray(options) && options.every((opt) => opt.trim() !== "");
+        return (
+          Array.isArray(options) && options.every((opt) => opt.trim() !== "")
+        );
       },
       message: "گزینه‌ها باید آرایه‌ای از رشته‌های غیر خالی باشند",
     },
@@ -114,7 +117,7 @@ const categorySchema = new Schema<ICategory>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const Category: Model<ICategory> =
