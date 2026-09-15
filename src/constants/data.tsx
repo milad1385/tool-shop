@@ -450,6 +450,12 @@ export const MenuFilterOptions = [
   { label: "زیر منو", slug: "pending", color: "yellow-500" },
 ];
 
+export const contactFilterOptions = [
+  { label: "همه", slug: "ALL", color: "black" },
+  { label: "پاسخ داده شده", slug: "ANSWERED", color: "green-500" },
+  { label: "پاسخ داده نشده", slug: "PENDING", color: "yellow-500" },
+];
+
 export const productFilterOptions = [
   { label: "همه", slug: "ALL", color: "black" },
   { label: "فعال", slug: "active", color: "green-500" },
