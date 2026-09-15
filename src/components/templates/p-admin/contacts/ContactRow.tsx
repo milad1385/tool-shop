@@ -1,10 +1,43 @@
+"use client";
+import Modal from "@/components/modules/main/Modal";
 import Table from "@/components/modules/p-admin/Table";
 import { IContactUs } from "@/libs/types";
 import { formatDate } from "@/utils/helper";
 import { FaEye, FaTrash } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
+import CommentModal from "../../p-user/comments/CommentModal";
+import ConfirmModal from "@/components/modules/main/ConfirmModal";
+import { useTransition } from "react";
+import { deleteContact } from "@/libs/actions/contact.actions";
+import toast from "react-hot-toast";
 
-function ContactRow({ index, fullname, createdAt, status, email }: IContactUs) {
+function ContactRow({
+  _id,
+  index,
+  fullname,
+  message,
+  createdAt,
+  status,
+  email,
+  onDelete,
+}: IContactUs) {
+  const [isPending, startTransition] = useTransition();
+  const deleteContactHandler = async () => {
+    startTransition(async () => {
+      if (!_id) return;
+      try {
+        onDelete(_id);
+        const result = await deleteContact(_id);
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error("خطا در ارتباط با سرور");
+      }
+    });
+  };
   return (
     <Table.Row>
       <td>{index}</td>
@@ -24,9 +57,28 @@ function ContactRow({ index, fullname, createdAt, status, email }: IContactUs) {
       <td>{formatDate(createdAt)}</td>
       <td>
         <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
+          <Modal>
+            <Modal.Open name="message">
+              <FaEye className="text-sky-500 text-base md:text-xl" />
+            </Modal.Open>
+
+            <Modal.Page name="message">
+              <CommentModal message={message} name={fullname} />
+            </Modal.Page>
+
+            <Modal.Open name="delete">
+              <FaTrash className="text-red-600 text-base md:text-xl" />
+            </Modal.Open>
+            <Modal.Page name="delete">
+              <ConfirmModal
+                status="حذف کردن"
+                onSubmit={deleteContactHandler}
+                isLoading={isPending}
+              />
+            </Modal.Page>
+          </Modal>
+
           <FaPencil className="text-yellow-500 text-base md:text-xl" />
-          <FaTrash className="text-red-600 text-base md:text-xl" />
-          <FaEye className="text-sky-500 text-base md:text-xl" />
         </div>
       </td>
     </Table.Row>
