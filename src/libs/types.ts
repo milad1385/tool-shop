@@ -280,6 +280,8 @@ export interface IModal {
   status?: string;
   onSubmit?: any;
   isLoading?: boolean;
+  message?: string;
+  name?: string;
 }
 
 export interface IRecentProducts {
@@ -694,6 +696,7 @@ export interface IContactUs {
   createdAt?: Date;
   updatedAt?: Date;
   index?: number;
+  onDelete?: (id: string) => void;
 }
 
 export interface IGetContacts {
@@ -706,4 +709,9 @@ export interface IGetContacts {
 export interface IContactList {
   data: IContactUs[];
   pagination: IPagination;
+}
+
+export interface IAuthorizeCredentials {
+  identifier: string;
+  password: string;
 }
