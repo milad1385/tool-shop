@@ -1,14 +1,13 @@
 "use client";
 import Input from "@/components/ui/Input";
-import { loginUser as loginAction } from "@/libs/actions/auth.actions";
-import { useAuthStore } from "@/stores/auth.store";
 import {
   userLogin,
   userLoginType,
 } from "@/validators/frontend/user/user.validator";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
@@ -16,8 +15,7 @@ import GoogleButton from "./GoogleButton";
 
 function LoginForm() {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
-  const { setUser } = useAuthStore();
+  const [isPending, setIsPending] = useState(false);
 
   const {
     register,
@@ -28,27 +26,30 @@ function LoginForm() {
     resolver: yupResolver(userLogin),
   });
 
-  const loginUserHandler = (data: userLoginType) => {
-    startTransition(async () => {
-      try {
-        const formData = new FormData();
-        formData.append("identifier", data.identifier);
-        formData.append("password", data.password);
+  const loginUserHandler = async (data: userLoginType) => {
+    setIsPending(true);
 
-        const result = await loginAction(formData);
+    try {
+      const result = await signIn("credentials", {
+        identifier: data.identifier,
+        password: data.password,
+        redirect: false,
+      });
 
-        if (result.success) {
-          setUser(result.user || null);
-          reset();
-          router.push("/");
-          toast.success(result.message);
-        } else {
-          toast.error(result.message);
-        }
-      } catch (error) {
-        toast.error("خطا در ارتباط با سرور");
+      if (result?.error) {
+        toast.error("ایمیل یا رمز عبور اشتباه است");
+        return;
       }
-    });
+
+      toast.success("ورود با موفقیت انجام شد");
+      reset();
+      router.push("/");
+      router.refresh();
+    } catch (error) {
+      toast.error("خطا در ارتباط با سرور");
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
@@ -85,6 +86,7 @@ function LoginForm() {
       >
         {isPending ? <FaSpinner className="animate-spin h-5 w-5" /> : "ورود"}
       </button>
+
       <GoogleButton text="ورود با گوگل" />
     </form>
   );
