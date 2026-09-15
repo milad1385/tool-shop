@@ -30,6 +30,13 @@ const contactUsSchema = new Schema<IContactUs>(
         "ایمیل معتبر نیست",
       ],
     },
+    message: {
+      type: String,
+      required: [true, "متن پیغام الزامی است"],
+      trim: true,
+      minlength: [10, "متن پیغام حداقل ۱۰ کاراکتر باید باشد"],
+      maxlength: [1000, "متن پیغام حداکثر ۱۰۰۰ کاراکتر باید باشد"],
+    },
     status: {
       type: String,
       enum: ["ANSWERED", "PENDING"],
