@@ -7,10 +7,9 @@ import {
   loginSchema,
   registerSchema,
 } from "@/validators/backend/user/user.validator";
-import { hash, compare } from "bcryptjs";
+import { compare, hash } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export async function registerUser(formData: FormData) {
   try {
@@ -191,50 +190,11 @@ export async function loginUser(formData: FormData) {
 }
 
 export async function logoutUser() {
-  const cookieStore = await cookies();
-  cookieStore.delete("accessToken");
   await signOut({ redirectTo: "/auth/login" });
-  redirect("/auth/login");
 }
 
 export async function getCurrentUser() {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("accessToken")?.value;
-
-    if (token) {
-      try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
-          id: string;
-          username: string;
-          fullname: string;
-          phone: string;
-          email: string;
-          roles: string[];
-        };
-
-        await connectDB();
-        const user = await User.findById(decoded.id).select("-password");
-
-        if (user) {
-          return {
-            success: true,
-            user: {
-              id: user._id.toString(),
-              username: user.username,
-              fullname: user.fullname,
-              phone: user.phone,
-              email: user.email,
-              roles: user.roles,
-            },
-          };
-        }
-      } catch (error) {
-        if (error instanceof jwt.TokenExpiredError) {
-          cookieStore.delete("accessToken");
-        }
-      }
-    }
     const session = await auth();
 
     if (session?.user) {
