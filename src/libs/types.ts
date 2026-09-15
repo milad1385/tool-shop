@@ -1,12 +1,10 @@
-// export interface ICategory {
-//   id: number;
-//   name: string;
-//   image: string;
-//   href: string;
-// }
-
 import { Control } from "react-hook-form";
 
+export interface IActionState {
+  success: boolean;
+  message: string;
+  errors?: Record<string, string>;
+}
 export interface IProductSeller {
   seller: {
     _id: string;
