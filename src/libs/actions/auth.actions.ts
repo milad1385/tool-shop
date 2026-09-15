@@ -226,8 +226,6 @@ export async function getCurrentUser() {
 }
 
 export async function hasToken() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("accessToken")?.value;
-
-  return !!token;
+  const session = await auth();
+  return !!session;
 }
