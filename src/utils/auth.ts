@@ -1,7 +1,7 @@
 import connectToDB from "@/configs/db";
 import User, { IUser } from "@/models/User";
-import { UserRoleEnums } from "@/libs/types";
-import { hash } from "bcryptjs";
+import { IAuthorizeCredentials, UserRoleEnums } from "@/libs/types";
+import { hash, compare } from "bcryptjs";
 interface ICreateGoogleUser {
   email: string;
   name?: string | null;
@@ -58,5 +58,52 @@ export async function createGoogleUser({
     return newUser;
   } catch (error: any) {
     throw new Error(error.message);
+  }
+}
+
+export async function authorizeCredentials({
+  identifier,
+  password,
+}: IAuthorizeCredentials) {
+  try {
+    if (!identifier || !password) {
+      throw new Error("ایمیل و رمز عبور الزامی است");
+    }
+
+    await connectToDB();
+
+    const user = await User.findOne({
+      $or: [{ username: identifier }, { email: identifier }],
+    });
+
+    if (!user) {
+      throw new Error("ایمیل یا رمز عبور اشتباه است");
+    }
+
+    const isPasswordValid = await compare(password, user.password);
+
+    if (!isPasswordValid) {
+      throw new Error("ایمیل یا رمز عبور اشتباه است");
+    }
+
+    if (user.status === "banned") {
+      throw new Error("حساب کاربری شما مسدود شده است");
+    }
+
+    await User.findByIdAndUpdate(user._id, {
+      lastLogin: new Date(),
+    });
+
+    return {
+      id: user._id.toString(),
+      email: user.email,
+      name: user.fullname,
+      image: user.image,
+      roles: user.roles.map((r: any) => r.toString()),
+      username: user.username,
+      phone: user.phone || "",
+    };
+  } catch (error: any) {
+    throw new Error(error.message || "خطا در ورود");
   }
 }
