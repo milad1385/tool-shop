@@ -26,7 +26,7 @@ function AddToCart({
 
   const [inCart, setInCart] = useState(initialInCart);
   const [quantity, setQuantity] = useState(initialQuantity);
-  const [itemId, setItemId] = useState<string | undefined>(initialItemId);
+  const [itemId, setItemId] = useState<string>(initialItemId);
 
   useEffect(() => {
     setInCart(initialInCart);
