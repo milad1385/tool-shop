@@ -1,4 +1,3 @@
-// components/templates/Product/ProductDetails.tsx
 import ColorBoxes from "@/components/modules/main/ColorBoxes";
 import { IProduct } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
@@ -11,13 +10,15 @@ import { MdOutlineSupportAgent } from "react-icons/md";
 import { PiPaperPlaneRight } from "react-icons/pi";
 import AddToCart from "./AddToCart";
 import FactorItem from "./FactorItem";
+import { checkProductInCart } from "@/libs/actions/cart.action";
 
-function ProductDetails({
+async function ProductDetails({
   name,
   category,
   features,
   customFeatures,
   sellers,
+  _id,
 }: IProduct) {
   const productFeatures = [...features, ...customFeatures];
 
@@ -37,6 +38,13 @@ function ProductDetails({
     cheapestSeller.discount,
   );
   const discount = cheapestSeller.discount || 0;
+
+  const sellerId = cheapestSeller.seller._id;
+  const productId = _id;
+  const { inCart, quantity, itemId } = await checkProductInCart(
+    productId,
+    sellerId,
+  );
 
   return (
     <div className="col-span-12 md:col-span-8">
@@ -88,7 +96,13 @@ function ProductDetails({
 
               <div className="w-full flex items-center gap-x-4">
                 <div className="hidden md:block">
-                  <AddToCart />
+                  <AddToCart
+                    productId={productId}
+                    sellerId={sellerId}
+                    initialInCart={inCart}
+                    initialQuantity={quantity}
+                    initialItemId={itemId}
+                  />
                 </div>
 
                 <button className="block border px-4 py-2 md:py-3 rounded-lg w-full md:w-[180px]">
@@ -97,7 +111,13 @@ function ProductDetails({
               </div>
 
               <div className="block md:hidden w-full">
-                <AddToCart />
+                <AddToCart
+                  productId={productId}
+                  sellerId={sellerId}
+                  initialInCart={inCart}
+                  initialQuantity={quantity}
+                  initialItemId={itemId}
+                />
               </div>
             </div>
           </div>
