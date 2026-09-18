@@ -715,3 +715,17 @@ export interface IAuthorizeCredentials {
   identifier: string;
   password: string;
 }
+
+export interface IAddToCartProps {
+  productId: string;
+  sellerId: string;
+  initialInCart: boolean;
+  initialQuantity: number;
+  initialItemId?: string;
+}
+
+export type CartState = {
+  success: boolean;
+  message: string;
+  cart?: any;
+};
