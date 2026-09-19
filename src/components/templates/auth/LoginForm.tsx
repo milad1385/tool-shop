@@ -6,7 +6,7 @@ import {
 } from "@/validators/frontend/user/user.validator";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -16,6 +16,9 @@ import GoogleButton from "./GoogleButton";
 function LoginForm() {
   const router = useRouter();
   const [isPending, setIsPending] = useState(false);
+
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirectTo") || "/";
 
   const {
     register,
@@ -43,7 +46,7 @@ function LoginForm() {
 
       toast.success("ورود با موفقیت انجام شد");
       reset();
-      router.push("/");
+      router.push(redirectTo);
       router.refresh();
     } catch (error) {
       toast.error("خطا در ارتباط با سرور");
@@ -87,7 +90,7 @@ function LoginForm() {
         {isPending ? <FaSpinner className="animate-spin h-5 w-5" /> : "ورود"}
       </button>
 
-      <GoogleButton text="ورود با گوگل" />
+      <GoogleButton redirectTo={redirectTo} text="ورود با گوگل" />
     </form>
   );
 }
