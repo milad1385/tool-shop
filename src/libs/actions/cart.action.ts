@@ -281,7 +281,7 @@ export async function getUserCart(): Promise<CartState> {
       })
       .populate({
         path: "items.seller",
-        select: "name logo city",
+        select: "name city",
       })
       .lean();
 
@@ -304,8 +304,7 @@ export async function getUserCart(): Promise<CartState> {
       message: "سبد خرید دریافت شد",
       cart: normalizeData(cart),
     };
-  } catch (error: any) {
-    console.error("خطا در گرفتن سبد:", error);
+  } catch (error) {
     return { success: false, message: "خطا در گرفتن سبد" };
   }
 }
