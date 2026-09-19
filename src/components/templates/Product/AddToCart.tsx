@@ -6,6 +6,8 @@ import {
   removeFromCart,
 } from "@/libs/actions/cart.action";
 import { IAddToCartProps } from "@/libs/types";
+import { useAuthStore } from "@/stores/auth.store";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import toast from "react-hot-toast";
@@ -17,8 +19,10 @@ function AddToCart({
   initialInCart,
   initialQuantity,
   initialItemId,
+  slug,
 }: IAddToCartProps) {
   const router = useRouter();
+  const { isAuthenticated } = useAuthStore();
   const [isAdding, startAdding] = useTransition();
   const [isIncreasing, startIncreasing] = useTransition();
   const [isDecreasing, startDecreasing] = useTransition();
@@ -130,6 +134,17 @@ function AddToCart({
       }
     });
   };
+
+  if (!isAuthenticated) {
+    return (
+      <Link
+        href={`/auth/login?redirectTo=/products/${slug}`}
+        className="px-3 w-full md:w-[180px] py-3 rounded-md font-Iran bg-stone-800 hover:bg-stone-900 text-white mt-6 md:my-6 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
+      >
+        <span>وارد حساب خود شوید</span>
+      </Link>
+    );
+  }
 
   if (!inCart) {
     return (
