@@ -1,7 +1,6 @@
 import Breadcrumb from "@/components/modules/main/Breadcrumb";
 import Container from "@/components/modules/main/Container";
 import CartDetails from "@/components/templates/cart/CartDetails";
-import React from "react";
 
 function page() {
   return (
@@ -13,7 +12,7 @@ function page() {
         ]}
       />
 
-      <CartDetails/>
+      <CartDetails />
     </Container>
   );
 }
