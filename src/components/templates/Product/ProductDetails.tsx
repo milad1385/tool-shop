@@ -19,6 +19,7 @@ async function ProductDetails({
   customFeatures,
   sellers,
   _id,
+  slug,
 }: IProduct) {
   const productFeatures = [...features, ...customFeatures];
 
@@ -102,6 +103,7 @@ async function ProductDetails({
                     initialInCart={inCart}
                     initialQuantity={quantity}
                     initialItemId={itemId}
+                    slug={slug}
                   />
                 </div>
 
@@ -117,6 +119,7 @@ async function ProductDetails({
                   initialInCart={inCart}
                   initialQuantity={quantity}
                   initialItemId={itemId}
+                  slug={slug}
                 />
               </div>
             </div>
