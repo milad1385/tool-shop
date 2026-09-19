@@ -9,8 +9,6 @@ import mongoose from "mongoose";
 import { revalidatePath } from "next/cache";
 import { CartState } from "../types";
 
-
-
 export async function addToCart(
   productId: string,
   sellerId: string,
@@ -119,11 +117,9 @@ export async function decreaseQuantity(itemId: string): Promise<CartState> {
       return { success: false, message: "آیتم یافت نشد" };
     }
 
-    // ✅ اگه تعداد ۱ بود، کلاً حذف کن
     if (item.quantity <= 1) {
       cart.items = cart.items.filter((i) => i._id.toString() !== itemId);
     } else {
-      // ✅ وگرنه یکی کم کن
       item.quantity -= 1;
     }
 
@@ -162,7 +158,6 @@ export async function increaseQuantity(itemId: string): Promise<CartState> {
       return { success: false, message: "آیتم یافت نشد" };
     }
 
-    // ✅ گرفتن محصول برای چک کردن موجودی
     const product = await Product.findById(item.product);
     if (!product) {
       return { success: false, message: "محصول یافت نشد" };
@@ -176,7 +171,6 @@ export async function increaseQuantity(itemId: string): Promise<CartState> {
       return { success: false, message: "فروشنده یافت نشد" };
     }
 
-    // ✅ چک کردن موجودی
     if (item.quantity + 1 > sellerItem.stock) {
       return {
         success: false,
@@ -277,7 +271,11 @@ export async function getUserCart(): Promise<CartState> {
     const cart = await Cart.findOne({ user: session.user.id })
       .populate({
         path: "items.product",
-        select: "name slug images",
+        select: "name slug images category",
+        populate: {
+          path: "category",
+          select: "name tags href",
+        },
       })
       .populate({
         path: "items.seller",
