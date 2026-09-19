@@ -1,15 +1,24 @@
+import { getUserCart } from "@/libs/actions/cart.action";
 import Carts from "./Carts";
 import CheckoutBox from "./CheckoutBox";
 import EmptyCart from "./EmptyCart";
 
-function CartDetails() {
-  return true ? (
+async function CartDetails() {
+  const { cart } = await getUserCart();
+  console.log(cart);
+
+  return cart ? (
     <div className="grid grid-cols-12 gap-4">
-      <Carts />
-      <CheckoutBox />
+      <Carts carts={cart} />
+      <CheckoutBox
+        totalItems={cart.totalItems}
+        totalPrice={cart.totalPrice}
+        totalDiscount={cart.totalDiscount}
+        finalPrice={cart.finalPrice}
+      />
     </div>
   ) : (
-    <EmptyCart/>
+    <EmptyCart />
   );
 }
 
