@@ -653,6 +653,7 @@ export interface IProductList {
 
 export interface IGoogleButton {
   text: string;
+  redirectTo?: string;
 }
 
 export interface IEmptyStateProps {
@@ -722,6 +723,7 @@ export interface IAddToCartProps {
   initialInCart: boolean;
   initialQuantity: number;
   initialItemId?: string;
+  slug?: string;
 }
 
 export type CartState = {
