@@ -5,9 +5,8 @@ import EmptyCart from "./EmptyCart";
 
 async function CartDetails() {
   const { cart } = await getUserCart();
-  console.log(cart);
 
-  return cart ? (
+  return cart?.items?.length ? (
     <div className="grid grid-cols-12 gap-4">
       <Carts carts={cart} />
       <CheckoutBox
