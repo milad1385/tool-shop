@@ -1,23 +1,28 @@
+import { formattedPrice } from "@/utils/helper";
 import Link from "next/link";
 import React from "react";
 
-function CheckoutBox() {
+function CheckoutBox({ totalItems, totalPrice, totalDiscount, finalPrice }) {
   return (
     <div className="col-span-12 md:col-span-3">
       <div className="bg-white rounded-3xl p-8">
         <div className="flex flex-col font-Lalezar  text-lg">
           <div className="flex items-center justify-between p-4 bg-yellow-100 rounded-lg">
             <span>تعداد خرید:</span>
-            <span>2 عدد</span>
+            <span>{formattedPrice(totalItems)} عدد</span>
           </div>
           <div className="flex items-center justify-between p-4">
             <span>مبلغ کل:</span>
-            <span>300.000 تومان</span>
+            <span>{formattedPrice(totalPrice)} تومان</span>
+          </div>
+          <div className="flex items-center justify-between p-4 bg-yellow-100 rounded-lg">
+            <span>تخفیف:</span>
+            <span>{formattedPrice(totalDiscount)} تومان</span>
           </div>
 
-          <div className="flex items-center justify-between p-4 bg-yellow-100 rounded-lg mb-4">
+          <div className="flex items-center justify-between p-4 mb-2">
             <span>مبلغ نهایی:</span>
-            <span>440.000</span>
+            <span>{formattedPrice(finalPrice)} تومان</span>
           </div>
           <Link
             href="/checkout"
