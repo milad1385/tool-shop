@@ -1,12 +1,12 @@
 import React from "react";
 import CartItem from "./CartItem";
 
-function Carts() {
+function Carts({ carts }) {
   return (
     <div className="col-span-12 md:col-span-9">
-      <CartItem />
-      <CartItem />
-      <CartItem />
+      {carts.items.map((cart) => (
+        <CartItem key={cart._id} {...cart} />
+      ))}
     </div>
   );
 }
