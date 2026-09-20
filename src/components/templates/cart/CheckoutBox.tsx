@@ -1,6 +1,7 @@
 import { formattedPrice } from "@/utils/helper";
 import Link from "next/link";
 import React from "react";
+import DeleteBasket from "./DeleteBasket";
 
 function CheckoutBox({ totalItems, totalPrice, totalDiscount, finalPrice }) {
   return (
@@ -30,6 +31,7 @@ function CheckoutBox({ totalItems, totalPrice, totalDiscount, finalPrice }) {
           >
             ادامه دادن
           </Link>
+          <DeleteBasket />
         </div>
       </div>
     </div>
