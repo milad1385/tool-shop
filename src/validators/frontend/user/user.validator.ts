@@ -123,6 +123,16 @@ export const userAddress = yup.object({
     .required("این فیلد الزامی است")
     .min(10, "حداقل تعداد کاراکتر 10 عدد است")
     .max(1000, "حداکثر تعداد کاراکتر 1000 عدد میباشد"),
+  name: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(10, "حداقل تعداد کاراکتر 10 عدد است")
+    .max(100, "حداکثر تعداد کاراکتر 100 عدد میباشد"),
+  mobile: yup
+    .string()
+    .required("این فیلد الزامی است")
+    .min(11, "حداقل تعداد کاراکتر 11 عدد است")
+    .max(11, "حداکثر تعداد کاراکتر 11 عدد میباشد"),
   postalCode: yup
     .string()
     .required("این فیلد الزامی است")
@@ -135,7 +145,7 @@ export const userAddress = yup.object({
     .required("این فیلد الزامی است")
     .min(1, "حداقل تعداد کاراکتر 1 عدد است")
     .max(5, "حداکثر تعداد کاراکتر 5 عدد میباشد"),
-  pelak: yup
+  houseNumber: yup
     .string()
     .required("این فیلد الزامی است")
     .required("این فیلد الزامی است")
