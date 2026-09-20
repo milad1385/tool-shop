@@ -1,3 +1,4 @@
+"use client"
 import Modal from "@/components/modules/main/Modal";
 import { FaTruck } from "react-icons/fa";
 import { HiChevronLeft } from "react-icons/hi";
