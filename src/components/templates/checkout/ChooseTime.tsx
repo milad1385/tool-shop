@@ -1,18 +1,22 @@
-import React from "react";
 import Title from "./Title";
-import Time from "./Time";
-import { deliverTimes } from "@/constants/data";
+import DeliverySlotClient from "./DeliverySlotClient";
+import { getDeliverySlots } from "@/services/delivery.service";
 
-function ChooseTime() {
-  
+async function ChooseTime() {
+  const slots = await getDeliverySlots();
+
+  const slotsByDay = slots.reduce((acc: any, slot: any) => {
+    if (!acc[slot.dayOfWeek]) {
+      acc[slot.dayOfWeek] = [];
+    }
+    acc[slot.dayOfWeek].push(slot);
+    return acc;
+  }, {});
+
   return (
     <div className="mt-5">
       <Title title="انتخاب زمان ارسال" />
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 pt-6 gap-5">
-        {deliverTimes.map(time =>(
-          <Time {...time} key={time.id}/>
-        ))}
-      </div>
+      <DeliverySlotClient slotsByDay={JSON.parse(JSON.stringify(slotsByDay))} />
     </div>
   );
 }
