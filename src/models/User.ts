@@ -9,7 +9,8 @@ export interface IAddress {
     lan: number;
   };
   address: string;
-  cityId: number;
+  houseNumber: string;
+  unit: string;
 }
 
 export interface IUser extends Document {
@@ -66,10 +67,17 @@ const addressSchema = new Schema<IAddress>(
       minlength: [5, "آدرس حداقل ۵ کاراکتر باید باشد"],
       maxlength: [500, "آدرس حداکثر ۵۰۰ کاراکتر باید باشد"],
     },
-    cityId: {
-      type: Number,
-      required: [true, "شناسه شهر الزامی است"],
-      min: [1, "شناسه شهر معتبر نیست"],
+
+    houseNumber: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: [1, "پلاک خانه معتبر نیست"],
+    },
+    unit: {
+      type: String,
+      required: true,
+      trim: true,
     },
   },
   { _id: true },
