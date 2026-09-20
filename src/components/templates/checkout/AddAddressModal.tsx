@@ -34,7 +34,7 @@ function AddAddressModal({ onClose }: IModal) {
   });
 
   const addNewUserAddress = async (data: UserAddressType) => {
-    console.log(data);
+    console.log({ ...data, position });
   };
 
   return (
@@ -87,7 +87,7 @@ function AddAddressModal({ onClose }: IModal) {
                   <Input
                     register={register}
                     errors={errors}
-                    name="pelak"
+                    name="houseNumber"
                     type="text"
                     label="پلاک"
                     className="bg-gray-50 w-full"
@@ -102,6 +102,33 @@ function AddAddressModal({ onClose }: IModal) {
                     name="unit"
                     type="text"
                     label="واحد"
+                    className="bg-gray-50 w-full"
+                    disable={false}
+                    labelClassName="!text-sm font-Iran"
+                  />
+                </div>
+              </div>
+              <div className="flex gap-3">
+                {" "}
+                <div className="w-full">
+                  <Input
+                    register={register}
+                    errors={errors}
+                    name="name"
+                    type="text"
+                    label="نام تحویل گیرنده"
+                    className="bg-gray-50 w-full"
+                    disable={false}
+                    labelClassName="!text-sm font-Iran"
+                  />
+                </div>
+                <div className="w-full">
+                  <Input
+                    register={register}
+                    errors={errors}
+                    name="mobile"
+                    type="text"
+                    label="شماره تحویل گیرنده"
                     className="bg-gray-50 w-full"
                     disable={false}
                     labelClassName="!text-sm font-Iran"
