@@ -20,6 +20,13 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  if (pathname.startsWith("/cart") || pathname.startsWith("/checkout")) {
+    if (!session) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+    return NextResponse.next();
+  }
+
   if (pathname.startsWith("/p-admin")) {
     if (!session) {
       return NextResponse.redirect(new URL("/", request.url));
@@ -45,5 +52,11 @@ export async function proxy(request: NextRequest) {
 export default proxy;
 
 export const config = {
-  matcher: ["/auth/:path*", "/p-user/:path*", "/p-admin/:path*"],
+  matcher: [
+    "/auth/:path*",
+    "/p-user/:path*",
+    "/p-admin/:path*",
+    "/cart",
+    "/checkout",
+  ],
 };
