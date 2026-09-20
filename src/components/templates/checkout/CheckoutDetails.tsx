@@ -1,12 +1,22 @@
-import React from "react";
-import MainBox from "./MainBox";
+import { getUserCart } from "@/libs/actions/cart.action";
+import { notFound } from "next/navigation";
 import Checkout from "./Checkout";
+import MainBox from "./MainBox";
 
-function CheckoutDetails() {
+async function CheckoutDetails() {
+  const { cart } = await getUserCart();
+  if (!cart?.items?.length) {
+    notFound();
+  }
   return (
     <div className="grid grid-cols-12 gap-4">
-      <MainBox />
-      <Checkout />
+      <MainBox cart={cart} />
+      <Checkout
+        totalItems={cart.totalItems}
+        totalPrice={cart.totalPrice}
+        totalDiscount={cart.totalDiscount}
+        finalPrice={cart.finalPrice}
+      />
     </div>
   );
 }
