@@ -744,3 +744,27 @@ export interface ICartItemProps {
     id: string;
   };
 }
+
+
+export interface IDeliverySlot {
+  _id: string;
+  dayOfWeek: number;
+  startHour: number;
+  endHour: number;
+  maxCapacity: number;
+  usedCapacity: number;
+  isActive: boolean;
+}
+
+export interface IChooseTimeProps {
+  slotsByDay: Record<number, IDeliverySlot[]>;
+}
+
+
+
+export interface ITimeProps {
+  dayOfWeek: number;
+  slots: IDeliverySlot[];
+  selectedSlot: IDeliverySlot | null;
+  onSelect: (slot: IDeliverySlot) => void;
+}
