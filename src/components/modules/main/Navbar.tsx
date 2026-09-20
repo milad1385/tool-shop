@@ -1,17 +1,15 @@
 "use client";
 import { limitedRoute } from "@/constants/data";
+import { useAuthStore } from "@/stores/auth.store";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BsQuestionCircle } from "react-icons/bs";
-import { FaRegUser } from "react-icons/fa";
-import { HiOutlineShoppingCart } from "react-icons/hi2";
+import { HiOutlineShoppingCart, HiOutlineUser } from "react-icons/hi2";
 import { IoChevronDown } from "react-icons/io5";
 import MobileMenu from "./MobileMenu";
-import Search from "./Search";
-import { useAuthStore } from "@/stores/auth.store";
-import { HiOutlineUser } from "react-icons/hi2";
 import ProfileBox from "./ProfileBox";
+import Search from "./Search";
 
 function Navbar() {
   const pathname = usePathname();
