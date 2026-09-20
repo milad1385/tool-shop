@@ -2,15 +2,14 @@ import React from "react";
 import OrderItem from "./OrderItem";
 import Title from "./Title";
 
-function Orders() {
+function Orders({ cart }) {
   return (
     <div className="mt-6">
       <Title title="لیست سفارش ها" />
-      <div className="flex md:items-center md:justify-center gap-4 flex-wrap mt-5">
-        <OrderItem />
-        <OrderItem />
-        <OrderItem />
-        <OrderItem />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-5">
+        {cart?.items?.map((cart) => (
+          <OrderItem {...cart} key={cart._id} />
+        ))}
       </div>
     </div>
   );
