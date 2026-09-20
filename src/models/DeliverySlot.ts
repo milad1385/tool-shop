@@ -56,7 +56,7 @@ deliverySlotSchema.index(
 );
 
 const DeliverySlot: Model<IDeliverySlot> =
-  mongoose.models.DeliverySlot ||
+  mongoose?.models?.DeliverySlot ||
   mongoose.model<IDeliverySlot>("DeliverySlot", deliverySlotSchema);
 
 export default DeliverySlot;
