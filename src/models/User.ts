@@ -11,6 +11,7 @@ export interface IAddress {
   address: string;
   houseNumber: string;
   unit: string;
+  mobile: string;
 }
 
 export interface IUser extends Document {
@@ -39,6 +40,12 @@ const addressSchema = new Schema<IAddress>(
       trim: true,
       minlength: [2, "نام حداقل ۲ کاراکتر باید باشد"],
       maxlength: [100, "نام حداکثر ۱۰۰ کاراکتر باید باشد"],
+    },
+    mobile: {
+      type: String,
+      required: [true, "موبایل تحویل گیرنده الزامی است"],
+      trim: true,
+      match: [/^09[0-9]{9}$/, "شماره همراه باید با ۰۹ شروع شود و ۱۱ رقم باشد"],
     },
     postalCode: {
       type: String,
