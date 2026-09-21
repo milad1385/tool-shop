@@ -18,8 +18,7 @@ export const getUserAddresses = async (): Promise<IAddress[]> => {
     }
 
     return normalizeData(user.addresses || []) as IAddress[];
-  } catch (error: any) {
-    console.error("خطا در گرفتن آدرس‌های کاربر:", error);
+  } catch (error) {
     throw new Error(error.message);
   }
 };
@@ -49,7 +48,7 @@ export const getUserAddressById = async (
     }
 
     return normalizeData(address) as IAddress;
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(error.message);
   }
 };
