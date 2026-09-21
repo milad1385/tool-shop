@@ -15,7 +15,7 @@ function AddressModal({ onClose, userAdresses }: IAddressModal) {
           className="text-xl text-zinc-500 md:cursor-pointer"
         />
       </div>
-      <div className="pt-5">
+      <div className="pt-5 space-y-3">
         {userAdresses?.map((address) => (
           <AddressItem key={address._id} {...address} />
         ))}
