@@ -23,3 +23,33 @@ export const getUserAddresses = async (): Promise<IAddress[]> => {
     throw new Error(error.message);
   }
 };
+
+
+export const getUserAddressById = async (
+  addressId: string,
+): Promise<IAddress | null> => {
+  try {
+    await connectDB();
+    const session = await auth();
+
+    const user = await User.findById(session?.user?.id)
+      .select("addresses")
+      .lean();
+
+    if (!user) {
+      throw new Error("کاربر یافت نشد");
+    }
+
+    const address = user.addresses?.find(
+      (addr: any) => addr._id.toString() === addressId,
+    );
+
+    if (!address) {
+      return null;
+    }
+
+    return normalizeData(address) as IAddress;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
