@@ -2,15 +2,21 @@ import { getUserCart } from "@/libs/actions/cart.action";
 import { notFound } from "next/navigation";
 import Checkout from "./Checkout";
 import MainBox from "./MainBox";
+import { getUserAddresses } from "@/services/address.service";
+import { getDeliverySlots } from "@/services/delivery.service";
 
 async function CheckoutDetails() {
-  const { cart } = await getUserCart();
+  const [{ cart }, userAdresses, slots] = await Promise.all([
+    getUserCart(),
+    getUserAddresses(),
+    getDeliverySlots(),
+  ]);
   if (!cart?.items?.length) {
     notFound();
   }
   return (
     <div className="grid grid-cols-12 gap-4">
-      <MainBox cart={cart} />
+      <MainBox cart={cart} userAdresses={userAdresses} slots={slots} />
       <Checkout
         totalItems={cart.totalItems}
         totalPrice={cart.totalPrice}
