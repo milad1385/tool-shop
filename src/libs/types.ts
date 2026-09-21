@@ -732,6 +732,13 @@ export type CartState = {
   cart?: any;
 };
 
+export type AddressState = {
+  success: boolean;
+  message: string;
+  errors?: Record<string, string>;
+  address?: any;
+};
+
 export interface ICartItemProps {
   _id: string;
   quantity: number;
@@ -744,7 +751,6 @@ export interface ICartItemProps {
     id: string;
   };
 }
-
 
 export interface IDeliverySlot {
   _id: string;
@@ -759,8 +765,6 @@ export interface IDeliverySlot {
 export interface IChooseTimeProps {
   slotsByDay: Record<number, IDeliverySlot[]>;
 }
-
-
 
 export interface ITimeProps {
   dayOfWeek: number;

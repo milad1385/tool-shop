@@ -5,13 +5,8 @@ import User from "@/models/User";
 import { userAddress } from "@/validators/frontend/user/user.validator";
 import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
-
-export type AddressState = {
-  success: boolean;
-  message: string;
-  errors?: Record<string, string>;
-  address?: any;
-};
+import { normalizeData } from "@/utils/helper";
+import { AddressState } from "../types";
 
 export async function addUserAddress(
   formData: FormData,
@@ -105,7 +100,7 @@ export async function addUserAddress(
     return {
       success: true,
       message: "آدرس با موفقیت اضافه شد",
-      address: JSON.parse(JSON.stringify(savedAddress)),
+      address: normalizeData(savedAddress),
     };
   } catch (error) {
     return {
@@ -114,3 +109,44 @@ export async function addUserAddress(
     };
   }
 }
+
+
+
+export async function deleteUserAddress(
+  addressId: string,
+): Promise<AddressState> {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return { success: false, message: "لطفاً وارد شوید" };
+    }
+
+    await connectDB();
+
+    const user = await User.findById(session.user.id);
+    if (!user) {
+      return { success: false, message: "کاربر یافت نشد" };
+    }
+
+    user.addresses = user.addresses.filter(
+      (addr: any) => addr._id.toString() !== addressId,
+    );
+
+    await user.save();
+
+    revalidatePath("/p-user/addresses");
+    revalidatePath("/checkout");
+
+    return {
+      success: true,
+      message: "آدرس با موفقیت حذف شد",
+    };
+  } catch (error: any) {
+    console.error("خطا در حذف آدرس:", error);
+    return {
+      success: false,
+      message: "خطا در حذف آدرس",
+    };
+  }
+}
+
