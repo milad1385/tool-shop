@@ -12,6 +12,7 @@ export interface IAddress {
   houseNumber: string;
   unit: string;
   mobile: string;
+  _id: string;
 }
 
 export interface IUser extends Document {
