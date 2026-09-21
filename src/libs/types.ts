@@ -284,6 +284,11 @@ export interface IModal {
   name?: string;
 }
 
+export interface IAddressModal {
+  onClose?: any;
+  userAdresses?: any;
+}
+
 export interface IRecentProducts {
   title?: string;
 }

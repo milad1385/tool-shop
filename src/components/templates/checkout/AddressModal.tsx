@@ -1,12 +1,11 @@
-import React from "react";
-import { FaXmark } from "react-icons/fa6";
-import AddressItem from "./AddressItem";
-import { FaPlus } from "react-icons/fa";
 import Modal from "@/components/modules/main/Modal";
+import { IAddressModal } from "@/libs/types";
+import { FaPlus } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 import AddAddressModal from "./AddAddressModal";
-import { IModal } from "@/libs/types";
+import AddressItem from "./AddressItem";
 
-function AddressModal({ onClose }: IModal) {
+function AddressModal({ onClose, userAdresses }: IAddressModal) {
   return (
     <div className="w-[340px] md:w-[500px] rounded-md bg-white px-4 py-5">
       <div className="flex items-center justify-between border-b-2 border-b-gray-200 pb-4">
@@ -17,7 +16,9 @@ function AddressModal({ onClose }: IModal) {
         />
       </div>
       <div className="pt-5">
-        <AddressItem />
+        {userAdresses?.map((address) => (
+          <AddressItem key={address._id} {...address} />
+        ))}
       </div>
       <div className="border-t-2 border-b-gray-200 mt-5 pt-5 pb-2">
         <Modal>

@@ -10,8 +10,8 @@ function ChooseAddress({ userAdresses }) {
   return (
     <Modal>
       {userAdresses?.length ? (
-        userAdresses.map((address) => (
-          <AddressBox key={address._id} address={address.address} />
+        userAdresses.map((addressItem) => (
+          <AddressBox key={addressItem._id} address={addressItem.address} />
         ))
       ) : (
         <Modal.Open name="addAddress">
@@ -25,7 +25,7 @@ function ChooseAddress({ userAdresses }) {
         <AddAddressModal />
       </Modal.Page>
       <Modal.Page name="address">
-        <AddressModal />
+        <AddressModal userAdresses={userAdresses} />
       </Modal.Page>
     </Modal>
   );
