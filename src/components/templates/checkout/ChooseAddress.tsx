@@ -4,14 +4,18 @@ import AddAddressModal from "./AddAddressModal";
 import AddressBox from "./AddressBox";
 import AddressModal from "./AddressModal";
 
-function ChooseAddress({ userAdresses }) {
-  console.log(userAdresses);
-
+function ChooseAddress({ userAdresses, activeAddress, onActive }) {
   return (
     <Modal>
       {userAdresses?.length ? (
         userAdresses.map((addressItem) => (
-          <AddressBox key={addressItem._id} address={addressItem.address} />
+          <AddressBox
+            key={addressItem._id}
+            address={addressItem.address}
+            id={addressItem._id}
+            onActive={onActive}
+            activeAddress={activeAddress}
+          />
         ))
       ) : (
         <Modal.Open name="addAddress">

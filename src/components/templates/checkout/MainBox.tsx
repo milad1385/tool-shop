@@ -1,19 +1,24 @@
+"use client";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
+import { useState } from "react";
 import ChooseAddress from "./ChooseAddress";
 import ChooseTime from "./ChooseTime";
 import Orders from "./Orders";
 import Title from "./Title";
-import { getUserAddresses } from "@/services/address.service";
 
-async function MainBox({ cart }) {
-  const userAdresses = await getUserAddresses();
+function MainBox({ cart, userAdresses, slots }) {
+  const [activeAddress, setActiveAddress] = useState(userAdresses[0]._id);
   return (
     <div className="col-span-12 md:col-span-9 bg-white rounded-3xl p-5 md:p-8">
       <Title title="آدرس و زمان ارسال" />
-      <ChooseAddress userAdresses={userAdresses} />
+      <ChooseAddress
+        userAdresses={userAdresses}
+        onActive={setActiveAddress}
+        activeAddress={activeAddress}
+      />
       <Orders cart={cart} />
-      <ChooseTime />
+      <ChooseTime slots={slots} />
       <div className="flex gap-x-4">
         <Button className="!w-[150px] mt-10">تایید اطلاعات</Button>
         <Link href="/cart">

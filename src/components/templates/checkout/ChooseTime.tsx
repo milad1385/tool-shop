@@ -1,10 +1,7 @@
-import Title from "./Title";
 import DeliverySlotClient from "./DeliverySlotClient";
-import { getDeliverySlots } from "@/services/delivery.service";
+import Title from "./Title";
 
-async function ChooseTime() {
-  const slots = await getDeliverySlots();
-
+function ChooseTime({ slots }) {
   const slotsByDay = slots.reduce((acc: any, slot: any) => {
     if (!acc[slot.dayOfWeek]) {
       acc[slot.dayOfWeek] = [];
