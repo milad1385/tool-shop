@@ -1,5 +1,6 @@
 import connectDB from "@/configs/db";
 import DeliverySlot from "@/models/DeliverySlot";
+import { normalizeData } from "@/utils/helper";
 
 export const getDeliverySlots = async () => {
   await connectDB();
@@ -8,5 +9,5 @@ export const getDeliverySlots = async () => {
     .sort({ dayOfWeek: 1, startHour: 1 })
     .lean();
 
-  return slots;
+  return normalizeData(slots);
 };
