@@ -1,5 +1,8 @@
+"use client";
+
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { addUserAddress } from "@/libs/actions/address.action";
 import { IModal } from "@/libs/types";
 import {
   userAddress,
@@ -7,9 +10,10 @@ import {
 } from "@/validators/frontend/user/user.validator";
 import { yupResolver } from "@hookform/resolvers/yup";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { FaXmark } from "react-icons/fa6";
+import toast from "react-hot-toast";
+import { FaSpinner, FaXmark } from "react-icons/fa6";
 
 const ChooseLocation = dynamic(
   () => import("@/components/modules/main/ChooseLocation"),
@@ -19,9 +23,14 @@ const ChooseLocation = dynamic(
   },
 );
 
-function AddAddressModal({ onClose }: IModal) {
+interface IAddAddressModalProps extends IModal {
+  onSuccess?: (address: any) => void;
+}
+
+function AddAddressModal({ onClose, onSuccess }: IAddAddressModalProps) {
   const [position, setPosition] = useState<[number, number]>([35.7, 51.39]);
   const [isActive, setIsActive] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const {
     register,
@@ -29,22 +38,59 @@ function AddAddressModal({ onClose }: IModal) {
     handleSubmit,
     setValue,
     reset,
+    setError,
   } = useForm({
     resolver: yupResolver(userAddress),
   });
 
   const addNewUserAddress = async (data: UserAddressType) => {
-    console.log({ ...data, position });
+    startTransition(async () => {
+      try {
+        const formData = new FormData();
+        formData.append("name", data.name);
+        formData.append("mobile", data.mobile);
+        formData.append("address", data.address);
+        formData.append("houseNumber", data.houseNumber);
+        formData.append("unit", data.unit);
+        formData.append("postalCode", data.postalCode);
+        formData.append("lat", String(position[0]));
+        formData.append("lan", String(position[1]));
+
+        const result = await addUserAddress(formData);
+
+        if (result.success) {
+          toast.success(result.message);
+          reset();
+
+          if (onSuccess && result.address) {
+            onSuccess(result.address);
+          }
+          onClose();
+        } else if (result.errors) {
+          Object.entries(result.errors).forEach(([field, message]) => {
+            setError(field as any, {
+              type: "server",
+              message,
+            });
+          });
+          toast.error("اطلاعات وارد شده معتبر نیست");
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error("خطا در ارتباط با سرور");
+      }
+    });
   };
 
   return (
-    <div className="w-[340px] md:w-[500px] rounded-md bg-white  pt-4 pb-3">
+    <div className="w-[340px] md:w-[500px] rounded-md bg-white pt-4 pb-3">
       <div className="flex items-center justify-between px-5 border-b-2 border-b-gray-200 pb-4">
         <h3 className="font-bold text-base md:text-[17px]">
           {isActive ? "وارد کردن آدرس" : "انتخاب آدرس"}
         </h3>
         <FaXmark
-          onClick={() => onClose()}
+          onClick={() => !isPending && onClose()}
           className="text-xl text-zinc-500 md:cursor-pointer"
         />
       </div>
@@ -79,7 +125,7 @@ function AddAddressModal({ onClose }: IModal) {
                 type="text"
                 label="آدرس"
                 className="bg-gray-50"
-                disable={false}
+                disable={isPending}
                 labelClassName="!text-sm font-Iran"
               />
               <div className="flex gap-3">
@@ -91,7 +137,7 @@ function AddAddressModal({ onClose }: IModal) {
                     type="text"
                     label="پلاک"
                     className="bg-gray-50 w-full"
-                    disable={false}
+                    disable={isPending}
                     labelClassName="!text-sm font-Iran"
                   />
                 </div>
@@ -103,13 +149,12 @@ function AddAddressModal({ onClose }: IModal) {
                     type="text"
                     label="واحد"
                     className="bg-gray-50 w-full"
-                    disable={false}
+                    disable={isPending}
                     labelClassName="!text-sm font-Iran"
                   />
                 </div>
               </div>
               <div className="flex gap-3">
-                {" "}
                 <div className="w-full">
                   <Input
                     register={register}
@@ -118,7 +163,7 @@ function AddAddressModal({ onClose }: IModal) {
                     type="text"
                     label="نام تحویل گیرنده"
                     className="bg-gray-50 w-full"
-                    disable={false}
+                    disable={isPending}
                     labelClassName="!text-sm font-Iran"
                   />
                 </div>
@@ -130,7 +175,7 @@ function AddAddressModal({ onClose }: IModal) {
                     type="text"
                     label="شماره تحویل گیرنده"
                     className="bg-gray-50 w-full"
-                    disable={false}
+                    disable={isPending}
                     labelClassName="!text-sm font-Iran"
                   />
                 </div>
@@ -142,14 +187,35 @@ function AddAddressModal({ onClose }: IModal) {
                 type="text"
                 label="کد پستی"
                 className="bg-gray-50"
-                disable={false}
+                disable={isPending}
                 labelClassName="!text-sm font-Iran"
               />
             </div>
 
-            <Button className="!bg-yellow-500 text-sm md:text-base mt-8">
-              افزودن آدرس
-            </Button>
+            <div className="flex items-center gap-4 mt-8">
+              <Button
+                type="submit"
+                disabled={isPending}
+                className="!bg-yellow-500 text-sm md:text-base flex items-center justify-center gap-2 h-[48px] w-[180px]"
+              >
+                {isPending ? (
+                  <>
+                    <FaSpinner className="animate-spin" />
+                  </>
+                ) : (
+                  "افزودن آدرس"
+                )}
+              </Button>
+
+              <Button
+                type="button"
+                onClick={() => setIsActive(false)}
+                disabled={isPending}
+                className="!bg-gray-400 text-sm md:text-base h-[48px]"
+              >
+                برگشت
+              </Button>
+            </div>
           </form>
         </div>
       )}
