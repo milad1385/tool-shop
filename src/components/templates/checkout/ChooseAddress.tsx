@@ -1,35 +1,18 @@
 "use client";
 import Modal from "@/components/modules/main/Modal";
-import { FaTruck } from "react-icons/fa";
-import { HiChevronLeft } from "react-icons/hi";
-import AddressModal from "./AddressModal";
-import { useState } from "react";
 import AddAddressModal from "./AddAddressModal";
+import AddressBox from "./AddressBox";
+import AddressModal from "./AddressModal";
 
-function ChooseAddress() {
-  const [hasAddress, setHasAddress] = useState(false);
+function ChooseAddress({ userAdresses }) {
+  console.log(userAdresses);
+
   return (
     <Modal>
-      {hasAddress ? (
-        <div className="border border-yellow-500 p-4 md:cursor-pointer rounded-lg flex items-center gap-x-4 mt-5">
-          <FaTruck className="text-zinc-700 text-lg" />
-          <div className="space-y-3 flex-1">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xs md:text-base text-yellow-500">
-                ارسال به آدرس انتخاب شده
-              </h3>
-              <Modal.Open name="address">
-                <span className="text-xs md:text-sm flex items-center gap-x-1 text-yellow-500">
-                  تغییر آدرس
-                  <HiChevronLeft />
-                </span>
-              </Modal.Open>
-            </div>
-            <h4 className="text-zinc-600 text-sm">
-              استان البرز ، کرج ، ساختمان شماره 135
-            </h4>
-          </div>
-        </div>
+      {userAdresses?.length ? (
+        userAdresses.map((address) => (
+          <AddressBox key={address._id} address={address.address} />
+        ))
       ) : (
         <Modal.Open name="addAddress">
           <button className="flex items-center justify-center py-2 rounded-md bg-stone-800 hover:bg-stone-900 px-6 text-white mt-5">

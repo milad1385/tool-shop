@@ -4,12 +4,14 @@ import ChooseAddress from "./ChooseAddress";
 import ChooseTime from "./ChooseTime";
 import Orders from "./Orders";
 import Title from "./Title";
+import { getUserAddresses } from "@/services/address.service";
 
-function MainBox({ cart }) {
+async function MainBox({ cart }) {
+  const userAdresses = await getUserAddresses();
   return (
     <div className="col-span-12 md:col-span-9 bg-white rounded-3xl p-5 md:p-8">
       <Title title="آدرس و زمان ارسال" />
-      <ChooseAddress />
+      <ChooseAddress userAdresses={userAdresses} />
       <Orders cart={cart} />
       <ChooseTime />
       <div className="flex gap-x-4">
