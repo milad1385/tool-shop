@@ -23,7 +23,6 @@ export const getUserAddresses = async (): Promise<IAddress[]> => {
   }
 };
 
-
 export const getUserAddressById = async (
   addressId: string,
 ): Promise<IAddress | null> => {
