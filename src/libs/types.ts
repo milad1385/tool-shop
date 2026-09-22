@@ -5,6 +5,7 @@ export interface IActionState {
   success: boolean;
   message: string;
   errors?: Record<string, string>;
+  data?: any;
 }
 export interface IProductSeller {
   seller: {
@@ -744,7 +745,6 @@ export type AddressState = {
   errors?: Record<string, string>;
   address?: any;
 };
-
 
 export interface IDeliverySlot {
   _id: string;
