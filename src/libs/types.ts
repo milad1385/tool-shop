@@ -745,18 +745,6 @@ export type AddressState = {
   address?: any;
 };
 
-export interface ICartItemProps {
-  _id: string;
-  quantity: number;
-  discount: number;
-  price: number;
-  finalPrice: number;
-  product: any;
-  seller: {
-    name: string;
-    id: string;
-  };
-}
 
 export interface IDeliverySlot {
   _id: string;
@@ -857,6 +845,10 @@ export interface IChooseAddress {
 
 export interface IOrders {
   cart: ICart;
+}
+
+export interface ICarts {
+  carts: ICart;
 }
 
 export interface IChooseTime {
