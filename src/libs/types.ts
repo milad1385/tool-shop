@@ -1,3 +1,4 @@
+import { SetStateAction } from "react";
 import { Control } from "react-hook-form";
 
 export interface IActionState {
@@ -769,6 +770,8 @@ export interface IDeliverySlot {
 
 export interface IChooseTimeProps {
   slotsByDay: Record<number, IDeliverySlot[]>;
+  selectedSlot: IDeliverySlot | null;
+  onSelect: () => React.Dispatch<SetStateAction<IDeliverySlot>>;
 }
 
 export interface ITimeProps {
@@ -776,4 +779,8 @@ export interface ITimeProps {
   slots: IDeliverySlot[];
   selectedSlot: IDeliverySlot | null;
   onSelect: (slot: IDeliverySlot) => void;
+}
+
+export interface ICheckoutDetails {
+  slot: string;
 }
