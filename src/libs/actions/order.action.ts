@@ -360,6 +360,7 @@ export async function verifyPayment(trackId: number): Promise<IActionState> {
     await Cart.findOneAndDelete({ user: session.user.id });
 
     revalidatePath("/cart");
+    revalidatePath("/");
     revalidatePath("/p-user/orders");
     revalidatePath(`/p-user/orders/${order._id}`);
 
