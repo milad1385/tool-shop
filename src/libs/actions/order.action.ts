@@ -10,6 +10,7 @@ import Order from "@/models/Order";
 import Product from "@/models/Product";
 import User from "@/models/User";
 import { createPayment } from "@/utils/helper";
+import { revalidatePath } from "next/cache";
 
 function generateOrderNumber(): string {
   const timestamp = Date.now().toString().slice(-8);
@@ -169,6 +170,9 @@ export async function createOrder(formData: FormData): Promise<IActionState> {
       orderNumber: order.orderNumber,
     });
 
+    order.trackingCode = data.trackId;
+    await order.save();
+
     return {
       success: true,
       message: `سفارش با موفقیت ساخته شد`,
@@ -185,4 +189,195 @@ export async function createOrder(formData: FormData): Promise<IActionState> {
   }
 }
 
-// export async function verifyPayment(params: type) {}
+export async function verifyPayment(trackId: number): Promise<IActionState> {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return {
+        success: false,
+        message: "لطفاً وارد شوید",
+      };
+    }
+
+    if (!trackId) {
+      return {
+        success: false,
+        message: "شناسه پرداخت معتبر نیست",
+      };
+    }
+
+    await connectDB();
+
+    const order = await Order.findOne({
+      trackingCode: trackId.toString(),
+      user: session.user.id,
+    });
+
+    if (!order) {
+      return {
+        success: false,
+        message: "سفارش یافت نشد",
+      };
+    }
+
+    if (order.paymentStatus === "paid") {
+      revalidatePath("/p-user/orders");
+      revalidatePath(`/p-user/orders/${order._id}`);
+
+      return {
+        success: true,
+        message: "این سفارش قبلاً پرداخت شده است",
+        data: {
+          orderId: order._id.toString(),
+          orderNumber: order.orderNumber,
+          alreadyPaid: true,
+        },
+      };
+    }
+
+    const res = await fetch(`${process.env.ZIBAL_BASE_URL}/verify`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        merchant: process.env.ZIBAL_MERCHANT_ID,
+        trackId: trackId,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data.result !== 100) {
+      await Order.findByIdAndUpdate(order._id, {
+        paymentStatus: "failed",
+        notes: `خطا در تایید پرداخت: ${data.result || "نامشخص"}`,
+      });
+
+      revalidatePath("/p-user/orders");
+      revalidatePath(`/p-user/orders/${order._id}`);
+
+      return {
+        success: false,
+        message: "پرداخت ناموفق بود. لطفاً دوباره تلاش کنید",
+        data: {
+          orderId: order._id.toString(),
+          orderNumber: order.orderNumber,
+          failed: true,
+        },
+      };
+    }
+
+    const reservedSlot = await DeliverySlot.findOneAndUpdate(
+      {
+        _id: order.deliverySlot.slot,
+        isActive: true,
+        $expr: { $lt: ["$usedCapacity", "$maxCapacity"] },
+      },
+      { $inc: { usedCapacity: 1 } },
+      { new: true },
+    );
+
+    if (!reservedSlot) {
+      await Order.findByIdAndUpdate(order._id, {
+        paymentStatus: "paid",
+        status: "pending",
+        notes: "پرداخت موفق اما اسلات پر شده - نیاز به پیگیری",
+      });
+
+      revalidatePath("/p-user/orders");
+      revalidatePath(`/p-user/orders/${order._id}`);
+
+      return {
+        success: false,
+        message:
+          "پرداخت موفق بود اما متأسفانه این بازه زمانی پر شده است. لطفاً با پشتیبانی تماس بگیرید",
+        data: {
+          orderId: order._id.toString(),
+          orderNumber: order.orderNumber,
+          slotFull: true,
+        },
+      };
+    }
+
+    let stockError: string | null = null;
+
+    for (const item of order.items) {
+      try {
+        const product = await Product.findById(item.product);
+        if (!product) continue;
+
+        const sellerItem = product.sellers.find(
+          (s: any) => s.seller.toString() === item.seller.toString(),
+        );
+
+        if (!sellerItem) {
+          stockError = `فروشنده محصول "${product.name}" یافت نشد`;
+          break;
+        }
+
+        if (sellerItem.stock < item.quantity) {
+          stockError = `موجودی محصول "${product.name}" کافی نیست. موجودی فعلی: ${sellerItem.stock} عدد`;
+          break;
+        }
+
+        sellerItem.stock -= item.quantity;
+        await product.save();
+      } catch (error: any) {
+        stockError = error.message;
+        break;
+      }
+    }
+
+    if (stockError) {
+      await DeliverySlot.findByIdAndUpdate(order.deliverySlot.slot, {
+        $inc: { usedCapacity: -1 },
+      });
+
+      await Order.findByIdAndUpdate(order._id, {
+        paymentStatus: "paid",
+        status: "pending",
+        notes: `خطا در تکمیل سفارش: ${stockError}`,
+      });
+
+      revalidatePath("/p-user/orders");
+      revalidatePath(`/p-user/orders/${order._id}`);
+
+      return {
+        success: false,
+        message:
+          "پرداخت موفق بود اما خطایی در تکمیل سفارش رخ داد. لطفاً با پشتیبانی تماس بگیرید",
+        data: {
+          orderId: order._id.toString(),
+          orderNumber: order.orderNumber,
+          error: true,
+        },
+      };
+    }
+
+    order.status = "paid";
+    order.paymentStatus = "paid";
+    await order.save();
+
+    await Cart.findOneAndDelete({ user: session.user.id });
+
+    revalidatePath("/cart");
+    revalidatePath("/p-user/orders");
+    revalidatePath(`/p-user/orders/${order._id}`);
+
+    return {
+      success: true,
+      message: `پرداخت با موفقیت انجام شد. سفارش شما با شماره ${order.orderNumber} تایید شد`,
+      data: {
+        orderId: order._id.toString(),
+        orderNumber: order.orderNumber,
+        trackingCode: data.trackId || trackId,
+        refId: data.refId,
+        cardPan: data.cardPan,
+      },
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      message: error.message || "خطا در تایید پرداخت، لطفاً دوباره تلاش کنید",
+    };
+  }
+}
