@@ -1,9 +1,15 @@
 "use client";
 import { POSTAL_SEND_PRICE } from "@/constants/data";
+import { ICheckout } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
 import { useSearchParams } from "next/navigation";
 
-function Checkout({ totalItems, totalPrice, totalDiscount, finalPrice }) {
+function Checkout({
+  totalItems,
+  totalPrice,
+  totalDiscount,
+  finalPrice,
+}: ICheckout) {
   const searchParams = useSearchParams();
   const slot = searchParams.get("slot");
 
