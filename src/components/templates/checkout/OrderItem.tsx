@@ -1,3 +1,4 @@
+import { ICartItem } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +12,7 @@ function OrderItem({
   seller,
   price,
   finalPrice,
-}) {
+}: ICartItem) {
   return (
     <div className="bg-gray-100 flex-grow overflow-hidden relative rounded-3xl p-4 flex flex-col md:flex-row items-center justify-center mb-4 gap-y-6 gap-x-8">
       <Link href={`/products/${product.slug}`}>
