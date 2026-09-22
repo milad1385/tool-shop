@@ -856,3 +856,22 @@ export interface IChooseTime {
   selectedSlot: IDeliverySlot;
   onSelect: React.Dispatch<SetStateAction<IDeliverySlot>>;
 }
+
+export interface IVerifyResult {
+  success: boolean;
+  message: string;
+  orderId?: string;
+  orderNumber?: string;
+  failed?: boolean;
+}
+export interface IVerifyResultStatus {
+  success: boolean;
+  message: string;
+  data?: {
+    orderId?: string;
+    orderNumber?: string;
+    failed?: boolean;
+    slotFull?: boolean;
+    error?: boolean;
+  };
+}
