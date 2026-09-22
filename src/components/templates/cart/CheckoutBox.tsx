@@ -1,9 +1,9 @@
+import { ICheckout } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
 import Link from "next/link";
-import React from "react";
 import DeleteBasket from "./DeleteBasket";
 
-function CheckoutBox({ totalItems, totalPrice, totalDiscount, finalPrice }) {
+function CheckoutBox({ totalItems, totalPrice, totalDiscount, finalPrice } : ICheckout) {
   return (
     <div className="col-span-12 md:col-span-3">
       <div className="bg-white rounded-3xl p-8">
