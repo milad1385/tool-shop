@@ -1,4 +1,4 @@
-import { SetStateAction } from "react";
+import React, { SetStateAction } from "react";
 import { Control } from "react-hook-form";
 
 export interface IActionState {
@@ -836,8 +836,6 @@ export interface IAddress {
   unit: string;
 }
 
-
-
 export interface IMainBox {
   cart: ICart;
   userAdresses: IAddress[];
@@ -849,4 +847,10 @@ export interface ICheckout {
   totalPrice: number;
   totalDiscount: number;
   finalPrice: number;
+}
+
+export interface IChooseAddress {
+  userAdresses: IAddress[];
+  activeAddress: string;
+  onActive: React.Dispatch<SetStateAction<string>>;
 }

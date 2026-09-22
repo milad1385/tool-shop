@@ -3,8 +3,13 @@ import Modal from "@/components/modules/main/Modal";
 import AddAddressModal from "./AddAddressModal";
 import AddressBox from "./AddressBox";
 import AddressModal from "./AddressModal";
+import { IChooseAddress } from "@/libs/types";
 
-function ChooseAddress({ userAdresses, activeAddress, onActive }) {
+function ChooseAddress({
+  userAdresses,
+  activeAddress,
+  onActive,
+}: IChooseAddress) {
   return (
     <Modal>
       {userAdresses?.length ? (
