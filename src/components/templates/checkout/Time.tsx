@@ -1,10 +1,36 @@
 "use client";
+
+import { useOptimistic, useTransition } from "react";
 import { DAY_NAMES } from "@/constants/days";
 import { IDeliverySlot, ITimeProps } from "@/libs/types";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 function Time({ dayOfWeek, slots, selectedSlot, onSelect }: ITimeProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const [optimisticSelected, setOptimisticSelected] = useOptimistic(
+    selectedSlot?._id || searchParams.get("slot"),
+    (_, newValue: string) => newValue,
+  );
+
+  const [, startTransition] = useTransition();
+
   const hasCapacity = (slot: IDeliverySlot) =>
     slot.usedCapacity < slot.maxCapacity;
+
+  const handleSelect = (slot: IDeliverySlot) => {
+    startTransition(() => {
+      setOptimisticSelected(slot._id);
+    });
+
+    onSelect(slot);
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("slot", slot._id);
+    router.push(`${pathname}?${params}`, { scroll: false });
+  };
 
   return (
     <div className="px-4 pt-2 pb-4 bg-gray-100 rounded-2xl">
@@ -14,7 +40,7 @@ function Time({ dayOfWeek, slots, selectedSlot, onSelect }: ITimeProps) {
       <ul className="mt-4 space-y-3.5">
         {slots.map((slot) => {
           const isAvailable = hasCapacity(slot);
-          const isSelected = selectedSlot?._id === slot._id;
+          const isSelected = optimisticSelected === slot._id;
           const fillPercentage = (slot.usedCapacity / slot.maxCapacity) * 100;
 
           return (
@@ -25,7 +51,7 @@ function Time({ dayOfWeek, slots, selectedSlot, onSelect }: ITimeProps) {
                 id={`slot-${slot._id}`}
                 disabled={!isAvailable}
                 checked={isSelected}
-                onChange={() => isAvailable && onSelect(slot)}
+                onChange={() => isAvailable && handleSelect(slot)}
                 className="accent-black disabled:cursor-not-allowed"
               />
               <label
