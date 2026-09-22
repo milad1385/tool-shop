@@ -771,7 +771,7 @@ export interface IDeliverySlot {
 export interface IChooseTimeProps {
   slotsByDay: Record<number, IDeliverySlot[]>;
   selectedSlot: IDeliverySlot | null;
-  onSelect: () => React.Dispatch<SetStateAction<IDeliverySlot>>;
+  onSelect: React.Dispatch<SetStateAction<IDeliverySlot>>;
 }
 
 export interface ITimeProps {
@@ -857,4 +857,10 @@ export interface IChooseAddress {
 
 export interface IOrders {
   cart: ICart;
+}
+
+export interface IChooseTime {
+  slots: IDeliverySlot[];
+  selectedSlot: IDeliverySlot;
+  onSelect: React.Dispatch<SetStateAction<IDeliverySlot>>;
 }

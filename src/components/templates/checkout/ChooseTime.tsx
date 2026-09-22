@@ -1,7 +1,8 @@
+import { IChooseTime } from "@/libs/types";
 import DeliverySlotClient from "./DeliverySlotClient";
 import Title from "./Title";
 
-function ChooseTime({ slots, selectedSlot, onSelect }) {
+function ChooseTime({ slots, selectedSlot, onSelect } : IChooseTime) {
   const slotsByDay = slots.reduce((acc: any, slot: any) => {
     if (!acc[slot.dayOfWeek]) {
       acc[slot.dayOfWeek] = [];
