@@ -1,7 +1,7 @@
 import DeliverySlotClient from "./DeliverySlotClient";
 import Title from "./Title";
 
-function ChooseTime({ slots }) {
+function ChooseTime({ slots, selectedSlot, onSelect }) {
   const slotsByDay = slots.reduce((acc: any, slot: any) => {
     if (!acc[slot.dayOfWeek]) {
       acc[slot.dayOfWeek] = [];
@@ -13,7 +13,11 @@ function ChooseTime({ slots }) {
   return (
     <div className="mt-5">
       <Title title="انتخاب زمان ارسال" />
-      <DeliverySlotClient slotsByDay={JSON.parse(JSON.stringify(slotsByDay))} />
+      <DeliverySlotClient
+        slotsByDay={slotsByDay}
+        selectedSlot={selectedSlot}
+        onSelect={onSelect}
+      />
     </div>
   );
 }

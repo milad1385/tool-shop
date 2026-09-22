@@ -1,13 +1,8 @@
-"use client";
-
 import { WEEK_DAYS } from "@/constants/days";
-import { IChooseTimeProps, IDeliverySlot } from "@/libs/types";
-import { useState } from "react";
+import { IChooseTimeProps } from "@/libs/types";
 import Time from "./Time";
 
-function ChooseTime({ slotsByDay }: IChooseTimeProps) {
-  const [selectedSlot, setSelectedSlot] = useState<IDeliverySlot | null>(null);
-
+function ChooseTime({ slotsByDay, selectedSlot, onSelect }: IChooseTimeProps) {
   const daysWithSlots = WEEK_DAYS.filter(
     (day) => slotsByDay[day] && slotsByDay[day].length > 0,
   );
@@ -21,7 +16,7 @@ function ChooseTime({ slotsByDay }: IChooseTimeProps) {
             dayOfWeek={dayOfWeek}
             slots={slotsByDay[dayOfWeek]}
             selectedSlot={selectedSlot}
-            onSelect={setSelectedSlot}
+            onSelect={onSelect}
           />
         ))}
       </div>
