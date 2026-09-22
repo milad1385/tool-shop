@@ -6,16 +6,16 @@ import ChooseAddress from "./ChooseAddress";
 import ChooseTime from "./ChooseTime";
 import Orders from "./Orders";
 import Title from "./Title";
-import { IDeliverySlot } from "@/libs/types";
+import { IDeliverySlot, IMainBox } from "@/libs/types";
 import toast from "react-hot-toast";
 
-function MainBox({ cart, userAdresses, slots }) {
+function MainBox({ cart, userAdresses, slots }: IMainBox) {
   const [activeAddress, setActiveAddress] = useState(userAdresses[0]._id);
   const [selectedSlot, setSelectedSlot] = useState<IDeliverySlot | null>(null);
 
   const createOrderHandler = () => {
-    if(!selectedSlot){
-      toast.error("یک زمان برای دریافت مرسوله انتخاب کنید")
+    if (!selectedSlot) {
+      toast.error("یک زمان برای دریافت مرسوله انتخاب کنید");
     }
   };
   return (

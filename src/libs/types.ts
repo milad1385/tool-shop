@@ -784,3 +784,69 @@ export interface ITimeProps {
 export interface ICheckoutDetails {
   slot: string;
 }
+
+export interface ICartItem {
+  _id?: string;
+  product: {
+    _id: string;
+    name: string;
+    slug: string;
+    images: string[];
+    category: {
+      _id: string;
+      name: string;
+      href: string;
+    };
+  };
+  seller: {
+    _id: string;
+    name: string;
+    city?: string;
+  };
+  quantity: number;
+  price: number;
+  discount: number;
+  finalPrice: number;
+  addedAt: Date;
+}
+
+export interface ICart {
+  _id: string;
+  user: string;
+  items: ICartItem[];
+  totalItems: number;
+  totalPrice: number;
+  totalDiscount: number;
+  finalPrice: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface IAddress {
+  _id?: string;
+  name: string;
+  mobile: string;
+  postalCode: string;
+  location: {
+    lat: number;
+    lan: number;
+  };
+  address: string;
+  houseNumber: string;
+  unit: string;
+}
+
+
+
+export interface IMainBox {
+  cart: ICart;
+  userAdresses: IAddress[];
+  slots: IDeliverySlot[];
+}
+
+export interface ICheckout {
+  totalItems: number;
+  totalPrice: number;
+  totalDiscount: number;
+  finalPrice: number;
+}
