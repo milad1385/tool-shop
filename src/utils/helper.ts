@@ -96,3 +96,29 @@ export const parseFilters = (filtersString: string) => {
     return [];
   }
 };
+
+export const createPayment = async ({
+  finalPrice,
+  orderNumber,
+}: {
+  finalPrice: number;
+  orderNumber: string;
+}) => {
+  try {
+    const res = await fetch(`${process.env.ZIBAL_BASE_URL}/request`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        merchant: process.env.ZIBAL_MERCHANT_ID,
+        amount: finalPrice * 10,
+        callbackUrl: "http://localhost:3000",
+        orderId: orderNumber,
+      }),
+    });
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error(error?.message);
+  }
+};
