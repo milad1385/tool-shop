@@ -1419,6 +1419,8 @@ export const deliverTimes = [
   },
 ];
 
+export const POSTAL_SEND_PRICE = 80000;
+
 export const limitedRoute = [
   "/auth",
   "/p-user",
