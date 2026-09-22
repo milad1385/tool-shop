@@ -5,7 +5,7 @@ import {
   increaseQuantity,
   removeFromCart,
 } from "@/libs/actions/cart.action";
-import { ICartItemProps } from "@/libs/types";
+import { ICartItem } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,7 +24,7 @@ function CartItem({
   seller,
   price,
   finalPrice,
-}: ICartItemProps) {
+}: ICartItem) {
   const router = useRouter();
   const [quantity, setQuantity] = useState(initialQuantity);
   const [isIncreasing, startIncreasing] = useTransition();
