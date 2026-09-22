@@ -111,7 +111,7 @@ export const createPayment = async ({
       body: JSON.stringify({
         merchant: process.env.ZIBAL_MERCHANT_ID,
         amount: finalPrice * 10,
-        callbackUrl: "http://localhost:3000",
+        callbackUrl: "http://localhost:3000/paymentStatus",
         orderId: orderNumber,
       }),
     });
