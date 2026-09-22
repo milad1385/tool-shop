@@ -854,3 +854,7 @@ export interface IChooseAddress {
   activeAddress: string;
   onActive: React.Dispatch<SetStateAction<string>>;
 }
+
+export interface IOrders {
+  cart: ICart;
+}

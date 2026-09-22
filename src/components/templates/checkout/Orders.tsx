@@ -1,8 +1,9 @@
 import React from "react";
 import OrderItem from "./OrderItem";
 import Title from "./Title";
+import { IOrders } from "@/libs/types";
 
-function Orders({ cart }) {
+function Orders({ cart }: IOrders) {
   return (
     <div className="mt-6">
       <Title title="لیست سفارش ها" />
