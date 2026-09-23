@@ -22,6 +22,17 @@ export const getDate = () => {
   return correctedFormat;
 };
 
+export const getTime = (timeStamps) => {
+  const date = new Date(timeStamps);
+
+  const timeStr = date.toLocaleTimeString("fa-IR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return timeStr;
+};
+
 export const setToLocalStorage = (key: string, value: any) => {
   if (key.length && value) {
     localStorage.setItem(key, JSON.stringify(value));
@@ -126,14 +137,46 @@ export const createPayment = async ({
 export const getOrderInfo = (status) => {
   switch (status) {
     case "paid":
-      return { title: "پرداخت شده", backgroundColor: "bg-green-500" };
+      return {
+        title: "پرداخت شده",
+        backgroundColor: "bg-green-500",
+        color: "text-green-500",
+        percentage: 10,
+      };
     case "pending":
-      return { title: "در انتظار پرداخت", backgroundColor: "bg-yellow-500" };
+      return {
+        title: "در انتظار پرداخت",
+        backgroundColor: "bg-yellow-500",
+        color: "text-yellow-500",
+        percentage: 0,
+      };
     case "shipped":
-      return { title: "ارسال شده", backgroundColor: "bg-purple-500" };
+      return {
+        title: "در حال ارسال",
+        backgroundColor: "bg-purple-500",
+        color: "text-purple-500",
+        percentage: 50,
+      };
     case "delivered":
-      return { title: "تحویل داده شده", backgroundColor: "bg-black" };
+      return {
+        title: "تحویل داده شده",
+        backgroundColor: "bg-black",
+        color: "text-black",
+        percentage: 100,
+      };
     case "cancelled":
-      return { title: "لغو شده", backgroundColor: "bg-red-500" };
+      return {
+        title: "لغو شده",
+        backgroundColor: "bg-red-500",
+        color: "text-red-500",
+        percentage: 10,
+      };
   }
+};
+
+export const percentageClasses: Record<number, string> = {
+  0: "w-[0%]",
+  10: "w-[10%]",
+  50: "w-[50%]",
+  100: "w-[100%]",
 };
