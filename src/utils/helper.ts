@@ -122,3 +122,18 @@ export const createPayment = async ({
     throw new Error(error?.message);
   }
 };
+
+export const getOrderInfo = (status) => {
+  switch (status) {
+    case "paid":
+      return { title: "پرداخت شده", backgroundColor: "bg-green-500" };
+    case "pending":
+      return { title: "در انتظار پرداخت", backgroundColor: "bg-yellow-500" };
+    case "shipped":
+      return { title: "ارسال شده", backgroundColor: "bg-purple-500" };
+    case "delivered":
+      return { title: "تحویل داده شده", backgroundColor: "bg-black" };
+    case "cancelled":
+      return { title: "لغو شده", backgroundColor: "bg-red-500" };
+  }
+};
