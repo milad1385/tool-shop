@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import connectDB from "@/configs/db";
-import { IGetUserOrders, IOrders, IUserOrders } from "@/libs/types";
+import { IGetUserOrders, IUserOrders } from "@/libs/types";
 import Order from "@/models/Order";
 import { normalizeData } from "@/utils/helper";
 
