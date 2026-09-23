@@ -2,7 +2,6 @@
 import { POSTAL_SEND_PRICE } from "@/constants/data";
 import { ICheckout } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
-import { useSearchParams } from "next/navigation";
 
 function Checkout({
   totalItems,
@@ -10,9 +9,6 @@ function Checkout({
   totalDiscount,
   finalPrice,
 }: ICheckout) {
-  const searchParams = useSearchParams();
-  const slot = searchParams.get("slot");
-
   return (
     <div className="col-span-12 md:col-span-3">
       <div className="bg-white rounded-3xl p-5 md:p-8">
@@ -39,12 +35,6 @@ function Checkout({
               {formattedPrice(finalPrice + POSTAL_SEND_PRICE)} تومان
             </span>
           </div>
-          <button
-            disabled={!slot}
-            className={`flex items-center justify-center py-2 rounded-md ${slot ? "bg-stone-800 hover:bg-stone-900" : "bg-gray-500"} text-white`}
-          >
-            پرداخت
-          </button>
         </div>
       </div>
     </div>
