@@ -59,9 +59,11 @@ function NavbarClient({ cartCount }: { cartCount: number }) {
               )}
               {isAuthenticated && (
                 <Link href="/cart" className="block relative md:cursor-pointer">
-                  <span className="absolute -top-4 left-4 size-5 rounded-full  flex items-center justify-center text-xs bg-yellow-400">
-                    {formattedPrice(cartCount)}
-                  </span>
+                  {cartCount > 0 && (
+                    <span className="absolute -top-4 left-4 size-5 rounded-full  flex items-center justify-center text-xs bg-yellow-400">
+                      {formattedPrice(cartCount)}
+                    </span>
+                  )}
                   <HiOutlineShoppingCart className="text-2xl" />
                 </Link>
               )}
