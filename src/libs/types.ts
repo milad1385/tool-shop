@@ -107,7 +107,7 @@ export interface IPage {
     [key: string]: string | undefined;
   }>;
   searchParams?: Promise<{
-    [key: string]: string | string[] | undefined;
+    [key: string]: string | string[] | undefined | any;
   }>;
 }
 
@@ -874,4 +874,63 @@ export interface IVerifyResultStatus {
     slotFull?: boolean;
     error?: boolean;
   };
+}
+
+export interface IGetUserOrders {
+  status?: "pending" | "paid" | "shipped" | "delivered" | "cancelled" | "all";
+}
+
+export interface IUserOrders {
+  _id: string;
+  user: string;
+  items: {
+    _id?: string;
+    product: {
+      _id: string;
+      slug: string;
+      name: string;
+      images: string[];
+      category: string;
+    };
+    seller: {
+      _id: string;
+      city: string;
+      name: string;
+      description: string;
+    };
+    quantity: number;
+    price: number;
+    discount: number;
+    finalPrice: number;
+  }[];
+  address: {
+    name: string;
+    mobile: string;
+    postalCode: string;
+    location: {
+      lat: number;
+      lan: number;
+    };
+    address: string;
+    houseNumber: string;
+    unit: string;
+  };
+  deliverySlot: {
+    dayOfWeek: number;
+    startHour: number;
+    endHour: number;
+    slot: string;
+  };
+  totalItems: number;
+  totalPrice: number;
+  totalDiscount: number;
+  finalPrice: number;
+  status: "pending" | "paid" | "shipped" | "delivered" | "cancelled";
+  paymentMethod?: "online" | "cash";
+  paymentStatus: "unpaid" | "paid" | "failed";
+  orderNumber: string;
+  trackingCode?: string;
+  notes?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
