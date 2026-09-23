@@ -3,6 +3,7 @@
 import Button from "@/components/ui/Button";
 import { IVerifyResult } from "@/libs/types";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 function VerifyResult({
@@ -12,6 +13,11 @@ function VerifyResult({
   orderNumber,
   failed,
 }: IVerifyResult) {
+  const router = useRouter();
+  const goToIndexPage = async () => {
+    router.replace("/", { scroll: true });
+    router.refresh();
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="bg-white rounded-3xl p-8 md:p-12 max-w-md w-full text-center shadow-lg">
@@ -54,11 +60,13 @@ function VerifyResult({
                   مشاهده سفارش
                 </Button>
               </Link>
-              <Link href="/" className="w-full">
-                <Button className="!w-full !bg-stone-800 hover:!bg-stone-900">
-                  بازگشت به صفحه اصلی
-                </Button>
-              </Link>
+
+              <Button
+                onClick={goToIndexPage}
+                className="!w-full !bg-stone-800 hover:!bg-stone-900"
+              >
+                بازگشت به صفحه اصلی
+              </Button>
             </>
           ) : (
             <>
