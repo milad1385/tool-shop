@@ -32,7 +32,7 @@ async function page({ searchParams }: IPage) {
         ]}
         slug="status"
       />
-      <Orders status={status} />
+      <Orders status={status || "all"} />
     </Container>
   );
 }
