@@ -4,10 +4,11 @@ import Orders from "@/components/templates/p-user/orders/Orders";
 import Title from "@/components/modules/p-user/Title";
 import React from "react";
 import { Metadata } from "next";
+import { IPage } from "@/libs/types";
 
 export const metadata: Metadata = {
   title: "سفارش ها - پنل کاربری",
-  description:"لیست سفارش های خود را میتوانید مشاهده کنید",
+  description: "لیست سفارش های خود را میتوانید مشاهده کنید",
   icons: {
     icon: "/images/tool.png",
   },
@@ -16,7 +17,8 @@ export const metadata: Metadata = {
   },
 };
 
-function page() {
+async function page({ searchParams }: IPage) {
+  const { status } = await searchParams;
   return (
     <Container>
       <Title content="سفارش ها" />
@@ -30,7 +32,7 @@ function page() {
         ]}
         slug="status"
       />
-      <Orders />
+      <Orders status={status} />
     </Container>
   );
 }

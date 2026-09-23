@@ -1,11 +1,15 @@
+import { IGetUserOrders, IUserOrders } from "@/libs/types";
+import { getUserOrders } from "@/services/orders.service";
 import OrderBox from "./OrderBox";
 
-function Orders() {
+async function Orders({ status }: IGetUserOrders) {
+  const orders = await getUserOrders({ status });
+
   return (
     <div className="flex flex-col gap-4">
-      <OrderBox />
-      <OrderBox />
-      <OrderBox />
+      {orders.map((order) => (
+        <OrderBox key={order._id} {...order} />
+      ))}
     </div>
   );
 }
