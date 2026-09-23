@@ -18,7 +18,8 @@ export const metadata: Metadata = {
 };
 
 async function page({ searchParams }: IPage) {
-  const { status } = await searchParams;
+  let { status } = await searchParams;
+  status = status || "all";
   return (
     <Container>
       <Title content="سفارش ها" />
@@ -32,7 +33,7 @@ async function page({ searchParams }: IPage) {
         ]}
         slug="status"
       />
-      <Orders status={status || "all"} />
+      <Orders status={status} />
     </Container>
   );
 }
