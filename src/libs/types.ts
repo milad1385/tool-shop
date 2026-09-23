@@ -880,6 +880,16 @@ export interface IGetUserOrders {
   status?: "pending" | "paid" | "shipped" | "delivered" | "cancelled" | "all";
 }
 
+export interface IGetUserOrder {
+  id: string;
+}
+
+export interface IOrdersList {
+  order: IUserOrders;
+}
+
+type TOrderStatus = "pending" | "paid" | "shipped" | "delivered" | "cancelled";
+
 export interface IUserOrders {
   _id: string;
   user: string;
@@ -925,7 +935,7 @@ export interface IUserOrders {
   totalPrice: number;
   totalDiscount: number;
   finalPrice: number;
-  status: "pending" | "paid" | "shipped" | "delivered" | "cancelled";
+  status: TOrderStatus;
   paymentMethod?: "online" | "cash";
   paymentStatus: "unpaid" | "paid" | "failed";
   orderNumber: string;
@@ -933,4 +943,12 @@ export interface IUserOrders {
   notes?: string;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface IOrderDeatils {
+  order: IUserOrders;
+}
+
+export interface IProgressDeliverOrder {
+  status: TOrderStatus;
 }
