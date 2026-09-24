@@ -6,6 +6,7 @@ import { normalizeData } from "@/utils/helper";
 
 export const getUserOrders = async ({
   status,
+  isLatest,
 }: IGetUserOrders): Promise<IUserOrders[]> => {
   try {
     await connectDB();
@@ -19,10 +20,17 @@ export const getUserOrders = async ({
     if (status !== "all") {
       filters.status = status;
     }
-    const orders = await Order.find({ ...filters })
+
+    const query = Order.find({ ...filters })
       .populate("items.product", "name slug images category")
       .populate("items.seller", "city name description")
       .sort({ createdAt: -1 });
+
+    if (isLatest) {
+      query.limit(3);
+    }
+
+    const orders = await query;
 
     return normalizeData(orders);
   } catch (error) {

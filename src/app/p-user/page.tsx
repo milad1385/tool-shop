@@ -11,7 +11,7 @@ function page() {
       <Container>
         <Notification />
         <Title content="سفارش های اخیر شما" />
-        <Orders />
+        <Orders isLatest />
       </Container>
     </div>
   );
