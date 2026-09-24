@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import Container from "@/components/modules/p-user/Container";
 import Title from "@/components/modules/p-user/Title";
 import InformationInputs from "@/components/templates/p-user/information/InformationInputs";
@@ -15,11 +16,12 @@ export const metadata: Metadata = {
   },
 };
 
-function page() {
+async function page() {
+  const session = await auth();
   return (
     <Container>
       <Title content="جزییات حساب کاربری" />
-      <InformationInputs />
+      <InformationInputs user={session.user} />
     </Container>
   );
 }

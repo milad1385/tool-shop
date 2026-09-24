@@ -60,6 +60,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           user.roles = existingUser.roles.map((r: any) => r.toString());
           user.fullname = existingUser.fullname?.toString() || "";
           user.username = existingUser.username?.toString() || "";
+          user.phone = existingUser.phone?.toString() || "";
         }
 
         return true;
@@ -75,6 +76,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.fullname = user.fullname;
         token.username = user.username;
         token.provider = account?.provider;
+        token.phone = user.phone;
       }
       return token;
     },
@@ -85,6 +87,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.roles = token.roles as string[];
         session.user.fullname = token.fullname;
         session.user.username = token.username;
+        session.user.phone = token.phone;
       }
       return session;
     },

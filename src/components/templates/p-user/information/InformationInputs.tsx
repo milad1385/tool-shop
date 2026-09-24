@@ -9,7 +9,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { PiUploadSimple } from "react-icons/pi";
-function InformationInputs() {
+function InformationInputs({ user }) {
+  console.log(user);
+
   const [tempUserImage, setTempUserImage] = useState("");
   const {
     register,
@@ -17,6 +19,7 @@ function InformationInputs() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(userValidorSchema),
+    defaultValues: { ...user },
   });
 
   const editUserInformation = async (data: UserData) => {
@@ -27,7 +30,7 @@ function InformationInputs() {
       <div className="my-8">
         <div className="relative w-[125px] h-[125px] mx-auto">
           <Image
-            src={tempUserImage ? tempUserImage : "/images/avatar-3.jpg"}
+            src={tempUserImage ? tempUserImage : user.image}
             alt="avatar-3.jpg"
             width={1920}
             height={1080}
@@ -57,19 +60,12 @@ function InformationInputs() {
         <Input
           register={register}
           errors={errors}
-          label="نام"
+          label="نام و نام خانوادگی"
           type="text"
           name="name"
           className="text-right"
         />
-        <Input
-          register={register}
-          errors={errors}
-          label="نام خانوادگی"
-          type="text"
-          name="lastname"
-          className="text-right"
-        />
+
         <Input
           register={register}
           errors={errors}
@@ -85,7 +81,7 @@ function InformationInputs() {
           type="email"
           name="email"
         />
-        <Input
+        {/* <Input
           register={register}
           errors={errors}
           label="رمز عبور قبلی"
@@ -99,14 +95,7 @@ function InformationInputs() {
           type="password"
           name="newpassword"
         />
-        <Input
-          register={register}
-          errors={errors}
-          label="آدرس سایت"
-          type="text"
-          name="site"
-          className="text-right"
-        />
+        */}
         <Input
           register={register}
           errors={errors}
