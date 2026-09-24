@@ -1,5 +1,5 @@
 import { IProgressDeliverOrder } from "@/libs/types";
-import { getOrderInfo, percentageClasses } from "@/utils/helper";
+import { getOrderInfo } from "@/utils/helper";
 
 function ProgressDeliverOrder({ status }: IProgressDeliverOrder) {
   const { title, backgroundColor, color, percentage } = getOrderInfo(status);
@@ -15,7 +15,8 @@ function ProgressDeliverOrder({ status }: IProgressDeliverOrder) {
 
       <div className="w-full mt-4 flex flex-row-reverse bg-gray-100 rounded-full">
         <div
-          className={`${backgroundColor} ${percentageClasses[percentage]} py-1.5 rounded-full`}
+        style={{width :`${percentage}%`}}
+          className={`${backgroundColor}  py-1.5 rounded-full`}
         />
       </div>
     </div>
