@@ -893,7 +893,10 @@ type TOrderStatus = "pending" | "paid" | "shipped" | "delivered" | "cancelled";
 
 export interface IUserOrders {
   _id: string;
-  user: string;
+  user: {
+    email: string;
+    fullname: string;
+  };
   items: {
     _id?: string;
     product: {
@@ -952,4 +955,8 @@ export interface IOrderDeatils {
 
 export interface IProgressDeliverOrder {
   status: TOrderStatus;
+}
+
+export interface IFactorDetails {
+  factor: IUserOrders;
 }
