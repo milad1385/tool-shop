@@ -1,8 +1,11 @@
 "use client";
+import { POSTAL_SEND_PRICE } from "@/constants/data";
+import { IFactorDetails } from "@/libs/types";
+import { formatDate, formattedPrice } from "@/utils/helper";
 import Link from "next/link";
 import React from "react";
 
-function FactorDetails() {
+function FactorDetails({ factor }: IFactorDetails) {
   const printFactorHandler = () => {
     if (window.print) {
       window.print();
@@ -17,86 +20,100 @@ function FactorDetails() {
       </h1>
       <div className="space-y-4 mt-4">
         <div className="font-DanaMedium">
-          شماره سفارش :<span className="font-DanaDemiBold">#6532352</span>
+          شماره سفارش :
+          <span className="font-DanaDemiBold">{factor.orderNumber}</span>
         </div>
         <div className="font-DanaMedium">
           تاریخ سفارش :
           <span className="font-DanaDemiBold">
-            {new Date(Date.now()).toLocaleDateString("fa-IR")}
+            {formatDate(factor.createdAt)}
           </span>
         </div>
       </div>
-      <div className="py-6  mt-4 w-full text-sm md:text-base border-b border-b-gray-300">
+      {/* <div className="py-6  mt-4 w-full text-sm md:text-base border-b border-b-gray-300">
         <h2 className="mx-auto pb-3 flex-center flex-col font-DanaDemiBold text-sm  md:text-lg border-b border-gray-300 w-full">
           مشخصات فروشنده
         </h2>
-        <div className="py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-x-[120px]">
-          <div className="font-DanaMedium">
-            نام شخص حقیقی / حقوقی :{" "}
-            <span className="font-DanaDemiBold text-gray-700">
-              میلاد سلامیان
-            </span>
+        {factor.items.map((item) => (
+          <div key={item._id} className="py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-x-[120px]">
+            <div className="font-DanaMedium">
+              نام شخص حقیقی / حقوقی :{" "}
+              <span className="font-DanaDemiBold text-gray-700">
+                {item.seller.}
+              </span>
+            </div>
+            <div className="font-DanaMedium">
+              کد پیگیری:{" "}
+              <span className="font-DanaDemiBold text-gray-700">
+                {factor.trackingCode}#
+              </span>
+            </div>
+            <div className="font-DanaMedium">
+              شماره ثبت / ملی :{" "}
+              <span className="font-DanaDemiBold text-gray-700">----</span>
+            </div>
           </div>
-          <div className="font-DanaMedium">
-            شماره اقتصادی:{" "}
-            <span className="font-DanaDemiBold text-gray-700">25452358</span>
-          </div>
-          <div className="font-DanaMedium">
-            شماره ثبت / ملی :{" "}
-            <span className="font-DanaDemiBold text-gray-700">94548415</span>
-          </div>
-        </div>
+        ))}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-x-[120px]">
           <div className="font-DanaMedium">
             آدرس :{" "}
             <span className="font-DanaDemiBold text-gray-700">
-              کرج ، فردیس ، کانال غربی
+              {factor.address.address}
             </span>
           </div>
           <div className="font-DanaMedium">
             کد پستی :{" "}
-            <span className="font-DanaDemiBold text-gray-700">25452358</span>
+            <span className="font-DanaDemiBold text-gray-700">
+              {factor.address.postalCode}
+            </span>
           </div>
           <div className="font-DanaMedium">
-            تلفن:{" "}
-            <span className="font-DanaDemiBold text-gray-700">02636578952</span>
+            تلفن: <span className="font-DanaDemiBold text-gray-700"></span>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="pb-6  mt-4 w-full text-sm md:text-base border-b border-b-gray-300">
         <h2 className="mx-auto pb-3 flex-center flex-col font-DanaDemiBold text-sm  md:text-lg border-b border-gray-300 w-full">
           مشخصات خریدار
         </h2>
         <div className="py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-x-[120px]">
           <div className="font-DanaMedium">
-            نام شخص حقیقی / حقوقی :{" "}
-            <span className="font-DanaDemiBold text-gray-700">محمد اکبری</span>
+            نام تحویل گیرنده :{" "}
+            <span className="font-DanaDemiBold text-gray-700">
+              {factor.address.name}
+            </span>
           </div>
           <div className="font-DanaMedium">
             ایمیل :{" "}
             <span className="font-DanaDemiBold text-gray-700">
-              <a href="mailto:mohammad@gamil.com">Mohammad@gmail.com</a>
+              <a href={`mailto:${factor.user.email}`}>{factor.user.email}</a>
             </span>
           </div>
           <div className="font-DanaMedium">
             تاریخ تحویل:
-            <span className="font-DanaDemiBold text-gray-700">1404/05/25</span>
+            <span className="font-DanaDemiBold text-gray-700">
+              {factor.status === "delivered" ? "1404/05/25" : "در حال پردازش"}
+            </span>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-x-[120px]">
           <div className="font-DanaMedium">
             آدرس :{" "}
             <span className="font-DanaDemiBold text-gray-700">
-              استان البرز ، کرج خیابان ساختمان 25 پلاک 23 واحد 6
+              {factor.address.address}
             </span>
           </div>
           <div className="font-DanaMedium">
             کد پستی :{" "}
-            <span className="font-DanaDemiBold text-gray-700">3187771478</span>
+            <span className="font-DanaDemiBold text-gray-700">
+              {factor.address.postalCode}
+            </span>
           </div>
           <div className="font-DanaMedium">
             تلفن:{" "}
-            <span className="font-DanaDemiBold text-gray-700">09336085016</span>
+            <span className="font-DanaDemiBold text-gray-700">
+              {factor.address.mobile}
+            </span>
           </div>
         </div>
       </div>
@@ -109,102 +126,65 @@ function FactorDetails() {
             <thead>
               <tr className="child:pb-4">
                 <th>ردیف</th>
-                <th>کد کالا</th>
                 <th>نام</th>
+                <th>فروشنده</th>
                 <th>تعداد</th>
                 <th>مبلغ کل</th>
                 <th>مبلغ تخفیف </th>
                 <th>مبلغ نهایی </th>
               </tr>
             </thead>
-            <tbody className="">
-              <tr className="!bg-gray-100 text-center child:p-4 !border-1">
-                <td>1</td>
-                <td>#4542558</td>
-                <td>
-                  <Link href="/products/1">دریل چند حالته رونیکس</Link>
-                </td>
-                <td>25</td>
-                <td>15,000,000</td>
-                {/* <td>
-                  {(
-                    item.product.price +
-                    ((item.product.price * item.product.off) / 100) * item.qty
-                  ).toLocaleString("fa")}
-                </td> */}
-                <td>85,000,000</td>
-                {/* <td>
-                  {(
-                    (item.product.price * item.qty * item.product.off) /
-                    100
-                  ).toLocaleString("fa")}
-                </td> */}
-                <td>25,000,000</td>
-                {/*{(item.price * item.qty).toLocaleString("fa")}</td> */}
-              </tr>
-              <tr className="!bg-gray-100 text-center child:p-4 !border-1">
-                <td>1</td>
-                <td>#4542558</td>
-                <td>
-                  <Link href="/products/1">دریل چند حالته رونیکس</Link>
-                </td>
-                <td>25</td>
-                <td>15,000,000</td>
-                {/* <td>
-                  {(
-                    item.product.price +
-                    ((item.product.price * item.product.off) / 100) * item.qty
-                  ).toLocaleString("fa")}
-                </td> */}
-                <td>85,000,000</td>
-                {/* <td>
-                  {(
-                    (item.product.price * item.qty * item.product.off) /
-                    100
-                  ).toLocaleString("fa")}
-                </td> */}
-                <td>25,000,000</td>
-                {/*{(item.price * item.qty).toLocaleString("fa")}</td> */}
-              </tr>
-              <tr className="!bg-gray-100 text-center child:p-4 !border-1">
-                <td>1</td>
-                <td>#4542558</td>
-                <td>
-                  <Link href="/products/1">دریل چند حالته رونیکس</Link>
-                </td>
-                <td>25</td>
-                <td>15,000,000</td>
-                {/* <td>
-                  {(
-                    item.product.price +
-                    ((item.product.price * item.product.off) / 100) * item.qty
-                  ).toLocaleString("fa")}
-                </td> */}
-                <td>85,000,000</td>
-                {/* <td>
-                  {(
-                    (item.product.price * item.qty * item.product.off) /
-                    100
-                  ).toLocaleString("fa")}
-                </td> */}
-                <td>25,000,000</td>
-                {/*{(item.price * item.qty).toLocaleString("fa")}</td> */}
-              </tr>
+            <tbody className="text-xs">
+              {factor.items.map((item, index) => (
+                <tr
+                  key={item._id}
+                  className="!bg-gray-100 text-center child:p-4 !border-1"
+                >
+                  <td>{index + 1}</td>
+                  <td>
+                    <Link href={`/products/${item.product.slug}`}>
+                      {item.product.name.slice(0, 20)}
+                    </Link>
+                  </td>
+                  <td>{item.seller.name}</td>
+                  <td>{item.quantity}</td>
+                  <td>{formattedPrice(item.price * item.quantity)}</td>
+                  <td>
+                    {formattedPrice(
+                      ((item.price * item.discount) / 100) * item.quantity,
+                    )}
+                  </td>
+                  <td>{formattedPrice(item.finalPrice * item.quantity)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
         <div className="mt-3 space-y-3">
           <div className="border-b border-b-gray-300 pb-4">
             مبلغ کل :{" "}
-            <span className="font-DanaDemiBold">85,000,000 تومان</span>
+            <span className="font-DanaDemiBold">
+              {formattedPrice(factor.totalPrice)} تومان
+            </span>
+          </div>
+
+          <div className="border-b border-b-gray-300 pb-4">
+            سود شما از این خرید :{" "}
+            <span className="font-DanaDemiBold">
+              {formattedPrice(factor.totalDiscount)} تومان
+            </span>
+          </div>
+          <div className="border-b border-b-gray-300 pb-4">
+            هزینه ارسال مرسوله:{" "}
+            <span className="font-DanaDemiBold">
+              {formattedPrice(POSTAL_SEND_PRICE)} تومان
+            </span>
           </div>
           <div className="border-b border-b-gray-300 pb-4">
             مبلغ پرداختی :{" "}
-            <span className="font-DanaDemiBold">83,000,000 تومان</span>
-          </div>
-          <div className="border-b border-b-gray-300 pb-4">
-            سود شما از این خرید :{" "}
-            <span className="font-DanaDemiBold">2,000,000 تومان</span>
+            <span className="font-DanaDemiBold">
+              {formattedPrice(factor.finalPrice)} تومان
+            </span>
           </div>
           <div className="border-b border-b-gray-300 pb-4 grid grid-cols-6">
             <div>امضا خریدار</div>
@@ -218,8 +198,8 @@ function FactorDetails() {
           </button>
         </div>
         <h4 className="text-center font-DanaDemiBold text-sm md:text-lg mt-6">
-          متشکریم از خرید شما {"میلاد سلامیان"} ، امیدوارم نهایت رضایت رو داشته
-          باشید ❤️
+          متشکریم از خرید شما {factor.user.fullname} ، امیدوارم نهایت رضایت رو
+          داشته باشید ❤️
         </h4>
       </div>
     </div>
