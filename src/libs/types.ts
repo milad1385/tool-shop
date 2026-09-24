@@ -878,6 +878,7 @@ export interface IVerifyResultStatus {
 
 export interface IGetUserOrders {
   status?: "pending" | "paid" | "shipped" | "delivered" | "cancelled" | "all";
+  isLatest?: boolean;
 }
 
 export interface IGetUserOrder {
