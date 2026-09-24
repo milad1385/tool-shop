@@ -1,29 +1,32 @@
-import React from "react";
-import StatBox from "../../../modules/p-user/StatBox";
+import { getUserPanelStats } from "@/services/users.service";
+import { formattedPrice } from "@/utils/helper";
 import { AiOutlineProduct } from "react-icons/ai";
 import { CgSandClock } from "react-icons/cg";
 import { TbBasketPause } from "react-icons/tb";
-import { formattedPrice } from "@/utils/helper";
+import StatBox from "../../../modules/p-user/StatBox";
 
-function Stats() {
+async function Stats() {
+  const { paidCount, pendingCount, cancelledCount } = await getUserPanelStats();
   return (
     <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
       <StatBox
-        title="9 محصول"
-        icon={<AiOutlineProduct className="text-zinc-800 text-xl md:text-3xl" />}
+        title={`${pendingCount} محصول`}
+        icon={
+          <AiOutlineProduct className="text-zinc-800 text-xl md:text-3xl" />
+        }
         className="bg-yellow-500 text-white"
-        desc="خریداری کرده اید"
+        desc="در انتظار پرداخت"
       />
       <StatBox
-        title="2 محصول"
+        title={`${paidCount} محصول`}
         icon={<CgSandClock className="text-zinc-800 text-xl md:text-3xl" />}
-        desc="در انتظار پرداخت"
+        desc="خریداری شده"
         className="bg-black text-white"
       />
       <StatBox
-        title="1 محصول"
+        title={`${cancelledCount} محصول`}
         icon={<TbBasketPause className="text-zinc-800 text-xl md:text-3xl" />}
-        desc="در انتظار پرداخت"
+        desc="لغو شده"
         className="bg-red-600 text-white"
       />
       <StatBox
