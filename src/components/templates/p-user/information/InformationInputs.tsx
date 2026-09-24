@@ -10,8 +10,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { PiUploadSimple } from "react-icons/pi";
 function InformationInputs({ user }) {
-  console.log(user);
-
   const [tempUserImage, setTempUserImage] = useState("");
   const {
     register,
@@ -81,21 +79,6 @@ function InformationInputs({ user }) {
           type="email"
           name="email"
         />
-        {/* <Input
-          register={register}
-          errors={errors}
-          label="رمز عبور قبلی"
-          type="password"
-          name="lastpassword"
-        />
-        <Input
-          register={register}
-          errors={errors}
-          label="رمز عبور جدید"
-          type="password"
-          name="newpassword"
-        />
-        */}
         <Input
           register={register}
           errors={errors}
