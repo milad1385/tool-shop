@@ -60,9 +60,11 @@ function OrderBox({
           ))}
         </div>
         <div className="flex items-center gap-x-4">
-          <Link href={`/factor/${_id}`}>
-            <Button className="!rounded-xl !w-[125px]">مشاهده فاکتور</Button>
-          </Link>
+          {["delivered", "paid", "shipped"].includes(status) && (
+            <Link href={`/factor/${_id}`}>
+              <Button className="!rounded-xl !w-[125px]">مشاهده فاکتور</Button>
+            </Link>
+          )}
           <Link href={`/p-user/orders/${_id}`}>
             <Button className="!bg-red-600 !rounded-xl !w-[125px]">
               جزییات
