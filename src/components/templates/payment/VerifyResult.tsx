@@ -18,6 +18,11 @@ function VerifyResult({
     router.replace("/", { scroll: true });
     router.refresh();
   };
+
+  const goToOrderPage = async () => {
+    router.replace(`/p-user/orders/${orderId}`, { scroll: true });
+    router.refresh();
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="bg-white rounded-3xl p-8 md:p-12 max-w-md w-full text-center shadow-lg">
@@ -55,11 +60,12 @@ function VerifyResult({
         <div className="flex flex-col gap-3">
           {success && orderId ? (
             <>
-              <Link href={`/p-user/orders/${orderId}`} className="w-full">
-                <Button className="!w-full !bg-green-500 hover:!bg-green-600">
-                  مشاهده سفارش
-                </Button>
-              </Link>
+              <Button
+                onClick={goToOrderPage}
+                className="!w-full !bg-green-500 hover:!bg-green-600"
+              >
+                مشاهده سفارش
+              </Button>
 
               <Button
                 onClick={goToIndexPage}
