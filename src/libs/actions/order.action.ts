@@ -382,3 +382,76 @@ export async function verifyPayment(trackId: number): Promise<IActionState> {
     };
   }
 }
+
+export async function continuePayment(orderId: string): Promise<IActionState> {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return {
+        success: false,
+        message: "لطفاً وارد شوید",
+      };
+    }
+
+    await connectDB();
+
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return {
+        success: false,
+        message: "سفارش یافت نشد",
+      };
+    }
+
+    if (order.user.toString() !== session.user.id) {
+      return {
+        success: false,
+        message: "دسترسی غیرمجاز",
+      };
+    }
+
+    if (order.paymentStatus === "paid") {
+      return {
+        success: false,
+        message: "این سفارش قبلاً پرداخت شده است",
+      };
+    }
+
+    if (order.status === "cancelled") {
+      return {
+        success: false,
+        message: "این سفارش لغو شده است",
+      };
+    }
+
+    const data = await createPayment({
+      finalPrice: order.finalPrice,
+      orderNumber: order.orderNumber,
+    });
+
+    if (!data?.trackId) {
+      return {
+        success: false,
+        message: "خطا در ایجاد تراکنش جدید",
+      };
+    }
+
+    order.trackingCode = data.trackId;
+    await order.save();
+
+    return {
+      success: true,
+      message: "در حال انتقال به درگاه پرداخت...",
+      data: {
+        trackId: data.trackId,
+        paymentUrl: `${process.env.ZIBAL_URL}/start/${data.trackId}`,
+      },
+    };
+  } catch (error: any) {
+    console.error("خطا در ادامه پرداخت:", error);
+    return {
+      success: false,
+      message: error.message || "خطا در ادامه پرداخت، لطفاً دوباره تلاش کنید",
+    };
+  }
+}
