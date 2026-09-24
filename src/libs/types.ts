@@ -960,3 +960,9 @@ export interface IProgressDeliverOrder {
 export interface IFactorDetails {
   factor: IUserOrders;
 }
+
+export interface IGetUserPanelStats {
+  paidCount: number;
+  cancelledCount: number;
+  pendingCount: number;
+}
