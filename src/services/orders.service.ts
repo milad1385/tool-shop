@@ -3,6 +3,7 @@ import connectDB from "@/configs/db";
 import { IGetUserOrder, IGetUserOrders, IUserOrders } from "@/libs/types";
 import Order from "@/models/Order";
 import { normalizeData } from "@/utils/helper";
+import { isValidObjectId } from "mongoose";
 
 export const getUserOrders = async ({
   status,
@@ -40,9 +41,12 @@ export const getUserOrders = async ({
 
 export const getUserOrder = async ({
   id,
-}: IGetUserOrder): Promise<IUserOrders> => {
+}: IGetUserOrder): Promise<IUserOrders | null> => {
   try {
     await connectDB();
+    if (!isValidObjectId(id)) {
+      return null;
+    }
 
     const session = await auth();
     if (!session?.user) {
