@@ -5,10 +5,14 @@ import OrdersList from "@/components/templates/p-user/orders/OrdersList";
 import ProgressDeliverOrder from "@/components/templates/p-user/orders/ProgressDeliverOrder";
 import { IPage } from "@/libs/types";
 import { getUserOrder } from "@/services/orders.service";
+import { notFound } from "next/navigation";
 
 async function page({ params }: IPage) {
   const { id } = await params;
   const order = await getUserOrder({ id });
+  if (!order) {
+    notFound();
+  }
 
   return (
     <Container>
