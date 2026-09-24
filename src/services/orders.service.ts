@@ -59,6 +59,7 @@ export const getUserOrder = async ({
         },
       })
       .populate("items.seller", "city name description")
+      .populate("user", "fullname email")
       .sort({ createdAt: -1 });
 
     return normalizeData(order);
