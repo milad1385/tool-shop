@@ -1,7 +1,7 @@
-import { IGetUserOrders, IUserOrders } from "@/libs/types";
+import EmptyState from "@/components/modules/main/EmptyState";
+import { IGetUserOrders } from "@/libs/types";
 import { getUserOrders } from "@/services/orders.service";
 import OrderBox from "./OrderBox";
-import EmptyState from "@/components/modules/main/EmptyState";
 
 async function Orders({ status, isLatest }: IGetUserOrders) {
   const orders = await getUserOrders({ status: status || "all", isLatest });
