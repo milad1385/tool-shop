@@ -21,7 +21,7 @@ function ProfileBox() {
       <div className="w-64 bg-white py-5 px-3 border border-strong rounded-xl shadow-lg">
         <div className="flex items-center gap-x-3 pb-3 px-2 mb-3 border-b border-b-light">
           <Image
-            className="size-11 rounded-full object-fill"
+            className="size-11 rounded-full object-cover"
             width={1920}
             height={1080}
             src={user?.image ?? "/images/user.jpg"}
