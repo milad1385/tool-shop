@@ -2,8 +2,11 @@ import Breadcrumb from "@/components/modules/main/Breadcrumb";
 import Container from "@/components/modules/main/Container";
 import FilterSide from "@/components/templates/products/FilterSide";
 import Products from "@/components/templates/products/Products";
+import { IPage } from "@/libs/types";
+import { getAllCategories } from "@/services/categories.service";
 
-function page() {
+async function page({ searchParams }: IPage) {
+  const categories = await getAllCategories();
   return (
     <Container>
       <Breadcrumb
@@ -14,9 +17,9 @@ function page() {
       />
 
       <div className="grid grid-cols-12 gap-x-5">
-        <FilterSide />
+        <FilterSide categories={categories} />
 
-        <Products />
+        <Products searchParams={searchParams} />
       </div>
     </Container>
   );
