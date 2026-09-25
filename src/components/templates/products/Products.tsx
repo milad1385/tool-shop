@@ -9,12 +9,15 @@ import SortProduct from "./SortProduct";
 import EmptyState from "@/components/modules/main/EmptyState";
 
 async function Products({ searchParams }) {
-  const { page, category } = await searchParams;
+  const { page, category, min, max } = await searchParams;
 
   const { data, pagination } = await getProductsWithFilter({
     page: +page,
     categorySlugs: category,
+    min: min,
+    max: max,
   });
+
   return (
     <div className="col-span-12 md:col-span-9">
       <MobileSearch />
