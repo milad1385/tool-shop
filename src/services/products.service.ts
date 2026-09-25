@@ -5,6 +5,7 @@ import { createPagination } from "@/utils/helper";
 import {
   IGetProducts,
   IGetProductsByCategory,
+  IGetProductsWithFilter,
   IPaginatedResponse,
   IProduct,
 } from "@/libs/types";
@@ -197,6 +198,52 @@ export const getRelatedProducts = async (slug: string): Promise<IProduct[]> => {
       .lean();
 
     return normalizeData(relatedProducts);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getProductsWithFilter = async ({
+  limit = 9,
+  page = 1,
+  categorySlugs,
+}: IGetProductsWithFilter) => {
+  try {
+    await connectToDB();
+
+    let filter: any = { status: "active" };
+
+    if (categorySlugs && categorySlugs.trim()) {
+      const slugsArray = categorySlugs
+        .split(",")
+        .map((slug: string) => slug.trim())
+        .filter((slug: string) => slug !== "");
+
+      if (slugsArray.length > 0) {
+        const categories = await Category.find({
+          href: { $in: slugsArray },
+        }).select("_id");
+
+        if (categories.length > 0) {
+          const categoryIds = categories.map((cat) => cat._id);
+          filter.category = { $in: categoryIds };
+        }
+      }
+    }
+
+    const count = await Product.countDocuments(filter);
+
+    const products = await Product.find(filter)
+      .populate("category", "name slug")
+      .populate("sellers.seller", "name city")
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .sort({ createdAt: -1 });
+
+    return {
+      data: normalizeData(products),
+      pagination: createPagination({ page, limit, count }),
+    };
   } catch (error) {
     throw new Error(error.message);
   }
