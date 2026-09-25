@@ -203,32 +203,159 @@ export const getRelatedProducts = async (slug: string): Promise<IProduct[]> => {
   }
 };
 
+const buildPriceMatchStage = (minPrice: number, maxPrice: number) => {
+  return {
+    $match: {
+      $expr: {
+        $anyElementTrue: {
+          $map: {
+            input: "$sellers",
+            as: "seller",
+            in: {
+              $and: [
+                {
+                  $gte: [
+                    {
+                      $multiply: [
+                        "$$seller.price",
+                        {
+                          $subtract: [
+                            1,
+                            {
+                              $divide: [
+                                { $ifNull: ["$$seller.discount", 0] },
+                                100,
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    minPrice,
+                  ],
+                },
+                {
+                  $lte: [
+                    {
+                      $multiply: [
+                        "$$seller.price",
+                        {
+                          $subtract: [
+                            1,
+                            {
+                              $divide: [
+                                { $ifNull: ["$$seller.discount", 0] },
+                                100,
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    maxPrice,
+                  ],
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+};
+
 export const getProductsWithFilter = async ({
   limit = 9,
   page = 1,
   categorySlugs,
+  min,
+  max,
 }: IGetProductsWithFilter) => {
   try {
     await connectToDB();
 
-    let filter: any = { status: "active" };
+    const safePage = Number(page) || 1;
+    const safeLimit = Number(limit) || 9;
+    const skip = (safePage - 1) * safeLimit;
 
-    if (categorySlugs && categorySlugs.trim()) {
+    const filter: any = { status: "active" };
+
+    if (categorySlugs?.trim()) {
       const slugsArray = categorySlugs
         .split(",")
-        .map((slug: string) => slug.trim())
-        .filter((slug: string) => slug !== "");
+        .map((s) => s.trim())
+        .filter(Boolean);
 
       if (slugsArray.length > 0) {
         const categories = await Category.find({
           href: { $in: slugsArray },
-        }).select("_id");
+        })
+          .select("_id")
+          .lean();
 
-        if (categories.length > 0) {
-          const categoryIds = categories.map((cat) => cat._id);
-          filter.category = { $in: categoryIds };
+        if (categories.length === 0) {
+          return {
+            data: [],
+            pagination: createPagination({
+              page: safePage,
+              limit: safeLimit,
+              count: 0,
+            }),
+          };
         }
+
+        filter.category = {
+          $in: categories.map((c) => c._id),
+        };
       }
+    }
+
+    const hasPriceFilter =
+      (min !== undefined && min !== "") || (max !== undefined && max !== "");
+
+    if (hasPriceFilter) {
+      const minPrice = min !== undefined && min !== "" ? Number(min) : 0;
+
+      const maxPrice =
+        max !== undefined && max !== "" ? Number(max) : 999_999_999_999;
+
+      const priceMatch = buildPriceMatchStage(minPrice, maxPrice);
+
+      const countResult = await Product.aggregate([
+        { $match: filter },
+        priceMatch,
+        { $count: "total" },
+      ]);
+
+      const count = countResult[0]?.total || 0;
+
+      const products = await Product.aggregate([
+        { $match: filter },
+        priceMatch,
+        { $sort: { createdAt: -1 } },
+        { $skip: skip },
+        { $limit: safeLimit },
+      ]);
+
+      const populatedProducts = await Product.populate(products, [
+        {
+          path: "category",
+          select: "name slug",
+        },
+        {
+          path: "sellers.seller",
+          select: "name city",
+        },
+      ]);
+
+      return {
+        data: normalizeData(populatedProducts),
+        pagination: createPagination({
+          page: safePage,
+          limit: safeLimit,
+          count,
+        }),
+      };
     }
 
     const count = await Product.countDocuments(filter);
@@ -236,13 +363,18 @@ export const getProductsWithFilter = async ({
     const products = await Product.find(filter)
       .populate("category", "name slug")
       .populate("sellers.seller", "name city")
-      .skip((page - 1) * limit)
-      .limit(limit)
-      .sort({ createdAt: -1 });
+      .skip(skip)
+      .limit(safeLimit)
+      .sort({ createdAt: -1 })
+      .lean();
 
     return {
       data: normalizeData(products),
-      pagination: createPagination({ page, limit, count }),
+      pagination: createPagination({
+        page: safePage,
+        limit: safeLimit,
+        count,
+      }),
     };
   } catch (error) {
     throw new Error(error.message);
