@@ -1,11 +1,10 @@
 "use client";
+import EmptyError from "@/components/modules/p-admin/EmptyError";
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
 import { ISlider, ISliderList } from "@/libs/types";
-import SliderRow from "./SliderRow";
-import { sliderTableHeader } from "@/constants/data";
-import EmptyError from "@/components/modules/p-admin/EmptyError";
 import { useOptimistic } from "react";
+import SliderRow from "./SliderRow";
 
 function SliderList({ data, pagination }: ISliderList) {
   const [optimisticSliders, deleteOptimistc] = useOptimistic(
@@ -14,6 +13,16 @@ function SliderList({ data, pagination }: ISliderList) {
       return allSliders.filter((slider: ISlider) => slider._id !== id);
     },
   );
+
+  const sliderTableHeader = [
+    "شماره",
+    "عکس",
+    "عنوان",
+    "تاریخ",
+    "اولویت",
+    "وضعیت",
+    "عملیات",
+  ];
   return (
     <div className="md:section-box">
       <div className="admin-table mt-5 overflow-hidden  rounded-md">
