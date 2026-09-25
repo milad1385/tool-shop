@@ -6,51 +6,72 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { LuArrowDownUp } from "react-icons/lu";
 
 function ProductBox({ name, slug, images, sellers }: IProduct) {
-  const lowestPrice = Math.min(...sellers.map((s) => s.price));
-  const maxDiscount = Math.max(...sellers.map((s) => s.discount || 0));
-  const finalPrice = lowestPrice - (lowestPrice * maxDiscount) / 100;
+  const sellersWithFinalPrice = sellers.map((seller) => {
+    const discount = seller.discount || 0;
+
+    const finalPrice = seller.price - (seller.price * discount) / 100;
+
+    return {
+      ...seller,
+      finalPrice,
+    };
+  });
+
+  const cheapestSeller = sellersWithFinalPrice.reduce(
+    (cheapest, current) =>
+      current.finalPrice < cheapest.finalPrice ? current : cheapest,
+    sellersWithFinalPrice[0],
+  );
+
+  const lowestPrice = cheapestSeller?.price ?? 0;
+  const finalPrice = cheapestSeller?.finalPrice ?? 0;
+  const discount = cheapestSeller?.discount ?? 0;
+
   return (
     <div className="bg-white space-y-3 rounded-3xl overflow-hidden p-4">
       <Link href={`/products/${slug}`} className="relative">
         <Image
-          src={`${images[0]}`}
+          src={images[0]}
           alt={name}
           width={1920}
           height={1080}
           className="mx-auto w-[200px] md:w-[260px]"
         />
-        {maxDiscount > 0 && (
-          <span className="bg-[#eab308] w-[40px]  h-[40px] flex-center text-sm rounded-full absolute top-1 right-1">
-            {maxDiscount}%
+
+        {discount > 0 && (
+          <span className="bg-[#eab308] w-[40px] h-[40px] flex-center text-sm rounded-full absolute top-1 right-1">
+            {discount}%
           </span>
         )}
       </Link>
+
       <div>
         <Link
-          href={slug}
+          href={`/products/${slug}`}
           className="flex-center font-Lalezar text-base md:text-lg line-clamp-1"
         >
           {name}
         </Link>
+
         <div className="flex items-center justify-center gap-x-3 mt-4">
-          <span
-            className={`text-zinc-800 flex items-center gap-x-1 ${maxDiscount ? "line-through !text-zinc-500" : ""}`}
-          >
-            {formattedPrice(lowestPrice)} {maxDiscount === 0 && "تومان"}
-            {/*  <span className="sm:hidden lg:block"></span> */}
-          </span>
-          {maxDiscount > 0 && (
-            <span className="text-yellow-500 flex items-center gap-x-1">
-              {formattedPrice(finalPrice)}{" "}
-              <span className="sm:hidden lg:block">تومان</span>
+          {discount > 0 && (
+            <span className="text-zinc-500 line-through">
+              {formattedPrice(lowestPrice)}
             </span>
           )}
+
+          <span className="text-yellow-500 flex items-center gap-x-1">
+            {formattedPrice(finalPrice)}
+            <span>تومان</span>
+          </span>
         </div>
       </div>
+
       <div className="flex items-center justify-center gap-x-3 mt-4">
         <div className="bg-yellow-500 p-2 text-white rounded-lg md:cursor-pointer">
           <HiOutlineShoppingBag className="text-2xl" />
         </div>
+
         <div className="bg-yellow-500 p-2 text-white rounded-lg md:cursor-pointer">
           <LuArrowDownUp className="text-2xl" />
         </div>
