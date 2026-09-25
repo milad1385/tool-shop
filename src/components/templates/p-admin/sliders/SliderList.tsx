@@ -4,7 +4,7 @@ import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
 import { ISlider, ISliderList } from "@/libs/types";
 import { useOptimistic } from "react";
-import SliderRow from "./SliderRow";
+import SliderRow from "@/components/templates/p-admin/sliders/SliderRow";
 
 function SliderList({ data, pagination }: ISliderList) {
   const [optimisticSliders, deleteOptimistc] = useOptimistic(
