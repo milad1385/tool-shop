@@ -22,8 +22,8 @@ function RangeFilter() {
     const params = new URLSearchParams(searchParams.toString());
     params.set("min", String(min));
     params.set("max", String(max));
-    router.push(`?${params.toString()}`);
-  }, 500); // 0.5s delay
+    router.push(`?${params.toString()}`, { scroll: false });
+  }, 500);
 
   const handleRangeChange = (value: [number, number]) => {
     setRangeValue(value);
