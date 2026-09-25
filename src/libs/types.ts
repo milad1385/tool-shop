@@ -966,3 +966,8 @@ export interface IGetUserPanelStats {
   cancelledCount: number;
   pendingCount: number;
 }
+
+export interface IGetProductsWithFilter {
+  page?: number;
+  limit?: number;
+}
