@@ -119,42 +119,50 @@ function NavbarClient({ cartCount }: { cartCount: number }) {
                 <Link href="/">بیشتر</Link>
                 <IoChevronDown />
                 {/* maga menu */}
-                <div className="absolute z-10 top-6 transition-all group-hover:opacity-100 group-hover:visible invisible opacity-0  w-[528px] bg-white text-sm font-dana  shadow-lg rounded-xl px-5 flex items-center gap-x-8">
-                  <div>
-                    <ul className="space-y-3 child:text-[#1f2937]">
-                      <li>
-                        <Link href="/">سفارش ها</Link>
-                      </li>
-                      <li>
-                        <Link href="/">لیست علاقه مندی ها</Link>
-                      </li>
-                      <li>
-                        <Link href="/">دانلود ها</Link>
-                      </li>
-                      <li>
-                        <Link href="/">جزییات حساب کاربری</Link>
-                      </li>
-                      <li>
-                        <Link href="/">پیشخوان حساب کاربری</Link>
-                      </li>
-                    </ul>
-                  </div>
+                <div
+                  className={`absolute z-10 top-6 transition-all group-hover:opacity-100 group-hover:visible invisible opacity-0  w-[528px] bg-white text-sm font-dana  shadow-lg rounded-xl px-5 flex ${isAuthenticated ? "items-center" : "items-center justify-between"} gap-x-8`}
+                >
+                  {isAuthenticated && (
+                    <div>
+                      <ul className="space-y-3 child:text-[#1f2937]">
+                        <li>
+                          <Link href="/p-user/orders">سفارش ها</Link>
+                        </li>
+                        <li>
+                          <Link href="/p-user/favorites">
+                            لیست علاقه مندی ها
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/p-user/downloads">دانلود ها</Link>
+                        </li>
+                        <li>
+                          <Link href="/p-user/information">
+                            جزییات حساب کاربری
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/p-user">حساب کاربری</Link>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
                   <div>
                     <ul className="space-y-3">
                       <li>
                         <Link href="/questions">سوالات متداول</Link>
                       </li>
                       <li>
-                        <Link href="/">جزییات وبلاگ</Link>
+                        <Link href="/blog">وبلاگ</Link>
                       </li>
                       <li>
-                        <Link href="/cart">سبد خرید</Link>
+                        <Link href="/products">محصولات</Link>
                       </li>
                       <li>
-                        <Link href="/">جزییات پرداخت</Link>
+                        <Link href="/seller-introduction">فروشنده</Link>
                       </li>
                       <li>
-                        <Link href="/">جزییات محصول</Link>
+                        <Link href="/categories">دسته بندی ها</Link>
                       </li>
                     </ul>
                   </div>
