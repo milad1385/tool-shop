@@ -10,8 +10,8 @@ import { useDebouncedCallback } from "use-debounce";
 function RangeFilter() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialMin = Number(searchParams.get("min")) || 30;
-  const initialMax = Number(searchParams.get("max")) || 60;
+  const initialMin = Number(searchParams.get("min")) || 2000000;
+  const initialMax = Number(searchParams.get("max")) || 50000000;
   const [rangeValue, setRangeValue] = useState<[number, number]>([
     initialMin,
     initialMax,
@@ -37,11 +37,11 @@ function RangeFilter() {
         id="range-slider-yellow"
         value={rangeValue}
         onInput={handleRangeChange}
-        min={0}
-        max={100}
+        min={10000}
+        max={100000000}
       />
       <div className="w-full mt-5 text-[15px] text-zinc-700">
-        قیمت از {formattedPrice(rangeValue[0])} تا{" "}
+         از {formattedPrice(rangeValue[0])} تا{" "}
         {formattedPrice(rangeValue[1])} هزار تومان
       </div>
     </div>
