@@ -970,4 +970,5 @@ export interface IGetUserPanelStats {
 export interface IGetProductsWithFilter {
   page?: number;
   limit?: number;
+  categorySlugs?: string;
 }
