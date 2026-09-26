@@ -270,6 +270,7 @@ export const getProductsWithFilter = async ({
   page = 1,
   categorySlugs,
   brandSlugs,
+  search,
   min,
   max,
 }: IGetProductsWithFilter) => {
@@ -295,17 +296,6 @@ export const getProductsWithFilter = async ({
           .select("_id")
           .lean();
 
-        if (categories.length === 0) {
-          return {
-            data: [],
-            pagination: createPagination({
-              page: safePage,
-              limit: safeLimit,
-              count: 0,
-            }),
-          };
-        }
-
         filter.category = {
           $in: categories.map((c) => c._id),
         };
@@ -313,14 +303,33 @@ export const getProductsWithFilter = async ({
     }
 
     if (brandSlugs?.trim()) {
-      const slugsArray = brandSlugs
+      const brandsArray = brandSlugs
         .split(",")
         .map((s) => s.trim())
         .filter(Boolean);
 
-      filter.brand = {
-        $in: slugsArray,
-      };
+      if (brandsArray.length > 0) {
+        filter.brand = { $in: brandsArray };
+      }
+    }
+
+    if (search?.trim()) {
+      const searchTerm = search.trim();
+      const words = searchTerm.split(/\s+/).filter(Boolean);
+
+      if (words.length > 0) {
+        filter.$and = words.map((word) => {
+          const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+          return {
+            $or: [
+              { name: { $regex: escapedWord, $options: "i" } },
+              { brand: { $regex: escapedWord, $options: "i" } },
+              { description: { $regex: escapedWord, $options: "i" } },
+            ],
+          };
+        });
+      }
     }
 
     const hasPriceFilter =
