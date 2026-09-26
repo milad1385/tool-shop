@@ -4,7 +4,8 @@ import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
 import { ISlider, ISliderList } from "@/libs/types";
 import { useOptimistic } from "react";
-import SliderRow from "@/components/templates/p-admin/sliders/SliderRow";
+import { sliderTableHeader } from "@/constants/data";
+import SliderItem from "./SliderItem";
 
 function SliderList({ data, pagination }: ISliderList) {
   const [optimisticSliders, deleteOptimistc] = useOptimistic(
@@ -14,15 +15,6 @@ function SliderList({ data, pagination }: ISliderList) {
     },
   );
 
-  const sliderTableHeader = [
-    "شماره",
-    "عکس",
-    "عنوان",
-    "تاریخ",
-    "اولویت",
-    "وضعیت",
-    "عملیات",
-  ];
   return (
     <div className="md:section-box">
       <div className="admin-table mt-5 overflow-hidden  rounded-md">
@@ -34,7 +26,7 @@ function SliderList({ data, pagination }: ISliderList) {
           </Table.Header>
           <Table.Body>
             {optimisticSliders.map((slide, index) => (
-              <SliderRow
+              <SliderItem
                 key={slide._id}
                 index={index + 1}
                 onDelete={deleteOptimistc}

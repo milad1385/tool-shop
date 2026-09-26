@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import { FaCheck, FaTrash } from "react-icons/fa";
 import { FaPencil, FaXmark } from "react-icons/fa6";
 
-function SliderRow({
+function SliderItem({
   _id,
   index,
   title,
@@ -128,4 +128,4 @@ function SliderRow({
   );
 }
 
-export default SliderRow;
+export default SliderItem;
