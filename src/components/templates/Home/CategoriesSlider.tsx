@@ -24,7 +24,7 @@ function CategoriesSlider({ categories }: ICategoriesSlider) {
       className="mt-10"
     >
       {categories.map((category) => (
-        <SwiperSlide key={category.id}>
+        <SwiperSlide key={category._id}>
           <CategoryBox {...category} />
         </SwiperSlide>
       ))}
