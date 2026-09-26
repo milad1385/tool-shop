@@ -3,10 +3,10 @@ import Container from "@/components/modules/main/Container";
 import FilterSide from "@/components/templates/products/FilterSide";
 import Products from "@/components/templates/products/Products";
 import { IPage } from "@/libs/types";
-import { getAllCategories } from "@/services/categories.service";
+import { getAllFilters } from "@/services/products.service";
 
 async function page({ searchParams }: IPage) {
-  const categories = await getAllCategories();
+  const filters = await getAllFilters();
   return (
     <Container>
       <Breadcrumb
@@ -17,7 +17,7 @@ async function page({ searchParams }: IPage) {
       />
 
       <div className="grid grid-cols-12 gap-x-5">
-        <FilterSide categories={categories} />
+        <FilterSide filters={filters} />
 
         <Products searchParams={searchParams} />
       </div>
