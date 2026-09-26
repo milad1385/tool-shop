@@ -3,6 +3,7 @@ import Product from "@/models/Product";
 import { normalizeData } from "@/utils/helper";
 import { createPagination } from "@/utils/helper";
 import {
+  IFilterProduct,
   IGetProducts,
   IGetProductsByCategory,
   IGetProductsWithFilter,
@@ -268,6 +269,7 @@ export const getProductsWithFilter = async ({
   limit = 9,
   page = 1,
   categorySlugs,
+  brandSlugs,
   min,
   max,
 }: IGetProductsWithFilter) => {
@@ -308,6 +310,17 @@ export const getProductsWithFilter = async ({
           $in: categories.map((c) => c._id),
         };
       }
+    }
+
+    if (brandSlugs?.trim()) {
+      const slugsArray = brandSlugs
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+
+      filter.brand = {
+        $in: slugsArray,
+      };
     }
 
     const hasPriceFilter =
