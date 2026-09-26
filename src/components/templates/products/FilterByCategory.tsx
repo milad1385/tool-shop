@@ -6,14 +6,7 @@ function FilterByCategory({ categories }) {
     <div className="bg-white md:rounded-3xl px-5 py-4">
       <FilterTitle title="فیلتر بر اساس دسته بندی : " />
       <div className="w-full space-y-4 mt-5">
-        <FilterCheckbox
-          param="category"
-          options={categories.map((category, index) => ({
-            id: index + 1,
-            slug: category.href,
-            label: category.name,
-          }))}
-        />
+        <FilterCheckbox param="category" options={categories} />
       </div>
     </div>
   );
