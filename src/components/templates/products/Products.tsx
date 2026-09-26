@@ -9,11 +9,12 @@ import SortProduct from "./SortProduct";
 import EmptyState from "@/components/modules/main/EmptyState";
 
 async function Products({ searchParams }) {
-  const { page, category, min, max } = await searchParams;
+  const { page, category, min, max, brand } = await searchParams;
 
   const { data, pagination } = await getProductsWithFilter({
     page: +page,
     categorySlugs: category,
+    brandSlugs: brand,
     min: min,
     max: max,
   });

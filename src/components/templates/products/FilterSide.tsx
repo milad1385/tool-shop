@@ -6,13 +6,13 @@ import FilterByCategory from "./FilterByCategory";
 import FilterByColor from "./FilterByColor";
 import Search from "./Search";
 
-function FilterSide({ categories }) {
+function FilterSide({ filters }) {
   return (
     <div className="col-span-3 hidden md:block space-y-4">
       <Search />
       <RangeFilter />
-      <FilterByCategory categories={categories} />
-      <FilterByBrand />
+      <FilterByCategory categories={filters.categories} />
+      <FilterByBrand brands={filters.brands} />
       <FilterByColor />
     </div>
   );

@@ -2,7 +2,7 @@ import FilterCheckbox from "@/components/ui/FilterCheckbox";
 import { brands } from "@/constants/data";
 import FilterTitle from "./FilterTitle";
 
-function FilterByBrand() {
+function FilterByBrand({ brands }) {
   return (
     <div className="bg-white md:rounded-3xl px-5 py-4">
       <FilterTitle title="فیلتر بر اساس برند : " />
