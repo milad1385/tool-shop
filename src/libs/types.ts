@@ -978,5 +978,6 @@ export interface IGetProductsWithFilter {
   categorySlugs?: string;
   min?: string;
   max?: string;
+  search?: string;
   brandSlugs?: string;
 }
