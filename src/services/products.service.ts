@@ -393,3 +393,32 @@ export const getProductsWithFilter = async ({
     throw new Error(error.message);
   }
 };
+
+export const getAllFilters = async (): Promise<{
+  categories: IFilterProduct[];
+  brands: IFilterProduct[];
+}> => {
+  try {
+    await connectToDB();
+    const cats = await Category.find({ parent: null }).populate("parent");
+    const allBrands = await Product.distinct("brand");
+    const categories = cats.map((category, index) => ({
+      id: index + 1,
+      slug: category.href,
+      label: category.name,
+    }));
+
+    const brands = allBrands.map((brand, index) => ({
+      id: index + 1,
+      slug: brand,
+      label: brand,
+    }));
+
+    return {
+      categories: normalizeData(categories),
+      brands: normalizeData(brands),
+    };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
