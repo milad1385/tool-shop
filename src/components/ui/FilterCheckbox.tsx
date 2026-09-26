@@ -19,6 +19,7 @@ function FilterCheckbox({ param, options }: IFilterCheckbox) {
 
     if (newSelected.length > 0) {
       params.set(param, newSelected.join(","));
+      params.delete("page");
     } else {
       params.delete(param);
     }
