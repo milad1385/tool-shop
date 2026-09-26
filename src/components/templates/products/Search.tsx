@@ -14,6 +14,7 @@ function Search() {
   const handleChange = useDebouncedCallback((value: string) => {
     if (value.trim()) {
       params.set("q", value.trim());
+      params.delete("page");
     } else {
       params.delete("q");
     }
