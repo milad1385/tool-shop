@@ -248,6 +248,11 @@ interface IFilterItem {
   slug: string;
 }
 
+export interface IFilterProduct {
+  id: string | number;
+  label: string;
+  slug: string;
+}
 export interface IInput {
   label?: string;
   name: string;
@@ -973,4 +978,5 @@ export interface IGetProductsWithFilter {
   categorySlugs?: string;
   min?: string;
   max?: string;
+  brandSlugs?: string;
 }
