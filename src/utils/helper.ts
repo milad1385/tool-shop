@@ -180,3 +180,37 @@ export const percentageClasses: Record<number, string> = {
   50: "w-[50%]",
   100: "w-[100%]",
 };
+
+export const getMemberDuration = (createdAt: string | Date) => {
+  const start = new Date(createdAt);
+  const now = new Date();
+
+  let years = now.getFullYear() - start.getFullYear();
+  let months = now.getMonth() - start.getMonth();
+  let days = now.getDate() - start.getDate();
+
+  if (days < 0) {
+    months--;
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  const toPersian = (num: number) => num.toLocaleString("fa-IR");
+
+  if (years > 0 && months > 0) {
+    return `${toPersian(years)} سال و ${toPersian(months)} ماه`;
+  }
+
+  if (years > 0) {
+    return `${toPersian(years)} سال`;
+  }
+
+  if (months > 0) {
+    return `${toPersian(months)} ماه`;
+  }
+
+  return "کمتر از یک ماه";
+};
