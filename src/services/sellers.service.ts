@@ -1,7 +1,13 @@
 import connectToDB from "@/configs/db";
-import { IGetSeller, IPaginatedResponse, ISeller } from "@/libs/types";
+import {
+  IGetSeller,
+  IGetSellers,
+  IPaginatedResponse,
+  ISeller,
+} from "@/libs/types";
 import Seller from "@/models/Seller";
 import { createPagination, normalizeData } from "@/utils/helper";
+import { isValidObjectId } from "mongoose";
 
 export const getAllSellers = async () => {
   try {
@@ -21,7 +27,7 @@ export const getSellers = async ({
   page = 1,
   limit = 10,
   isVerified,
-}: IGetSeller): Promise<IPaginatedResponse<ISeller>> => {
+}: IGetSellers): Promise<IPaginatedResponse<ISeller>> => {
   try {
     await connectToDB();
 
@@ -41,6 +47,23 @@ export const getSellers = async ({
       data: normalizeData(sellers),
       pagination: createPagination({ page, limit, count }),
     };
+  } catch (error) {
+    throw new Error(error?.message);
+  }
+};
+
+export const getSeller = async ({ id }: IGetSeller): Promise<ISeller> => {
+  try {
+    await connectToDB();
+    if (!isValidObjectId(id)) {
+      throw new Error("Please send valid object id");
+    }
+
+    const seller = await Seller.findOne({ verified: true, _id: id })
+      .populate("user", "fullname username  email phone")
+      .lean();
+
+    return normalizeData(seller);
   } catch (error) {
     throw new Error(error?.message);
   }
