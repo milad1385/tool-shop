@@ -1,17 +1,16 @@
-import { sellers } from "@/constants/data";
-import React from "react";
-import SellerBox from "./SellerBox";
 import Pagination from "@/components/modules/main/Pagination";
+import SellerBox from "./SellerBox";
+import { ISellerList } from "@/libs/types";
 
-function SellerList() {
+function SellerList({ data, pagination } : ISellerList) {
   return (
     <div className="mt-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sellers.map((seller) => (
-          <SellerBox key={seller.id} {...seller} />
+        {data.map((seller) => (
+          <SellerBox key={seller._id} {...seller} />
         ))}
       </div>
-      <Pagination count={3} />
+      <Pagination count={pagination.totalPages} />
     </div>
   );
 }
