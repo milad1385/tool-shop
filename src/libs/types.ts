@@ -279,6 +279,8 @@ export interface IInput {
 
 export interface IIOrderList {
   panel?: "seller" | "admin" | "user";
+  data: IUserOrders[];
+  pagination: IPaginationItems;
 }
 
 export interface IModal {
@@ -525,6 +527,15 @@ export interface IGetSliders {
 }
 
 export interface IPagination {
+  currentPage: number;
+  totalPages: number;
+  totalItems: number;
+  itemsPerPage: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
+
+export interface IPaginationItems {
   currentPage: number;
   totalPages: number;
   totalItems: number;
@@ -881,6 +892,8 @@ export interface IVerifyResultStatus {
 export interface IGetUserOrders {
   status?: "pending" | "paid" | "shipped" | "delivered" | "cancelled" | "all";
   isLatest?: boolean;
+  page?: number;
+  limit?: number;
 }
 
 export interface IGetUserOrder {
@@ -894,6 +907,7 @@ export interface IOrdersList {
 type TOrderStatus = "pending" | "paid" | "shipped" | "delivered" | "cancelled";
 
 export interface IUserOrders {
+  index?: number;
   _id: string;
   user: {
     email: string;
@@ -923,6 +937,8 @@ export interface IUserOrders {
     name: string;
     mobile: string;
     postalCode: string;
+    province: string;
+    city: string;
     location: {
       lat: number;
       lan: number;
