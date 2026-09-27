@@ -1,23 +1,52 @@
-import React from "react";
-import { FaEye, FaTrash } from "react-icons/fa";
+"use client";
+import { IUserOrders } from "@/libs/types";
+import { formatDate, formattedPrice, getOrderInfo } from "@/utils/helper";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FaBan, FaEye, FaTrash } from "react-icons/fa";
 
-function OrderRow() {
+function OrderRow({
+  index,
+  user,
+  address,
+  totalPrice,
+  totalDiscount,
+  finalPrice,
+  createdAt,
+  status,
+  _id,
+}: IUserOrders) {
+  const pathname = usePathname();
+  const { title, backgroundColor } = getOrderInfo(status);
   return (
     <tr className="border-b border-gray-100">
-      <td className="px-2 py-2 text-center">1</td>
-      <td className="px-2 py-2 text-center">میلاد سلامیان</td>
-      <td className="px-2 py-2 text-center">1404/03/18</td>
-      <td className="px-2 py-2 text-center">25,000</td>
-      <td className="px-2 py-2 text-center">کرج</td>
-      <td className="px-2 py-2 text-center">
-        <div className="bg-green-600 text-white rounded-md text-sm py-2 px-2 w-[50px] mx-auto">
-          تحویل
+      <td>{index}</td>
+      <td>{user.fullname}</td>
+      <td>{address.province}</td>
+      <td>{address.city}</td>
+      <td>{formattedPrice(totalPrice)} تومان</td>
+
+      <td>{formattedPrice(totalDiscount)} تومان</td>
+      <td>{formattedPrice(finalPrice)} تومان</td>
+      <td>{formatDate(createdAt)}</td>
+      <td>
+        <div className={`${backgroundColor} text-white rounded-3xl py-2 px-4`}>
+          {title}
         </div>
       </td>
-      <td className="px-2 py-2 text-center">
-        <div className="flex items-center gap-x-3 justify-center">
-          <FaTrash className="text-red-700 text-base cursor-pointer" />
-          <FaEye className="text-yellow-500 text-base cursor-pointer" />
+      <td>
+        <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
+          <FaTrash className="text-red-600 text-base md:text-xl" />
+          <Link
+            href={
+              pathname.includes("/p-seller")
+                ? `/p-seller/orders/${_id}`
+                : `/p-admin/orders/${_id}`
+            }
+          >
+            <FaEye className="text-sky-500 text-base md:text-xl" />
+          </Link>
+          <FaBan className="text-gray-500 text-base md:text-xl" />
         </div>
       </td>
     </tr>
