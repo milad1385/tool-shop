@@ -1,3 +1,4 @@
+import "@/models/User";
 import mongoose, { Schema, Model, Document } from "mongoose";
 
 export interface ISellerContactDetails {
@@ -15,6 +16,7 @@ export interface ISeller extends Document {
   logo?: string;
   description?: string;
   status?: "active" | "inactive" | "pending";
+  cover: string;
   verified?: boolean;
   rating?: number;
   reviewCount?: number;
@@ -96,12 +98,15 @@ const sellerSchema = new Schema<ISeller>(
       min: [0, "کمیسیون نمیتواند منفی باشد"],
       max: [100, "کمیسیون نمیتواند بیشتر از ۱۰۰ درصد باشد"],
     },
+    cover: {
+      type: String,
+      trim: true,
+    },
   },
   {
     timestamps: true,
-  }
+  },
 );
-
 
 const Seller: Model<ISeller> =
   mongoose.models.Seller || mongoose.model<ISeller>("Seller", sellerSchema);
