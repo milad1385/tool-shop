@@ -987,10 +987,14 @@ export interface IProductListSeller {
   }>;
 }
 
-export interface IGetSeller {
+export interface IGetSellers {
   page?: number;
   limit?: number;
   isVerified?: boolean;
+}
+
+export interface IGetSeller {
+  id?: string;
 }
 export interface IProducts {
   searchParams: Promise<{
