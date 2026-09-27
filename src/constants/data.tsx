@@ -1674,6 +1674,19 @@ export const conatctTableHeader = [
   "عملیات",
 ];
 
+export const orderTableHeader = [
+  "شماره",
+  "نام",
+  "استان",
+  "شهر",
+  "مبلغ کل",
+  "مبلغ تخفیف",
+  "مبلغ نهایی",
+  "تاریخ",
+  "وضعیت",
+  "عملیات",
+];
+
 export const filterCategoryType = [
   { label: "سلکت باکس", value: "selectbox" },
   { label: "چک باکس", value: "checkbox" },
