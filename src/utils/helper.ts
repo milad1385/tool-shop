@@ -150,6 +150,13 @@ export const getOrderInfo = (status) => {
         color: "text-yellow-500",
         percentage: 0,
       };
+    case "unpaid":
+      return {
+        title: "در انتظار پرداخت",
+        backgroundColor: "bg-yellow-500",
+        color: "text-yellow-500",
+        percentage: 0,
+      };
     case "shipped":
       return {
         title: "در حال ارسال",
