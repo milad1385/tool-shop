@@ -3,8 +3,9 @@ import Modal from "@/components/modules/main/Modal";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { FaShop } from "react-icons/fa6";
 import SellerInfoBox from "./SellerInfoBox";
+import { ISeller } from "@/libs/types";
 
-function SellerInfo() {
+function SellerInfo({ seller }: { seller: ISeller }) {
   return (
     <div className="bg-white relative rounded-2xl flex flex-col gap-y-5 md:flex-row items-center justify-between px-7 py-6">
       <div className="flex items-center gap-x-6">
@@ -12,9 +13,7 @@ function SellerInfo() {
           <FaShop className="text-zinc-700 text-xl md:text-3xl" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-sm md:text-lg font-bold">
-            اسمارت فروشگاه ابزارینو
-          </h1>
+          <h1 className="text-sm md:text-lg font-bold">{seller.name}</h1>
           <p className="text-xs md:text-sm text-gray-500">5 سال و 10 ماه</p>
         </div>
       </div>
