@@ -1,8 +1,14 @@
 import { auth } from "@/auth";
 import connectDB from "@/configs/db";
-import { IGetUserOrder, IGetUserOrders, IUserOrders } from "@/libs/types";
+import {
+  IGetUserOrder,
+  IGetUserOrders,
+  IPaginatedResponse,
+  IUserOrders,
+  UserRoleEnums,
+} from "@/libs/types";
 import Order from "@/models/Order";
-import { normalizeData } from "@/utils/helper";
+import { createPagination, normalizeData } from "@/utils/helper";
 import { isValidObjectId } from "mongoose";
 
 export const getUserOrders = async ({
@@ -67,6 +73,51 @@ export const getUserOrder = async ({
       .sort({ createdAt: -1 });
 
     return normalizeData(order);
+  } catch (error) {
+    throw new Error(error?.message);
+  }
+};
+
+export const getAllOrders = async ({
+  status,
+  page = 1,
+  limit = 10,
+}: IGetUserOrders): Promise<IPaginatedResponse<IUserOrders>> => {
+  try {
+    await connectDB();
+
+    const session = await auth();
+    if (!session?.user) {
+      throw new Error("Please login");
+    }
+    const isAdmin = session.user.roles.some((role: string) =>
+      [UserRoleEnums.SUPER_ADMIN, UserRoleEnums.ADMIN].includes(
+        role as UserRoleEnums,
+      ),
+    );
+
+    if (!isAdmin) {
+      throw new Error("Access denied !!!");
+    }
+
+    let filters: any = {};
+    if (status !== "all") {
+      filters.status = status;
+    }
+
+    const count = await Order.countDocuments(filters);
+
+    const orders = await Order.find({ ...filters })
+      .populate("items.product", "name slug images category")
+      .populate("items.seller", "city name description")
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .sort({ createdAt: -1 });
+
+    return {
+      data: normalizeData(orders),
+      pagination: createPagination({ page, limit, count }),
+    };
   } catch (error) {
     throw new Error(error?.message);
   }
