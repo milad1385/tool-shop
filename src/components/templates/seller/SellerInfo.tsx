@@ -4,6 +4,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { FaShop } from "react-icons/fa6";
 import SellerInfoBox from "./SellerInfoBox";
 import { ISeller } from "@/libs/types";
+import { getMemberDuration } from "@/utils/helper";
 
 function SellerInfo({ seller }: { seller: ISeller }) {
   return (
@@ -14,7 +15,9 @@ function SellerInfo({ seller }: { seller: ISeller }) {
         </div>
         <div className="space-y-2">
           <h1 className="text-sm md:text-lg font-bold">{seller.name}</h1>
-          <p className="text-xs md:text-sm text-gray-500">5 سال و 10 ماه</p>
+          <p className="text-xs md:text-sm text-gray-500">
+            {getMemberDuration(seller.createdAt)}
+          </p>
         </div>
       </div>
 
