@@ -2,8 +2,10 @@ import Breadcrumb from "@/components/modules/main/Breadcrumb";
 import Container from "@/components/modules/main/Container";
 import ProductList from "@/components/templates/seller/ProductList";
 import SellerInfo from "@/components/templates/seller/SellerInfo";
+import { IPage } from "@/libs/types";
 
-function page() {
+async function page({ params, searchParams }: IPage) {
+  const { id } = await params;
   return (
     <Container>
       <Breadcrumb
@@ -14,8 +16,7 @@ function page() {
         ]}
       />
       <SellerInfo />
-      <ProductList/>
-      
+      <ProductList sellerId={id} searchParams={searchParams} />
     </Container>
   );
 }
