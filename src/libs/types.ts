@@ -977,10 +977,24 @@ export interface IGetProductsWithFilter {
   max?: string;
   search?: string;
   brandSlugs?: string;
+  sellerId?: string;
+}
+
+export interface IProductListSeller {
+  sellerId?: string;
+  searchParams?: Promise<{
+    [key: string]: string | string[] | undefined | any;
+  }>;
 }
 
 export interface IGetSeller {
   page?: number;
   limit?: number;
   isVerified?: boolean;
+}
+export interface IProducts {
+  searchParams: Promise<{
+    [key: string]: string | string[] | undefined | any;
+  }>;
+  sellerId?: string;
 }
