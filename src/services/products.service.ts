@@ -1,7 +1,4 @@
 import connectToDB from "@/configs/db";
-import Product from "@/models/Product";
-import { normalizeData } from "@/utils/helper";
-import { createPagination } from "@/utils/helper";
 import {
   IFilterProduct,
   IGetProducts,
@@ -11,6 +8,9 @@ import {
   IProduct,
 } from "@/libs/types";
 import Category from "@/models/Category";
+import Product from "@/models/Product";
+import { createPagination, normalizeData } from "@/utils/helper";
+import mongoose, { isValidObjectId } from "mongoose";
 
 export const getProducts = async ({
   page = 1,
@@ -273,6 +273,7 @@ export const getProductsWithFilter = async ({
   search,
   min,
   max,
+  sellerId,
 }: IGetProductsWithFilter) => {
   try {
     await connectToDB();
@@ -311,6 +312,10 @@ export const getProductsWithFilter = async ({
       if (brandsArray.length > 0) {
         filter.brand = { $in: brandsArray };
       }
+    }
+
+    if (isValidObjectId(sellerId)) {
+      filter["sellers.seller"] = new mongoose.Types.ObjectId(sellerId.trim());
     }
 
     if (search?.trim()) {
