@@ -409,14 +409,6 @@ export interface IOrderBox {
   className?: string;
 }
 
-export interface ISeller {
-  image: string;
-  link: string;
-  title: string;
-  city: string;
-  productCount: number;
-}
-
 export interface IModalDetail {
   isShow: boolean;
   onClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -617,6 +609,11 @@ export interface ISellerContactDetails {
   postalCode?: string;
 }
 
+export interface ISellerList {
+  data: ISeller[];
+  pagination: IPagination;
+}
+
 export interface ISeller {
   _id: string;
   name: string;
@@ -633,7 +630,7 @@ export interface ISeller {
     postalCode?: string;
   };
   city: string;
-  logo?: string;
+  cover?: string;
   description?: string;
   status?: "active" | "inactive" | "pending";
   verified?: boolean;
@@ -980,4 +977,10 @@ export interface IGetProductsWithFilter {
   max?: string;
   search?: string;
   brandSlugs?: string;
+}
+
+export interface IGetSeller {
+  page?: number;
+  limit?: number;
+  isVerified?: boolean;
 }
