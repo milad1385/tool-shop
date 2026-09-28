@@ -28,17 +28,10 @@ export const getAllStats = async (startDate: string) => {
       0,
     );
 
-    const latestUsers = await User.find(
-      filterByDate,
-      "name email username createdAt",
-    )
-      .limit(10)
-      .sort({ createdAt: -1 });
 
     return {
       usersCount,
       productsCount,
-      latestUsers,
       ordersCount: orders.length,
       sumationOfOrder,
     };
