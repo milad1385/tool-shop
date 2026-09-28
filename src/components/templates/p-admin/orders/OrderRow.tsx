@@ -22,7 +22,6 @@ function OrderRow({
     <tr className="border-b border-gray-100">
       <td>{index}</td>
       <td>{user.fullname}</td>
-      <td>{address.province}</td>
       <td>{address.city}</td>
       <td>{formattedPrice(totalPrice)} تومان</td>
 

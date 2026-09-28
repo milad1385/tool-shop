@@ -2,8 +2,12 @@ import Title from "@/components/modules/p-admin/Title";
 import EmptyRecentUsersError from "./EmptyRecentError";
 import { FaBasketShopping } from "react-icons/fa6";
 import OrderRow from "../orders/OrderRow";
+import { getAllOrders } from "@/services/orders.service";
+import LatestOrderItem from "../orders/LatestOrderItem";
+import { recentOrderHeader } from "@/constants/data";
 
-function RecentOrders() {
+async function RecentOrders() {
+  const { data } = await getAllOrders({});
   return (
     <div className="rounded-3xl bg-white py-4 md:py-6 px-3 md:px-6">
       <Title content="سفارشات اخیر" />
@@ -12,22 +16,15 @@ function RecentOrders() {
           <table className="w-full md:mt-5 recent-table text-sm lg:text-base min-w-[600px]">
             <thead className="bg-gray-100">
               <tr className="font-Lalezar text-lg text-zinc-700">
-                <td className="px-2 py-2">شماره</td>
-                <td className="px-2 py-2">نام</td>
-                <td className="px-2 py-2">تاریخ</td>
-                <td className="px-2 py-2">قیمت</td>
-                <td className="px-2 py-2">شهر</td>
-                <td className="px-2 py-2">وضعیت</td>
-                <td className="px-2 py-2">رویداد ها</td>
+                {recentOrderHeader.map((header, index) => (
+                  <td className="p-2" key={index + 1}>{header}</td>
+                ))}
               </tr>
             </thead>
             <tbody>
-              <OrderRow />
-              <OrderRow />
-              <OrderRow />
-              <OrderRow />
-              <OrderRow />
-              <OrderRow />
+              {data.map((order, index) => (
+                <LatestOrderItem {...order} index={index + 1} key={order._id} />
+              ))}
             </tbody>
           </table>
         </div>
