@@ -300,6 +300,7 @@ export interface IAddressModal {
 
 export interface IRecentProducts {
   title?: string;
+  numQuery?: string;
 }
 export interface IAnswerBox {
   body?: string;
@@ -895,6 +896,7 @@ export interface IGetUserOrders {
   page?: number;
   limit?: number;
   search?: string;
+  numQuery?: number;
 }
 
 export interface IGetUserOrder {
@@ -1018,4 +1020,11 @@ export interface IProducts {
     [key: string]: string | string[] | undefined | any;
   }>;
   sellerId?: string;
+}
+
+export interface IStats {
+  usersCount: number;
+  ordersCount: number;
+  productsCount: number;
+  sumationOfOrder: number;
 }
