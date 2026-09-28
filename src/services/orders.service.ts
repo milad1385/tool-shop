@@ -79,7 +79,7 @@ export const getUserOrder = async ({
 };
 
 export const getAllOrders = async ({
-  status,
+  status = "all",
   page = 1,
   limit = 10,
   search = "",
@@ -126,7 +126,6 @@ export const getAllOrders = async ({
 
               { orderNumber: { $regex: escapedWord, $options: "i" } },
               { trackingCode: { $regex: escapedWord, $options: "i" } },
-            
             ],
           };
         });
@@ -135,13 +134,15 @@ export const getAllOrders = async ({
 
     const count = await Order.countDocuments(filters);
 
-    const orders = await Order.find({ ...filters })
+    const query = Order.find({ ...filters })
       .populate("items.product", "name slug images category")
       .populate("items.seller", "city name description")
+      .populate("user", "fullname email")
       .skip((page - 1) * limit)
       .limit(limit)
       .sort({ createdAt: -1 });
 
+    const orders = await query;
     return {
       data: normalizeData(orders),
       pagination: createPagination({ page, limit, count }),
