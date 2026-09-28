@@ -1,5 +1,6 @@
 import mongoose, { Schema, Model, Document } from "mongoose";
 import "@/models/Product";
+import "@/models/Category";
 import "@/models/Seller";
 import "@/models/User";
 
