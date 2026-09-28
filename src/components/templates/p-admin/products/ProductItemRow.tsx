@@ -27,7 +27,7 @@ function ProductItemRow({
         />
       </td>
       <td>
-        <Link href={`/products/${slug}`}>{name}</Link>
+        <Link href={`/products/${slug}`}>{name.slice(0 , 40)}</Link>
       </td>
       <td>{slug}</td>
       <td>{category.name}</td>
