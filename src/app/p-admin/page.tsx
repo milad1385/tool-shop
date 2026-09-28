@@ -21,13 +21,8 @@ async function page({ searchParams }: IPage) {
   const numOfDays = !last ? 7 : last;
 
   const numQuery = subDays(new Date(), numOfDays).toISOString();
-  const {
-    usersCount,
-    sumationOfOrder,
-    productsCount,
-    ordersCount,
-    latestUsers,
-  } = await getAllStats(numQuery);
+  const { usersCount, sumationOfOrder, productsCount, ordersCount } =
+    await getAllStats(numQuery);
 
   return (
     <Container>
@@ -49,7 +44,7 @@ async function page({ searchParams }: IPage) {
       {/* charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
         <DurationChart title="میزان فروش کالا" data={durationChartData} />
-        <RecentUser />
+        <RecentUser numQuery={numQuery} />
       </div>
       <SalesChart data={salesChartData} />
 
