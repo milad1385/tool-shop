@@ -21,6 +21,7 @@ async function page({ searchParams }: IPage) {
   const numOfDays = !last ? 7 : last;
 
   const numQuery = subDays(new Date(), numOfDays).toISOString();
+
   const { usersCount, sumationOfOrder, productsCount, ordersCount } =
     await getAllStats(numQuery);
 

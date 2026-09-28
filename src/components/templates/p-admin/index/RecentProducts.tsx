@@ -4,23 +4,23 @@ import { LuSquare } from "react-icons/lu";
 import EmptyRecentUsersError from "./EmptyRecentError";
 import ProductRow from "../products/ProductRow";
 import { getAllProducts } from "@/services/products.service";
+import { recentProductHeader } from "@/constants/data";
 
 async function RecentProducts({ title, numQuery }: IRecentProducts) {
-  const products = await getAllProducts(10, +numQuery);
+  const products = await getAllProducts(10, numQuery);
   return (
     <div className="rounded-3xl bg-white py-4 md:py-6 px-3 md:px-6">
       <Title content={title ? title : "محصولات اخیر"} />
-      {true ? (
+      {products.length ? (
         <div className="overflow-x-auto odd:bg-gray-100 max-h-[225px] md:max-h-[250px] overflow-y-auto table-container">
           <table className="w-full  md:mt-5 recent-table text-xs md:text-sm lg:text-base min-w-[450px]">
             <thead className="bg-gray-100">
               <tr className="font-Lalezar text-lg text-zinc-700">
-                <td className="px-2 py-2">شماره</td>
-                <td className="px-2 py-2">تصویر</td>
-                <td className="px-2 py-2">نام</td>
-                <td className="px-2 py-2">تاریخ</td>
-                <td className="px-2 py-2">قیمت</td>
-                <td className="px-2 py-2">رویداد ها</td>
+                {recentProductHeader.map((header, index) => (
+                  <td key={index + 1} className="px-2 py-2">
+                    {header}
+                  </td>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@ async function RecentProducts({ title, numQuery }: IRecentProducts) {
         </div>
       ) : (
         <EmptyRecentUsersError
-          desc="هیچ محصولی یافت نشد"
+          desc="هیچ محصولی تا این تاریخ یافت نشد"
           icon={<LuSquare className="text-2xl md:text-3xl lg:text-[60px]" />}
         />
       )}

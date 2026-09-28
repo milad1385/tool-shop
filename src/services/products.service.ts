@@ -99,7 +99,7 @@ export const getFeaturedProducts = async (
 
 export const getAllProducts = async (
   limit: number = 10,
-  numQuery: number = 7,
+  numQuery: string,
 ): Promise<IProduct[]> => {
   try {
     await connectToDB();
@@ -115,6 +115,7 @@ export const getAllProducts = async (
         },
       };
     }
+    
     const products = await Product.find({
       status: "active",
       ...filterByDate,
