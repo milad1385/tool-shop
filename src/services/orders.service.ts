@@ -82,6 +82,7 @@ export const getAllOrders = async ({
   status,
   page = 1,
   limit = 10,
+  search = "",
 }: IGetUserOrders): Promise<IPaginatedResponse<IUserOrders>> => {
   try {
     await connectDB();
@@ -103,6 +104,33 @@ export const getAllOrders = async ({
     let filters: any = {};
     if (status !== "all") {
       filters.status = status;
+    }
+
+    if (search?.trim()) {
+      const searchTerm = search.trim();
+      const words = searchTerm.split(/\s+/).filter(Boolean);
+
+      if (words.length > 0) {
+        filters.$and = words.map((word) => {
+          const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+          return {
+            $or: [
+              { "address.name": { $regex: escapedWord, $options: "i" } },
+
+              { "address.mobile": { $regex: escapedWord, $options: "i" } },
+
+              { "address.address": { $regex: escapedWord, $options: "i" } },
+
+              { "address.postalCode": { $regex: escapedWord, $options: "i" } },
+
+              { orderNumber: { $regex: escapedWord, $options: "i" } },
+              { trackingCode: { $regex: escapedWord, $options: "i" } },
+            
+            ],
+          };
+        });
+      }
     }
 
     const count = await Order.countDocuments(filters);
