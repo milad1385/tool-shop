@@ -5,16 +5,30 @@ import DurationChart from "@/components/templates/p-admin/index/DurationChart";
 import RecentOrders from "@/components/templates/p-admin/index/RecentOrders";
 import RecentProducts from "@/components/templates/p-admin/index/RecentProducts";
 import RecentUser from "@/components/templates/p-admin/index/RecentUsers";
-
+import { subDays } from "date-fns";
 import Stats from "@/components/templates/p-admin/index/Stats";
 import { durationChartData, salesChartData } from "@/constants/data";
 import { Metadata } from "next";
+import { IPage } from "@/libs/types";
+import { getAllStats } from "@/services/stats.service";
 
 export const metadata: Metadata = {
   title: "پنل ادمین",
 };
 
-function page() {
+async function page({ searchParams }: IPage) {
+  const { last } = await searchParams;
+  const numOfDays = !last ? 7 : last;
+
+  const numQuery = subDays(new Date(), numOfDays).toISOString();
+  const {
+    usersCount,
+    sumationOfOrder,
+    productsCount,
+    ordersCount,
+    latestUsers,
+  } = await getAllStats(numQuery);
+
   return (
     <Container>
       <Filters
@@ -26,7 +40,12 @@ function page() {
           { label: "120 روز گذشته", slug: "120" },
         ]}
       />
-      <Stats />
+      <Stats
+        usersCount={usersCount}
+        ordersCount={ordersCount}
+        productsCount={productsCount}
+        sumationOfOrder={sumationOfOrder}
+      />
       {/* charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
         <DurationChart title="میزان فروش کالا" data={durationChartData} />
@@ -36,8 +55,8 @@ function page() {
 
       {/* recent activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-5">
-        <RecentProducts />
-        <RecentOrders />
+        <RecentProducts numQuery={numQuery} />
+        <RecentOrders numQuery={numQuery} />
       </div>
     </Container>
   );

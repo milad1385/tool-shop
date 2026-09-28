@@ -1,11 +1,17 @@
 import StatBox from "@/components/modules/p-user/StatBox";
-import React from "react";
+import { IStats } from "@/libs/types";
+import { formattedPrice } from "@/utils/helper";
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { LuUsers } from "react-icons/lu";
 
-function Stats() {
+function Stats({
+  usersCount,
+  ordersCount,
+  productsCount,
+  sumationOfOrder,
+}: IStats) {
   return (
     <div className="grid grid-cols-2  lg:grid-cols-4 gap-5 my-8">
       <StatBox
@@ -14,13 +20,13 @@ function Stats() {
           <FaRegMoneyBillAlt className="text-zinc-800 text-xl md:text-3xl" />
         }
         className="bg-green-500 text-white"
-        desc="250,000 تومان"
+        desc={`${formattedPrice(sumationOfOrder)} تومان`}
       />
       <StatBox
         title="تعداد کاربران"
         icon={<LuUsers className="text-zinc-800 text-xl md:text-3xl" />}
         className="bg-sky-500 text-white"
-        desc="35 نفر"
+        desc={`${formattedPrice(usersCount)} نفر`}
       />
       <StatBox
         title="تعداد محصولات"
@@ -28,7 +34,7 @@ function Stats() {
           <AiOutlineProduct className="text-zinc-800 text-xl md:text-3xl" />
         }
         className="bg-red-500 text-white"
-        desc="35 نفر"
+        desc={`${formattedPrice(productsCount)} تا`}
       />
       <StatBox
         title="تعداد سفارشات"
@@ -36,7 +42,7 @@ function Stats() {
           <HiOutlineShoppingCart className="text-zinc-800 text-xl md:text-3xl" />
         }
         className="bg-yellow-500 text-white"
-        desc="95 نفر"
+        desc={`${formattedPrice(ordersCount)} تا`}
       />
     </div>
   );
