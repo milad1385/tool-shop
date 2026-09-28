@@ -1696,6 +1696,15 @@ export const recentOrderHeader = [
   "رویداد ها",
 ];
 
+export const recentUserHeader = [
+  "شماره",
+  "پروفایل",
+  "نام",
+  "تاریخ",
+  "تلفن همراه",
+  "رویداد",
+];
+
 export const filterCategoryType = [
   { label: "سلکت باکس", value: "selectbox" },
   { label: "چک باکس", value: "checkbox" },
