@@ -3,6 +3,7 @@ import Table from "@/components/modules/p-admin/Table";
 import { IIOrderList } from "@/libs/types";
 import OrderRow from "./OrderRow";
 import { orderTableHeader } from "@/constants/data";
+import EmptyError from "@/components/modules/p-admin/EmptyError";
 
 function OrderList({ data, pagination }: IIOrderList) {
   return (
@@ -21,7 +22,8 @@ function OrderList({ data, pagination }: IIOrderList) {
             ))}
           </Table.Body>
         </Table>
-        <Pagination count={pagination.totalPages} />
+        {!data.length && <EmptyError />}
+        {data.length && <Pagination count={pagination.totalPages} />}
       </div>
     </div>
   );
