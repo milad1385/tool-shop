@@ -221,3 +221,30 @@ export const getMemberDuration = (createdAt: string | Date) => {
 
   return "کمتر از یک ماه";
 };
+
+export const getCheapestPrice = (
+  sellers,
+): { lowestPrice: number; finalPrice: number; discount: number } => {
+  const sellersWithFinalPrice = sellers.map((seller) => {
+    const discount = seller.discount || 0;
+
+    const finalPrice = seller.price - (seller.price * discount) / 100;
+
+    return {
+      ...seller,
+      finalPrice,
+    };
+  });
+
+  const cheapestSeller = sellersWithFinalPrice.reduce(
+    (cheapest, current) =>
+      current.finalPrice < cheapest.finalPrice ? current : cheapest,
+    sellersWithFinalPrice[0],
+  );
+
+  const lowestPrice = cheapestSeller?.price ?? 0;
+  const finalPrice = cheapestSeller?.finalPrice ?? 0;
+  const discount = cheapestSeller?.discount ?? 0;
+
+  return { lowestPrice, finalPrice, discount };
+};
