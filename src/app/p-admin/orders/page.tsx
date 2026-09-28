@@ -6,11 +6,12 @@ import { IPage } from "@/libs/types";
 import { getAllOrders } from "@/services/orders.service";
 
 async function page({ searchParams }: IPage) {
-  const { page, limit, status } = await searchParams;
+  const { page, limit, status, q } = await searchParams;
   const { data, pagination } = await getAllOrders({
     page,
     limit,
     status: status || "all",
+    search: q,
   });
   return (
     <Container>
