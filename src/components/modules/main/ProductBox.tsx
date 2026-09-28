@@ -1,31 +1,12 @@
 import { IProduct } from "@/libs/types";
-import { formattedPrice } from "@/utils/helper";
+import { formattedPrice, getCheapestPrice } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { LuArrowDownUp } from "react-icons/lu";
 
 function ProductBox({ name, slug, images, sellers }: IProduct) {
-  const sellersWithFinalPrice = sellers.map((seller) => {
-    const discount = seller.discount || 0;
-
-    const finalPrice = seller.price - (seller.price * discount) / 100;
-
-    return {
-      ...seller,
-      finalPrice,
-    };
-  });
-
-  const cheapestSeller = sellersWithFinalPrice.reduce(
-    (cheapest, current) =>
-      current.finalPrice < cheapest.finalPrice ? current : cheapest,
-    sellersWithFinalPrice[0],
-  );
-
-  const lowestPrice = cheapestSeller?.price ?? 0;
-  const finalPrice = cheapestSeller?.finalPrice ?? 0;
-  const discount = cheapestSeller?.discount ?? 0;
+  const { finalPrice, lowestPrice, discount } = getCheapestPrice(sellers);
 
   return (
     <div className="bg-white space-y-3 rounded-3xl overflow-hidden p-4">
