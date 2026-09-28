@@ -894,6 +894,7 @@ export interface IGetUserOrders {
   isLatest?: boolean;
   page?: number;
   limit?: number;
+  search?: string;
 }
 
 export interface IGetUserOrder {
