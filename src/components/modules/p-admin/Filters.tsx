@@ -26,7 +26,7 @@ function Filter({ filterField, options }: TFilter) {
   };
 
   return (
-    <div className="flex w-full md:w-auto  md:inline-flex items-center gap-x-0.5 md:gap-x-2 font-Dana bg-white p-1 child:transition-all child:cursor-pointer text-xs md:text-sm rounded-md mt-5 lg:mt-0">
+    <div className="flex flex-wrap md:flex-nowrap w-full md:w-auto  md:inline-flex items-center gap-x-0.5 md:gap-x-2 font-Dana bg-white p-1 child:transition-all child:cursor-pointer text-xs md:text-sm rounded-md mt-5 lg:mt-0">
       {options.map((option, index) => (
         <div
           key={index}
