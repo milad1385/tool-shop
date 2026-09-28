@@ -83,6 +83,7 @@ export const getAllOrders = async ({
   page = 1,
   limit = 10,
   search = "",
+  numQuery = 7
 }: IGetUserOrders): Promise<IPaginatedResponse<IUserOrders>> => {
   try {
     await connectDB();
@@ -102,6 +103,18 @@ export const getAllOrders = async ({
     }
 
     let filters: any = {};
+
+
+    if (numQuery) {
+      const start = new Date(numQuery);
+      const end = new Date();
+      filters = {
+        createdAt: {
+          $gte: start,
+          $lte: end,
+        },
+      };
+    }
     if (status !== "all") {
       filters.status = status;
     }

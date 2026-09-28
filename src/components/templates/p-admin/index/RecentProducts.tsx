@@ -5,8 +5,8 @@ import EmptyRecentUsersError from "./EmptyRecentError";
 import ProductRow from "../products/ProductRow";
 import { getAllProducts } from "@/services/products.service";
 
-async function RecentProducts({ title }: IRecentProducts) {
-  const products = await getAllProducts();
+async function RecentProducts({ title, numQuery }: IRecentProducts) {
+  const products = await getAllProducts(10, +numQuery);
   return (
     <div className="rounded-3xl bg-white py-4 md:py-6 px-3 md:px-6">
       <Title content={title ? title : "محصولات اخیر"} />

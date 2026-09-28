@@ -6,18 +6,20 @@ import { getAllOrders } from "@/services/orders.service";
 import LatestOrderItem from "../orders/LatestOrderItem";
 import { recentOrderHeader } from "@/constants/data";
 
-async function RecentOrders() {
-  const { data } = await getAllOrders({});
+async function RecentOrders({ numQuery }) {
+  const { data } = await getAllOrders({ numQuery });
   return (
     <div className="rounded-3xl bg-white py-4 md:py-6 px-3 md:px-6">
       <Title content="سفارشات اخیر" />
-      {true ? (
+      {data.length ? (
         <div className="overflow-x-auto max-h-[225px] md:max-h-[250px] overflow-y-auto table-container">
           <table className="w-full md:mt-5 recent-table text-sm lg:text-base min-w-[600px]">
             <thead className="bg-gray-100">
               <tr className="font-Lalezar text-lg text-zinc-700">
                 {recentOrderHeader.map((header, index) => (
-                  <td className="p-2" key={index + 1}>{header}</td>
+                  <td className="p-2" key={index + 1}>
+                    {header}
+                  </td>
                 ))}
               </tr>
             </thead>

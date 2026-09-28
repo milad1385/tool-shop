@@ -99,11 +99,25 @@ export const getFeaturedProducts = async (
 
 export const getAllProducts = async (
   limit: number = 10,
+  numQuery: number = 7,
 ): Promise<IProduct[]> => {
   try {
     await connectToDB();
+    let filterByDate = {};
+
+    if (numQuery) {
+      const start = new Date(numQuery);
+      const end = new Date();
+      filterByDate = {
+        createdAt: {
+          $gte: start,
+          $lte: end,
+        },
+      };
+    }
     const products = await Product.find({
       status: "active",
+      ...filterByDate,
     })
       .populate("category", "name slug")
       .populate("sellers.seller", "name city")
