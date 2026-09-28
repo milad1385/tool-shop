@@ -3,8 +3,10 @@ import { IRecentProducts } from "@/libs/types";
 import { LuSquare } from "react-icons/lu";
 import EmptyRecentUsersError from "./EmptyRecentError";
 import ProductRow from "../products/ProductRow";
+import { getAllProducts } from "@/services/products.service";
 
-function RecentProducts({ title }: IRecentProducts) {
+async function RecentProducts({ title }: IRecentProducts) {
+  const products = await getAllProducts();
   return (
     <div className="rounded-3xl bg-white py-4 md:py-6 px-3 md:px-6">
       <Title content={title ? title : "محصولات اخیر"} />
@@ -22,13 +24,9 @@ function RecentProducts({ title }: IRecentProducts) {
               </tr>
             </thead>
             <tbody>
-              <ProductRow />
-              <ProductRow />
-              <ProductRow />
-              <ProductRow />
-              <ProductRow />
-              <ProductRow />
-              <ProductRow />
+              {products.map((product, index) => (
+                <ProductRow key={product._id} index={index + 1} {...product} />
+              ))}
             </tbody>
           </table>
         </div>
