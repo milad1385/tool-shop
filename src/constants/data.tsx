@@ -1677,7 +1677,6 @@ export const conatctTableHeader = [
 export const orderTableHeader = [
   "شماره",
   "نام",
-  "استان",
   "شهر",
   "مبلغ کل",
   "مبلغ تخفیف",
@@ -1685,6 +1684,16 @@ export const orderTableHeader = [
   "تاریخ",
   "وضعیت",
   "عملیات",
+];
+
+export const recentOrderHeader = [
+  "شماره",
+  "نام",
+  "شهر",
+  "قیمت",
+  "تاریخ",
+  "وضعیت",
+  "رویداد ها",
 ];
 
 export const filterCategoryType = [
