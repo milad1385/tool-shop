@@ -227,14 +227,15 @@ export interface IDurationChart {
   title: string;
 }
 
-interface ISaleChart {
+export interface ISaleChart {
   label: string;
   totalSales: number;
   extrasSales: number;
 }
 
 export interface ISalesChart {
-  data: ISaleChart[];
+  orders: any;
+  numDays?: number;
 }
 
 export interface IFilters {
