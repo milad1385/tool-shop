@@ -2,6 +2,7 @@ import connectToDB from "@/configs/db";
 import Order from "@/models/Order";
 import Product from "@/models/Product";
 import User from "@/models/User";
+import { normalizeData } from "@/utils/helper";
 
 export const getAllStats = async (startDate: string) => {
   try {
@@ -28,12 +29,12 @@ export const getAllStats = async (startDate: string) => {
       0,
     );
 
-
     return {
       usersCount,
       productsCount,
       ordersCount: orders.length,
       sumationOfOrder,
+      orders: normalizeData(orders),
     };
   } catch (error) {
     throw new Error(error?.message);
