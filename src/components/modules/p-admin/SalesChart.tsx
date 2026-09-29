@@ -1,5 +1,7 @@
 "use client";
-import { ISalesChart } from "@/libs/types";
+import { ISaleChart, ISalesChart } from "@/libs/types";
+import { formatDate, formattedPrice } from "@/utils/helper";
+import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
 import {
   Area,
   AreaChart,
@@ -10,22 +12,9 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { useState, useEffect } from "react";
 
-function SalesChart({ data }: ISalesChart) {
-  const [windowWidth, setWindowWidth] = useState(1024);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const isMobile = windowWidth <= 768;
+function SalesChart({ numDays, orders }: ISalesChart) {
+  const windowWidth: any = typeof window !== "undefined" && window.innerWidth;
 
   const colors = {
     totalSales: { stroke: "#4f46e5", fill: "#c7d2fe" },
@@ -34,66 +23,68 @@ function SalesChart({ data }: ISalesChart) {
     background: "#fff",
   };
 
+  const allDates = eachDayOfInterval({
+    start: subDays(new Date(), numDays - 1),
+    end: new Date(),
+  });
+
+  const data : ISaleChart[] = allDates.map((date) => {
+    return {
+      label: format(date, "MMM dd"),
+      totalSales: orders
+        ?.filter((order) => isSameDay(date, new Date(order.createdAt)))
+        .reduce((acc, cur) => acc + cur.finalPrice, 0),
+      extrasSales: orders
+        ?.filter((order) => isSameDay(date, new Date(order.createdAt)))
+        .reduce((acc, cur) => acc + cur.totalDiscount, 0),
+    };
+  });
+
   return (
-    <div className="bg-white mt-5 rounded-3xl pt-6 pb-3 pl-0 pr-6 md:px-6">
-      <div className="text-sm font-IranMedium md:text-xl mb-4">
-        فروش از <span>10 خرداد 1403</span> تا
-        <span>20 خرداد 1403</span>
+    <div className="bg-milafilmBlack mt-5 rounded-md bg-white pt-6 pb-3 pl-0 pr-6 md:px-6">
+      <div className="text-base font-IranMedium md:text-xl mb-4">
+        فروش از{" "}
+        <span className="text-milafilm text-lg">{`${formatDate(allDates[0])}`}</span>{" "}
+        تا
+        <span className="text-milafilm text-lg">{` ${formatDate(allDates.at(-1))}`}</span>
       </div>
-      <ResponsiveContainer width="100%" height={isMobile ? 250 : 300}>
-        <AreaChart
-          data={data}
-          margin={{ top: 10, right: 10, left: 0, bottom: isMobile ? 20 : 0 }}
-        >
+      <ResponsiveContainer width="100%" height={300}>
+        <AreaChart data={data}>
           <XAxis
             dataKey="label"
             tick={{
               fill: colors.text,
-              fontSize: isMobile ? "12px" : "14px",
+              fontSize: windowWidth <= 768 ? "12px" : "14px",
+              fontFamily: "Dana",
             }}
-            interval={isMobile ? 1 : 0}
-            tickMargin={isMobile ? 5 : 10}
-            angle={isMobile ? -45 : 0}
-            textAnchor={isMobile ? "end" : "middle"}
-            height={isMobile ? 50 : 30}
           />
           <YAxis
             unit="ت"
             tick={{
               fill: colors.text,
-              fontSize: isMobile ? "12px" : "16px",
+              fontSize: windowWidth <= 768 ? "12px" : "16px",
+              fontFamily: "Dana",
             }}
-            width={isMobile ? 40 : 60}
-            tickMargin={isMobile ? 5 : 10}
-            tickCount={isMobile ? 5 : 8}
           />
           <Tooltip
             contentStyle={{
               backgroundColor: colors.background,
-              fontSize: isMobile ? "12px" : "16px",
-              padding: isMobile ? "5px 8px" : "10px 14px",
-              borderRadius: "8px",
-              border: "none",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+              fontSize: windowWidth <= 768 ? "12px" : "16px",
+              fontFamily: "Dana",
             }}
-            labelStyle={{
-              fontSize: isMobile ? "12px" : "16px",
-              fontWeight: "bold",
-              marginBottom: "4px",
-            }}
-            itemStyle={{
-              fontSize: isMobile ? "12px" : "16px",
-              padding: "2px 0",
-            }}
+            formatter={(value: number, name: string) => [
+              `${formattedPrice(value)}`,
+              name,
+            ]}
           />
 
-          <CartesianGrid strokeDasharray={3} stroke="#e0e0e0" />
+          <CartesianGrid strokeDasharray={3} />
           <Area
             type="monotone"
             dataKey="totalSales"
             stroke={colors.totalSales.stroke}
             fill={colors.totalSales.fill}
-            strokeWidth={isMobile ? "1.5" : "2"}
+            strokeWidth="2"
             name="مقدار فروش"
             unit="تومان"
           />
@@ -102,7 +93,7 @@ function SalesChart({ data }: ISalesChart) {
             dataKey="extrasSales"
             stroke={colors.extrasSales.stroke}
             fill={colors.extrasSales.fill}
-            strokeWidth={isMobile ? "1.5" : "2"}
+            strokeWidth="2"
             name="مقدار تخفیف"
             unit="تومان"
           />
@@ -110,13 +101,9 @@ function SalesChart({ data }: ISalesChart) {
           <Legend
             verticalAlign="bottom"
             layout="horizontal"
-            align={isMobile ? "center" : "right"}
-            wrapperStyle={{
-              marginTop: isMobile ? "10px" : "30px",
-              fontSize: isMobile ? "14px" : "16px",
-            }}
+            align="right"
+            wrapperStyle={{ marginTop: "20px" }}
             iconType="circle"
-            iconSize={isMobile ? 8 : 12}
           />
         </AreaChart>
       </ResponsiveContainer>

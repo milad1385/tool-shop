@@ -5,12 +5,12 @@ import DurationChart from "@/components/templates/p-admin/index/DurationChart";
 import RecentOrders from "@/components/templates/p-admin/index/RecentOrders";
 import RecentProducts from "@/components/templates/p-admin/index/RecentProducts";
 import RecentUser from "@/components/templates/p-admin/index/RecentUsers";
-import { subDays } from "date-fns";
 import Stats from "@/components/templates/p-admin/index/Stats";
-import { durationChartData, salesChartData } from "@/constants/data";
-import { Metadata } from "next";
+import { durationChartData } from "@/constants/data";
 import { IPage } from "@/libs/types";
 import { getAllStats } from "@/services/stats.service";
+import { subDays } from "date-fns";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "پنل ادمین",
@@ -22,7 +22,7 @@ async function page({ searchParams }: IPage) {
 
   const numQuery = subDays(new Date(), numOfDays).toISOString();
 
-  const { usersCount, sumationOfOrder, productsCount, ordersCount } =
+  const { usersCount, sumationOfOrder, productsCount, ordersCount, orders } =
     await getAllStats(numQuery);
 
   return (
@@ -47,7 +47,7 @@ async function page({ searchParams }: IPage) {
         <DurationChart title="میزان فروش کالا" data={durationChartData} />
         <RecentUser numQuery={numQuery} />
       </div>
-      <SalesChart data={salesChartData} />
+      <SalesChart orders={orders} numDays={numOfDays} />
 
       {/* recent activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-5">
