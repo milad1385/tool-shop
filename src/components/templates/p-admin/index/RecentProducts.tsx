@@ -1,10 +1,10 @@
 import Title from "@/components/modules/p-admin/Title";
-import { IRecentProducts } from "@/libs/types";
-import { LuSquare } from "react-icons/lu";
-import EmptyRecentUsersError from "./EmptyRecentError";
-import ProductRow from "../products/ProductRow";
-import { getAllProducts } from "@/services/products.service";
 import { recentProductHeader } from "@/constants/data";
+import { IRecentProducts } from "@/libs/types";
+import { getAllProducts } from "@/services/products.service";
+import { AiOutlineProduct } from "react-icons/ai";
+import ProductRow from "../products/ProductRow";
+import EmptyRecentUsersError from "./EmptyRecentError";
 
 async function RecentProducts({ title, numQuery }: IRecentProducts) {
   const products = await getAllProducts(10, numQuery);
@@ -33,7 +33,7 @@ async function RecentProducts({ title, numQuery }: IRecentProducts) {
       ) : (
         <EmptyRecentUsersError
           desc="هیچ محصولی تا این تاریخ یافت نشد"
-          icon={<LuSquare className="text-2xl md:text-3xl lg:text-[60px]" />}
+          icon={<AiOutlineProduct className="text-2xl md:text-3xl lg:text-[60px]" />}
         />
       )}
     </div>
