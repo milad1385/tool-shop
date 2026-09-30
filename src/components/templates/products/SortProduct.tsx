@@ -13,6 +13,7 @@ function SortProduct() {
     setStatus(status);
     if (status !== "default") {
       params.set("status", status);
+      params.delete("page");
     } else {
       params.delete("status");
     }
