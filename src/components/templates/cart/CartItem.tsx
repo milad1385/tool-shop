@@ -139,7 +139,7 @@ function CartItem({
       >
         {discount > 0 && (
           <span className="line-through text-zinc-400">
-            {formattedPrice(finalPrice)} تومان
+            {formattedPrice(price)} تومان
           </span>
         )}
         <span
@@ -149,7 +149,7 @@ function CartItem({
               : "text-zinc-800 font-bold"
           }
         >
-          {formattedPrice(price)} تومان
+          {formattedPrice(finalPrice)} تومان
         </span>
       </div>
 
