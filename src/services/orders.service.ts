@@ -83,7 +83,7 @@ export const getAllOrders = async ({
   page = 1,
   limit = 10,
   search = "",
-  numQuery = 7
+  numQuery = 7,
 }: IGetUserOrders): Promise<IPaginatedResponse<IUserOrders>> => {
   try {
     await connectDB();
@@ -103,7 +103,6 @@ export const getAllOrders = async ({
     }
 
     let filters: any = {};
-
 
     if (numQuery) {
       const start = new Date(numQuery);
@@ -163,4 +162,68 @@ export const getAllOrders = async ({
   } catch (error) {
     throw new Error(error?.message);
   }
+};
+
+export const getTopSellingProducts = async (
+  numQuery: string,
+  limit: number = 4,
+) => {
+  const CHART_COLORS = ["#b91c1c", "#7e22ce", "#1d4ed8", "#a16207"];
+  const result = await Order.aggregate([
+    {
+      $match: {
+        createdAt: { $gte: new Date(numQuery) },
+      },
+    },
+    {
+      $unwind: "$items",
+    },
+
+    {
+      $group: {
+        _id: "$items.product",
+        totalQuantity: { $sum: "$items.quantity" },
+      },
+    },
+
+    {
+      $sort: { totalQuantity: -1 },
+    },
+
+    {
+      $limit: limit,
+    },
+
+    {
+      $lookup: {
+        from: "products",
+        localField: "_id",
+        foreignField: "_id",
+        as: "productData",
+      },
+    },
+
+    {
+      $unwind: "$productData",
+    },
+
+    {
+      $project: {
+        _id: 0,
+        productId: "$_id",
+        name: "$productData.name",
+        slug: "$productData.slug",
+        count: "$totalQuantity",
+      },
+    },
+  ]);
+
+  const durationFormat = result.map((item, index) => ({
+    slug: item.slug,
+    duration: item.name.slice(0, 30),
+    value: item.count,
+    color: CHART_COLORS[index % CHART_COLORS.length],
+  }));
+
+  return normalizeData(durationFormat);
 };
