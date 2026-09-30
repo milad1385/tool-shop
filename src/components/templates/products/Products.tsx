@@ -10,7 +10,7 @@ import SortProduct from "./SortProduct";
 import { IProducts } from "@/libs/types";
 
 async function Products({ searchParams, sellerId }: IProducts) {
-  const { page, category, min, max, brand, q } = await searchParams;
+  const { page, category, min, max, brand, q, status } = await searchParams;
   const { data, pagination } = await getProductsWithFilter({
     page: +page,
     categorySlugs: category,
@@ -19,6 +19,7 @@ async function Products({ searchParams, sellerId }: IProducts) {
     min: min,
     max: max,
     sellerId,
+    status,
   });
 
   return (

@@ -115,7 +115,7 @@ export const getAllProducts = async (
         },
       };
     }
-    
+
     const products = await Product.find({
       status: "active",
       ...filterByDate,
@@ -219,6 +219,23 @@ export const getRelatedProducts = async (slug: string): Promise<IProduct[]> => {
   }
 };
 
+const getFinalPriceExpr = (sellerVar: string = "$$seller") => ({
+  $multiply: [
+    `${sellerVar}.price`,
+    {
+      $subtract: [
+        1,
+        {
+          $divide: [
+            { $ifNull: [`${sellerVar}.discount`, 0] },
+            100,
+          ],
+        },
+      ],
+    },
+  ],
+});
+
 const buildPriceMatchStage = (minPrice: number, maxPrice: number) => {
   return {
     $match: {
@@ -280,6 +297,27 @@ const buildPriceMatchStage = (minPrice: number, maxPrice: number) => {
   };
 };
 
+const getSortOption = (status?: string): any => {
+  if (!status) return { createdAt: -1 };
+
+  const [field, order] = status.split("-");
+  const direction = order === "asc" ? 1 : -1;
+
+  switch (field) {
+    case "createdAt":
+      return { createdAt: direction };
+
+    case "score":
+      return { soldCount: direction, createdAt: -1 };
+
+    case "price":
+      return { minFinalPrice: direction };
+
+    default:
+      return { createdAt: -1 };
+  }
+};
+
 export const getProductsWithFilter = async ({
   limit = 9,
   page = 1,
@@ -289,6 +327,7 @@ export const getProductsWithFilter = async ({
   min,
   max,
   sellerId,
+  status,
 }: IGetProductsWithFilter) => {
   try {
     await connectToDB();
@@ -352,73 +391,73 @@ export const getProductsWithFilter = async ({
       }
     }
 
+    const sortOption = getSortOption(status);
+
     const hasPriceFilter =
       (min !== undefined && min !== "") || (max !== undefined && max !== "");
 
-    if (hasPriceFilter) {
-      const minPrice = min !== undefined && min !== "" ? Number(min) : 0;
+    const minPrice = min !== undefined && min !== "" ? Number(min) : 0;
+    const maxPrice =
+      max !== undefined && max !== "" ? Number(max) : 999_999_999_999;
 
-      const maxPrice =
-        max !== undefined && max !== "" ? Number(max) : 999_999_999_999;
-
-      const priceMatch = buildPriceMatchStage(minPrice, maxPrice);
-
-      const countResult = await Product.aggregate([
-        { $match: filter },
-        priceMatch,
-        { $count: "total" },
-      ]);
-
-      const count = countResult[0]?.total || 0;
-
-      const products = await Product.aggregate([
-        { $match: filter },
-        priceMatch,
-        { $sort: { createdAt: -1 } },
-        { $skip: skip },
-        { $limit: safeLimit },
-      ]);
-
-      const populatedProducts = await Product.populate(products, [
-        {
-          path: "category",
-          select: "name slug",
+    const pipeline: any[] = [
+      { $match: filter },
+      
+      ...(hasPriceFilter ? [buildPriceMatchStage(minPrice, maxPrice)] : []),
+      {
+        $addFields: {
+          minFinalPrice: {
+            $min: {
+              $map: {
+                input: "$sellers",
+                as: "seller",
+                in: getFinalPriceExpr("$$seller"),
+              },
+            },
+          },
+          maxFinalPrice: {
+            $max: {
+              $map: {
+                input: "$sellers",
+                as: "seller",
+                in: getFinalPriceExpr("$$seller"),
+              },
+            },
+          },
         },
-        {
-          path: "sellers.seller",
-          select: "name city",
-        },
-      ]);
+      },
+    ];
 
-      return {
-        data: normalizeData(populatedProducts),
-        pagination: createPagination({
-          page: safePage,
-          limit: safeLimit,
-          count,
-        }),
-      };
-    }
 
-    const count = await Product.countDocuments(filter);
+    const countResult = await Product.aggregate([
+      ...pipeline,
+      { $count: "total" },
+    ]);
 
-    const products = await Product.find(filter)
-      .populate("category", "name slug")
-      .populate("sellers.seller", "name city")
-      .skip(skip)
-      .limit(safeLimit)
-      .sort({ createdAt: -1 })
-      .lean();
+    const count = countResult[0]?.total || 0;
+
+
+    const products = await Product.aggregate([
+      ...pipeline,
+      { $sort: sortOption },
+      { $skip: skip },
+      { $limit: safeLimit },
+    ]);
+
+    const populatedProducts = await Product.populate(products, [
+      { path: "category", select: "name slug" },
+      { path: "sellers.seller", select: "name city" },
+    ]);
 
     return {
-      data: normalizeData(products),
+      data: normalizeData(populatedProducts),
       pagination: createPagination({
         page: safePage,
         limit: safeLimit,
         count,
       }),
     };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error.message);
   }
 };
