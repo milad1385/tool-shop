@@ -220,6 +220,7 @@ interface IDuration {
   duration: string;
   value: number;
   color: string;
+  slug: string;
 }
 
 export interface IDurationChart {
