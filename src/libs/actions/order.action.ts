@@ -357,6 +357,18 @@ export async function verifyPayment(trackId: number): Promise<IActionState> {
     order.paymentStatus = "paid";
     await order.save();
 
+    for (const item of order.items) {
+      const product = await Product.findById(item.product);
+      if (!product) {
+        return {
+          success: false,
+          message: "محصول یافت نشد",
+        };
+      }
+      product.soldCount += 1;
+      await product.save();
+    }
+
     await Cart.findOneAndDelete({ user: session.user.id });
 
     revalidatePath("/cart");
