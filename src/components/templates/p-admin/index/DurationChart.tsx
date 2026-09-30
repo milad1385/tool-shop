@@ -1,7 +1,7 @@
 "use client";
 import Title from "@/components/modules/p-admin/Title";
 import { IDurationChart } from "@/libs/types";
-import React from "react";
+import Link from "next/link";
 import {
   Cell,
   Legend,
@@ -17,7 +17,7 @@ function DurationChart({ title, data }: IDurationChart) {
   );
 
   return (
-    <div className="duration-chart  rounded-3xl bg-white py-4 md:py-6 px-8">
+    <div className="duration-chart rounded-3xl bg-white py-4 md:py-6 px-8">
       <Title content={title} />
       <ResponsiveContainer height={267}>
         <PieChart>
@@ -56,6 +56,7 @@ function DurationChart({ title, data }: IDurationChart) {
               iconSize={12}
               iconType="circle"
               wrapperStyle={{ fontFamily: "Dana" }}
+              content={(props) => <CustomLegend {...props} data={data} />}
             />
           )}
 
@@ -69,10 +70,34 @@ function DurationChart({ title, data }: IDurationChart) {
               fontFamily: "Dana",
             }}
             iconType="circle"
+            content={(props) => <CustomLegend {...props} data={data} />}
           />
         </PieChart>
       </ResponsiveContainer>
     </div>
+  );
+}
+
+function CustomLegend({ payload, data }: any) {
+  return (
+    <ul className="flex flex-col gap-2">
+      {data.map((item: any) => (
+        <li key={item.duration}>
+          <Link
+            href={`/products/${item.slug}`}
+            className="flex items-center gap-2 hover:opacity-70 transition-opacity"
+          >
+            <span
+              className="w-3 h-3 rounded-full shrink-0 inline-block"
+              style={{ backgroundColor: item.color }}
+            />
+            <span className="text-sm font-Dana" style={{ color: item.color }}>
+              {item.duration}
+            </span>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }
 

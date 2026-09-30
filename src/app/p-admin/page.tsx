@@ -6,8 +6,8 @@ import RecentOrders from "@/components/templates/p-admin/index/RecentOrders";
 import RecentProducts from "@/components/templates/p-admin/index/RecentProducts";
 import RecentUser from "@/components/templates/p-admin/index/RecentUsers";
 import Stats from "@/components/templates/p-admin/index/Stats";
-import { durationChartData } from "@/constants/data";
 import { IPage } from "@/libs/types";
+import { getTopSellingProducts } from "@/services/orders.service";
 import { getAllStats } from "@/services/stats.service";
 import { subDays } from "date-fns";
 import { Metadata } from "next";
@@ -24,6 +24,8 @@ async function page({ searchParams }: IPage) {
 
   const { usersCount, sumationOfOrder, productsCount, ordersCount, orders } =
     await getAllStats(numQuery);
+
+  const data = await getTopSellingProducts(numQuery);
 
   return (
     <Container>
@@ -44,7 +46,7 @@ async function page({ searchParams }: IPage) {
       />
       {/* charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
-        <DurationChart title="میزان فروش کالا" data={durationChartData} />
+        <DurationChart title="میزان فروش کالا" data={data} />
         <RecentUser numQuery={numQuery} />
       </div>
       <SalesChart orders={orders} numDays={numOfDays} />
