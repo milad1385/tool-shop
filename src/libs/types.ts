@@ -999,6 +999,7 @@ export interface IGetProductsWithFilter {
   search?: string;
   brandSlugs?: string;
   sellerId?: string;
+  status?: string;
 }
 
 export interface IProductListSeller {
