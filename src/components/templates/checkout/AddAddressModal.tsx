@@ -2,6 +2,8 @@
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import SelectBox from "@/components/ui/SelectBox";
+import { getCityByProvinceName, getProvinces } from "@/constants/data";
 import { addUserAddress } from "@/libs/actions/address.action";
 import { IModal } from "@/libs/types";
 import {
@@ -29,6 +31,8 @@ interface IAddAddressModalProps extends IModal {
 
 function AddAddressModal({ onClose, onSuccess }: IAddAddressModalProps) {
   const [position, setPosition] = useState<[number, number]>([35.7, 51.39]);
+  const [province, setProvince] = useState<any>(null);
+  const [city, setCity] = useState<any>(null);
   const [isActive, setIsActive] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -43,7 +47,19 @@ function AddAddressModal({ onClose, onSuccess }: IAddAddressModalProps) {
     resolver: yupResolver(userAddress),
   });
 
+  const handleProvinceChange = (selected: any) => {
+    setProvince(selected);
+    setCity(null);
+  };
+
   const addNewUserAddress = async (data: UserAddressType) => {
+    if (!province) {
+      return toast.error("لطفا استان را انتخاب کنید");
+    }
+
+    if (!city) {
+      return toast.error("لطفا شهر را انتخاب کنید");
+    }
     startTransition(async () => {
       try {
         const formData = new FormData();
@@ -53,6 +69,8 @@ function AddAddressModal({ onClose, onSuccess }: IAddAddressModalProps) {
         formData.append("houseNumber", data.houseNumber);
         formData.append("unit", data.unit);
         formData.append("postalCode", data.postalCode);
+        formData.append("province", province?.label || "");
+        formData.append("city", city?.label || "");
         formData.append("lat", String(position[0]));
         formData.append("lan", String(position[1]));
 
@@ -118,6 +136,39 @@ function AddAddressModal({ onClose, onSuccess }: IAddAddressModalProps) {
           <ChooseLocation position={position} isShow />
           <form onSubmit={handleSubmit(addNewUserAddress)} className="mt-5">
             <div className="space-y-6">
+              <div className="flex gap-3">
+                <div className="w-full">
+                  <SelectBox
+                    register={register}
+                    errors={errors}
+                    placeholder="استان را انتخاب کنید"
+                    name="province"
+                    options={getProvinces()}
+                    title="استان"
+                    searchable
+                    selected={province}
+                    onSelected={handleProvinceChange}
+                    disable={isPending}
+                  />
+                </div>
+                {province && (
+                  <div className="w-full">
+                    <SelectBox
+                      register={register}
+                      errors={errors}
+                      placeholder="شهر را انتخاب کنید"
+                      name="city"
+                      options={getCityByProvinceName(province?.label)}
+                      title="شهر"
+                      searchable
+                      selected={city}
+                      onSelected={setCity}
+                      disable={!province?.label || isPending}
+                    />
+                  </div>
+                )}
+              </div>
+
               <Input
                 register={register}
                 errors={errors}

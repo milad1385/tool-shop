@@ -88,6 +88,8 @@ export async function addUserAddress(
         lat: rawData.lat,
         lan: rawData.lan,
       },
+      province: formData.get("province"),
+      city: formData.get("city"),
     };
     user.addresses.push(newAddress);
     await user.save();
@@ -109,8 +111,6 @@ export async function addUserAddress(
     };
   }
 }
-
-
 
 export async function deleteUserAddress(
   addressId: string,
@@ -149,4 +149,3 @@ export async function deleteUserAddress(
     };
   }
 }
-

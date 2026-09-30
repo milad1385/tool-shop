@@ -159,7 +159,7 @@ function UpdateCategory({ categories, category }: IUpdateCategory) {
           register={register}
           errors={errors}
           placeholder="پرنت دسته بندی را انتخاب کنید"
-          name="stars"
+          name="parent"
           options={categoriesOption}
           title="پرنت دسته بندی"
           searchable
