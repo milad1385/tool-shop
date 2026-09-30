@@ -32,6 +32,7 @@ export interface IProduct extends Document {
   status?: "active" | "inactive" | "draft";
   isFeatured: boolean;
   isAmazingOffer: boolean;
+  soldCount: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -181,6 +182,10 @@ const productSchema = new Schema<IProduct>(
     isAmazingOffer: {
       type: Boolean,
       default: false,
+    },
+    soldCount: {
+      type: Number,
+      default: 0,
     },
   },
   {
