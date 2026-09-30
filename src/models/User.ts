@@ -12,6 +12,8 @@ export interface IAddress {
   houseNumber: string;
   unit: string;
   mobile: string;
+  province: string;
+  city: string;
 }
 
 export interface IUser extends Document {
@@ -75,6 +77,17 @@ const addressSchema = new Schema<IAddress>(
       maxlength: [500, "آدرس حداکثر ۵۰۰ کاراکتر باید باشد"],
     },
 
+    province: {
+      type: String,
+      required: [true, "استان را وارد کنید"],
+      trim: true,
+    },
+
+    city: {
+      type: String,
+      required: [true, "شهر را وارد کنید"],
+      trim: true,
+    },
     houseNumber: {
       type: String,
       required: true,

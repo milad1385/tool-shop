@@ -25,13 +25,15 @@ export interface IOrderAddress {
   address: string;
   houseNumber: string;
   unit: string;
+  province: string;
+  city: string;
 }
 
 export interface IOrderDeliverySlot {
   dayOfWeek: number;
   startHour: number;
   endHour: number;
-  slot:mongoose.Types.ObjectId
+  slot: mongoose.Types.ObjectId;
 }
 
 export interface IOrder extends Document {
@@ -132,6 +134,17 @@ const orderAddressSchema = new Schema<IOrderAddress>(
     unit: {
       type: String,
       required: true,
+      trim: true,
+    },
+    province: {
+      type: String,
+      required: [true, "استان را وارد کنید"],
+      trim: true,
+    },
+
+    city: {
+      type: String,
+      required: [true, "شهر را وارد کنید"],
       trim: true,
     },
   },

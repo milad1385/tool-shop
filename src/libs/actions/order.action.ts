@@ -134,6 +134,9 @@ export async function createOrder(formData: FormData): Promise<IActionState> {
       finalPrice: item.finalPrice,
     }));
 
+    console.log(selectedAddress);
+    
+
     const order = await Order.create({
       user: session.user.id,
       items: orderItems,
@@ -148,6 +151,8 @@ export async function createOrder(formData: FormData): Promise<IActionState> {
         address: selectedAddress.address,
         houseNumber: selectedAddress.houseNumber,
         unit: selectedAddress.unit,
+        province: selectedAddress.province,
+        city: selectedAddress.city,
       },
       deliverySlot: {
         slot: deliverySlot._id,
