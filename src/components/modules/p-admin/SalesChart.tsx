@@ -2,6 +2,7 @@
 import { ISaleChart, ISalesChart } from "@/libs/types";
 import { formatDate, formattedPrice } from "@/utils/helper";
 import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
+import { faIR } from "date-fns/locale";
 import {
   Area,
   AreaChart,
@@ -28,9 +29,13 @@ function SalesChart({ numDays, orders }: ISalesChart) {
     end: new Date(),
   });
 
-  const data : ISaleChart[] = allDates.map((date) => {
+  const data: ISaleChart[] = allDates.map((date) => {
     return {
-      label: format(date, "MMM dd"),
+      label: date.toLocaleDateString("fa-IR", {
+        day: "numeric",
+        month: "long",
+      }),
+      fullDate: date.toLocaleDateString("fa-IR"),
       totalSales: orders
         ?.filter((order) => isSameDay(date, new Date(order.createdAt)))
         .reduce((acc, cur) => acc + cur.finalPrice, 0),
@@ -76,6 +81,11 @@ function SalesChart({ numDays, orders }: ISalesChart) {
               `${formattedPrice(value)}`,
               name,
             ]}
+            labelFormatter={(label, payload) => {
+              return payload?.[0]?.payload?.fullDate
+                ? `تاریخ: ${payload[0].payload.fullDate}`
+                : `تاریخ: ${label}`;
+            }}
           />
 
           <CartesianGrid strokeDasharray={3} />
