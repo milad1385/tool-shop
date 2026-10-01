@@ -922,6 +922,7 @@ type TOrderStatus = "pending" | "paid" | "shipped" | "delivered" | "cancelled";
 export interface IUserOrders {
   index?: number;
   _id: string;
+  roles?: string[];
   user: {
     email: string;
     fullname: string;
