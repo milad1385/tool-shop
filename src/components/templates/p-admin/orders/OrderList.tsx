@@ -1,9 +1,9 @@
+import EmptyError from "@/components/modules/p-admin/EmptyError";
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
+import { orderTableHeader } from "@/constants/data";
 import { IIOrderList } from "@/libs/types";
 import OrderRow from "./OrderRow";
-import { orderTableHeader } from "@/constants/data";
-import EmptyError from "@/components/modules/p-admin/EmptyError";
 
 function OrderList({ data, pagination }: IIOrderList) {
   return (
