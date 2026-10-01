@@ -845,6 +845,8 @@ export interface IAddress {
   address: string;
   houseNumber: string;
   unit: string;
+  province: string;
+  city: string;
 }
 
 export interface IMainBox {
@@ -1046,4 +1048,29 @@ export interface IStats {
   ordersCount: number;
   productsCount: number;
   sumationOfOrder: number;
+}
+
+export interface IUser {
+  index?: number;
+  _id?: string;
+  fullname: string;
+  username: string;
+  phone: string;
+  email: string;
+  password: string;
+  roles: UserRoleEnums[];
+  addresses: IAddress[];
+  provider: "google" | "credentials";
+  providerId?: string;
+  image?: string;
+  emailVerified?: boolean;
+  status: "active" | "inactive" | "banned";
+  lastLogin?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface IUserList {
+  data: IUser[];
+  pagination: IPagination;
 }
