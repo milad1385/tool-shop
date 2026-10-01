@@ -10,18 +10,19 @@ function Logout() {
   const { logout } = useAuthStore();
 
   const logoutClickHandler = () => {
-    const toastId = toast.loading("در حال خروج...");
+    const toastId = toast.loading("در حال خروج");
 
     startTransition(async () => {
-      logout()
+      logout();
       toast.success("با موفقیت خارج شدید", { id: toastId });
     });
   };
 
   return (
-    <div
+    <button
       onClick={logoutClickHandler}
-      className={`flex items-center gap-x-2 text-[15px] cursor-pointer md:text-base p-3 md:py-3.5 md:px-4 hover:bg-stone-100 rounded-md duration-300 ${
+      disabled={isPending}
+      className={`w-full flex items-center gap-x-2 text-[15px] cursor-pointer md:text-base p-3 md:py-3.5 md:px-4 hover:bg-stone-100 rounded-md duration-300 ${
         isPending ? "opacity-50 pointer-events-none" : ""
       }`}
     >
@@ -31,7 +32,7 @@ function Logout() {
         <HiMiniArrowRightEndOnRectangle className="text-2xl text-zinc-700" />
       )}
       <span className="mr-1">{isPending ? "" : "خروج"}</span>
-    </div>
+    </button>
   );
 }
 
