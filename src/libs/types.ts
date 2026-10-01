@@ -893,13 +893,21 @@ export interface IVerifyResultStatus {
 }
 
 export interface IGetUserOrders {
-  status?: "pending" | "paid" | "shipped" | "delivered" | "cancelled" | "all";
+  status?: IOrderStatus;
   isLatest?: boolean;
   page?: number;
   limit?: number;
   search?: string;
   numQuery?: number;
 }
+
+export type IOrderStatus =
+  | "pending"
+  | "paid"
+  | "shipped"
+  | "delivered"
+  | "cancelled"
+  | "all";
 
 export interface IGetUserOrder {
   id: string;
