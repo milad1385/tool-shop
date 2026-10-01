@@ -1721,6 +1721,18 @@ export const filterCategoryType = [
   { label: "رادیو باتن", value: "radio" },
 ];
 
+export const usersTableHeader = [
+  "شماره",
+  "نام",
+  "نام کاربری",
+  "ایمیل",
+  "شماره همراه",
+  "نقش",
+  "تاریخ عضویت",
+  "وضعیت",
+  "عملیات",
+];
+
 const provinceOptions = [
   {
     label: "آذربایجان شرقی",
