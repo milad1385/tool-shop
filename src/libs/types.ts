@@ -730,6 +730,13 @@ export interface IGetContacts {
   status?: string | string[];
 }
 
+export interface IGetUsers {
+  page?: number;
+  limit?: number;
+  search?: string | string[];
+  status?: string | string[];
+}
+
 export interface IContactList {
   data: IContactUs[];
   pagination: IPagination;
