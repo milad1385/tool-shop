@@ -1,4 +1,7 @@
+"use client";
 import Table from "@/components/modules/p-admin/Table";
+import { UserRoleEnums } from "@/libs/types";
+import { useAuthStore } from "@/stores/auth.store";
 import { formatDate, getRoleNames } from "@/utils/helper";
 import { FaCheck, FaTrash } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
@@ -12,6 +15,7 @@ function UserRow({
   createdAt,
   roles,
 }) {
+  const { user } = useAuthStore();
   return (
     <Table.Row>
       <td>{index}</td>
@@ -30,8 +34,12 @@ function UserRow({
       <td>
         <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
           <FaCheck className="text-green-500 text-base md:text-xl" />
-          <RiAdminFill className="text-blue-800 text-base md:text-2xl" />
-          <FaTrash className="text-red-600 text-base md:text-xl" />
+          {user?.roles?.includes(UserRoleEnums.SUPER_ADMIN) && (
+            <>
+              <RiAdminFill className="text-blue-800 text-base md:text-2xl" />
+              <FaTrash className="text-red-600 text-base md:text-xl" />
+            </>
+          )}
         </div>
       </td>
     </Table.Row>
