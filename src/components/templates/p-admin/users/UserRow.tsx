@@ -1,17 +1,26 @@
 import Table from "@/components/modules/p-admin/Table";
+import { formatDate, getRoleNames } from "@/utils/helper";
 import { FaCheck, FaTrash } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 
-function UserRow() {
+function UserRow({
+  index,
+  fullname,
+  username,
+  email,
+  phone,
+  createdAt,
+  roles,
+}) {
   return (
     <Table.Row>
-      <td>1</td>
-      <td>میلاد سلامیان</td>
-      <td>Milad1385</td>
-      <td>Milad@gmail.com</td>
-      <td>09336085012</td>
-      <td>ادمین</td>
-      <td>1404/04/12</td>
+      <td>{index}</td>
+      <td>{fullname}</td>
+      <td>{username}</td>
+      <td>{email}</td>
+      <td>{phone}</td>
+      <td>{getRoleNames(roles)}</td>
+      <td>{formatDate(createdAt)}</td>
 
       <td>
         <div className="bg-green-500 text-white rounded-3xl py-2 px-4">
