@@ -189,8 +189,45 @@ export const improveUserRoleToAdmin = async (userId: string) => {
       roles: user.roles,
     };
   } catch (error) {
-    console.error("improveUserRoleToAdmin error:", error);
+    return {
+      success: false,
+      message: "خطایی در تغییر نقش کاربر رخ داد",
+    };
+  }
+};
 
+export const banUser = async (userId: string) => {
+  try {
+    await connectDB();
+
+    const adminCheck = await checkAdminAccess(true);
+
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    const user = await User.findOne({ _id: userId });
+
+    if (!user) {
+      return {
+        success: false,
+        message: "کاربری با این آیدی یافت نشد",
+      };
+    }
+
+    user.status = user.status === "active" ? "banned" : "active";
+    await user.save();
+
+    revalidatePath("/p-admin/users");
+
+    return {
+      success: true,
+      message: `کاربر با موفقیت ${user.status === "active" ? "بن" : "فعال"} شد`,
+    };
+  } catch (error) {
     return {
       success: false,
       message: "خطایی در تغییر نقش کاربر رخ داد",
