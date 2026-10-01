@@ -1,4 +1,9 @@
-import { ICreatePagination, IPagination, IVerifyUser } from "@/libs/types";
+import {
+  ICreatePagination,
+  IPagination,
+  IVerifyUser,
+  UserRoleEnums,
+} from "@/libs/types";
 import jwt from "jsonwebtoken";
 
 export const formattedPrice = (price: number, locale = "fa-IR") => {
@@ -247,4 +252,21 @@ export const getCheapestPrice = (
   const discount = cheapestSeller?.discount ?? 0;
 
   return { lowestPrice, finalPrice, discount };
+};
+
+export const roleNames: Record<UserRoleEnums, string> = {
+  [UserRoleEnums.SUPER_ADMIN]: "مدیر ارشد",
+  [UserRoleEnums.ADMIN]: "مدیر",
+  [UserRoleEnums.USER]: "کاربر عادی",
+  [UserRoleEnums.SELLER]: "فروشنده",
+};
+
+export const getRoleNames = (
+  roles: (UserRoleEnums | string)[] | undefined,
+): string => {
+  if (!roles || roles.length === 0) return "بدون نقش";
+
+  return roles
+    .map((role) => roleNames[role as UserRoleEnums] || role)
+    .join(" ، ");
 };
