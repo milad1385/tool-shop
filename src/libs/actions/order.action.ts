@@ -10,6 +10,7 @@ import Order from "@/models/Order";
 import Product from "@/models/Product";
 import User from "@/models/User";
 import { createPayment } from "@/utils/helper";
+import { isValidObjectId } from "mongoose";
 import { revalidatePath } from "next/cache";
 
 function generateOrderNumber(): string {
@@ -135,7 +136,6 @@ export async function createOrder(formData: FormData): Promise<IActionState> {
     }));
 
     console.log(selectedAddress);
-    
 
     const order = await Order.create({
       user: session.user.id,
@@ -466,6 +466,42 @@ export async function continuePayment(orderId: string): Promise<IActionState> {
     };
   } catch (error: any) {
     console.error("خطا در ادامه پرداخت:", error);
+    return {
+      success: false,
+      message: error.message || "خطا در ادامه پرداخت، لطفاً دوباره تلاش کنید",
+    };
+  }
+}
+
+export async function changeOrderStatus(
+  status: any,
+  id: string,
+): Promise<IActionState> {
+  try {
+    await connectDB();
+
+    if (!isValidObjectId(id)) {
+      return {
+        success: false,
+        message: "آیدی سفارش معتبر نیست",
+      };
+    }
+
+    const order = await Order.findOneAndUpdate({ _id: id }, { status });
+
+    if (!order) {
+      return {
+        success: false,
+        message: "سفارش یافت نشد",
+      };
+    }
+
+    revalidatePath("/p-admin/orders");
+    return {
+      success: true,
+      message: "سفارش با موفقیت تغییر وضعیت داده شد",
+    };
+  } catch (error) {
     return {
       success: false,
       message: error.message || "خطا در ادامه پرداخت، لطفاً دوباره تلاش کنید",
