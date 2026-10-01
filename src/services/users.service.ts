@@ -1,9 +1,9 @@
 import { auth } from "@/auth";
 import connectToDB from "@/configs/db";
-import { IGetUserPanelStats } from "@/libs/types";
+import { IGetUserPanelStats, IGetUsers } from "@/libs/types";
 import Order from "@/models/Order";
 import User from "@/models/User";
-import { normalizeData } from "@/utils/helper";
+import { createPagination, normalizeData } from "@/utils/helper";
 
 export const getUserPanelStats = async (): Promise<IGetUserPanelStats> => {
   try {
@@ -58,5 +58,44 @@ export const getAllUsers = async (numQuery: string) => {
     return normalizeData(latestUsers);
   } catch (error) {
     throw new Error(error?.message);
+  }
+};
+
+export const getUsers = async ({
+  page,
+  limit,
+  search,
+  status,
+}: IGetUsers) => {
+  console.log(page , limit);
+  
+  try {
+    const filters: any = { roles: { $ne: "SUPER_ADMIN" } };
+    await connectToDB();
+    if (status !== "all") {
+      filters.status = status;
+    }
+
+    if (search) {
+      filters.$or = [
+        { fullname: { $regex: search, $options: "i" } },
+        { email: { $regex: search, $options: "i" } },
+        { phone: { $regex: search, $options: "i" } },
+        { username: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    const count = await User.countDocuments(filters);
+    const users = await User.find({ ...filters })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .sort({ createdAt: -1 });
+
+    return {
+      data: normalizeData(users),
+      pagination: createPagination({ page, limit, count }),
+    };
+  } catch (err) {
+    throw new Error(err?.message);
   }
 };
