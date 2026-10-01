@@ -18,7 +18,9 @@ export type AdminCheckResult = {
   };
 };
 
-export async function checkAdminAccess(): Promise<AdminCheckResult> {
+export async function checkAdminAccess(
+  isSuperAdmin?: boolean,
+): Promise<AdminCheckResult> {
   try {
     const session = await auth();
 
@@ -50,9 +52,14 @@ export async function checkAdminAccess(): Promise<AdminCheckResult> {
       };
     }
 
-    const isAdmin =
-      user.roles.includes(UserRoleEnums.SUPER_ADMIN) ||
-      user.roles.includes(UserRoleEnums.ADMIN);
+    let isAdmin = null;
+    if (isSuperAdmin) {
+      isAdmin = user.roles.includes(UserRoleEnums.SUPER_ADMIN);
+    } else {
+      isAdmin =
+        user.roles.includes(UserRoleEnums.SUPER_ADMIN) ||
+        user.roles.includes(UserRoleEnums.ADMIN);
+    }
 
     if (!isAdmin) {
       return {
