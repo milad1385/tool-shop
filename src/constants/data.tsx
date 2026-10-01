@@ -1683,6 +1683,7 @@ export const orderTableHeader = [
   "مبلغ نهایی",
   "تاریخ",
   "وضعیت",
+  "تغییر وضعیت",
   "عملیات",
 ];
 
@@ -2137,8 +2138,29 @@ export const getProvinces = () => {
   }));
 };
 
-export const getCityByProvinceName = (name : string ="") => {
+export const getCityByProvinceName = (name: string = "") => {
   return provinceOptions
     .find((province) => province?.label === name)
-    ?.value?.map((city, index) => ({ id: index + 1, label: city, value: city }));
+    ?.value?.map((city, index) => ({
+      id: index + 1,
+      label: city,
+      value: city,
+    }));
+};
+
+export const orderStatusItems = [
+  // { label: "در انتظار پرداخت", value: "pending", id: 1 },
+  // { label: "پرداخت شده", value: "paid", id: 2 },
+  { label: "در حال ارسال", value: "shipped", id: 3 },
+  { label: "تحویل داده شده", value: "delivered", id: 4 },
+  { label: "سفارش لغو شده", value: "cancelled", id: 5 },
+  // { label: "پرداخت نشده", value: "unpaid", id: 6 },
+];
+
+export const getOrderStatus = () => {
+  return orderStatusItems.map((item) => ({
+    id: item.id,
+    label: item.label,
+    value: item.value,
+  }));
 };
