@@ -139,7 +139,7 @@ function SelectBox({
           isMulti={multiple}
           noOptionsMessage={() => "موردی یافت نشد"}
           options={options}
-          {...register(`${name}`)}
+          {...register?.(`${name}`)}
           onChange={(e) => onSelected?.(e)}
           placeholder={placeholder}
           styles={customStyles}
