@@ -437,8 +437,8 @@ export const statusFilterOptions = [
 
 export const userStatusFilterOptions = [
   { label: "همه", slug: "all", color: "black" },
-  { label: "بن شده", slug: "banned", color: "yellow-500" },
   { label: "فعال", slug: "active", color: "green-500" },
+  { label: "بن شده", slug: "banned", color: "yellow-500" },
 ];
 
 export const orderStatusFilterOptions = [
