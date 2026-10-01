@@ -2,7 +2,7 @@
 import SelectBox from "@/components/ui/SelectBox";
 import { getOrderStatus, orderStatusItems } from "@/constants/data";
 import { changeOrderStatus } from "@/libs/actions/order.action";
-import { IUserOrders } from "@/libs/types";
+import { IUserOrders, UserRoleEnums } from "@/libs/types";
 import { formatDate, formattedPrice, getOrderInfo } from "@/utils/helper";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,6 +20,7 @@ function OrderRow({
   createdAt,
   status,
   _id,
+  roles,
 }: IUserOrders) {
   const [orderStatus, setOrderStatus] = useState(
     orderStatusItems.find((item) => item.value === status),
@@ -58,20 +59,22 @@ function OrderRow({
           {title}
         </div>
       </td>
-      <td>
-        <div className="w-[200px]">
-          <SelectBox
-            placeholder="وضعیت انتخاب کنید"
-            name="province"
-            options={getOrderStatus()}
-            title=""
-            searchable
-            selected={orderStatus}
-            onSelected={handleStatusChange}
-            disable={isPending}
-          />
-        </div>
-      </td>
+      {roles.includes(UserRoleEnums.SUPER_ADMIN) && (
+        <td>
+          <div className="w-[200px]">
+            <SelectBox
+              placeholder="وضعیت انتخاب کنید"
+              name="province"
+              options={getOrderStatus()}
+              title=""
+              searchable
+              selected={orderStatus}
+              onSelected={handleStatusChange}
+              disable={isPending}
+            />
+          </div>
+        </td>
+      )}
       <td>
         <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
           <Link
