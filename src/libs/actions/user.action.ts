@@ -2,11 +2,12 @@
 
 import { auth } from "@/auth";
 import connectDB from "@/configs/db";
-import { IActionState } from "@/libs/types";
+import { IActionState, UserRoleEnums } from "@/libs/types";
 import User from "@/models/User";
 import { deleteFile, uploadFile } from "@/utils/uploads";
 import { updateUserValidorSchema } from "@/validators/backend/user/user.validator";
 import { revalidatePath } from "next/cache";
+import { checkAdminAccess } from "./admin.actions";
 
 export async function updateUserInfo(
   formData: FormData,
@@ -135,10 +136,64 @@ export async function updateUserInfo(
       message: "اطلاعات با موفقیت به‌روزرسانی شد",
     };
   } catch (error: any) {
-    console.error("خطا در آپدیت اطلاعات:", error);
     return {
       success: false,
       message: error.message || "خطا در آپدیت اطلاعات، لطفاً دوباره تلاش کنید",
     };
   }
 }
+
+export const improveUserRoleToAdmin = async (userId: string) => {
+  try {
+    await connectDB();
+
+    const adminCheck = await checkAdminAccess(true);
+
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    const user = await User.findOne({ _id: userId });
+
+    if (!user) {
+      return {
+        success: false,
+        message: "کاربری با این آیدی یافت نشد",
+      };
+    }
+
+    const hasAdmin = user.roles.includes(UserRoleEnums.ADMIN);
+
+    if (hasAdmin) {
+      user.roles = user.roles.filter((role) => role !== UserRoleEnums.ADMIN);
+
+      if (!user.roles.includes(UserRoleEnums.USER)) {
+        user.roles.push(UserRoleEnums.USER);
+      }
+    } else {
+      user.roles.push(UserRoleEnums.ADMIN);
+    }
+
+    await user.save();
+
+    revalidatePath("/p-admin/users");
+
+    return {
+      success: true,
+      message: hasAdmin
+        ? "دسترسی ادمین کاربر حذف شد"
+        : "دسترسی ادمین به کاربر اضافه شد",
+      roles: user.roles,
+    };
+  } catch (error) {
+    console.error("improveUserRoleToAdmin error:", error);
+
+    return {
+      success: false,
+      message: "خطایی در تغییر نقش کاربر رخ داد",
+    };
+  }
+};
