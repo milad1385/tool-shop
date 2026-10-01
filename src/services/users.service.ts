@@ -1,6 +1,11 @@
 import { auth } from "@/auth";
 import connectToDB from "@/configs/db";
-import { IGetUserPanelStats, IGetUsers } from "@/libs/types";
+import {
+  IGetUserPanelStats,
+  IGetUsers,
+  IPaginatedResponse,
+  IUser,
+} from "@/libs/types";
 import Order from "@/models/Order";
 import User from "@/models/User";
 import { createPagination, normalizeData } from "@/utils/helper";
@@ -66,9 +71,7 @@ export const getUsers = async ({
   limit,
   search,
   status,
-}: IGetUsers) => {
-  console.log(page , limit);
-  
+}: IGetUsers): Promise<IPaginatedResponse<IUser>> => {
   try {
     const filters: any = { roles: { $ne: "SUPER_ADMIN" } };
     await connectToDB();

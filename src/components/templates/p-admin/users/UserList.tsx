@@ -2,8 +2,9 @@ import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
 import { usersTableHeader } from "@/constants/data";
 import UserRow from "./UserRow";
+import { IUserList } from "@/libs/types";
 
-async function UserList({ data, pagination }) {
+async function UserList({ data, pagination }: IUserList) {
   return (
     <div className="md:section-box">
       <div className="admin-table discount mt-5 overflow-hidden  rounded-md">

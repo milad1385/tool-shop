@@ -1,6 +1,6 @@
 "use client";
 import Table from "@/components/modules/p-admin/Table";
-import { UserRoleEnums } from "@/libs/types";
+import { IUser, UserRoleEnums } from "@/libs/types";
 import { useAuthStore } from "@/stores/auth.store";
 import { formatDate, getRoleNames } from "@/utils/helper";
 import { FaCheck, FaTrash } from "react-icons/fa";
@@ -14,7 +14,7 @@ function UserRow({
   phone,
   createdAt,
   roles,
-}) {
+}: IUser) {
   const { user } = useAuthStore();
   return (
     <Table.Row>
