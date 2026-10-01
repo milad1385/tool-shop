@@ -1,10 +1,13 @@
 "use client";
 import Table from "@/components/modules/p-admin/Table";
+import { improveUserRoleToAdmin } from "@/libs/actions/user.action";
 import { IUser, UserRoleEnums } from "@/libs/types";
 import { useAuthStore } from "@/stores/auth.store";
 import { formatDate, getRoleNames } from "@/utils/helper";
-import { FaCheck, FaTrash } from "react-icons/fa";
-import { RiAdminFill } from "react-icons/ri";
+import { useTransition } from "react";
+import toast from "react-hot-toast";
+import { FaCheck, FaTrash, FaUser } from "react-icons/fa";
+import { RiAdminFill, RiUser2Fill } from "react-icons/ri";
 
 function UserRow({
   index,
@@ -14,14 +17,29 @@ function UserRow({
   phone,
   createdAt,
   roles,
+  _id,
 }: IUser) {
   const { user } = useAuthStore();
+  const [isPending, startTransition] = useTransition();
+
+  const handleUserRoleChange = () => {
+    startTransition(async () => {
+      const result = await improveUserRoleToAdmin(_id);
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+      }
+    });
+
+    return true;
+  };
   return (
     <Table.Row>
       <td>{index}</td>
       <td>{fullname}</td>
       <td>{username}</td>
-      <td>{email}</td>
+      {/* <td>{email}</td> */}
       <td>{phone}</td>
       <td>{getRoleNames(roles)}</td>
       <td>{formatDate(createdAt)}</td>
@@ -36,7 +54,17 @@ function UserRow({
           <FaCheck className="text-green-500 text-base md:text-xl" />
           {user?.roles?.includes(UserRoleEnums.SUPER_ADMIN) && (
             <>
-              <RiAdminFill className="text-blue-800 text-base md:text-2xl" />
+              {roles.includes(UserRoleEnums.ADMIN) ? (
+                <RiUser2Fill
+                  onClick={() => handleUserRoleChange()}
+                  className="text-sky-500 text-base md:text-2xl"
+                />
+              ) : (
+                <RiAdminFill
+                  onClick={() => handleUserRoleChange()}
+                  className="text-blue-800 text-base md:text-2xl"
+                />
+              )}
               <FaTrash className="text-red-600 text-base md:text-xl" />
             </>
           )}
