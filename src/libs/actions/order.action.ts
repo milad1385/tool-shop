@@ -12,6 +12,7 @@ import User from "@/models/User";
 import { createPayment } from "@/utils/helper";
 import { isValidObjectId } from "mongoose";
 import { revalidatePath } from "next/cache";
+import { checkAdminAccess } from "./admin.actions";
 
 function generateOrderNumber(): string {
   const timestamp = Date.now().toString().slice(-8);
@@ -479,6 +480,14 @@ export async function changeOrderStatus(
 ): Promise<IActionState> {
   try {
     await connectDB();
+
+    const adminCheck = await checkAdminAccess();
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
 
     if (!isValidObjectId(id)) {
       return {
