@@ -3,6 +3,7 @@ import Table from "@/components/modules/p-admin/Table";
 import { usersTableHeader } from "@/constants/data";
 import UserRow from "./UserRow";
 import { IUserList } from "@/libs/types";
+import EmptyError from "@/components/modules/p-admin/EmptyError";
 
 async function UserList({ data, pagination }: IUserList) {
   return (
@@ -21,7 +22,9 @@ async function UserList({ data, pagination }: IUserList) {
             ))}
           </Table.Body>
         </Table>
-        <Pagination count={pagination.totalPages} />
+
+        {!data.length && <EmptyError />}
+        {data.length && <Pagination count={pagination.totalPages} />}
       </div>
     </div>
   );
