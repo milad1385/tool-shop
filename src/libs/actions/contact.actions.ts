@@ -7,6 +7,7 @@ import { revalidatePath } from "next/cache";
 import { IActionState } from "../types";
 import { checkAdminAccess } from "./admin.actions";
 import { isValidObjectId } from "mongoose";
+import { sendAnswer } from "../mailer";
 
 export async function sendContactMessage(
   formData: FormData,
@@ -95,6 +96,62 @@ export const deleteContact = async (id: string): Promise<IActionState> => {
     return {
       success: false,
       message: "خطا در حذف پیغام ، لطفاً دوباره تلاش کنید",
+    };
+  }
+};
+
+export const sendAnswerContact = async (
+  id: string,
+  message: string,
+): Promise<IActionState> => {
+  try {
+    const adminCheck = await checkAdminAccess();
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    if (!isValidObjectId(id)) {
+      return {
+        success: false,
+        message: "آیدی ارسال شده معتبر نیست",
+      };
+    }
+
+    const contact = await ContactUs.findOne({ _id: id });
+
+    if (!contact) {
+      return {
+        success: false,
+        message: `پیغام با این آیدی یافت نشد : ${id}`,
+      };
+    }
+
+    if (!message) {
+      return {
+        success: false,
+        message: `پیام خود را وارد کنید`,
+      };
+    }
+
+    await sendAnswer(contact.email, message);
+
+    await ContactUs.findOneAndUpdate(
+      { _id: contact._id },
+      { status: "ANSWERED" },
+    );
+
+    revalidatePath("/p-admin/contacts");
+    return {
+      success: true,
+      message: "پیغام با موفقیت پاسخ داده شد",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "اتصال خود را به اینترنت چک کنید",
     };
   }
 };
