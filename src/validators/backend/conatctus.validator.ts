@@ -18,3 +18,13 @@ export const sendContact = z.object({
 });
 
 export type sendContactType = z.infer<typeof sendContact>;
+
+export const sendAnswerSchema = z.object({
+  message: z
+    .string()
+    .min(1, "متن پاسخ نمی‌تواند خالی باشد")
+    .min(10, "متن پاسخ باید حداقل ۱۰ کاراکتر باشد")
+    .max(1000, "متن پاسخ نمی‌تواند بیشتر از ۱۰۰۰ کاراکتر باشد"),
+});
+
+export type SendAnswerFormValues = z.infer<typeof sendAnswerSchema>;
