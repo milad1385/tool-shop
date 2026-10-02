@@ -51,9 +51,11 @@ function Input({
   } else if (type === "textarea") {
     return (
       <div className="flex flex-col gap-y-4 relative">
-        <label htmlFor={name} className="text-base md:text-lg text-zinc-800">
-          {label} :
-        </label>
+        {label && (
+          <label htmlFor={name} className="text-base md:text-lg text-zinc-800">
+            {label} :
+          </label>
+        )}
         <textarea
           rows={8}
           {...register(`${name}`)}
