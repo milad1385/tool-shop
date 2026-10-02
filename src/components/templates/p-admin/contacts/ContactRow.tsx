@@ -1,16 +1,20 @@
 "use client";
+import ConfirmModal from "@/components/modules/main/ConfirmModal";
 import Modal from "@/components/modules/main/Modal";
 import Table from "@/components/modules/p-admin/Table";
+import {
+  deleteContact,
+  sendAnswerContact,
+} from "@/libs/actions/contact.actions";
 import { IContactUs } from "@/libs/types";
 import { formatDate } from "@/utils/helper";
+import { useTransition } from "react";
+import toast from "react-hot-toast";
 import { FaEye, FaTrash } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import CommentModal from "../../p-user/comments/CommentModal";
-import ConfirmModal from "@/components/modules/main/ConfirmModal";
-import { useTransition } from "react";
-import { deleteContact } from "@/libs/actions/contact.actions";
-import toast from "react-hot-toast";
 import SendConatctAnswer from "./SendConatctAnswer";
+import { SendAnswerFormValues } from "@/validators/backend/conatctus.validator";
 
 function ContactRow({
   _id,
@@ -84,11 +88,7 @@ function ContactRow({
               </Modal.Open>
 
               <Modal.Page name="sendContactAnswer">
-                <SendConatctAnswer
-                  status="حذف کردن"
-                  onSubmit={deleteContactHandler}
-                  isLoading={isPending}
-                />
+                <SendConatctAnswer id={_id} />
               </Modal.Page>
             </Modal>
           </Modal>
