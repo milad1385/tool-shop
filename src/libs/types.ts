@@ -293,6 +293,7 @@ export interface IModal {
   isLoading?: boolean;
   message?: string;
   name?: string;
+  id?: string;
 }
 
 export interface IAddressModal {
