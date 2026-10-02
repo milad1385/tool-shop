@@ -10,6 +10,7 @@ import ConfirmModal from "@/components/modules/main/ConfirmModal";
 import { useTransition } from "react";
 import { deleteContact } from "@/libs/actions/contact.actions";
 import toast from "react-hot-toast";
+import SendConatctAnswer from "./SendConatctAnswer";
 
 function ContactRow({
   _id,
@@ -76,9 +77,21 @@ function ContactRow({
                 isLoading={isPending}
               />
             </Modal.Page>
-          </Modal>
 
-          <FaPencil className="text-yellow-500 text-base md:text-xl" />
+            <Modal>
+              <Modal.Open name="sendContactAnswer">
+                <FaPencil className="text-yellow-500 text-base md:text-xl" />
+              </Modal.Open>
+
+              <Modal.Page name="sendContactAnswer">
+                <SendConatctAnswer
+                  status="حذف کردن"
+                  onSubmit={deleteContactHandler}
+                  isLoading={isPending}
+                />
+              </Modal.Page>
+            </Modal>
+          </Modal>
         </div>
       </td>
     </Table.Row>
