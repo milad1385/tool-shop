@@ -383,6 +383,8 @@ export interface IOptions {
   id?: number;
   slug: string;
   label: string;
+  hoverClass?: string;
+  className?: string;
 }
 
 export interface IFilterCheckbox {
@@ -507,6 +509,11 @@ export enum UserRoleEnums {
   ADMIN = "ADMIN",
   USER = "USER",
   SELLER = "SELLER",
+}
+
+export interface HasPermissionOptions {
+  roles?: UserRoleEnums[];
+  requireAll?: boolean;
 }
 
 export interface ICategory {
@@ -1042,6 +1049,19 @@ export interface IGetSellers {
   page?: number;
   limit?: number;
   isVerified?: boolean;
+}
+export interface IFindAllSellers {
+  page?: number;
+  limit?: number;
+  status?: string;
+  search?: string;
+}
+
+export type StatusType = "accept" | "pending" | "reject";
+
+export interface StatusConfig {
+  label: string;
+  className: string;
 }
 
 export interface IGetSeller {
