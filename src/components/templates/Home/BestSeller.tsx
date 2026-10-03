@@ -1,10 +1,10 @@
 import Title from "@/components/modules/main/Title";
-import React from "react";
+import { getBestSellerProducts } from "@/services/products.service";
 import BestSellerSlider from "./BestSellerSlider";
-import { getAllProducts } from "@/services/products.service";
 
 async function BestSeller() {
-  const products = await getAllProducts();
+  const products = await getBestSellerProducts(10);
+
   return (
     <div>
       <Title title="پرفروش ترین کالاها" />
