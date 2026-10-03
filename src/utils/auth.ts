@@ -1,7 +1,12 @@
 import connectToDB from "@/configs/db";
 import User, { IUser } from "@/models/User";
-import { IAuthorizeCredentials, UserRoleEnums } from "@/libs/types";
+import {
+  HasPermissionOptions,
+  IAuthorizeCredentials,
+  UserRoleEnums,
+} from "@/libs/types";
 import { hash, compare } from "bcryptjs";
+import { auth } from "@/auth";
 interface ICreateGoogleUser {
   email: string;
   name?: string | null;
@@ -106,4 +111,25 @@ export async function authorizeCredentials({
   } catch (error: any) {
     throw new Error(error.message || "خطا در ورود");
   }
+}
+
+export async function hasPermission({
+  roles = [],
+  requireAll = false,
+}: HasPermissionOptions = {}): Promise<boolean> {
+  const session = await auth();
+
+  if (!session?.user) return false;
+
+  const userRoles = (session.user.roles as UserRoleEnums[]) ?? [];
+
+  if (roles.length === 0) return true;
+
+  if (userRoles.length === 0) return false;
+
+  if (requireAll) {
+    return roles.every((role) => userRoles.includes(role));
+  }
+
+  return roles.some((role) => userRoles.includes(role));
 }
