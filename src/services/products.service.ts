@@ -135,9 +135,12 @@ export const getAllProducts = async (
 export const getBestSellerProducts = async (limit: number = 10) => {
   try {
     await connectToDB();
-    const products = await Product.find({
-      status: "active",
-    } , "-description -customFeatures  -features")
+    const products = await Product.find(
+      {
+        status: "active",
+      },
+      "-description -customFeatures  -features",
+    )
       .populate("category", "name slug")
       .populate("sellers.seller", "name city")
       .sort({ soldCount: -1 })
