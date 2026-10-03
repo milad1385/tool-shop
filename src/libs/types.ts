@@ -296,6 +296,16 @@ export interface IModal {
   id?: string;
 }
 
+export type SearchItem = {
+  id: string;
+  title: string;
+  type: "product" | "article" | "category";
+  image?: string;
+  price?: number;
+  slug: string;
+  excerpt?: string;
+};
+
 export interface IAddressModal {
   onClose?: any;
   userAdresses?: any;
