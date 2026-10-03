@@ -8,7 +8,7 @@ import "swiper/css";
 function SearchArticleSlider() {
   return (
     <div className="my-5">
-      <h2 className="font-Lalezar text-xl md:text-2xl lg:text-3xl mb-6">
+      <h2 className="font-Lalezar text-xl md:text-2xl lg:text-3xl my-10">
         <span className="text-yellow-500">مقالات</span> پیدا شده
       </h2>
       <Swiper

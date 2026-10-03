@@ -2,10 +2,12 @@ import Breadcrumb from "@/components/modules/main/Breadcrumb";
 import Container from "@/components/modules/main/Container";
 import SearchDetails from "@/components/templates/search/SearchDetails";
 import { IPage } from "@/libs/types";
+import { search } from "@/services/search.service";
 import React from "react";
 
 async function page({ searchParams }: IPage) {
   const { q } = await searchParams;
+  const data = await search(q);
 
   return (
     <Container>
@@ -16,7 +18,7 @@ async function page({ searchParams }: IPage) {
           { id: 3, name: `${q}`, href: `/search?q=${q}` },
         ]}
       />
-      <SearchDetails />
+      <SearchDetails data={data} />
     </Container>
   );
 }

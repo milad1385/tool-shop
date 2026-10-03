@@ -1,14 +1,14 @@
 "use client";
+import EmptyState from "@/components/modules/main/EmptyState";
 import ProductBox from "@/components/modules/main/ProductBox";
-import { products } from "@/constants/data";
+import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 
-function SearchProductSlider() {
+function SearchProductSlider({ data }) {
   return (
     <div>
-      <h2 className="font-Lalezar text-xl md:text-2xl lg:text-3xl mb-6">
+      <h2 className="font-Lalezar text-xl md:text-2xl lg:text-3xl my-10">
         <span className="text-yellow-500">محصولات</span> پیدا شده
       </h2>
       <Swiper
@@ -27,11 +27,18 @@ function SearchProductSlider() {
           1024: { slidesPerView: 4 },
         }}
       >
-        {products.map((product) => (
+        {data.map((product) => (
           <SwiperSlide key={product.id}>
-            <ProductBox {...product} />
+            <ProductBox {...product} {...data} />
           </SwiperSlide>
         ))}
+
+        {!data.length && (
+          <EmptyState
+            title="محصولی یافت نشد"
+            description="محصولی مطابق با سرچ شما یافت نشد."
+          />
+        )}
       </Swiper>
     </div>
   );

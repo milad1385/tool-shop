@@ -1,13 +1,10 @@
-import ProductBox from "@/components/modules/main/ProductBox";
-import { products } from "@/constants/data";
-import React from "react";
-import SearchProductSlider from "./SearchProductSlider";
 import SearchArticleSlider from "./SearchArticleSlider";
+import SearchProductSlider from "./SearchProductSlider";
 
-function SearchDetails() {
+function SearchDetails({ data }) {
   return (
     <div className="my-5">
-      <SearchProductSlider />
+      <SearchProductSlider data={data.products} />
       <SearchArticleSlider />
     </div>
   );
