@@ -15,7 +15,7 @@ export interface ISeller extends Document {
   city: string;
   logo?: string;
   description?: string;
-  status?: "active" | "inactive" | "pending";
+  status?: "accept" | "reject" | "pending";
   cover: string;
   verified?: boolean;
   rating?: number;
@@ -83,8 +83,8 @@ const sellerSchema = new Schema<ISeller>(
     status: {
       type: String,
       enum: {
-        values: ["active", "inactive", "pending"],
-        message: "وضعیت باید active، inactive یا pending باشد",
+        values: ["accept", "reject", "pending"],
+        message: "وضعیت باید accept reject یا pending باشد",
       },
       default: "pending",
     },
