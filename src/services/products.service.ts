@@ -99,7 +99,7 @@ export const getFeaturedProducts = async (
 
 export const getAllProducts = async (
   limit: number = 10,
-  numQuery: string,
+  numQuery?: string,
 ): Promise<IProduct[]> => {
   try {
     await connectToDB();
@@ -129,6 +129,24 @@ export const getAllProducts = async (
     return normalizeData(products) as IProduct[];
   } catch (error) {
     throw new Error(error.message);
+  }
+};
+
+export const getBestSellerProducts = async (limit: number = 10) => {
+  try {
+    await connectToDB();
+    const products = await Product.find({
+      status: "active",
+    } , "-description -customFeatures  -features")
+      .populate("category", "name slug")
+      .populate("sellers.seller", "name city")
+      .sort({ soldCount: -1 })
+      .limit(limit)
+      .lean();
+
+    return normalizeData(products);
+  } catch (error) {
+    throw new Error(error?.message);
   }
 };
 
@@ -226,10 +244,7 @@ const getFinalPriceExpr = (sellerVar: string = "$$seller") => ({
       $subtract: [
         1,
         {
-          $divide: [
-            { $ifNull: [`${sellerVar}.discount`, 0] },
-            100,
-          ],
+          $divide: [{ $ifNull: [`${sellerVar}.discount`, 0] }, 100],
         },
       ],
     },
@@ -402,7 +417,7 @@ export const getProductsWithFilter = async ({
 
     const pipeline: any[] = [
       { $match: filter },
-      
+
       ...(hasPriceFilter ? [buildPriceMatchStage(minPrice, maxPrice)] : []),
       {
         $addFields: {
@@ -428,14 +443,12 @@ export const getProductsWithFilter = async ({
       },
     ];
 
-
     const countResult = await Product.aggregate([
       ...pipeline,
       { $count: "total" },
     ]);
 
     const count = countResult[0]?.total || 0;
-
 
     const products = await Product.aggregate([
       ...pipeline,
