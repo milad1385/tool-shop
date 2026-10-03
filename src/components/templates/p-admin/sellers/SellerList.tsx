@@ -16,7 +16,7 @@ async function SellerList({ data, pagination }) {
         <Table>
           <Table.Header>
             {sellersTableHeader.map((header, index) => {
-              if (header === "تغییر وضعیت" && !hasUserPermission) {
+              if (header === "عملیات" && !hasUserPermission) {
                 return null;
               } else {
                 return <th key={index + 1}>{header}</th>;
