@@ -400,9 +400,24 @@ export const colorsFilter = [
 ];
 
 export const articleFilter = [
-  { slug: "all", label: "همه", color: "black" },
-  { slug: "publish", label: "منتشر شده", color: "green-500" },
-  { slug: "draft", label: "یادداشت شده", color: "red-500" },
+  {
+    slug: "all",
+    label: "همه",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    slug: "publish",
+    label: "منتشر شده",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    slug: "draft",
+    label: "یادداشت شده",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
 ];
 
 export const colors = [
@@ -422,76 +437,271 @@ export const people = [
 ];
 
 export const DiscountFilterOptions = [
-  { label: "همه", slug: "all", color: "black" },
-  { label: "فعال", slug: "active", color: "green-500" },
-  { label: "غیر فعال", slug: "disactive", color: "red-500" },
-  { label: "منقضی", slug: "expire", color: "yellow-500" },
+  {
+    label: "همه",
+    slug: "all",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "فعال",
+    slug: "active",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "غیر فعال",
+    slug: "disactive",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
+  {
+    label: "منقضی",
+    slug: "expire",
+    className: "bg-yellow-500 text-white",
+    hoverClass: "hover:bg-yellow-500 hover:text-white",
+  },
 ];
 
 export const statusFilterOptions = [
-  { label: "همه", slug: "all", color: "black" },
-  { label: "تایید شده", slug: "accepted", color: "green-500" },
-  { label: "در حال بررسی", slug: "pending", color: "yellow-500" },
-  { label: "رد شده", slug: "rejected", color: "red-500" },
+  {
+    label: "همه",
+    slug: "all",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "تایید شده",
+    slug: "accept",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "در حال بررسی",
+    slug: "pending",
+    className: "bg-yellow-500 text-white",
+    hoverClass: "hover:bg-yellow-500 hover:text-white",
+  },
+  {
+    label: "رد شده",
+    slug: "reject",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
 ];
 
 export const userStatusFilterOptions = [
-  { label: "همه", slug: "all", color: "black" },
-  { label: "فعال", slug: "active", color: "green-500" },
-  { label: "بن شده", slug: "banned", color: "yellow-500" },
+  {
+    label: "همه",
+    slug: "all",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "فعال",
+    slug: "active",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "بن شده",
+    slug: "banned",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
 ];
 
 export const orderStatusFilterOptions = [
-  { label: "همه", slug: "all", color: "black" },
-  { label: "پرداخت شده", slug: "paid", color: "green-500" },
-  { label: "در حال ارسال", slug: "shipped", color: "yellow-500" },
-  { label: "تحویل داده شده", slug: "delivered", color: "green-500" },
-  { label: "در انتظار پرداخت", slug: "pending", color: "red-500" },
-  { label: "لغو شده", slug: "cancelled", color: "red-500" },
+  {
+    label: "همه",
+    slug: "all",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "پرداخت شده",
+    slug: "paid",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "در حال ارسال",
+    slug: "shipped",
+    className: "bg-yellow-500 text-white",
+    hoverClass: "hover:bg-yellow-500 hover:text-white",
+  },
+  {
+    label: "تحویل داده شده",
+    slug: "delivered",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "در انتظار پرداخت",
+    slug: "pending",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
+  {
+    label: "لغو شده",
+    slug: "cancelled",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
 ];
 
 export const MenuFilterOptions = [
-  { label: "همه", slug: "all", color: "black" },
-  { label: "منو اصلی", slug: "delivered", color: "green-500" },
-  { label: "زیر منو", slug: "pending", color: "yellow-500" },
+  {
+    label: "همه",
+    slug: "all",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "منو اصلی",
+    slug: "main",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "زیر منو",
+    slug: "sub",
+    className: "bg-yellow-500 text-white",
+    hoverClass: "hover:bg-yellow-500 hover:text-white",
+  },
 ];
 
 export const contactFilterOptions = [
-  { label: "همه", slug: "ALL", color: "black" },
-  { label: "پاسخ داده شده", slug: "ANSWERED", color: "green-500" },
-  { label: "در انتظار پاسخ", slug: "PENDING", color: "yellow-500" },
+  {
+    label: "همه",
+    slug: "ALL",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "پاسخ داده شده",
+    slug: "ANSWERED",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "در انتظار پاسخ",
+    slug: "PENDING",
+    className: "bg-yellow-500 text-white",
+    hoverClass: "hover:bg-yellow-500 hover:text-white",
+  },
 ];
 
 export const productFilterOptions = [
-  { label: "همه", slug: "ALL", color: "black" },
-  { label: "فعال", slug: "active", color: "green-500" },
-  { label: "غیر فعال", slug: "inactive", color: "yellow-500" },
+  {
+    label: "همه",
+    slug: "ALL",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "فعال",
+    slug: "active",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "غیر فعال",
+    slug: "inactive",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
 ];
 
 export const requestProductFilterOptions = [
-  { label: "همه", slug: "all", color: "black" },
-  { label: "موجود", slug: "exist", color: "green-500" },
-  { label: "ناموجود", slug: "not-exist", color: "red-500" },
-  { label: "تایید شده", slug: "accepted", color: "green-500" },
-  { label: "رد شده", slug: "rejected", color: "red-500" },
-  { label: "در حال پردازش", slug: "rejected", color: "yellow-500" },
-];
+  {
+    label: "همه",
+    slug: "all",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "موجود",
+    slug: "exist",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "ناموجود",
+    slug: "not-exist",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
+  {
+    label: "تایید شده",
+    slug: "accepted",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "رد شده",
+    slug: "rejected",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
+  {
+    label: "در حال پردازش",
+    slug: "pending",
+    className: "bg-yellow-500 text-white",
+    hoverClass: "hover:bg-yellow-500 hover:text-white",
+  },
+] as const;
 
 export const sliderFilterOptions = [
-  { label: "همه", slug: "ALL", color: "black" },
-  { label: "فعال", slug: "ACCEPT", color: "green-500" },
-  { label: "غیر فعال", slug: "REJECT", color: "red-500" },
-  { label: "در حال بررسی", slug: "PENDING", color: "yellow-500" },
+  {
+    label: "همه",
+    slug: "ALL",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "فعال",
+    slug: "ACCEPT",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "غیر فعال",
+    slug: "REJECT",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
+  {
+    label: "در حال بررسی",
+    slug: "PENDING",
+    className: "bg-yellow-500 text-white",
+    hoverClass: "hover:bg-yellow-500 hover:text-white",
+  },
 ];
 
 export const questionFilterOptions = [
-  { label: "همه", slug: "all", color: "black" },
-  { label: "فعال", slug: "active", color: "green-500" },
-  { label: "غیر فعال", slug: "not-active", color: "red-500" },
+  {
+    label: "همه",
+    slug: "all",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "فعال",
+    slug: "active",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "غیر فعال",
+    slug: "not-active",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
 ];
 
 export const ITEM_PER_PAGE = 10;
-export const MAX_FILE_SIZE = 5000000; // 5MB
+export const MAX_FILE_SIZE = 5000000;
 export const ACCEPTED_IMAGE_TYPES = [
   "image/jpeg",
   "image/jpg",
@@ -1503,10 +1713,30 @@ export const salesChartData = [
 ];
 
 export const ticketStatusFilter = [
-  { label: "همه", slug: "all", color: "black" },
-  { label: "پاسخ داده شده", slug: "answered", color: "green-500" },
-  { label: "پاسخ داده نشده", slug: "not-answered", color: "red-500" },
-  { label: "بسته شده", slug: "closed", color: "yellow-500" },
+  {
+    label: "همه",
+    slug: "all",
+    className: "bg-black text-white",
+    hoverClass: "hover:bg-black hover:text-white",
+  },
+  {
+    label: "پاسخ داده شده",
+    slug: "answered",
+    className: "bg-green-500 text-white",
+    hoverClass: "hover:bg-green-500 hover:text-white",
+  },
+  {
+    label: "پاسخ داده نشده",
+    slug: "not-answered",
+    className: "bg-red-500 text-white",
+    hoverClass: "hover:bg-red-500 hover:text-white",
+  },
+  {
+    label: "بسته شده",
+    slug: "closed",
+    className: "bg-yellow-500 text-white",
+    hoverClass: "hover:bg-yellow-500 hover:text-white",
+  },
 ];
 
 export const articles = [
@@ -1729,6 +1959,18 @@ export const usersTableHeader = [
   "شماره همراه",
   "نقش",
   "تاریخ عضویت",
+  "وضعیت",
+  "عملیات",
+];
+
+export const sellersTableHeader = [
+  "شماره",
+  "نام",
+  "فروشگاه",
+  "تلفن",
+  "ایمیل",
+  "شهر",
+  "تاریخ",
   "وضعیت",
   "عملیات",
 ];
