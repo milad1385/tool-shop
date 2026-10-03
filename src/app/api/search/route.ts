@@ -7,26 +7,34 @@ export async function GET(request: NextRequest) {
   try {
     const search = request.nextUrl.searchParams.get("q")?.trim() ?? "";
 
+    if (search.length < 3) {
+      return NextResponse.json(
+        {
+          success: true,
+          data: [],
+        },
+        { status: 200 },
+      );
+    }
+
     await connectToDB();
 
     const filter: any = {};
 
-    if (search) {
-      const words = search.split(/\s+/).filter(Boolean);
+    const words = search.split(/\s+/).filter(Boolean);
 
-      if (words.length > 0) {
-        filter.$and = words.map((word) => {
-          const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    if (words.length > 0) {
+      filter.$and = words.map((word) => {
+        const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-          return {
-            $or: [
-              { name: { $regex: escapedWord, $options: "i" } },
-              { brand: { $regex: escapedWord, $options: "i" } },
-              { description: { $regex: escapedWord, $options: "i" } },
-            ],
-          };
-        });
-      }
+        return {
+          $or: [
+            { name: { $regex: escapedWord, $options: "i" } },
+            { brand: { $regex: escapedWord, $options: "i" } },
+            { description: { $regex: escapedWord, $options: "i" } },
+          ],
+        };
+      });
     }
 
     const products = await Product.find(filter)
