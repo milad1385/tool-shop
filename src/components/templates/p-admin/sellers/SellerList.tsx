@@ -1,174 +1,42 @@
 import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
-import { FaCheck, FaTrash } from "react-icons/fa";
-import { FaXmark } from "react-icons/fa6";
+import { UserRoleEnums } from "@/libs/types";
+import { hasPermission } from "@/utils/auth";
+import SellerItem from "./SellerItem";
+import { sellersTableHeader } from "@/constants/data";
+import EmptyError from "@/components/modules/p-admin/EmptyError";
 
-function SellerList() {
+async function SellerList({ data, pagination }) {
+  const hasUserPermission = await hasPermission({
+    roles: [UserRoleEnums.SUPER_ADMIN],
+  });
   return (
     <div className="md:section-box">
       <div className="admin-table discount mt-5 overflow-hidden  rounded-md">
         <Table>
           <Table.Header>
-            <th>شماره</th>
-            <th>نام</th>
-
-            <th>فروشگاه</th>
-            <th>تلفن</th>
-            <th>ایمیل</th>
-            <th>شهر</th>
-            <th>تاریخ</th>
-            <th>وضعیت</th>
-            <th>عملیات</th>
+            {sellersTableHeader.map((header, index) => {
+              if (header === "تغییر وضعیت" && !hasUserPermission) {
+                return null;
+              } else {
+                return <th key={index + 1}>{header}</th>;
+              }
+            })}
           </Table.Header>
 
           <Table.Body>
-            <Table.Row>
-              <td>1</td>
-              <td>میلاد سلامیان</td>
-              <td>ابزار میلاد</td>
-              <td>09336085012</td>
-              <td>Milad@gmail.com</td>
-
-              <td>ایتالیا</td>
-              <td>1404/06/15</td>
-
-              <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2 px-2.5">
-                  تایید شده
-                </div>
-              </td>
-
-              <td>
-                <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-                  <FaXmark className="text-red-500 text-base md:text-2xl" />
-
-                  <FaTrash className="text-red-600 text-base md:text-xl" />
-                </div>
-              </td>
-            </Table.Row>
-            <Table.Row>
-              <td>2</td>
-              <td>میلاد سلامیان</td>
-              <td>ابزار میلاد</td>
-              <td>09336085012</td>
-              <td>Milad@gmail.com</td>
-
-              <td>ایتالیا</td>
-              <td>1404/06/15</td>
-
-              <td>
-                <div className="bg-yellow-500 text-white rounded-3xl py-2 px-2.5">
-                  بررسی کنید
-                </div>
-              </td>
-
-              <td>
-                <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-                  <FaCheck className="text-green-500 text-base md:text-xl" />
-
-                  <FaTrash className="text-red-600 text-base md:text-xl" />
-                </div>
-              </td>
-            </Table.Row>
-            <Table.Row>
-              <td>3</td>
-              <td>میلاد سلامیان</td>
-              <td>ابزار میلاد</td>
-              <td>09336085012</td>
-              <td>Milad@gmail.com</td>
-
-              <td>ایتالیا</td>
-              <td>1404/06/15</td>
-
-              <td>
-                <div className="bg-red-500 text-white rounded-3xl py-2 px-2.5">
-                  رد شده
-                </div>
-              </td>
-
-              <td>
-                <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-                  <FaCheck className="text-green-500 text-base md:text-xl" />
-
-                  <FaTrash className="text-red-600 text-base md:text-xl" />
-                </div>
-              </td>
-            </Table.Row>
-            <Table.Row>
-              <td>4</td>
-              <td>میلاد سلامیان</td>
-              <td>ابزار میلاد</td>
-              <td>09336085012</td>
-              <td>Milad@gmail.com</td>
-
-              <td>ایتالیا</td>
-              <td>1404/06/15</td>
-
-              <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2 px-2.5">
-                  تایید شده
-                </div>
-              </td>
-
-              <td>
-                <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-                  <FaXmark className="text-red-500 text-base md:text-2xl" />
-
-                  <FaTrash className="text-red-600 text-base md:text-xl" />
-                </div>
-              </td>
-            </Table.Row>
-            <Table.Row>
-              <td>5</td>
-              <td>میلاد سلامیان</td>
-              <td>ابزار میلاد</td>
-              <td>09336085012</td>
-              <td>Milad@gmail.com</td>
-
-              <td>ایتالیا</td>
-              <td>1404/06/15</td>
-
-              <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2 px-2.5">
-                  تایید شده
-                </div>
-              </td>
-
-              <td>
-                <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-                  <FaXmark className="text-red-500 text-base md:text-2xl" />
-
-                  <FaTrash className="text-red-600 text-base md:text-xl" />
-                </div>
-              </td>
-            </Table.Row>
-            <Table.Row>
-              <td>6</td>
-              <td>میلاد سلامیان</td>
-              <td>ابزار میلاد</td>
-              <td>09336085012</td>
-              <td>Milad@gmail.com</td>
-
-              <td>ایتالیا</td>
-              <td>1404/06/15</td>
-
-              <td>
-                <div className="bg-green-500 text-white rounded-3xl py-2 px-2.5">
-                  تایید شده
-                </div>
-              </td>
-
-              <td>
-                <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-                  <FaXmark className="text-red-500 text-base md:text-2xl" />
-
-                  <FaTrash className="text-red-600 text-base md:text-xl" />
-                </div>
-              </td>
-            </Table.Row>
+            {data.map((seller, index) => (
+              <SellerItem
+                index={index + 1}
+                key={seller._id}
+                hasPermission={hasUserPermission}
+                {...seller}
+              />
+            ))}
           </Table.Body>
         </Table>
-        <Pagination count={35} />
+        {!data.length && <EmptyError />}
+        {data.length && <Pagination count={pagination.totalPages} />}
       </div>
     </div>
   );
