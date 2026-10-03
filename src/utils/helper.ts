@@ -2,6 +2,8 @@ import {
   ICreatePagination,
   IPagination,
   IVerifyUser,
+  StatusConfig,
+  StatusType,
   UserRoleEnums,
 } from "@/libs/types";
 import jwt from "jsonwebtoken";
@@ -270,3 +272,27 @@ export const getRoleNames = (
     .map((role) => roleNames[role as UserRoleEnums] || role)
     .join(" ، ");
 };
+
+const statusMap: Record<StatusType, StatusConfig> = {
+  accept: {
+    label: "تایید شده",
+    className: "bg-green-500 text-white",
+  },
+  pending: {
+    label: "در حال بررسی",
+    className: "bg-yellow-500 text-white",
+  },
+  reject: {
+    label: "رد شده",
+    className: "bg-red-500 text-white",
+  },
+};
+
+export function getStatusConfig(status: StatusType): StatusConfig {
+  return (
+    statusMap[status] ?? {
+      label: "نامشخص",
+      className: "bg-gray-400 text-white",
+    }
+  );
+}
