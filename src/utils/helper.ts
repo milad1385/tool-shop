@@ -188,6 +188,12 @@ export const getOrderInfo = (status) => {
   }
 };
 
+export function toSafeInt(value: unknown, fallback: number, min = 1): number {
+  const num = Number(value);
+  if (!Number.isFinite(num) || num < min) return fallback;
+  return Math.floor(num);
+}
+
 export const percentageClasses: Record<number, string> = {
   0: "w-[0%]",
   10: "w-[10%]",
