@@ -1,6 +1,7 @@
 import Table from "@/components/modules/p-admin/Table";
 import { UserRoleEnums } from "@/libs/types";
 import { formatDate, getStatusConfig } from "@/utils/helper";
+import Link from "next/link";
 import { FaCheck, FaTrash } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
@@ -13,13 +14,16 @@ function SellerItem({
   createdAt,
   status,
   hasPermission,
+  _id,
 }) {
   const { label, className } = getStatusConfig(status);
   return (
     <Table.Row>
       <td>{index}</td>
       <td>{user.fullname}</td>
-      <td>{name}</td>
+      <td>
+        <Link href={`/sellers/${_id}`}>{name}</Link>
+      </td>
       <td>{contactDetails.phone}</td>
       <td>{contactDetails.email}</td>
 
