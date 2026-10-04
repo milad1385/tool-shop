@@ -147,20 +147,32 @@ export const getAllProducts = async (
 export const getBestSellerProducts = async (limit: number = 10) => {
   try {
     await connectToDB();
+
     const products = await Product.find(
       {
         status: "active",
       },
-      "-description -customFeatures  -features",
+      "-description -customFeatures -features",
     )
       .populate("category", "name slug")
-      .populate("sellers.seller", "name city")
+      .populate({
+        path: "sellers.seller",
+        match: { status: "accept" },
+        select: "name city status",
+      })
       .sort({ soldCount: -1 })
       .limit(limit)
       .lean();
 
-    return normalizeData(products);
-  } catch (error) {
+    const filteredProducts = products
+      .map((p) => ({
+        ...p,
+        sellers: (p.sellers || []).filter((s) => s.seller),
+      }))
+      .filter((p) => p.sellers.length > 0);
+
+    return normalizeData(filteredProducts);
+  } catch (error: any) {
     throw new Error(error?.message);
   }
 };
