@@ -35,8 +35,10 @@ export const changeSellerStatus = async (sellerId: string, status: string) => {
 
     if (status === "accept") {
       seller.status = "accept";
+      seller.verified = true;
     } else if (status === "reject") {
       seller.status = "reject";
+      seller.verified = false;
     }
 
     await seller.save();
