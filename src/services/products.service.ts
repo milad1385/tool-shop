@@ -204,16 +204,27 @@ export const getProductsByCategory = async ({
 export const getProduct = async (slug: string): Promise<IProduct> => {
   try {
     await connectToDB();
+
     const product = await Product.findOne({
       status: "active",
       slug,
     })
       .populate("category", "name href")
-      .populate("sellers.seller")
+      .populate({
+        path: "sellers.seller",
+        match: { status: "accept" },
+        select: "name city status",
+      })
       .lean();
 
+    if (!product) return null;
+
+    product.sellers = (product.sellers || []).filter((s) => s.seller);
+
+    if (product.sellers.length === 0) return null;
+
     return normalizeData(product);
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error.message);
   }
 };
