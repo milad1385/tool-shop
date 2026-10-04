@@ -421,6 +421,56 @@ export const getProductsWithFilter = async ({
     const pipeline: any[] = [
       { $match: filter },
 
+      // 1) آیدی فروشنده‌های accept رو از کالکشن Seller بیار
+      {
+        $lookup: {
+          from: "sellers",
+          pipeline: [
+            { $match: { status: "accept" } },
+            { $project: { _id: 1 } },
+          ],
+          as: "acceptedSellers",
+        },
+      },
+
+      // 2) فقط فروشنده‌های accept رو توی sellers نگه دار
+      {
+        $addFields: {
+          sellers: {
+            $filter: {
+              input: { $ifNull: ["$sellers", []] },
+              as: "seller",
+              cond: {
+                $in: [
+                  "$$seller.seller",
+                  {
+                    $map: {
+                      input: "$acceptedSellers",
+                      as: "doc",
+                      in: "$$doc._id",
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
+
+      // 3) محصولی که بعد از فیلتر فروشنده‌ای نداره رو حذف کن
+      {
+        $match: {
+          "sellers.0": { $exists: true },
+        },
+      },
+
+      // 4) فیلد کمکی رو پاک کن که به خروجی نره
+      {
+        $project: {
+          acceptedSellers: 0,
+        },
+      },
+
       ...(hasPriceFilter ? [buildPriceMatchStage(minPrice, maxPrice)] : []),
       {
         $addFields: {
