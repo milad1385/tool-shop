@@ -33,7 +33,7 @@ export const getSellers = async ({
   try {
     await connectToDB();
 
-    const filters: any = {};
+    const filters: any = {status : "accept"};
     if (isVerified) {
       filters.verified = true;
     }
