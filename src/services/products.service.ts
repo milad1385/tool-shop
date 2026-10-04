@@ -279,21 +279,36 @@ export const getProduct = async (slug: string): Promise<IProduct> => {
 export const getRelatedProducts = async (slug: string): Promise<IProduct[]> => {
   try {
     await connectToDB();
+
     const product = await Product.findOne({
       status: "active",
       slug,
     });
 
+    if (!product) return [];
+
     const relatedProducts = await Product.find({
       _id: { $ne: product._id },
+      status: "active",
       category: product.category,
     })
       .populate("category", "name slug")
-      .populate("sellers.seller")
+      .populate({
+        path: "sellers.seller",
+        match: { status: "accept" },
+        select: "name city status",
+      })
       .lean();
 
-    return normalizeData(relatedProducts);
-  } catch (error) {
+    const filteredProducts = relatedProducts
+      .map((p) => ({
+        ...p,
+        sellers: (p.sellers || []).filter((s) => s.seller),
+      }))
+      .filter((p) => p.sellers.length > 0);
+
+    return normalizeData(filteredProducts);
+  } catch (error: any) {
     throw new Error(error.message);
   }
 };
