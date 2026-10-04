@@ -1,7 +1,12 @@
+"use client";
+import ConfirmModal from "@/components/modules/main/ConfirmModal";
+import Modal from "@/components/modules/main/Modal";
 import Table from "@/components/modules/p-admin/Table";
-import { UserRoleEnums } from "@/libs/types";
+import { changeSellerStatus } from "@/libs/actions/seller.action";
 import { formatDate, getStatusConfig } from "@/utils/helper";
 import Link from "next/link";
+import { useTransition } from "react";
+import toast from "react-hot-toast";
 import { FaCheck, FaTrash } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
@@ -16,7 +21,20 @@ function SellerItem({
   hasPermission,
   _id,
 }) {
+  const [isPending, startTransition] = useTransition();
   const { label, className } = getStatusConfig(status);
+
+  const changeSellerStatusHandler = (newStatus) => {
+    startTransition(async () => {
+      const result = await changeSellerStatus(_id, newStatus);
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+      }
+    });
+  };
+
   return (
     <Table.Row>
       <td>{index}</td>
@@ -25,7 +43,6 @@ function SellerItem({
         <Link href={`/sellers/${_id}`}>{name}</Link>
       </td>
       <td>{contactDetails.phone}</td>
-      <td>{contactDetails.email}</td>
 
       <td>{city}</td>
       <td>{formatDate(createdAt)}</td>
@@ -36,15 +53,51 @@ function SellerItem({
 
       {hasPermission && (
         <td>
-          <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-            {status === "accept" ? (
-              <FaXmark className="text-red-500 text-base md:text-2xl" />
-            ) : (
-              <FaCheck className="text-green-500 text-base md:text-2xl" />
-            )}
+          <Modal>
+            <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
+              {status === "pending" && (
+                <>
+                  <Modal.Open name="accept">
+                    <FaCheck className="text-green-500 text-base md:text-2xl" />
+                  </Modal.Open>
 
-            <FaTrash className="text-red-600 text-base md:text-xl" />
-          </div>
+                  <Modal.Open name="decline">
+                    <FaXmark className="text-red-500 text-base md:text-2xl" />
+                  </Modal.Open>
+                </>
+              )}
+
+              {status === "accept" && (
+                <Modal.Open name="decline">
+                  <FaXmark className="text-red-500 text-base md:text-2xl" />
+                </Modal.Open>
+              )}
+
+              {status === "reject" && (
+                <Modal.Open name="accept">
+                  <FaCheck className="text-green-500 text-base md:text-2xl" />
+                </Modal.Open>
+              )}
+
+              <FaTrash className="text-red-600 text-base md:text-xl" />
+            </div>
+
+            <Modal.Page name="accept">
+              <ConfirmModal
+                status="تایید کردن"
+                onSubmit={() => changeSellerStatusHandler("accept")}
+                isLoading={isPending}
+              />
+            </Modal.Page>
+
+            <Modal.Page name="decline">
+              <ConfirmModal
+                status="رد کردن"
+                onSubmit={() => changeSellerStatusHandler("reject")}
+                isLoading={isPending}
+              />
+            </Modal.Page>
+          </Modal>
         </td>
       )}
     </Table.Row>
