@@ -2,7 +2,7 @@
 import ConfirmModal from "@/components/modules/main/ConfirmModal";
 import Modal from "@/components/modules/main/Modal";
 import Table from "@/components/modules/p-admin/Table";
-import { changeSellerStatus } from "@/libs/actions/seller.action";
+import { changeSellerStatus, deleteSeller } from "@/libs/actions/seller.action";
 import { formatDate, getStatusConfig } from "@/utils/helper";
 import Link from "next/link";
 import { useTransition } from "react";
@@ -27,6 +27,17 @@ function SellerItem({
   const changeSellerStatusHandler = (newStatus) => {
     startTransition(async () => {
       const result = await changeSellerStatus(_id, newStatus);
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+      }
+    });
+  };
+
+  const deleteSellerHandler = () => {
+    startTransition(async () => {
+      const result = await deleteSeller(_id);
       if (result.success) {
         toast.success(result.message);
       } else {
@@ -79,8 +90,18 @@ function SellerItem({
                 </Modal.Open>
               )}
 
-              <FaTrash className="text-red-600 text-base md:text-xl" />
+              <Modal.Open name="delete">
+                <FaTrash className="text-red-600 text-base md:text-xl" />
+              </Modal.Open>
             </div>
+
+            <Modal.Page name="delete">
+              <ConfirmModal
+                status="حذف کردن"
+                onSubmit={deleteSellerHandler}
+                isLoading={isPending}
+              />
+            </Modal.Page>
 
             <Modal.Page name="accept">
               <ConfirmModal
