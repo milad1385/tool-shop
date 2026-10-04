@@ -133,13 +133,24 @@ export const getAllProducts = async (
       ...filterByDate,
     })
       .populate("category", "name slug")
-      .populate("sellers.seller", "name city")
+      .populate({
+        path: "sellers.seller",
+        match: { status: "accept" },
+        select: "name city status",
+      })
       .sort({ createdAt: -1 })
       .limit(limit)
       .lean();
 
-    return normalizeData(products) as IProduct[];
-  } catch (error) {
+    const filteredProducts = products
+      .map((p) => ({
+        ...p,
+        sellers: (p.sellers || []).filter((s) => s.seller),
+      }))
+      .filter((p) => p.sellers.length > 0);
+
+    return normalizeData(filteredProducts) as IProduct[];
+  } catch (error: any) {
     throw new Error(error.message);
   }
 };
