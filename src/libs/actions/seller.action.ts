@@ -95,7 +95,7 @@ export const deleteSeller = async (sellerId: string) => {
     if (activeOrder) {
       return {
         success: false,
-        message: `این فروشنده دارای سفارش است`,
+        message: "این فروشنده دارای سفارش است",
       };
     }
 
@@ -121,7 +121,7 @@ export const deleteSeller = async (sellerId: string) => {
       success: true,
       message: "فروشنده با موفقیت حذف شد",
     };
-  } catch (error: any) {
+  } catch (error) {
     return {
       success: false,
       message: "لطفا اتصال اینترنت خود را چک کنید",
