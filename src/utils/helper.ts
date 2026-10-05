@@ -141,7 +141,7 @@ export const createPayment = async ({
   }
 };
 
-export const getOrderInfo = (status) => {
+export const getOrderInfo = (status: string) => {
   switch (status) {
     case "paid":
       return {
@@ -302,3 +302,23 @@ export function getStatusConfig(status: StatusType): StatusConfig {
     }
   );
 }
+
+export const getArticleStatus = (status: string) => {
+  switch (status) {
+    case "published":
+      return {
+        name: "تایید شده",
+        className: "bg-green-500 text-white",
+      };
+    case "draft":
+      return {
+        name: "پیش نویس",
+        className: "bg-yellow-500 text-white",
+      };
+    case "reject":
+      return {
+        name: "رد شده",
+        className: "bg-red-500 text-white",
+      };
+  }
+};
