@@ -11,7 +11,7 @@ export interface IArticle extends Document {
   content: string;
   category: mongoose.Types.ObjectId;
   image: string;
-  status: "published" | "draft";
+  status: "published" | "draft" | "rejected";
   author?: mongoose.Types.ObjectId;
   views: number;
   createdAt?: Date;
