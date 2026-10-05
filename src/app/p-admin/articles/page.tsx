@@ -4,12 +4,14 @@ import ArticleList from "@/components/templates/p-admin/articles/ArticleList";
 import { articleFilter } from "@/constants/data";
 import PageTitle from "../../../components/modules/p-admin/PageTitle";
 import CreateNewArticle from "@/components/templates/p-admin/articles/CreateNewArticle";
+import { getAllCategories } from "@/services/categories.service";
 
-function page() {
+async function page() {
+  const categories = await getAllCategories();
   return (
     <Container>
       <PageTitle content="ایجاد مقاله" />
-      <CreateNewArticle />
+      <CreateNewArticle categories={categories} />
       <TableOperation pageTitle="لیست مقاله ها" options={articleFilter} />
       <ArticleList />
     </Container>
