@@ -407,14 +407,20 @@ export const articleFilter = [
     hoverClass: "hover:bg-black hover:text-white",
   },
   {
-    slug: "publish",
+    slug: "published",
     label: "منتشر شده",
     className: "bg-green-500 text-white",
     hoverClass: "hover:bg-green-500 hover:text-white",
   },
   {
     slug: "draft",
-    label: "یادداشت شده",
+    label: "پیش نویس",
+    className: "bg-yellow-500 text-white",
+    hoverClass: "hover:bg-yellow-500 hover:text-white",
+  },
+  {
+    slug: "rejected",
+    label: "رد شده",
     className: "bg-red-500 text-white",
     hoverClass: "hover:bg-red-500 hover:text-white",
   },
