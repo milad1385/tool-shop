@@ -3,13 +3,14 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import SelectBox from "@/components/ui/SelectBox";
+import { createArticle } from "@/libs/actions/article.action";
 import { ISelectOption } from "@/libs/types";
 import { articleSchema } from "@/validators/backend/article.validator";
 import { TArticleValidator } from "@/validators/frontend/article.validator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaRegTrashAlt } from "react-icons/fa";
@@ -24,6 +25,8 @@ function CreateNewArticle({ categories }: { categories: any[] }) {
     useState<ISelectOption | null>(null);
   const [isPending, startTransition] = useTransition();
 
+  const isDraftRef = useRef(false);
+
   const {
     register,
     control,
@@ -31,6 +34,7 @@ function CreateNewArticle({ categories }: { categories: any[] }) {
     handleSubmit,
     reset,
     setValue,
+    setError,
   } = useForm<TArticleValidator>({
     resolver: zodResolver(articleSchema),
     defaultValues: {
@@ -46,9 +50,11 @@ function CreateNewArticle({ categories }: { categories: any[] }) {
 
   const createNewArticle = (data: TArticleValidator) => {
     startTransition(async () => {
-      if (articleValue.length < 8) {
+      if (!articleValue || JSON.stringify(articleValue).length < 8) {
         toast.error("متن مقاله را وارد کنید");
+        return;
       }
+
       const formData = new FormData();
 
       formData.append("title", data.title);
@@ -57,18 +63,33 @@ function CreateNewArticle({ categories }: { categories: any[] }) {
       formData.append("readingTime", data.readingTime);
       formData.append("shortDescription", data.shortDescription);
       formData.append("category", data.category);
-
-      if (articleValue) {
-        formData.append("content", JSON.stringify(articleValue));
-      }
+      formData.append("content", JSON.stringify(articleValue));
+      formData.append("status", isDraftRef.current ? "draft" : "published");
 
       if (imageFile) {
         formData.append("image", imageFile);
       }
 
-      console.log("FormData:", Object.fromEntries(formData));
+      try {
+        const result = await createArticle(formData);
 
-      // await createArticle(formData);
+        if (result.success) {
+          toast.success(result.message);
+          handleReset();
+        } else if (result.errors) {
+          Object.entries(result.errors).forEach(([field, message]) => {
+            setError(field as any, {
+              type: "server",
+              message,
+            });
+          });
+          toast.error("اطلاعات وارد شده معتبر نیست");
+        } else if (!result.success && result.message) {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error("خطا در ارتباط با سرور");
+      }
     });
   };
 
@@ -91,6 +112,15 @@ function CreateNewArticle({ categories }: { categories: any[] }) {
     setImageFile(null);
     setImagePreview(null);
     setValue("image", undefined as any, { shouldValidate: true });
+  };
+
+  const handleReset = () => {
+    reset();
+    setImageFile(null);
+    setImagePreview(null);
+    setSelectedCategory(null);
+    setArticleValue(null);
+    isDraftRef.current = false;
   };
 
   return (
@@ -180,6 +210,7 @@ function CreateNewArticle({ categories }: { categories: any[] }) {
           labelClassName="md:!text-lg font-Iran"
           setImage={handleImageChange}
         />
+
         {imagePreview && (
           <div className="flex items-end justify-end">
             <div className="relative">
@@ -203,30 +234,31 @@ function CreateNewArticle({ categories }: { categories: any[] }) {
       <ArticleEditor article={articleValue} onArticle={setArticleValue} />
 
       <div className="flex items-center gap-x-4">
-        <Button type="submit" className="!w-[200px] mt-10" disabled={isPending}>
-          ایجاد مقاله
+        <Button
+          type="submit"
+          className="!w-[200px] mt-10"
+          disabled={isPending}
+          onClick={() => {
+            isDraftRef.current = false;
+          }}
+        >
+          {isPending && !isDraftRef.current ? "در حال ارسال..." : "ایجاد مقاله"}
         </Button>
 
         <Button
-          type="button"
-          onClick={handleSubmit((data) =>
-            createNewArticle({ ...data, isDraft: true } as any),
-          )}
+          type="submit"
           className="!w-[200px] mt-10 !bg-purple-600"
           disabled={isPending}
+          onClick={() => {
+            isDraftRef.current = true;
+          }}
         >
-          پیش نویس
+          {isPending && isDraftRef.current ? "در حال ارسال..." : "پیش نویس"}
         </Button>
 
         <Button
           type="button"
-          onClick={() => {
-            reset();
-            setImageFile(null);
-            setImagePreview(null);
-            setSelectedCategory(null);
-            setArticleValue(null);
-          }}
+          onClick={handleReset}
           className="!w-[200px] mt-10 !bg-red-500"
           disabled={isPending}
         >
