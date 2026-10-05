@@ -547,6 +547,13 @@ export interface IGetSliders {
   status?: string | string[];
 }
 
+export interface IGetAllArticles {
+  page?: number;
+  limit?: number;
+  search?: string | string[];
+  status?: string | string[];
+}
+
 export interface IPagination {
   currentPage: number;
   totalPages: number;
@@ -1108,4 +1115,28 @@ export interface IUser {
 export interface IUserList {
   data: IUser[];
   pagination: IPagination;
+}
+
+export interface IArticle {
+  title: string;
+  link: string;
+  tags: string[];
+  readingTime: string;
+  shortDescription: string;
+  content: string;
+  category: {
+    _id: string;
+    name: string;
+    href: string;
+  };
+  image: string;
+  status: "published" | "draft";
+  author: {
+    email: string;
+    fullname: string;
+    _id: string;
+  };
+  views: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
