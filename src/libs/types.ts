@@ -1118,6 +1118,8 @@ export interface IUserList {
 }
 
 export interface IArticle {
+  _id :string;
+  index?: number;
   title: string;
   link: string;
   tags: string[];
@@ -1139,4 +1141,9 @@ export interface IArticle {
   views: number;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface IArticleList {
+  data: IArticle[];
+  pagination: IPagination;
 }
