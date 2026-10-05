@@ -629,6 +629,10 @@ export interface ICreateNewProduct {
   sellers: ISeller[];
 }
 
+export interface ICreateNewArticle {
+  categories: ICategory[];
+}
+
 export interface ISelectOption {
   label: string;
   value: string;

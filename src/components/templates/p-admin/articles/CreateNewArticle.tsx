@@ -4,7 +4,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import SelectBox from "@/components/ui/SelectBox";
 import { createArticle } from "@/libs/actions/article.action";
-import { ISelectOption } from "@/libs/types";
+import { ICreateNewArticle, ISelectOption } from "@/libs/types";
 import { articleSchema } from "@/validators/backend/article.validator";
 import { TArticleValidator } from "@/validators/frontend/article.validator";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,7 +17,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 
 const ArticleEditor = dynamic(() => import("./ArticleEditor"), { ssr: false });
 
-function CreateNewArticle({ categories }: { categories: any[] }) {
+function CreateNewArticle({ categories }: ICreateNewArticle) {
   const [articleValue, setArticleValue] = useState(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
