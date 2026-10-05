@@ -93,9 +93,9 @@ export async function createArticle(formData: FormData): Promise<IActionState> {
       category: validatedData.category,
       status: (formData.get("status") as string) || "published",
       image: imageUrl,
+      author: adminCheck.user.id,
     });
 
-    // ۹. revalidate مسیرها
     revalidatePath("/p-admin/articles");
     revalidatePath("/articles");
     revalidatePath("/");
