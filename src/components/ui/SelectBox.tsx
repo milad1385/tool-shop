@@ -118,7 +118,7 @@ function SelectBox({
               />
             </div>
             {errors[name] && (
-              <span className="text-xs md:text-sm text-red-600">
+              <span className="text-xs md:text-sm text-red-600 absolute -bottom-6">
                 {errors[name].message}
               </span>
             )}
