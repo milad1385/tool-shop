@@ -22,7 +22,7 @@ export const getAllArticles = async ({
       ];
     }
 
-    if (status !== "ALL") {
+    if (status !== "all") {
       filters.status = status;
     }
 
