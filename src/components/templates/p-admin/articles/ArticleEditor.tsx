@@ -20,7 +20,7 @@ function ArticleEditor({ article, onArticle }) {
       <CKEditor
         editor={ClassicEditor as any}
         config={uploadConfig}
-        data={article}
+        data={article ?? ""}
         onChange={(event, editor) => {
           const data = editor.getData();
           onArticle(data);
