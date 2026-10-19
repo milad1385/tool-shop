@@ -12,7 +12,7 @@ export const sendAnswer = async (email: string, message: string) => {
   const mailOptions = {
     from: process.env.NEXT_PUBLIC_SMTP_USER,
     to: email,
-    subject: "جواب پیغام شما",
+    subject: "جواب پیام شما",
     html: `
       <div dir="rtl" style="font-family: Vazir, Tahoma, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #f9f9f9; border-radius: 10px;">
         <h2 style="color: #e50914; text-align: center;">جواب پیغام شما : </h2>
