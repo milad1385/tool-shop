@@ -24,7 +24,7 @@ function ProfileBox() {
             className="size-11 rounded-full object-cover"
             width={1920}
             height={1080}
-            src={user?.image ?? "/images/user.jpg"}
+            src={user?.image || "/images/user.jpg"}
             alt="پروفایل کاربر"
           />
           <div className="flex flex-col space-y-1 cursor-default">

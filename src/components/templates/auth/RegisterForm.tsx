@@ -1,19 +1,19 @@
 "use client";
 
 import Input from "@/components/ui/Input";
+import { registerUser as registerAction } from "@/libs/actions/auth.actions";
+import { useAuthStore } from "@/stores/auth.store";
 import {
   registerUser,
   registerUserType,
 } from "@/validators/frontend/user/user.validator";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { registerUser as registerAction } from "@/libs/actions/auth.actions";
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
-import { useTransition } from "react";
-import { useAuthStore } from "@/stores/auth.store";
 import GoogleButton from "./GoogleButton";
 
 function RegisterForm() {
@@ -45,7 +45,7 @@ function RegisterForm() {
         if (result.success) {
           setUser(result.user || null);
           reset();
-          router.push("/");
+          router.push("/auth/login");
           toast.success(result.message);
         } else {
           toast.error(result.message);
