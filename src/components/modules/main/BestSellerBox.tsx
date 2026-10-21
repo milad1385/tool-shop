@@ -20,7 +20,7 @@ function BestSellerBox({ name, slug, images, sellers }: IBestSellerBox) {
           className="w-[128px]"
         />
         <div className="flex flex-col gap-y-3">
-          <h2 className="font-Lalezar text-lg/[32px] mt-6">{name}</h2>
+          <h2 className="font-Lalezar line-clamp-2 text-lg/[32px] mt-6">{name}</h2>
           <div className="flex items-center justify-center gap-x-3 mt-2">
             <span
               className={`text-zinc-500  text-sm lg:text-base font-IranMedium ${
