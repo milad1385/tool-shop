@@ -91,7 +91,7 @@ export async function addUserAddress(
       province: formData.get("province"),
       city: formData.get("city"),
     };
-    user.addresses.push(newAddress);
+    user.addresses.push(newAddress as any);
     await user.save();
 
     const savedAddress = user.addresses[user.addresses.length - 1];
