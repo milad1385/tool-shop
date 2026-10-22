@@ -35,7 +35,7 @@ function CreateQuestion() {
     try {
       const formData = new FormData();
       formData.append("question", data.question);
-      formData.append("answer", data.answer);   // ← اصلاح شد
+      formData.append("answer", data.answer);
       formData.append("order", String(data.order));
 
       const result = await createQuestion(formData);
