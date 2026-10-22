@@ -19,7 +19,7 @@ export const createQuestion = async (formData: FormData): Promise<IActionState> 
 
     const rawData = {
       question: formData.get("question") as string,
-      asnwer: formData.get("asnwer") as string,
+      answer: formData.get("answer") as string,
       order: parseInt(formData.get("order") as string),
     };
 
