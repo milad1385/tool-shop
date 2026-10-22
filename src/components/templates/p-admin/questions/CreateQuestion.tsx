@@ -56,7 +56,6 @@ function CreateQuestion() {
         toast.error(result.message);
       }
     } catch (error) {
-      console.error("خطا:", error);
       toast.error("خطا در ارتباط با سرور");
     } finally {
       setIsLoading(false);
