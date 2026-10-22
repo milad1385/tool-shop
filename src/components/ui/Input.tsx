@@ -34,7 +34,7 @@ function Input({
         <input
           {...register(`${name}`)}
           type={type}
-          min={0}
+          min={type === "number" ? 0 : undefined}
           id={name}
           name={name}
           disabled={disable}
