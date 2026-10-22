@@ -3,7 +3,7 @@ import "@/models/Seller";
 
 export interface IQuestion {
   question: string;
-  asnwer: string;
+  answer: string;
   order: number;
 }
 
@@ -13,7 +13,7 @@ const questionSchema = new Schema<IQuestion>({
     required: [true, "وارد کردن صورت سوال الزامی است"],
     trim: true,
   },
-  asnwer: {
+  answer: {
     type: String,
     required: [true, "وارد کردن جواب سوال الزامی است"],
     trim: true,
