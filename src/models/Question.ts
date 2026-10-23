@@ -7,22 +7,25 @@ export interface IQuestion {
   order: number;
 }
 
-const questionSchema = new Schema<IQuestion>({
-  question: {
-    type: String,
-    required: [true, "وارد کردن صورت سوال الزامی است"],
-    trim: true,
+const questionSchema = new Schema<IQuestion>(
+  {
+    question: {
+      type: String,
+      required: [true, "وارد کردن صورت سوال الزامی است"],
+      trim: true,
+    },
+    answer: {
+      type: String,
+      required: [true, "وارد کردن جواب سوال الزامی است"],
+      trim: true,
+    },
+    order: {
+      type: Number,
+      required: [true, "وارد کردن شماره اولویت سوال الزامی است"],
+    },
   },
-  answer: {
-    type: String,
-    required: [true, "وارد کردن جواب سوال الزامی است"],
-    trim: true,
-  },
-  order: {
-    type: Number,
-    required: [true, "وارد کردن شماره اولویت سوال الزامی است"],
-  },
-});
+  { timestamps: true },
+);
 
 const Question: Model<IQuestion> =
   mongoose.models.Question ||
