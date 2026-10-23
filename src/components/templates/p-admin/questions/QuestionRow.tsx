@@ -1,22 +1,19 @@
 import Table from "@/components/modules/p-admin/Table";
-import React from "react";
+import { formatDate } from "@/utils/helper";
 import { FaTrash } from "react-icons/fa";
 import { FaPencil, FaXmark } from "react-icons/fa6";
 
-function QuestionRow() {
+function QuestionRow({ index, question, order, createdAt }) {
   return (
     <Table.Row>
-      <td>1</td>
+      <td>{index}</td>
 
       <td>
-        <p className="line-clamp-1"> سوال اول برای تست</p>
-      </td>
-      <td>
-        <p className="line-clamp-1"> جواب اول برای تست</p>
+        <p className="line-clamp-1">{question}</p>
       </td>
 
-      <td>1404/04/25</td>
-      <td>1</td>
+      <td>{formatDate(createdAt)}</td>
+      <td>{order}</td>
       <td>
         <div className="bg-green-500 text-white rounded-3xl py-2">
           منتشر شده
