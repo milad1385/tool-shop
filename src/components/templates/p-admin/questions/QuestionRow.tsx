@@ -16,7 +16,7 @@ function QuestionRow({ index, question, order, createdAt, status }) {
       <td>{formatDate(createdAt)}</td>
       <td>{order}</td>
       <td>
-        <div className={`${className} text-white rounded-3xl py-2`}>{name}</div>
+        <div className={`${className} rounded-3xl py-2`}>{name}</div>
       </td>
       <td>
         <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
