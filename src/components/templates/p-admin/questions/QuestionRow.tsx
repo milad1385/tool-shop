@@ -1,9 +1,10 @@
 import Table from "@/components/modules/p-admin/Table";
-import { formatDate } from "@/utils/helper";
+import { formatDate, getQuestionStatus } from "@/utils/helper";
 import { FaTrash } from "react-icons/fa";
 import { FaPencil, FaXmark } from "react-icons/fa6";
 
-function QuestionRow({ index, question, order, createdAt }) {
+function QuestionRow({ index, question, order, createdAt, status }) {
+  const { name, className } = getQuestionStatus(status);
   return (
     <Table.Row>
       <td>{index}</td>
@@ -15,9 +16,7 @@ function QuestionRow({ index, question, order, createdAt }) {
       <td>{formatDate(createdAt)}</td>
       <td>{order}</td>
       <td>
-        <div className="bg-green-500 text-white rounded-3xl py-2">
-          منتشر شده
-        </div>
+        <div className={`${className} text-white rounded-3xl py-2`}>{name}</div>
       </td>
       <td>
         <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
