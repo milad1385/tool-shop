@@ -1,5 +1,5 @@
-import mongoose, { Schema, Model, Document } from "mongoose";
 import "@/models/Seller";
+import mongoose, { Model, Schema } from "mongoose";
 
 export interface IQuestion {
   question: string;

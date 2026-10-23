@@ -2,6 +2,7 @@ import Pagination from "@/components/modules/p-admin/Pagination";
 import Table from "@/components/modules/p-admin/Table";
 import QuestionRow from "./QuestionRow";
 import EmptyError from "@/components/modules/p-admin/EmptyError";
+import { questionTableHeader } from "@/constants/data";
 
 function QuestionList({ data, pagination }) {
   return (
@@ -9,12 +10,9 @@ function QuestionList({ data, pagination }) {
       <div className="admin-table qestion-table mt-5 overflow-hidden  rounded-md">
         <Table>
           <Table.Header>
-            <th>شماره</th>
-            <th>سوال</th>
-            <th>تاریخ</th>
-            <th>اولویت</th>
-            <th>وضعیت</th>
-            <th>عملیات</th>
+            {questionTableHeader.map((header, index) => (
+              <th key={index + 1}>{header}</th>
+            ))}
           </Table.Header>
           <Table.Body>
             {data.map((question, index) => (
