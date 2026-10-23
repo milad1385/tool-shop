@@ -540,6 +540,12 @@ export interface IGetCategories {
   search?: string | string[];
 }
 
+export interface IGetQuestions {
+  page?: number;
+  limit?: number;
+  search?: string | string[];
+}
+
 export interface IGetSliders {
   page?: number;
   limit?: number;
