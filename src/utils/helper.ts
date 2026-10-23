@@ -322,3 +322,23 @@ export const getArticleStatus = (status: string) => {
       };
   }
 };
+
+export const getQuestionStatus = (status: string) => {
+  switch (status) {
+    case "accept":
+      return {
+        name: "تایید شده",
+        className: "bg-green-500 text-white",
+      };
+    case "pending":
+      return {
+        name: "در حال بررسی",
+        className: "bg-yellow-500 text-white",
+      };
+    case "reject":
+      return {
+        name: "رد شده",
+        className: "bg-red-500 text-white",
+      };
+  }
+};
