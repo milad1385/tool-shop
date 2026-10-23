@@ -1881,6 +1881,15 @@ export const categoryTableHeader = [
   "عملیات",
 ];
 
+export const questionTableHeader = [
+  "شماره",
+  "سوال",
+  "تاریخ",
+  "اولویت",
+  "وضعیت",
+  "عملیات",
+];
+
 export const sliderTableHeader = [
   "شماره",
   "عکس",
