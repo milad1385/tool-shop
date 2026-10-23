@@ -18,6 +18,7 @@ export const getQuestions = async ({
   page = 1,
   limit = 10,
   search = "",
+  status,
 }: IGetQuestions) => {
   try {
     await connectToDB();
@@ -27,6 +28,10 @@ export const getQuestions = async ({
 
     if (search) {
       filters.question = { $regex: search };
+    }
+
+    if (status?.length > 0) {
+      filters.status = status;
     }
     const questions = await Question.find(filters)
       .skip((page - 1) * limit)

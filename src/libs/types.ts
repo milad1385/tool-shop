@@ -544,6 +544,7 @@ export interface IGetQuestions {
   page?: number;
   limit?: number;
   search?: string | string[];
+  status?: string;
 }
 
 export interface IGetSliders {
@@ -1124,7 +1125,7 @@ export interface IUserList {
 }
 
 export interface IArticle {
-  _id :string;
+  _id: string;
   index?: number;
   title: string;
   link: string;

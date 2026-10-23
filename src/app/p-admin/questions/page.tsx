@@ -8,12 +8,13 @@ import { IPage } from "@/libs/types";
 import { getQuestions } from "@/services/question.service";
 
 async function page({ searchParams }: IPage) {
-  const { page, limit, q } = await searchParams;
+  const { page, limit, q, status } = await searchParams;
 
   const { data, pagination } = await getQuestions({
     page: +page || 1,
     limit: +limit || 10,
     search: q || "",
+    status,
   });
   return (
     <Container>

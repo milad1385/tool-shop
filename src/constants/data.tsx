@@ -694,15 +694,21 @@ export const questionFilterOptions = [
   },
   {
     label: "فعال",
-    slug: "active",
+    slug: "accept",
     className: "bg-green-500 text-white",
     hoverClass: "hover:bg-green-500 hover:text-white",
   },
   {
     label: "غیر فعال",
-    slug: "not-active",
+    slug: "reject",
     className: "bg-red-500 text-white",
     hoverClass: "hover:bg-red-500 hover:text-white",
+  },
+  {
+    label: "بررسی",
+    slug: "pending",
+    className: "bg-yellow-500 text-white",
+    hoverClass: "hover:bg-yellow-500 hover:text-white",
   },
 ];
 
