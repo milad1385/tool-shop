@@ -5,6 +5,7 @@ export interface IQuestion {
   question: string;
   answer: string;
   order: number;
+  status: "pending" | "reject" | "accept";
 }
 
 const questionSchema = new Schema<IQuestion>(
@@ -22,6 +23,11 @@ const questionSchema = new Schema<IQuestion>(
     order: {
       type: Number,
       required: [true, "وارد کردن شماره اولویت سوال الزامی است"],
+    },
+    status: {
+      type: String,
+      enum: ["pending", "accept", "reject"],
+      default: "pending",
     },
   },
   { timestamps: true },
