@@ -5,8 +5,9 @@ import QuestionRow from "./QuestionRow";
 import EmptyError from "@/components/modules/p-admin/EmptyError";
 import { questionTableHeader } from "@/constants/data";
 import { useOptimistic } from "react";
+import { IQuestionList } from "@/libs/types";
 
-function QuestionList({ data, pagination }) {
+function QuestionList({ data, pagination }: IQuestionList) {
   const [optimisticQuestions, deleteOptimistc] = useOptimistic(
     data,
     (allQuestions, id) => {

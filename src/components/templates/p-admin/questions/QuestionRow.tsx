@@ -2,6 +2,7 @@ import ConfirmModal from "@/components/modules/main/ConfirmModal";
 import Modal from "@/components/modules/main/Modal";
 import Table from "@/components/modules/p-admin/Table";
 import { deleteQuestion } from "@/libs/actions/question.action";
+import { IQuestion } from "@/libs/types";
 import { formatDate, getQuestionStatus } from "@/utils/helper";
 import { useTransition } from "react";
 import toast from "react-hot-toast";
@@ -16,7 +17,7 @@ function QuestionRow({
   status,
   _id,
   onDelete,
-}) {
+}: IQuestion) {
   const [isPending, startTransition] = useTransition();
   const { name, className } = getQuestionStatus(status);
 
