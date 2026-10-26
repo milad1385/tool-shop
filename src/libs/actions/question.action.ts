@@ -67,7 +67,7 @@ export const createQuestion = async (
   }
 };
 
-export const deleteQuestion = async (questionID): Promise<IActionState> => {
+export const deleteQuestion = async (questionID : string): Promise<IActionState> => {
   try {
     await connectToDB();
     if (!isValidObjectId(questionID)) {
