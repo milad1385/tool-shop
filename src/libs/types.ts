@@ -1163,4 +1163,10 @@ export interface IQuestion {
   answer: string;
   order: number;
   status: "pending" | "reject" | "accept";
+  createdAt: Date;
+}
+
+export interface IQuestionList {
+  data: IQuestion[];
+  pagination: IPagination;
 }
