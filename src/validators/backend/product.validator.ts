@@ -34,10 +34,12 @@ export const createProductSchema = z.object({
   description: z.string().min(1, "توضیحات الزامی است"),
   images: z.array(z.string()).min(1, "حداقل یک تصویر الزامی است"),
   sellers: z.array(sellerSchema).min(1, "حداقل یک فروشنده الزامی است"),
-  features: z.array(featureSchema).optional().default([]), // ✅ optional
-  customFeatures: z.array(customFeatureSchema).optional().default([]), // ✅ optional
+  features: z.array(featureSchema).optional().default([]),
+  customFeatures: z.array(customFeatureSchema).optional().default([]),
   shortIdentifier: z.string().min(1, "شناسه کوتاه الزامی است"),
   status: z.enum(["active", "inactive", "draft"]).default("active"),
+  isAmazingOffer: z.boolean().default(false),
+  isFeatured: z.boolean().default(false),
 });
 
 export type TCreateProductSchema = z.infer<typeof createProductSchema>;

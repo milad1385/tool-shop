@@ -114,6 +114,8 @@ export const createProductSchema = yup.object({
       }),
     )
     .min(1, "حداقل یک فروشنده الزامی است"),
+  isAmazingOffer: yup.boolean().default(false),
+  isFeatured: yup.boolean().default(false),
 });
 export const productDetailSchema = yup.object({
   price: yup
