@@ -6,8 +6,11 @@ import { revalidatePath } from "next/cache";
 import { checkAdminAccess } from "./admin.actions";
 import { questionSchema } from "@/validators/backend/question.validator";
 import connectToDB from "@/configs/db";
+import { isValidObjectId } from "mongoose";
 
-export const createQuestion = async (formData: FormData): Promise<IActionState> => {
+export const createQuestion = async (
+  formData: FormData,
+): Promise<IActionState> => {
   try {
     const adminCheck = await checkAdminAccess();
     if (!adminCheck.success) {
@@ -64,3 +67,37 @@ export const createQuestion = async (formData: FormData): Promise<IActionState> 
   }
 };
 
+export const deleteQuestion = async (questionID): Promise<IActionState> => {
+  try {
+    await connectToDB();
+    if (!isValidObjectId(questionID)) {
+      return {
+        success: false,
+        message: "آیدی سوال معتبر نم باشد",
+      };
+    }
+
+    const question = await Question.findOne({ _id: questionID });
+
+    if (!question) {
+      return {
+        success: false,
+        message: "سوال مورد نظر با این آیدی یافت نشد",
+      };
+    }
+
+    await question.deleteOne();
+
+    revalidatePath("/p-admin/questions");
+    
+    return {
+      success: true,
+      message: "سوال با موفقیت حذف شد",
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: "در هنگام ایجاد سوال مشکلی به وجود آمد",
+    };
+  }
+};
