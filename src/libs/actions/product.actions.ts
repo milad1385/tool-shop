@@ -35,6 +35,8 @@ export async function createProduct(formData: FormData): Promise<ProductState> {
       sellers: formData.get("sellers") as string,
       features: formData.get("features") as string,
       customFeatures: formData.get("customFeatures") as string,
+      isAmazingOffer: formData.get("isAmazingOffer") === "true",
+      isFeatured: formData.get("isFeatured") === "true",
     };
 
     let sellersData = [];
@@ -98,6 +100,8 @@ export async function createProduct(formData: FormData): Promise<ProductState> {
       category: rawData.category,
       description: rawData.description,
       images: uploadedImages,
+      isAmazingOffer: rawData.isAmazingOffer,
+      isFeatured: rawData.isFeatured,
       sellers: filteredSellers.map((seller: any) => ({
         seller: seller.seller,
         price: Number(seller.price) || 0,
@@ -142,6 +146,8 @@ export async function createProduct(formData: FormData): Promise<ProductState> {
       customFeatures: validatedData.customFeatures || [],
       shortIdentifier: validatedData.shortIdentifier,
       status: "active",
+      isAmazingOffer: validatedData.isAmazingOffer,
+      isFeatured: validatedData.isFeatured,
     });
 
     revalidatePath("/p-admin/products");
