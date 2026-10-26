@@ -6,7 +6,9 @@ import { createPagination, normalizeData } from "@/utils/helper";
 export const getAllQuestions = async (): Promise<IQuestion[]> => {
   try {
     await connectToDB();
-    const questions = await Question.find({}).lean();
+    const questions = await Question.find({
+      status: "accept",
+    }).lean();
 
     return normalizeData(questions);
   } catch (error) {
