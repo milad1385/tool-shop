@@ -1,9 +1,9 @@
 import connectToDB from "@/configs/db";
-import { IGetQuestions } from "@/libs/types";
+import { IGetQuestions, IPaginatedResponse, IQuestion } from "@/libs/types";
 import Question from "@/models/Question";
 import { createPagination, normalizeData } from "@/utils/helper";
 
-export const getAllQuestions = async () => {
+export const getAllQuestions = async (): Promise<IQuestion[]> => {
   try {
     await connectToDB();
     const questions = await Question.find({}).lean();
@@ -19,7 +19,7 @@ export const getQuestions = async ({
   limit = 10,
   search = "",
   status,
-}: IGetQuestions) => {
+}: IGetQuestions): Promise<IPaginatedResponse<IQuestion>> => {
   try {
     await connectToDB();
     let filters: any = {};
