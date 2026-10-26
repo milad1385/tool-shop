@@ -101,3 +101,49 @@ export const deleteQuestion = async (questionID): Promise<IActionState> => {
     };
   }
 };
+
+export const changeQuestionStatus = async (
+  questionID: string,
+  newStatus: "accept" | "reject" | "pending"
+): Promise<IActionState> => {
+  try {
+    await connectToDB();
+
+    if (!isValidObjectId(questionID)) {
+      return {
+        success: false,
+        message: "آیدی سوال معتبر نمی‌باشد",
+      };
+    }
+
+    const question = await Question.findOne({ _id: questionID });
+
+    if (!question) {
+      return {
+        success: false,
+        message: "سوال مورد نظر با این آیدی یافت نشد",
+      };
+    }
+
+    question.status = newStatus;
+    await question.save();
+
+    revalidatePath("/p-admin/questions");
+
+    const statusMessages: Record<string, string> = {
+      accept: "سوال با موفقیت تایید شد",
+      reject: "سوال با موفقیت رد شد",
+      pending: "وضعیت سوال به در انتظار تغییر یافت",
+    };
+
+    return {
+      success: true,
+      message: statusMessages[newStatus],
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: "در هنگام تغییر وضعیت سوال مشکلی به وجود آمد",
+    };
+  }
+};
