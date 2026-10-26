@@ -1154,3 +1154,13 @@ export interface IArticleList {
   data: IArticle[];
   pagination: IPagination;
 }
+
+export interface IQuestion {
+  _id: string;
+  onDelete?: (id: string) => void;
+  index?: number;
+  question: string;
+  answer: string;
+  order: number;
+  status: "pending" | "reject" | "accept";
+}
