@@ -1,12 +1,15 @@
 import ConfirmModal from "@/components/modules/main/ConfirmModal";
 import Modal from "@/components/modules/main/Modal";
 import Table from "@/components/modules/p-admin/Table";
-import { deleteQuestion } from "@/libs/actions/question.action";
+import {
+  changeQuestionStatus,
+  deleteQuestion,
+} from "@/libs/actions/question.action";
 import { IQuestion } from "@/libs/types";
 import { formatDate, getQuestionStatus } from "@/utils/helper";
 import { useTransition } from "react";
 import toast from "react-hot-toast";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaCheck } from "react-icons/fa";
 import { FaPencil, FaXmark } from "react-icons/fa6";
 
 function QuestionRow({
@@ -18,11 +21,12 @@ function QuestionRow({
   _id,
   onDelete,
 }: IQuestion) {
-  const [isPending, startTransition] = useTransition();
+  const [isDeleting, startDeleting] = useTransition();
+  const [isChangingStatus, startChangingStatus] = useTransition();
   const { name, className } = getQuestionStatus(status);
 
   const deleteCategoryHandler = () => {
-    startTransition(async () => {
+    startDeleting(async () => {
       if (!_id) return;
       try {
         onDelete(_id);
@@ -37,6 +41,23 @@ function QuestionRow({
       }
     });
   };
+
+  const changeQuestionStatusHandler = (newStatus: "accept" | "reject") => {
+    startChangingStatus(async () => {
+      if (!_id) return;
+      try {
+        const result = await changeQuestionStatus(_id, newStatus);
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error("خطا در ارتباط با سرور");
+      }
+    });
+  };
+
   return (
     <Table.Row>
       <td>{index}</td>
@@ -54,6 +75,37 @@ function QuestionRow({
         <Modal>
           <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
             <FaPencil className="text-sky-500 text-base md:text-xl" />
+
+            {(status === "pending" || status === "reject") && (
+              <>
+                <Modal.Open name="acceptModal">
+                  <FaCheck className="text-green-500 text-base md:text-xl" />
+                </Modal.Open>
+                <Modal.Page name="acceptModal">
+                  <ConfirmModal
+                    status="تایید"
+                    isLoading={isChangingStatus}
+                    onSubmit={() => changeQuestionStatusHandler("accept")}
+                  />
+                </Modal.Page>
+              </>
+            )}
+
+            {status === "accept" && (
+              <>
+                <Modal.Open name="declineModal">
+                  <FaXmark className="text-yellow-500 text-base md:text-2xl" />
+                </Modal.Open>
+                <Modal.Page name="declineModal">
+                  <ConfirmModal
+                    status="رد"
+                    isLoading={isChangingStatus}
+                    onSubmit={() => changeQuestionStatusHandler("reject")}
+                  />
+                </Modal.Page>
+              </>
+            )}
+
             <Modal.Open name="delete">
               <FaTrash className="text-red-600 text-base md:text-xl" />
             </Modal.Open>
@@ -61,11 +113,9 @@ function QuestionRow({
               <ConfirmModal
                 status="حذف کردن"
                 onSubmit={deleteCategoryHandler}
-                isLoading={isPending}
+                isLoading={isDeleting}
               />
             </Modal.Page>
-
-            <FaXmark className="text-yellow-500 text-base md:text-2xl" />
           </div>
         </Modal>
       </td>
