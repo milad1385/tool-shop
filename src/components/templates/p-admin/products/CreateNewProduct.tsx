@@ -41,6 +41,8 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
       features: [{ name: "", value: "", slug: "" }],
       customFeatures: [{ name: "", value: "", slug: "" }],
       sellers: [{ seller: "", stock: 0, price: 0, discount: 0 }],
+      isAmazingOffer: false,
+      isFeatured: false,
     },
   });
 
@@ -52,7 +54,6 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
     control,
     name: "sellers",
   });
-
 
   const {
     fields: featureFields,
@@ -99,6 +100,8 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
         formData.append("slug", data.slug);
         formData.append("category", selectedCategory.value);
         formData.append("description", data.description || "");
+        formData.append("isAmazingOffer", String(data.isAmazingOffer));
+        formData.append("isFeatured", String(data.isFeatured));
 
         const filteredSellers =
           data.sellers?.filter(
@@ -144,6 +147,8 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
               message,
             });
           });
+          console.log(result.errors);
+          
           toast.error("اطلاعات وارد شده معتبر نیست");
         } else if (!result.success && result.message) {
           toast.error(result.message);
@@ -177,7 +182,6 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
   const handleRemoveFeature = (index: number) => {
     removeFeature(index);
   };
-
 
   const addCustomFeature = () => {
     if (customFeatureFields.length >= 10) return;
@@ -501,6 +505,42 @@ function CreateNewProduct({ categories, sellers }: ICreateNewProduct) {
             disable={isPending}
             labelClassName="md:!text-lg font-Iran"
           />
+        </div>
+      
+        <div className="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <label className="flex items-center gap-x-3 cursor-pointer bg-gray-50 border rounded-lg px-4 py-3 hover:bg-gray-100 transition-colors">
+            <input
+              type="checkbox"
+              {...register("isAmazingOffer")}
+              disabled={isPending}
+              className="w-5 h-5 accent-red-500 cursor-pointer"
+            />
+            <div>
+              <span className="text-sm md:text-base font-medium text-zinc-800">
+                فروش ویژه
+              </span>
+              <p className="text-xs text-gray-500">
+                این محصول در بخش فروش ویژه نمایش داده شود
+              </p>
+            </div>
+          </label>
+
+          <label className="flex items-center gap-x-3 cursor-pointer bg-gray-50 border rounded-lg px-4 py-3 hover:bg-gray-100 transition-colors">
+            <input
+              type="checkbox"
+              {...register("isFeatured")}
+              disabled={isPending}
+              className="w-5 h-5 accent-sky-500 cursor-pointer"
+            />
+            <div>
+              <span className="text-sm md:text-base font-medium text-zinc-800">
+                پیشنهادی
+              </span>
+              <p className="text-xs text-gray-500">
+                این محصول در بخش پیشنهادی‌ها نمایش داده شود
+              </p>
+            </div>
+          </label>
         </div>
 
         <Input
