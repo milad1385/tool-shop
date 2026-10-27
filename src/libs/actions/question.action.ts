@@ -147,3 +147,65 @@ export const changeQuestionStatus = async (
     };
   }
 };
+
+export const updateQuestion = async (
+  id: string,
+  formData: FormData
+): Promise<IActionState> => {
+  try {
+    await connectToDB();
+
+    if (!isValidObjectId(id)) {
+      return {
+        success: false,
+        message: "آیدی سوال معتبر نمی‌باشد",
+      };
+    }
+
+    const question = await Question.findOne({ _id: id });
+    if (!question) {
+      return {
+        success: false,
+        message: "سوال مورد نظر یافت نشد",
+      };
+    }
+
+    const rawData = {
+      question: formData.get("question") as string,
+      answer: formData.get("answer") as string,
+      order: Number(formData.get("order")),
+    };
+
+    const validationResult = questionSchema.safeParse(rawData);
+    if (!validationResult.success) {
+      const errors: Record<string, string> = {};
+      validationResult.error.errors.forEach((err) => {
+        errors[err.path.join(".")] = err.message;
+      });
+      return {
+        success: false,
+        message: "اطلاعات وارد شده معتبر نیست",
+        errors,
+      };
+    }
+
+    const validated = validationResult.data;
+
+    question.question = validated.question;
+    question.answer = validated.answer;
+    question.order = validated.order;
+    await question.save();
+
+    revalidatePath("/p-admin/questions");
+
+    return {
+      success: true,
+      message: "سوال با موفقیت ویرایش شد",
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      message: err?.message || "در هنگام ویرایش سوال مشکلی به وجود آمد",
+    };
+  }
+};
