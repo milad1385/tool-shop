@@ -7,6 +7,7 @@ import {
 } from "@/libs/actions/question.action";
 import { IQuestion } from "@/libs/types";
 import { formatDate, getQuestionStatus } from "@/utils/helper";
+import Link from "next/link";
 import { useTransition } from "react";
 import toast from "react-hot-toast";
 import { FaTrash, FaCheck } from "react-icons/fa";
@@ -74,7 +75,9 @@ function QuestionRow({
       <td>
         <Modal>
           <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-            <FaPencil className="text-sky-500 text-base md:text-xl" />
+            <Link href={`/p-admin/questions/${_id}`}>
+              <FaPencil className="text-sky-500 text-base md:text-xl" />
+            </Link>
 
             {(status === "pending" || status === "reject") && (
               <>
