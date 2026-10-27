@@ -2,6 +2,7 @@ import connectToDB from "@/configs/db";
 import { IGetQuestions, IPaginatedResponse, IQuestion } from "@/libs/types";
 import Question from "@/models/Question";
 import { createPagination, normalizeData } from "@/utils/helper";
+import { isValidObjectId } from "mongoose";
 
 export const getAllQuestions = async (): Promise<IQuestion[]> => {
   try {
@@ -46,5 +47,24 @@ export const getQuestions = async ({
     };
   } catch (error) {
     throw new Error(error.message);
+  }
+};
+
+export const getQuestion = async (id: string) => {
+  try {
+    if (!isValidObjectId(id)) {
+      return null;
+    }
+
+    await connectToDB();
+
+    const question = await Question.findOne({ _id: id }).lean();
+    if (!question) {
+      return null;
+    }
+
+    return normalizeData(question);
+  } catch (error: any) {
+    throw new Error(error?.message || "خطا در دریافت سوال");
   }
 };
