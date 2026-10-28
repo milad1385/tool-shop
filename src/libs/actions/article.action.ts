@@ -162,3 +162,63 @@ export async function deleteArticle(id: string): Promise<IActionState> {
     };
   }
 }
+
+export async function changeArticleStatus(
+  id: string,
+  status: "published" | "draft"
+): Promise<IActionState> {
+  try {
+    await connectToDB();
+
+    const adminCheck = await checkAdminAccess();
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    if (!isValidObjectId(id)) {
+      return {
+        success: false,
+        message: "آیدی مقاله معتبر نمی‌باشد",
+      };
+    }
+
+    if (!["published", "draft"].includes(status)) {
+      return {
+        success: false,
+        message: "وضعیت انتخاب شده معتبر نمی‌باشد",
+      };
+    }
+
+    const article = await Article.findOne({ _id: id });
+
+    if (!article) {
+      return {
+        success: false,
+        message: "مقاله‌ای با این آیدی یافت نشد",
+      };
+    }
+
+    article.status = status;
+    await article.save();
+
+    revalidatePath("/p-admin/articles");
+    revalidatePath("/articles");
+    revalidatePath("/");
+
+    return {
+      success: true,
+      message:
+        status === "published"
+          ? "مقاله با موفقیت منتشر شد"
+          : "مقاله به درفت تغییر یافت",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "خطا در تغییر وضعیت مقاله، لطفاً دوباره تلاش کنید",
+    };
+  }
+}
