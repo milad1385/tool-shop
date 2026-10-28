@@ -1966,6 +1966,17 @@ export const recentProductHeader = [
   "رویداد ها",
 ];
 
+export const articlesTableHeader = [
+  "شماره",
+  "عکس",
+  "عنوان",
+  "تگ ها",
+  "دسته بندی",
+  "وضعیت",
+  "تاریخ",
+  "عملیات",
+];
+
 export const filterCategoryType = [
   { label: "سلکت باکس", value: "selectbox" },
   { label: "چک باکس", value: "checkbox" },
