@@ -94,13 +94,6 @@ export interface IBanner {
   src?: string;
 }
 
-export interface IArticle {
-  id: number;
-  title: string;
-  link: string;
-  image: string;
-}
-
 export interface IPage {
   params: Promise<{
     id?: string;
@@ -1148,6 +1141,7 @@ export interface IArticle {
   views: number;
   createdAt?: Date;
   updatedAt?: Date;
+  onDelete?: (id: string) => void;
 }
 
 export interface IArticleList {
