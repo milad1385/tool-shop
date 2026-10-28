@@ -3,6 +3,7 @@ import Table from "@/components/modules/p-admin/Table";
 import { IArticleList } from "@/libs/types";
 import ArticleRow from "./ArticleRow";
 import EmptyError from "@/components/modules/p-admin/EmptyError";
+import { articlesTableHeader } from "@/constants/data";
 
 function ArticleList({ data, pagination }: IArticleList) {
   return (
@@ -10,15 +11,9 @@ function ArticleList({ data, pagination }: IArticleList) {
       <div className="admin-table mt-5 overflow-hidden  rounded-md">
         <Table>
           <Table.Header>
-            <th>شماره</th>
-            <th>عکس</th>
-            <th>عنوان</th>
-
-            <th>تگ ها</th>
-            <th>دسته بندی</th>
-            <th>وضعیت</th>
-            <th>تاریخ</th>
-            <th>عملیات</th>
+            {articlesTableHeader.map((header, index) => (
+              <th key={index + 1}>{header}</th>
+            ))}
           </Table.Header>
           <Table.Body>
             {data.map((article, index) => (
