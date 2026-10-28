@@ -418,12 +418,6 @@ export const articleFilter = [
     className: "bg-yellow-500 text-white",
     hoverClass: "hover:bg-yellow-500 hover:text-white",
   },
-  {
-    slug: "rejected",
-    label: "رد شده",
-    className: "bg-red-500 text-white",
-    hoverClass: "hover:bg-red-500 hover:text-white",
-  },
 ];
 
 export const colors = [
