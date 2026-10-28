@@ -30,10 +30,10 @@ function ArticleRow({
         />
       </td>
       <td>
-        <Link href={`/blog/${link}`}>{title}</Link>
+        <Link href={`/blog/${link}`}>{title.slice(0, 30)}</Link>
       </td>
 
-      <td>{tags.join(" ، ")}</td>
+      <td>{tags.slice(0, 3).join(" ، ")}</td>
       <td>
         <Link href={`/category/${category.href}`}>{category.name}</Link>
       </td>
