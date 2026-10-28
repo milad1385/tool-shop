@@ -1,14 +1,17 @@
 import ConfirmModal from "@/components/modules/main/ConfirmModal";
 import Modal from "@/components/modules/main/Modal";
 import Table from "@/components/modules/p-admin/Table";
-import { deleteArticle } from "@/libs/actions/article.action";
+import {
+  changeArticleStatus,
+  deleteArticle,
+} from "@/libs/actions/article.action";
 import { IArticle } from "@/libs/types";
 import { formatDate, getArticleStatus } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 import { useTransition } from "react";
 import toast from "react-hot-toast";
-import { FaEye, FaTrash } from "react-icons/fa";
+import { FaCheck, FaEye, FaTrash } from "react-icons/fa";
 import { FaPencil, FaXmark } from "react-icons/fa6";
 
 function ArticleRow({
@@ -24,13 +27,31 @@ function ArticleRow({
   onDelete,
 }: IArticle) {
   const { name, className } = getArticleStatus(status);
-  const [isPending, startTransition] = useTransition();
+  const [isDeleting, startDeleting] = useTransition();
+  const [isChangingStatus, startChangingStatus] = useTransition();
+
   const deleteArticleHandler = () => {
-    startTransition(async () => {
+    startDeleting(async () => {
       if (!_id) return;
       try {
         onDelete(_id);
         const result = await deleteArticle(_id);
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error("خطا در ارتباط با سرور");
+      }
+    });
+  };
+
+  const changeArticleStatusHandler = (newStatus: "published" | "draft") => {
+    startChangingStatus(async () => {
+      if (!_id) return;
+      try {
+        const result = await changeArticleStatus(_id, newStatus);
         if (result.success) {
           toast.success(result.message);
         } else {
@@ -63,27 +84,68 @@ function ArticleRow({
       </td>
       <td>{formatDate(createdAt)}</td>
       <td>
-        <div className={`${className} rounded-3xl py-2`}>{name}</div>
+        <div className={`${className} w-[90px] rounded-3xl py-2`}>{name}</div>
       </td>
       <td>
         <Modal>
           <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-            <FaPencil className="text-yellow-500 text-base md:text-xl" />
+            <span className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 shrink-0">
+              <FaPencil className="text-yellow-500 text-base md:text-xl" />
+            </span>
+
             <Modal.Open name="delete">
-              <FaTrash className="text-red-600 text-base md:text-xl" />
+              <span className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 shrink-0">
+                <FaTrash className="text-red-600 text-base md:text-xl" />
+              </span>
             </Modal.Open>
             <Modal.Page name="delete">
               <ConfirmModal
                 status="حذف کردن"
                 onSubmit={deleteArticleHandler}
-                isLoading={isPending}
+                isLoading={isDeleting}
               />
             </Modal.Page>
-            <Link href={`/blog/${link}`}>
+
+            <Link
+              href={`/blog/${link}`}
+              className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 shrink-0 cursor-pointer"
+            >
               <FaEye className="text-sky-500 text-base md:text-xl" />
             </Link>
 
-            <FaXmark className="text-red-500 text-base md:text-2xl" />
+            {status === "draft" && (
+              <>
+                <Modal.Open name="acceptModal">
+                  <span className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 shrink-0">
+                    <FaCheck className="text-green-500 text-base md:text-xl" />
+                  </span>
+                </Modal.Open>
+                <Modal.Page name="acceptModal">
+                  <ConfirmModal
+                    status="انتشار کردن"
+                    isLoading={isChangingStatus}
+                    onSubmit={() => changeArticleStatusHandler("published")}
+                  />
+                </Modal.Page>
+              </>
+            )}
+
+            {status === "published" && (
+              <>
+                <Modal.Open name="declineModal">
+                  <span className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 shrink-0">
+                    <FaXmark className="text-yellow-500 text-base md:text-xl" />
+                  </span>
+                </Modal.Open>
+                <Modal.Page name="declineModal">
+                  <ConfirmModal
+                    status="رد کردن"
+                    isLoading={isChangingStatus}
+                    onSubmit={() => changeArticleStatusHandler("draft")}
+                  />
+                </Modal.Page>
+              </>
+            )}
           </div>
         </Modal>
       </td>
