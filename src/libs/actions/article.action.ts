@@ -6,7 +6,8 @@ import { IActionState } from "@/libs/types";
 import { checkAdminAccess } from "./admin.actions";
 import connectToDB from "@/configs/db";
 import { articleSchema } from "@/validators/backend/article.validator";
-import { uploadFile } from "@/utils/uploads";
+import { deleteFile, uploadFile } from "@/utils/uploads";
+import { isValidObjectId } from "mongoose";
 
 export async function createArticle(formData: FormData): Promise<IActionState> {
   try {
@@ -108,6 +109,56 @@ export async function createArticle(formData: FormData): Promise<IActionState> {
     return {
       success: false,
       message: "خطا در ساخت مقاله، لطفاً دوباره تلاش کنید",
+    };
+  }
+}
+
+export async function deleteArticle(id: string): Promise<IActionState> {
+  try {
+    await connectToDB();
+
+    const adminCheck = await checkAdminAccess();
+    if (!adminCheck.success) {
+      return {
+        success: false,
+        message: adminCheck.message,
+      };
+    }
+
+    if (!isValidObjectId(id)) {
+      return {
+        success: false,
+        message: "آیدی مقاله معتبر نمی‌باشد",
+      };
+    }
+
+    const article = await Article.findOne({ _id: id });
+
+    if (!article) {
+      return {
+        success: false,
+        message: "مقاله‌ای با این آیدی یافت نشد",
+      };
+    }
+
+    if (article.image) {
+      await deleteFile(article.image);
+    }
+
+    await article.deleteOne();
+
+    revalidatePath("/p-admin/articles");
+    revalidatePath("/articles");
+    revalidatePath("/");
+
+    return {
+      success: true,
+      message: "مقاله با موفقیت حذف شد",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "خطا در حذف مقاله، لطفاً دوباره تلاش کنید",
     };
   }
 }
