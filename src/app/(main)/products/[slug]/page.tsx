@@ -8,6 +8,7 @@ import SameProductSlider from "@/components/templates/Product/SameProductSlider"
 import SellersBox from "@/components/templates/products/SellersBox";
 import { IPage } from "@/libs/types";
 import { getProduct, getRelatedProducts } from "@/services/products.service";
+import { Metadata } from "next";
 
 async function page({ params }: IPage) {
   const { slug } = await params;
@@ -47,6 +48,16 @@ async function page({ params }: IPage) {
       </div>
     </Container>
   );
+}
+
+export async function generateMetadata({ params }: IPage): Promise<Metadata> {
+  const { slug } = await params;
+  const product = await getProduct(slug);
+
+  return {
+    title: `ترازو | ${product.name}`,
+    description: product.description,
+  };
 }
 
 export default page;
