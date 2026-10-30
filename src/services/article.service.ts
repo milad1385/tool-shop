@@ -44,7 +44,7 @@ export const getAllArticles = async ({
   }
 };
 
-export const getArticles = async () => {
+export const getArticles = async (): Promise<IArticle[]> => {
   try {
     await connectToDB();
 
@@ -58,7 +58,7 @@ export const getArticles = async () => {
   }
 };
 
-export const getArticle = async (link: string) => {
+export const getArticle = async (link: string): Promise<IArticle> => {
   try {
     await connectToDB();
 
