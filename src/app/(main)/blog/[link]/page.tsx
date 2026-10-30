@@ -7,6 +7,7 @@ import ArticleTitle from "@/components/templates/articles/ArticleTitle";
 import RecentArticles from "@/components/templates/articles/RecentArticles";
 import { IPage } from "@/libs/types";
 import { getArticle } from "@/services/article.service";
+import { Metadata } from "next";
 import { Suspense } from "react";
 
 async function page({ params }: IPage) {
@@ -40,6 +41,16 @@ async function page({ params }: IPage) {
       </Suspense>
     </Container>
   );
+}
+
+export async function generateMetadata({ params }: IPage): Promise<Metadata> {
+  const { link } = await params;
+  const article = await getArticle(link);
+
+  return {
+    title: `مقاله ها : ${article.title}`,
+    description: article.shortDescription,
+  };
 }
 
 export default page;
