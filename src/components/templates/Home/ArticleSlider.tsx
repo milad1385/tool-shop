@@ -1,10 +1,10 @@
 "use client";
 import ArticleBox from "@/components/modules/main/ArticleBox";
-import { articles } from "@/constants/data";
+import { IArticleSlider } from "@/libs/types";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-function ArticleSlider() {
+function ArticleSlider({ articles }: IArticleSlider) {
   return (
     <Swiper
       slidesPerView={3}
@@ -22,7 +22,7 @@ function ArticleSlider() {
       }}
     >
       {articles.map((article) => (
-        <SwiperSlide key={article.id}>
+        <SwiperSlide key={article._id}>
           <ArticleBox {...article} />
         </SwiperSlide>
       ))}
