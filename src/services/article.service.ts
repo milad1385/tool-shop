@@ -50,7 +50,6 @@ export const getArticles = async () => {
 
     const articles = await Article.find({ status: "published" })
       .populate("author", "fullname image username")
-      .populate("category", "name href")
       .lean();
 
     return normalizeData(articles);
