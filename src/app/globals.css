@@ -109,6 +109,10 @@ body {
   .admin-table.discount table tbody tr td {
     padding: 18px !important;
   }
+
+  .article-content h2{
+    @apply text-lg md:text-xl lg:text-2xl
+  }
 }
 
 .table-container {
