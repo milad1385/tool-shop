@@ -1126,7 +1126,7 @@ export interface IArticle {
   readingTime: string;
   shortDescription: string;
   content: string;
-  category: {
+  category?: {
     _id: string;
     name: string;
     href: string;
@@ -1163,4 +1163,8 @@ export interface IQuestion {
 export interface IQuestionList {
   data: IQuestion[];
   pagination: IPagination;
+}
+
+export interface IArticleSlider {
+  articles: IArticle[];
 }
