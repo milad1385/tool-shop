@@ -57,3 +57,18 @@ export const getArticles = async () => {
     throw new Error(error?.message);
   }
 };
+
+export const getArticle = async (link: string) => {
+  try {
+    await connectToDB();
+
+    const articles = await Article.findOne({ status: "published", link })
+      .populate("author", "fullname image username")
+      .populate("category", "name href")
+      .lean();
+
+    return normalizeData(articles);
+  } catch (error) {
+    throw new Error(error?.message);
+  }
+};
