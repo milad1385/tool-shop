@@ -51,6 +51,7 @@ export const getArticles = async (): Promise<IArticle[]> => {
 
     const articles = await Article.find({ status: "published" })
       .populate("author", "fullname image username")
+      .sort({ createdAt: -1 })
       .lean();
 
     return normalizeData(articles);
