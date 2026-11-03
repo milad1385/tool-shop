@@ -7,25 +7,6 @@ import ArticleSearch from "./ArticleSearch";
 import ProductSearch from "./ProductSearch";
 import { SearchItem } from "@/libs/types";
 
-const mockArticles: SearchItem[] = [
-  {
-    id: "a1",
-    title: "راهنمای خرید لپ‌تاپ",
-    type: "article",
-    image: "/images/product-3.jpg",
-    slug: "laptop-buying-guide",
-    excerpt: "همه چیز درباره خرید لپ‌تاپ مناسب",
-  },
-  {
-    id: "a2",
-    title: "مقایسه آیفون و اندروید",
-    type: "article",
-    image: "/images/product-4.jpg",
-    slug: "iphone-vs-android",
-    excerpt: "کدام گوشی برای شما مناسب‌تر است؟",
-  },
-];
-
 function Search() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
@@ -77,11 +58,6 @@ function Search() {
 
     setIsLoading(true);
 
-    const filteredArticles = mockArticles.filter((item) =>
-      item.title.toLowerCase().includes(trimmedValue.toLowerCase())
-    );
-    setArticleResults(filteredArticles);
-
     try {
       const res = await fetch(
         `/api/search?q=${encodeURIComponent(trimmedValue)}`
@@ -89,21 +65,39 @@ function Search() {
       const json = await res.json();
 
       if (json.success) {
-        const mappedProducts: SearchItem[] = json.data.map((p: any) => ({
-          id: p._id,
-          title: p.name,
-          type: "product",
-          image: p.images?.[0] ?? "/images/placeholder.jpg",
-          price: p.sellers?.[0]?.price ?? 0,
-          slug: p.slug,
-        }));
+        // محصولات
+        const mappedProducts: SearchItem[] = (json.data.products ?? []).map(
+          (p: any) => ({
+            id: p._id,
+            title: p.name,
+            type: "product",
+            image: p.images?.[0] ?? "/images/placeholder.jpg",
+            price: p.sellers?.[0]?.price ?? 0,
+            slug: p.slug,
+          })
+        );
+
+        // مقالات
+        const mappedArticles: SearchItem[] = (json.data.articles ?? []).map(
+          (a: any) => ({
+            id: a._id,
+            title: a.title,
+            type: "article",
+            image: a.image ?? "/images/placeholder.jpg",
+            slug: a.link,
+            excerpt: a.shortDescription ?? "",
+          })
+        );
 
         setProductResults(mappedProducts);
+        setArticleResults(mappedArticles);
       } else {
         setProductResults([]);
+        setArticleResults([]);
       }
     } catch (err) {
       setProductResults([]);
+      setArticleResults([]);
     } finally {
       setIsLoading(false);
       setIsOpen(true);
