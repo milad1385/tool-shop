@@ -18,7 +18,7 @@ async function page({ params }: IPage) {
   if (!article) {
     notFound();
   }
-  
+
   return (
     <Container>
       <Breadcrumb
@@ -40,7 +40,7 @@ async function page({ params }: IPage) {
             <ArticleComments />
           </div>
           <div className="col-span-12 md:col-span-3">
-            <RecentArticles />
+            <RecentArticles articleId={article._id} />
             <ArticleCategories />
           </div>
         </div>
