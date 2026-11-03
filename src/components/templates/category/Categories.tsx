@@ -2,6 +2,7 @@ import { getAllCategories } from "@/services/categories.service";
 import CategoriesSlider from "../Home/CategoriesSlider";
 import NewestProduct from "../Home/NewestProduct";
 import SuggestedProduct from "../Home/SuggestedProduct";
+import Articles from "../Home/Articles";
 
 async function Categories() {
   const categories = await getAllCategories();
@@ -14,6 +15,10 @@ async function Categories() {
 
       <div className="bg-yellow-500 px-8 py-1 md:py-2 rounded-3xl">
         <SuggestedProduct />
+      </div>
+
+      <div className="bg-yellow-500 px-8 py-1 md:py-2 rounded-3xl mt-16">
+        <Articles />
       </div>
     </div>
   );
