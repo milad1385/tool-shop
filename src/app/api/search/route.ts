@@ -40,10 +40,8 @@ export async function GET(request: NextRequest) {
       return filter;
     };
 
-    // جستجوی دقیق فقط در نام و برند محصول
     const productFilter = buildFilter(["name", "brand"]);
 
-    // جستجوی مقاله در عنوان و توضیح کوتاه
     const articleFilter = {
       ...buildFilter(["title", "shortDescription"]),
       status: "published",
