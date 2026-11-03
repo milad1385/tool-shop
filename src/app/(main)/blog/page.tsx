@@ -3,11 +3,19 @@
 import Breadcrumb from "@/components/modules/main/Breadcrumb";
 import Container from "@/components/modules/main/Container";
 import Pagination from "@/components/modules/main/Pagination";
-import PaginationFallback from "@/components/modules/main/PaginationFallback";
 import Articles from "@/components/templates/articles/Articles";
-import { Suspense } from "react";
+import { IPage } from "@/libs/types";
+import { getAllArticles } from "@/services/article.service";
 
-function page() {
+async function page({ searchParams }: IPage) {
+  const { page, limit, q } = await searchParams;
+
+  const { data, pagination } = await getAllArticles({
+    page: +page || 1,
+    limit: +limit || 10,
+    status: "all",
+    search: q || "",
+  });
   return (
     <Container>
       <Breadcrumb
@@ -17,15 +25,9 @@ function page() {
         ]}
       />
 
-      {/* 1. Suspense برای کامپوننت Articles */}
-      <Suspense fallback={<div>در حال بارگیری مقالات....</div>}>
-        <Articles />
-      </Suspense>
+      <Articles data={data} />
 
-      {/* 2. Suspense مجزا برای کامپوننت Pagination که از useSearchParams استفاده می‌کند */}
-      <Suspense fallback={<PaginationFallback />}>
-        <Pagination count={3} />
-      </Suspense>
+      <Pagination count={pagination.totalPages} />
     </Container>
   );
 }
