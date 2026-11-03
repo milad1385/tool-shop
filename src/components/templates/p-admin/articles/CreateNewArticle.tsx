@@ -63,7 +63,7 @@ function CreateNewArticle({ categories }: ICreateNewArticle) {
       formData.append("readingTime", data.readingTime);
       formData.append("shortDescription", data.shortDescription);
       formData.append("category", data.category);
-      formData.append("content", JSON.stringify(articleValue));
+      formData.append("content", articleValue);
       formData.append("status", isDraftRef.current ? "draft" : "published");
 
       if (imageFile) {
