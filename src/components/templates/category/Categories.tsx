@@ -1,18 +1,13 @@
-import CategoryBox from "@/components/modules/main/CategoryBox";
-import React from "react";
+import { getAllCategories } from "@/services/categories.service";
+import CategoriesSlider from "../Home/CategoriesSlider";
 import NewestProduct from "../Home/NewestProduct";
 import SuggestedProduct from "../Home/SuggestedProduct";
-import { getAllCategories } from "@/services/categories.service";
 
 async function Categories() {
   const categories = await getAllCategories();
   return (
     <div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
-        {categories.map((category) => (
-          <CategoryBox key={category._id} {...category} />
-        ))}
-      </div>
+      <CategoriesSlider categories={categories} />
       <div className="bg-yellow-500 px-8 py-1 md:py-2 rounded-3xl mt-10 mb-16">
         <NewestProduct />
       </div>
