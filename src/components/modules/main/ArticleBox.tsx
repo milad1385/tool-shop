@@ -15,7 +15,7 @@ function ArticleBox({ image, link, title, createdAt }: IArticle) {
   return (
     <div className="bg-white shadow rounded-3xl p-4 overflow-hidden">
       <Link
-        href={link}
+        href={`/blog/${link}`}
         className="block overflow-hidden group relative rounded-3xl"
       >
         <div className="flex flex-col  absolute z-20 top-4 left-4 bg-white border-t-4 border-yellow-400 p-2 px-3 rounded-xl">
