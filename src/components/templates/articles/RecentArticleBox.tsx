@@ -14,7 +14,7 @@ function RecentArticleBox({ image, title, description, link }) {
           className="w-[64px] h-[64px] rounded-full object-cover"
         />
         <section className="flex flex-col space-y-1">
-          <h3 className="font-Lalezar text-base md:text-lg text-zinc-700 line-clamp-2">
+          <h3 className="font-Lalezar text-sm md:text-base text-zinc-700 line-clamp-2">
             {title}
           </h3>
           <p className="text-zinc-700 text-sm">{description}</p>
