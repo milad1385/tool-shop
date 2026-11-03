@@ -74,15 +74,22 @@ export const getArticle = async (link: string): Promise<IArticle> => {
   }
 };
 
-export const getRelatedArticles = async (categoryId: string) => {
+export const getRelatedArticles = async (articleId: string) => {
   try {
-    if (!isValidObjectId(categoryId)) {
+    if (!isValidObjectId(articleId)) {
+      return false;
+    }
+
+    const article = await Article.findOne({ _id: articleId });
+
+    if (!article) {
       return false;
     }
 
     const articles = await Article.find({
       status: "published",
-      category: categoryId,
+      category: article.category._id,
+      _id: { $ne: article._id },
     })
       .populate("author", "fullname image username")
       .populate("category", "name href")
