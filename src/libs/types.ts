@@ -1147,6 +1147,10 @@ export interface IArticle {
 export interface IArticles {
   data: IArticle[];
 }
+
+export interface IRecentArticles {
+  articleId: string;
+}
 export interface IArticleList {
   data: IArticle[];
   pagination: IPagination;
