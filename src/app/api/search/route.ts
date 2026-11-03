@@ -1,5 +1,6 @@
 import connectToDB from "@/configs/db";
 import Product from "@/models/Product";
+import Article from "@/models/Article";
 import { normalizeData } from "@/utils/helper";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -11,7 +12,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         {
           success: true,
-          data: [],
+          data: { products: [], articles: [] },
         },
         { status: 200 },
       );
@@ -19,32 +20,48 @@ export async function GET(request: NextRequest) {
 
     await connectToDB();
 
-    const filter: any = {};
-
     const words = search.split(/\s+/).filter(Boolean);
 
-    if (words.length > 0) {
-      filter.$and = words.map((word) => {
-        const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const buildFilter = (fields: string[]) => {
+      const filter: any = {};
 
-        return {
-          $or: [
-            { name: { $regex: escapedWord, $options: "i" } },
-            { brand: { $regex: escapedWord, $options: "i" } },
-            { description: { $regex: escapedWord, $options: "i" } },
-          ],
-        };
-      });
-    }
+      if (words.length > 0) {
+        filter.$and = words.map((word) => {
+          const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-    const products = await Product.find(filter)
-      .populate("sellers", "price stock")
-      .lean();
+          return {
+            $or: fields.map((field) => ({
+              [field]: { $regex: escapedWord, $options: "i" },
+            })),
+          };
+        });
+      }
+
+      return filter;
+    };
+
+    const productFilter = buildFilter(["name", "brand", "description"]);
+    const articleFilter = {
+      ...buildFilter(["title", "shortDescription"]),
+      status: "published",
+    };
+
+    const [products, articles] = await Promise.all([
+      Product.find(productFilter).populate("sellers", "price stock").lean(),
+      Article.find(articleFilter)
+        .populate("author", "fullname image username")
+        .populate("category", "name href")
+        .select("title shortDescription image link readingTime createdAt category author")
+        .lean(),
+    ]);
 
     return NextResponse.json(
       {
         success: true,
-        data: normalizeData(products),
+        data: {
+          products: normalizeData(products),
+          articles: normalizeData(articles),
+        },
       },
       { status: 200 },
     );
@@ -52,7 +69,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error?.message || "خطا در جستجوی محصولات",
+        error: error?.message || "خطا در جستجو",
       },
       { status: 500 },
     );
