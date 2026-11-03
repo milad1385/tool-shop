@@ -40,7 +40,10 @@ export async function GET(request: NextRequest) {
       return filter;
     };
 
-    const productFilter = buildFilter(["name", "brand", "description"]);
+    // جستجوی دقیق فقط در نام و برند محصول
+    const productFilter = buildFilter(["name", "brand"]);
+
+    // جستجوی مقاله در عنوان و توضیح کوتاه
     const articleFilter = {
       ...buildFilter(["title", "shortDescription"]),
       status: "published",
@@ -51,7 +54,9 @@ export async function GET(request: NextRequest) {
       Article.find(articleFilter)
         .populate("author", "fullname image username")
         .populate("category", "name href")
-        .select("title shortDescription image link readingTime createdAt category author")
+        .select(
+          "title shortDescription image link readingTime createdAt category author",
+        )
         .lean(),
     ]);
 
