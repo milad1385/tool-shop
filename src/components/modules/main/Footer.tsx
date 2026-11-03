@@ -162,7 +162,7 @@ function Footer() {
               </p>
             </div>
             <div className="mr-auto mt-2 md:mt-0">
-              .Copyright © 2025 Trazo All right reserved
+              .Copyright © {new Date().getFullYear()} Trazo All right reserved
             </div>
           </div>
         </div>
