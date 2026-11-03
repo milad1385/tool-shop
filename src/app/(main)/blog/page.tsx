@@ -1,5 +1,3 @@
-// app/(main)/blog/page.js (اصلاح نهایی)
-
 import Breadcrumb from "@/components/modules/main/Breadcrumb";
 import Container from "@/components/modules/main/Container";
 import Pagination from "@/components/modules/main/Pagination";
@@ -13,7 +11,7 @@ async function page({ searchParams }: IPage) {
   const { data, pagination } = await getAllArticles({
     page: +page || 1,
     limit: +limit || 10,
-    status: "all",
+    status: "published",
     search: q || "",
   });
   return (
