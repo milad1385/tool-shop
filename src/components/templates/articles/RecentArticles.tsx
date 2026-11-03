@@ -1,9 +1,11 @@
 import { getRelatedArticles } from "@/services/article.service";
 import ArticleSectionTitle from "./ArticleSectionTitle";
 import RecentArticleBox from "./RecentArticleBox";
+import { IRecentArticles } from "@/libs/types";
 
-async function RecentArticles({ articleId }) {
+async function RecentArticles({ articleId }: IRecentArticles) {
   const relatedArticles = await getRelatedArticles(articleId);
+  if (!relatedArticles.length) return null;
 
   return (
     <div className="bg-white p-4 rounded-3xl mb-4 leading-8">
