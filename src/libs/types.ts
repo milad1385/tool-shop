@@ -1144,6 +1144,9 @@ export interface IArticle {
   onDelete?: (id: string) => void;
 }
 
+export interface IArticles {
+  data: IArticle[];
+}
 export interface IArticleList {
   data: IArticle[];
   pagination: IPagination;
