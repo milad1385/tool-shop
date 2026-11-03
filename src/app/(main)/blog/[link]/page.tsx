@@ -8,11 +8,17 @@ import RecentArticles from "@/components/templates/articles/RecentArticles";
 import { IPage } from "@/libs/types";
 import { getArticle } from "@/services/article.service";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 async function page({ params }: IPage) {
   const { link } = await params;
   const article = await getArticle(link);
+
+  if (!article) {
+    notFound();
+  }
+  
   return (
     <Container>
       <Breadcrumb
