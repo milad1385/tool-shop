@@ -2,6 +2,7 @@ import connectToDB from "@/configs/db";
 import { IArticle, IGetAllArticles, IPaginatedResponse } from "@/libs/types";
 import Article from "@/models/Article";
 import { createPagination, normalizeData } from "@/utils/helper";
+import { isValidObjectId } from "mongoose";
 
 export const getAllArticles = async ({
   page = 1,
@@ -63,6 +64,26 @@ export const getArticle = async (link: string): Promise<IArticle> => {
     await connectToDB();
 
     const articles = await Article.findOne({ status: "published", link })
+      .populate("author", "fullname image username")
+      .populate("category", "name href")
+      .lean();
+
+    return normalizeData(articles);
+  } catch (error) {
+    throw new Error(error?.message);
+  }
+};
+
+export const getRelatedArticles = async (categoryId: string) => {
+  try {
+    if (!isValidObjectId(categoryId)) {
+      return false;
+    }
+
+    const articles = await Article.find({
+      status: "published",
+      category: categoryId,
+    })
       .populate("author", "fullname image username")
       .populate("category", "name href")
       .lean();
