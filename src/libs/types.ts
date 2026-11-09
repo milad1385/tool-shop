@@ -554,6 +554,12 @@ export interface IGetAllArticles {
   status?: string | string[];
 }
 
+export interface IGetAllArticlesByCategory {
+  page?: number;
+  limit?: number;
+  href?: string;
+}
+
 export interface IPagination {
   currentPage: number;
   totalPages: number;
