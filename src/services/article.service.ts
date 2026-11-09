@@ -66,7 +66,7 @@ export const getArticle = async (link: string): Promise<IArticle> => {
 
     const articles = await Article.findOne({ status: "published", link })
       .populate("author", "fullname image username")
-      .populate("category", "name href")
+      .populate("category", "name href tags desc image")
       .lean();
 
     return normalizeData(articles);
