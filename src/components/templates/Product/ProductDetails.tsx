@@ -93,7 +93,7 @@ async function ProductDetails({
             </div>
 
             <div className="flex items-start flex-col gap-2 md:gap-0 pt-8">
-              <ColorBoxes />
+              {/* <ColorBoxes /> */}
 
               <div className="w-full flex items-center gap-x-4">
                 <div className="hidden md:block">
