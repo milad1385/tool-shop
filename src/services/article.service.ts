@@ -1,6 +1,12 @@
 import connectToDB from "@/configs/db";
-import { IArticle, IGetAllArticles, IPaginatedResponse } from "@/libs/types";
+import {
+  IArticle,
+  IGetAllArticles,
+  IGetAllArticlesByCategory,
+  IPaginatedResponse,
+} from "@/libs/types";
 import Article from "@/models/Article";
+import Category from "@/models/Category";
 import { createPagination, normalizeData } from "@/utils/helper";
 import { isValidObjectId } from "mongoose";
 
@@ -99,5 +105,39 @@ export const getRelatedArticles = async (articleId: string) => {
     return normalizeData(articles);
   } catch (error) {
     throw new Error(error?.message);
+  }
+};
+
+export const getAllArticlesByCategory = async ({
+  page = 1,
+  limit = 10,
+  href,
+}: IGetAllArticlesByCategory): Promise<IPaginatedResponse<IArticle>> => {
+  try {
+    await connectToDB();
+    const category = await Category.findOne({ href });
+
+    if (!category) {
+      return {
+        data: [],
+        pagination: null,
+      };
+    }
+
+    const count = await Article.countDocuments({ category: category._id });
+
+    const articles = await Article.find({ category: category._id })
+      .populate("author", "fullname email")
+      .populate("category", "name href _id")
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .sort({ createdAt: -1 });
+
+    return {
+      data: normalizeData(articles),
+      pagination: createPagination({ page, limit, count }),
+    };
+  } catch (error) {
+    throw new Error(error.message);
   }
 };
