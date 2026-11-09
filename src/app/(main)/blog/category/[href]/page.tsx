@@ -4,6 +4,8 @@ import Pagination from "@/components/modules/main/Pagination";
 import Articles from "@/components/templates/articles/Articles";
 import { IPage } from "@/libs/types";
 import { getAllArticlesByCategory } from "@/services/article.service";
+import { getOneCategoryBySlug } from "@/services/categories.service";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 async function page({ params, searchParams }: IPage) {
@@ -18,7 +20,7 @@ async function page({ params, searchParams }: IPage) {
   if (!data.length) {
     notFound();
   }
-  
+
   return (
     <Container>
       <Breadcrumb
@@ -41,3 +43,13 @@ async function page({ params, searchParams }: IPage) {
 }
 
 export default page;
+
+export async function generateMetadata({ params }: IPage): Promise<Metadata> {
+  const { href } = await params;
+  const category = await getOneCategoryBySlug(href);
+
+  return {
+    title: `مقالات دسته  ${category.name}`,
+    description: category.desc,
+  };
+}
