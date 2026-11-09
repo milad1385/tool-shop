@@ -42,10 +42,12 @@ async function page({ params }: IPage) {
       </div>
       <SellersBox sellers={product.sellers} />
       <ProductTabs {...product} />
-      <div className="mt-16 mb-10 bg-[#eab308] rounded-2xl p-8 shadow">
-        <Title title="محصولات مرتبط" />
-        <SameProductSlider products={relatedProducts}/>
-      </div>
+      {relatedProducts.length > 0 && (
+        <div className="mt-16 mb-10 bg-[#eab308] rounded-2xl p-8 shadow">
+          <Title title="محصولات مرتبط" />
+          <SameProductSlider products={relatedProducts} />
+        </div>
+      )}
     </Container>
   );
 }
