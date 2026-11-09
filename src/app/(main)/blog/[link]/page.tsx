@@ -41,7 +41,7 @@ async function page({ params }: IPage) {
           </div>
           <div className="col-span-12 md:col-span-3">
             <RecentArticles articleId={article._id} />
-            <ArticleCategories />
+            <ArticleCategories category={article.category} />
           </div>
         </div>
       </Suspense>
