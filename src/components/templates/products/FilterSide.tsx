@@ -13,7 +13,7 @@ function FilterSide({ filters }) {
       <RangeFilter />
       <FilterByCategory categories={filters.categories} />
       <FilterByBrand brands={filters.brands} />
-      <FilterByColor />
+      {/* <FilterByColor /> */}
     </div>
   );
 }
