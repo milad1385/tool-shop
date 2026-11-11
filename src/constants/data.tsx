@@ -1887,6 +1887,16 @@ export const categoryTableHeader = [
   "عملیات",
 ];
 
+export const articleCommentsTableHeader = [
+  "شماره",
+  "نام",
+  "نام کاربری",
+  "مقاله",
+  "تاریخ",
+  "وضعیت",
+  "عملیات",
+];
+
 export const questionTableHeader = [
   "شماره",
   "سوال",
