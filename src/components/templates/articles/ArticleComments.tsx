@@ -1,26 +1,36 @@
 import React from "react";
 import ArticleCommentsList from "./ArticleCommentsList";
+import { auth } from "@/auth";
+import Link from "next/link";
+import SendCommentForm from "./SendCommentForm";
 
-function ArticleComments() {
+async function ArticleComments({ link }: { link: string }) {
+  const session = await auth();
+
   return (
     <div>
-      <h3 className="font-Lalezar text-2xl">نظرات</h3>
-      <p className="text-sm text-zinc-700 mt-1">
-        شما با نام میلاد سلامیان وارد شده اید!!
-      </p>
-      <form action="#">
-        <textarea
-          id="content"
-          name="content"
-          placeholder="نظر خود را بنویسید ..."
-          className="input h-28  p-2 border border-gray-300 rounded-2xl text-sm w-full mt-5"
-        />
-        <button className="p-2 text-sm md:text-base md:p-2 rounded-md bg-stone-800 hover:bg-stone-900 text-white w-[90px] my-4">
-          ارسال
-        </button>
-      </form>
+      {session?.user ? (
+        <>
+          <p className="text-sm text-zinc-700 mt-1 mb-4">
+            شما با نام {session.user.name} وارد شده اید!!
+          </p>
+          <SendCommentForm link={link} />
+        </>
+      ) : (
+        <div className="bg-black/20 text-black text-sm md:text-base flex-center flex-col space-y-4 rounded-md py-8 my-8">
+          <p>برای ثبت کامنت ابتدا وارد شوید </p>
 
-      <ArticleCommentsList/>
+          <Link
+            href={`/auth/login?redirectTo=/blog/${link}`}
+            className="bg-black text-white px-4 py-2.5 rounded-md"
+          >
+            برای ورود اینجا کلیک کنید{" "}
+          </Link>
+        </div>
+      )}
+
+      <h3 className="font-Lalezar text-2xl my-5">نظرات کاربران</h3>
+      <ArticleCommentsList />
     </div>
   );
 }

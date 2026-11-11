@@ -37,7 +37,7 @@ async function page({ params }: IPage) {
               createdAt={article.createdAt}
             />
             <ArticleDeatils image={article.image} content={article.content} />
-            <ArticleComments />
+            <ArticleComments link={link} />
           </div>
           <div className="col-span-12 md:col-span-3">
             <RecentArticles articleId={article._id} />
