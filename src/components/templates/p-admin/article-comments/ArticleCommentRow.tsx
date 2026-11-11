@@ -3,8 +3,11 @@ import DeleteModal from "@/components/modules/main/DeleteModal";
 import Modal from "@/components/modules/main/Modal";
 import ShowCommentModal from "@/components/modules/main/ShowCommentModal";
 import Table from "@/components/modules/p-admin/Table";
+import { changeArticleCommentStatus } from "@/libs/actions/articleComment.action";
 import { formatDate, getStatusConfig } from "@/utils/helper";
 import Link from "next/link";
+import { useTransition } from "react";
+import toast from "react-hot-toast";
 import { FaCheck, FaEye, FaTrash } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
@@ -15,8 +18,26 @@ function ArticleCommentRow({
   comment,
   createdAt,
   index,
+  _id,
 }) {
+  const [isChanging, startChangingStatus] = useTransition();
   const { label, className } = getStatusConfig(status);
+
+  const changeCommentStatusHandler = (newStatus: "accept" | "reject") => {
+    startChangingStatus(async () => {
+      if (!_id) return;
+      try {
+        const result = await changeArticleCommentStatus(_id, newStatus);
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error("خطا در ارتباط با سرور");
+      }
+    });
+  };
   return (
     <Table.Row>
       <td>{index}</td>
@@ -61,10 +82,18 @@ function ArticleCommentRow({
             )}
 
             <Modal.Page name="declineModal">
-              <ConfirmModal status="رد" />
+              <ConfirmModal
+                status="رد"
+                isLoading={isChanging}
+                onSubmit={() => changeCommentStatusHandler("reject")}
+              />
             </Modal.Page>
             <Modal.Page name="acceptModal">
-              <ConfirmModal status="تایید" />
+              <ConfirmModal
+                status="تایید"
+                isLoading={isChanging}
+                onSubmit={() => changeCommentStatusHandler("accept")}
+              />
             </Modal.Page>
             <Modal.Open name="showComment">
               <FaEye className="text-sky-500 text-base md:text-xl" />
