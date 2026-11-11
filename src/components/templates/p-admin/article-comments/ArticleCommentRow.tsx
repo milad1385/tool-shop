@@ -7,7 +7,7 @@ import {
   changeArticleCommentStatus,
   deleteArticleComment,
 } from "@/libs/actions/articleComment.action";
-import { IArticleComment } from "@/libs/types";
+import { IArticleComment, UserRoleEnums } from "@/libs/types";
 import { formatDate, getStatusConfig } from "@/utils/helper";
 import Link from "next/link";
 import { useTransition } from "react";
@@ -23,11 +23,14 @@ function ArticleCommentRow({
   createdAt,
   index,
   _id,
+  roles,
   onDelete,
-} : IArticleComment) {
+}: IArticleComment) {
   const [isChanging, startChangingStatus] = useTransition();
   const [isDeleting, startDeleting] = useTransition();
   const { label, className } = getStatusConfig(status);
+
+  const hasPermission = roles?.includes(UserRoleEnums.SUPER_ADMIN);
 
   const changeCommentStatusHandler = (newStatus: "accept" | "reject") => {
     startChangingStatus(async () => {
@@ -81,7 +84,7 @@ function ArticleCommentRow({
       <td>
         <Modal>
           <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
-            {status === "pending" && (
+            {status === "pending" && hasPermission && (
               <>
                 <Modal.Open name="declineModal">
                   <FaXmark className="text-red-500 text-base md:text-2xl" />
@@ -93,13 +96,13 @@ function ArticleCommentRow({
               </>
             )}
 
-            {status === "accept" && (
+            {status === "accept" && hasPermission && (
               <Modal.Open name="declineModal">
                 <FaXmark className="text-red-500 text-base md:text-2xl" />
               </Modal.Open>
             )}
 
-            {status === "reject" && (
+            {status === "reject" && hasPermission && (
               <Modal.Open name="acceptModal">
                 <FaCheck className="text-green-500 text-base md:text-xl" />
               </Modal.Open>
@@ -125,16 +128,20 @@ function ArticleCommentRow({
             <Modal.Page name="showComment">
               <ShowCommentModal comment={comment} name={user.fullname} />
             </Modal.Page>
-            <Modal.Open name="delete">
-              <FaTrash className="text-red-600 text-base md:text-xl" />
-            </Modal.Open>
-            <Modal.Page name="delete">
-              <ConfirmModal
-                status="حذف کردن"
-                onSubmit={deleteCommentHandler}
-                isLoading={isDeleting}
-              />
-            </Modal.Page>
+            {hasPermission && (
+              <>
+                <Modal.Open name="delete">
+                  <FaTrash className="text-red-600 text-base md:text-xl" />
+                </Modal.Open>
+                <Modal.Page name="delete">
+                  <ConfirmModal
+                    status="حذف کردن"
+                    onSubmit={deleteCommentHandler}
+                    isLoading={isDeleting}
+                  />
+                </Modal.Page>
+              </>
+            )}
           </div>
         </Modal>
       </td>

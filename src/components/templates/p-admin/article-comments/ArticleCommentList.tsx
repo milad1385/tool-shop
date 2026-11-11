@@ -6,8 +6,10 @@ import EmptyError from "@/components/modules/p-admin/EmptyError";
 import { articleCommentsTableHeader } from "@/constants/data";
 import { useOptimistic } from "react";
 import { IArticleComment, IArticleCommentList } from "@/libs/types";
+import { useAuthStore } from "@/stores/auth.store";
 
 function ArticleCommentList({ data, pagination }: IArticleCommentList) {
+  const { user } = useAuthStore();
   const [optimisticArticleComment, deleteOptimistc] = useOptimistic(
     data,
     (allComments, id) => {
@@ -31,6 +33,7 @@ function ArticleCommentList({ data, pagination }: IArticleCommentList) {
                 key={comment._id}
                 {...comment}
                 onDelete={deleteOptimistc}
+                roles={user?.roles}
               />
             ))}
           </Table.Body>
