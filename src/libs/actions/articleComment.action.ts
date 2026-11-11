@@ -101,8 +101,6 @@ export const changeArticleCommentStatus = async (
       };
     }
 
-    
-
     articleComment.status = newStatus;
     await articleComment.save();
 
@@ -122,6 +120,43 @@ export const changeArticleCommentStatus = async (
     return {
       success: false,
       message: "در هنگام تغییر وضعیت کامنت مشکلی به وجود آمد",
+    };
+  }
+};
+
+export const deleteArticleComment = async (
+  commentId: string,
+): Promise<IActionState> => {
+  try {
+    await connectToDB();
+    if (!isValidObjectId(commentId)) {
+      return {
+        success: false,
+        message: "آیدی کامنت معتبر نمی باشد",
+      };
+    }
+
+    const articleComment = await ArticleComment.findOne({ _id: commentId });
+
+    if (!articleComment) {
+      return {
+        success: false,
+        message: "کامنت با این آیدی یافت نشد",
+      };
+    }
+
+    await articleComment.deleteOne();
+
+    revalidatePath("/p-admin/article-comments");
+
+    return {
+      success: true,
+      message: "کامنت با موفقیت حذف شد",
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: "در هنگام حذف کامنت مشکلی به وجود آمد",
     };
   }
 };
