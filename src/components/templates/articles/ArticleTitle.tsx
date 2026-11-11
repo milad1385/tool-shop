@@ -21,7 +21,7 @@ function ArticleTitle({ title, createdAt, category }) {
         <div className="flex items-center gap-x-1">
           <IoFolderOpenOutline className="text-base md:text-lg text-zinc-700" />
           <Link
-            href={`/category/${category.href}`}
+            href={`/blog/category/${category.href}`}
             className="text-xs md:text-[13px]"
           >
             {category.name}
