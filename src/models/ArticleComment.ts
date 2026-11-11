@@ -6,7 +6,7 @@ export interface IArticleComment extends Document {
   comment: string;
   article: mongoose.Types.ObjectId;
   user: mongoose.Types.ObjectId;
-  status: "accepted" | "pending" | "rejected";
+  status: "accept" | "pending" | "reject";
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -30,8 +30,8 @@ const articleCommentSchema = new Schema<IArticleComment>(
     status: {
       type: String,
       enum: {
-        values: ["accepted", "pending", "rejected"],
-        message: "وضعیت باید accepted یا rejected باشد",
+        values: ["accept", "pending", "reject"],
+        message: "وضعیت باید accept یا reject باشد",
       },
       default: "pending",
     },
