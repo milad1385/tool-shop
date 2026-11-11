@@ -1,0 +1,78 @@
+"use server";
+
+import { auth } from "@/auth";
+import connectToDB from "@/configs/db";
+import Article from "@/models/Article";
+import ArticleComment from "@/models/ArticleComment";
+import { sendComment } from "@/validators/backend/comment.validator";
+import { revalidatePath } from "next/cache";
+import { IActionState } from "../types";
+
+export const createNewComment = async (
+  formData: FormData,
+): Promise<IActionState> => {
+  try {
+    const rawData = {
+      comment: formData.get("comment") as string,
+    };
+
+    const validationResult = sendComment.safeParse(rawData);
+
+    if (!validationResult.success) {
+      const errors: Record<string, string> = {};
+      validationResult.error.errors.forEach((err) => {
+        const field = err.path[0] as string;
+        errors[field] = err.message;
+      });
+
+      return {
+        success: false,
+        message: "اطلاعات وارد شده معتبر نیست",
+        errors,
+      };
+    }
+
+    const validatedData = validationResult.data;
+
+    await connectToDB();
+    const session = await auth();
+
+    if (!session) {
+      return {
+        success: false,
+        message: "برای ثبت کامنت ابتدا باید لاگین کنید",
+      };
+    }
+
+    const articleLink = formData.get("articleLink");
+
+    const article = await Article.findOne({
+      link: articleLink,
+    });
+
+    if (!article) {
+      return {
+        success: false,
+        message: "مقاله ای با این آیدی یافت نشد",
+      };
+    }
+
+    await ArticleComment.create({
+      comment: validatedData.comment,
+      article: article._id,
+      user: session.user.id,
+    });
+
+    revalidatePath(`/blog/${article.link}`);
+
+    return {
+      success: true,
+      message: "کامنت با موفقیت ارسال شد",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "خطا در ثبت نام، لطفاً دوباره تلاش کنید",
+    };
+  }
+};
