@@ -1205,4 +1205,5 @@ export interface IArticleComment {
   status: "accept" | "pending" | "reject";
   createdAt?: Date;
   updatedAt?: Date;
+  roles?: UserRoleEnums[];
 }
