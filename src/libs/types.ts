@@ -1186,15 +1186,23 @@ export interface IQuestionList {
   pagination: IPagination;
 }
 
+export interface IArticleCommentList {
+  data: IArticleComment[];
+  pagination: IPagination;
+}
+
 export interface IArticleSlider {
   articles: IArticle[];
 }
 
 export interface IArticleComment {
+  _id?: string;
+  onDelete?: (id: string) => void;
+  index?: number;
   comment: string;
   article: any;
   user: any;
-  status: "accepted" | "pending" | "rejected";
+  status: "accept" | "pending" | "reject";
   createdAt?: Date;
   updatedAt?: Date;
 }
