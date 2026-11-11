@@ -9,7 +9,6 @@ import { IPage } from "@/libs/types";
 import { getArticle } from "@/services/article.service";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 
 async function page({ params }: IPage) {
   const { link } = await params;
@@ -28,7 +27,7 @@ async function page({ params }: IPage) {
           { id: 3, href: `/blog/${article.link}`, name: article.title },
         ]}
       />
-      <Suspense fallback={<div>Loading ...</div>}>
+    
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-9  bg-white p-6 rounded-3xl leading-8">
             <ArticleTitle
@@ -44,7 +43,7 @@ async function page({ params }: IPage) {
             <ArticleCategories category={article.category} />
           </div>
         </div>
-      </Suspense>
+   
     </Container>
   );
 }
