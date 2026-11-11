@@ -1,0 +1,88 @@
+import ConfirmModal from "@/components/modules/main/ConfirmModal";
+import DeleteModal from "@/components/modules/main/DeleteModal";
+import Modal from "@/components/modules/main/Modal";
+import ShowCommentModal from "@/components/modules/main/ShowCommentModal";
+import Table from "@/components/modules/p-admin/Table";
+import { formatDate, getStatusConfig } from "@/utils/helper";
+import Link from "next/link";
+import { FaCheck, FaEye, FaTrash } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
+
+function ArticleCommentRow({
+  user,
+  article,
+  status,
+  comment,
+  createdAt,
+  index,
+}) {
+  const { label, className } = getStatusConfig(status);
+  return (
+    <Table.Row>
+      <td>{index}</td>
+      <td>{user.fullname}</td>
+      <td>{user.username}</td>
+      <td>
+        <Link href={`/blog/${article.link}`}>{article.title}</Link>
+      </td>
+
+      <td>{formatDate(createdAt)}</td>
+
+      <td className="flex-center">
+        <div className={`${className} rounded-3xl px-4 py-2 w-[125px]`}>
+          {label}
+        </div>
+      </td>
+      <td>
+        <Modal>
+          <div className="flex items-center justify-center gap-x-3 md:gap-x-6 child:cursor-pointer">
+            {status === "pending" && (
+              <>
+                <Modal.Open name="declineModal">
+                  <FaXmark className="text-red-500 text-base md:text-2xl" />
+                </Modal.Open>
+
+                <Modal.Open name="acceptModal">
+                  <FaCheck className="text-green-500 text-base md:text-xl" />
+                </Modal.Open>
+              </>
+            )}
+
+            {status === "accept" && (
+              <Modal.Open name="declineModal">
+                <FaXmark className="text-red-500 text-base md:text-2xl" />
+              </Modal.Open>
+            )}
+
+            {status === "reject" && (
+              <Modal.Open name="acceptModal">
+                <FaCheck className="text-green-500 text-base md:text-xl" />
+              </Modal.Open>
+            )}
+
+            <Modal.Page name="declineModal">
+              <ConfirmModal status="رد" />
+            </Modal.Page>
+            <Modal.Page name="acceptModal">
+              <ConfirmModal status="تایید" />
+            </Modal.Page>
+            <Modal.Open name="showComment">
+              <FaEye className="text-sky-500 text-base md:text-xl" />
+            </Modal.Open>
+            <Modal.Page name="showComment">
+              <ShowCommentModal comment={comment} name={user.fullname} />
+            </Modal.Page>
+            <Modal.Open name="deleteComment">
+              <FaTrash className="text-red-600 text-base md:text-xl" />
+            </Modal.Open>
+            <Modal.Page name="deleteComment">
+              <DeleteModal isQuestion />
+            </Modal.Page>
+          </div>
+        </Modal>
+      </td>
+    </Table.Row>
+  );
+}
+
+export default ArticleCommentRow;
