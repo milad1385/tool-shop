@@ -11,7 +11,7 @@ import {
   FaTools,
 } from "react-icons/fa";
 import { FiSettings, FiShoppingCart, FiTruck } from "react-icons/fi";
-import { GoCommentDiscussion, GoGift } from "react-icons/go";
+import { GoComment, GoCommentDiscussion, GoGift } from "react-icons/go";
 import { HiOutlineDocumentDownload, HiOutlineUsers } from "react-icons/hi";
 import {
   HiMiniArrowLeftEndOnRectangle,
@@ -268,6 +268,12 @@ export const adminPanelLinks = [
     title: "اسلایدر ها",
     href: "/p-admin/sliders",
     icon: <HiOutlinePhoto className="text-2xl" />,
+  },
+  {
+    id: 28,
+    title: "کامنت مقالات",
+    href: "/p-admin/article-comments",
+    icon: <GoComment className="text-2xl" />,
   },
   {
     id: 20,
