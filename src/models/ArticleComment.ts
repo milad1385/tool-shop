@@ -1,5 +1,5 @@
 import mongoose, { Schema, Model, Document } from "mongoose";
-import "@/models/Category";
+import "@/models/Article";
 import "@/models/User";
 
 export interface IArticleComment extends Document {
