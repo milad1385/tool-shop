@@ -4,8 +4,16 @@ import Table from "@/components/modules/p-admin/Table";
 import ArticleCommentRow from "./ArticleCommentRow";
 import EmptyError from "@/components/modules/p-admin/EmptyError";
 import { articleCommentsTableHeader } from "@/constants/data";
+import { useOptimistic } from "react";
+import { IArticleComment, IArticleCommentList } from "@/libs/types";
 
-function ArticleCommentList({ data, pagination }) {
+function ArticleCommentList({ data, pagination }: IArticleCommentList) {
+  const [optimisticArticleComment, deleteOptimistc] = useOptimistic(
+    data,
+    (allComments, id) => {
+      return allComments.filter((cat: IArticleComment) => cat._id !== id);
+    },
+  );
   return (
     <div className="md:section-box">
       <div className="admin-table discount mt-5 overflow-hidden  rounded-md">
@@ -17,11 +25,12 @@ function ArticleCommentList({ data, pagination }) {
           </Table.Header>
 
           <Table.Body>
-            {data.map((comment, index) => (
+            {optimisticArticleComment.map((comment, index) => (
               <ArticleCommentRow
                 index={index + 1}
                 key={comment._id}
                 {...comment}
+                onDelete={deleteOptimistc}
               />
             ))}
           </Table.Body>

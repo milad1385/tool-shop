@@ -3,7 +3,11 @@ import DeleteModal from "@/components/modules/main/DeleteModal";
 import Modal from "@/components/modules/main/Modal";
 import ShowCommentModal from "@/components/modules/main/ShowCommentModal";
 import Table from "@/components/modules/p-admin/Table";
-import { changeArticleCommentStatus } from "@/libs/actions/articleComment.action";
+import {
+  changeArticleCommentStatus,
+  deleteArticleComment,
+} from "@/libs/actions/articleComment.action";
+import { IArticleComment } from "@/libs/types";
 import { formatDate, getStatusConfig } from "@/utils/helper";
 import Link from "next/link";
 import { useTransition } from "react";
@@ -19,8 +23,10 @@ function ArticleCommentRow({
   createdAt,
   index,
   _id,
-}) {
+  onDelete,
+} : IArticleComment) {
   const [isChanging, startChangingStatus] = useTransition();
+  const [isDeleting, startDeleting] = useTransition();
   const { label, className } = getStatusConfig(status);
 
   const changeCommentStatusHandler = (newStatus: "accept" | "reject") => {
@@ -38,6 +44,24 @@ function ArticleCommentRow({
       }
     });
   };
+
+  const deleteCommentHandler = () => {
+    startDeleting(async () => {
+      if (!_id) return;
+      try {
+        onDelete(_id);
+        const result = await deleteArticleComment(_id);
+        if (result.success) {
+          toast.success(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      } catch (error) {
+        toast.error("خطا در ارتباط با سرور");
+      }
+    });
+  };
+
   return (
     <Table.Row>
       <td>{index}</td>
@@ -101,11 +125,15 @@ function ArticleCommentRow({
             <Modal.Page name="showComment">
               <ShowCommentModal comment={comment} name={user.fullname} />
             </Modal.Page>
-            <Modal.Open name="deleteComment">
+            <Modal.Open name="delete">
               <FaTrash className="text-red-600 text-base md:text-xl" />
             </Modal.Open>
-            <Modal.Page name="deleteComment">
-              <DeleteModal isQuestion />
+            <Modal.Page name="delete">
+              <ConfirmModal
+                status="حذف کردن"
+                onSubmit={deleteCommentHandler}
+                isLoading={isDeleting}
+              />
             </Modal.Page>
           </div>
         </Modal>
