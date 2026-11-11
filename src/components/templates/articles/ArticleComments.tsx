@@ -29,8 +29,9 @@ async function ArticleComments({ link }: { link: string }) {
         </div>
       )}
 
-      <h3 className="font-Lalezar text-2xl my-5">نظرات کاربران</h3>
-      <ArticleCommentsList />
+      <div className="mt-10">
+        <ArticleCommentsList link={link} />
+      </div>
     </div>
   );
 }
