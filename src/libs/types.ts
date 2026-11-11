@@ -287,6 +287,7 @@ export interface IModal {
   message?: string;
   name?: string;
   id?: string;
+  comment?: string;
 }
 
 export type SearchItem = {
@@ -530,6 +531,13 @@ export interface ICategoriesSlider {
 export interface IGetCategories {
   page?: number;
   limit?: number;
+  search?: string | string[];
+}
+
+export interface IGetAllArticleComments {
+  page?: number;
+  limit?: number;
+  status?: string;
   search?: string | string[];
 }
 
@@ -1180,4 +1188,13 @@ export interface IQuestionList {
 
 export interface IArticleSlider {
   articles: IArticle[];
+}
+
+export interface IArticleComment {
+  comment: string;
+  article: any;
+  user: any;
+  status: "accepted" | "pending" | "rejected";
+  createdAt?: Date;
+  updatedAt?: Date;
 }
