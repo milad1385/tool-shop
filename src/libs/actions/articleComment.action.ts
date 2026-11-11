@@ -7,6 +7,7 @@ import ArticleComment from "@/models/ArticleComment";
 import { sendComment } from "@/validators/backend/comment.validator";
 import { revalidatePath } from "next/cache";
 import { IActionState } from "../types";
+import { isValidObjectId } from "mongoose";
 
 export const createNewComment = async (
   formData: FormData,
@@ -73,6 +74,54 @@ export const createNewComment = async (
     return {
       success: false,
       message: "خطا در ثبت نام، لطفاً دوباره تلاش کنید",
+    };
+  }
+};
+
+export const changeArticleCommentStatus = async (
+  commentId: string,
+  newStatus: "accept" | "reject" | "pending",
+): Promise<IActionState> => {
+  try {
+    await connectToDB();
+
+    if (!isValidObjectId(commentId)) {
+      return {
+        success: false,
+        message: "آیدی سوال معتبر نمی‌باشد",
+      };
+    }
+
+    const articleComment = await ArticleComment.findOne({ _id: commentId });
+
+    if (!articleComment) {
+      return {
+        success: false,
+        message: "مقاله ای با این آیدی یافت نشد",
+      };
+    }
+
+    
+
+    articleComment.status = newStatus;
+    await articleComment.save();
+
+    revalidatePath("/p-admin/questions");
+
+    const statusMessages: Record<string, string> = {
+      accept: "کامنت با موفقیت تایید شد",
+      reject: "کامنت با موفقیت رد شد",
+      pending: "وضعیت کامنت به در انتظار تغییر یافت",
+    };
+
+    return {
+      success: true,
+      message: statusMessages[newStatus],
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: "در هنگام تغییر وضعیت کامنت مشکلی به وجود آمد",
     };
   }
 };
