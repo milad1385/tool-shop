@@ -8,6 +8,7 @@ import { sendComment } from "@/validators/backend/comment.validator";
 import { revalidatePath } from "next/cache";
 import { IActionState } from "../types";
 import { isValidObjectId } from "mongoose";
+import { getArticleComments } from "@/services/articleComment.service";
 
 export const createNewComment = async (
   formData: FormData,
@@ -160,3 +161,30 @@ export const deleteArticleComment = async (
     };
   }
 };
+
+export async function fetchMoreCommentsAction(
+  articleLink: string,
+  page: number,
+  limit: number,
+) {
+  try {
+    const { comments, total } = await getArticleComments({
+      articleLink,
+      page,
+      limit,
+    });
+
+    return {
+      success: true,
+      comments,
+      total,
+    };
+  } catch {
+    return {
+      success: false,
+      message: "خطا در دریافت کامنت‌ها",
+      comments: [],
+      total: 0,
+    };
+  }
+}
