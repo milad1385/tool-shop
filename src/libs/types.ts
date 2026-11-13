@@ -1207,3 +1207,10 @@ export interface IArticleComment {
   updatedAt?: Date;
   roles?: UserRoleEnums[];
 }
+
+export interface IArticleCommentsClient {
+  link: string;
+  initialComments: IArticleComment[];
+  total: number;
+  pageSize: number;
+}
