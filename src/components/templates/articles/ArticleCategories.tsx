@@ -4,8 +4,6 @@ import Link from "next/link";
 import ArticleSectionTitle from "./ArticleSectionTitle";
 
 function ArticleCategories({ category }) {
-  console.log(category);
-
   return (
     <div className="bg-white p-4 rounded-3xl mb-4 leading-8">
       <ArticleSectionTitle title="دسته بندی" />
@@ -24,7 +22,10 @@ function ArticleCategories({ category }) {
           {category.name}
         </Link>
 
-        <Link href={`/blog/category/${category.href} `} className="block w-full">
+        <Link
+          href={`/blog/category/${category.href} `}
+          className="block w-full"
+        >
           <Button>مشاهده سایر مقالات دسته بندی</Button>
         </Link>
       </div>
