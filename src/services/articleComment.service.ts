@@ -1,3 +1,4 @@
+"use server";
 import connectToDB from "@/configs/db";
 import {
   IArticleComment,
@@ -8,23 +9,38 @@ import Article from "@/models/Article";
 import ArticleComment from "@/models/ArticleComment";
 import { createPagination, normalizeData } from "@/utils/helper";
 
-export const getArticleComments = async (articleLink: string) => {
+export const getArticleComments = async ({
+  articleLink,
+  page = 1,
+  limit = 10,
+}: {
+  articleLink: string;
+  page?: number;
+  limit?: number;
+}) => {
   try {
     await connectToDB();
 
     const article = await Article.findOne({ link: articleLink });
-    if (!article) {
-      return false;
-    }
+    if (!article) return { comments: [], total: 0 };
 
-    const comments = await ArticleComment.find({
-      status: "accept",
-      article: article._id,
-    }).populate("user", "username roles fullname image");
+    const filter = { status: "accept", article: article._id };
 
-    return normalizeData(comments);
+    const [comments, total] = await Promise.all([
+      ArticleComment.find(filter)
+        .populate("user", "username roles fullname image")
+        .sort({ createdAt: -1 })
+        .skip((page - 1) * limit)
+        .limit(limit),
+      ArticleComment.countDocuments(filter),
+    ]);
+
+    return {
+      comments: normalizeData(comments),
+      total,
+    };
   } catch (error) {
-    throw new Error(error?.message);
+    throw new Error(error.message);
   }
 };
 
