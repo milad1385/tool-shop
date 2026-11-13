@@ -7,7 +7,7 @@ import {
   TSendComment,
 } from "@/validators/backend/comment.validator";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useTransition } from "react";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";

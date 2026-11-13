@@ -24,7 +24,7 @@ async function UserList({ data, pagination }: IUserList) {
         </Table>
 
         {!data.length && <EmptyError />}
-        {data.length && <Pagination count={pagination.totalPages} />}
+        {data.length && <Pagination count={pagination.totalItems} />}
       </div>
     </div>
   );

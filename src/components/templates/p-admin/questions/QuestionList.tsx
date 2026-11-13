@@ -35,7 +35,7 @@ function QuestionList({ data, pagination }: IQuestionList) {
           </Table.Body>
         </Table>
         {!data.length && <EmptyError />}
-        {data.length > 0 && <Pagination count={pagination.totalPages} />}
+        {data.length > 0 && <Pagination count={pagination.totalItems} />}
       </div>
     </div>
   );

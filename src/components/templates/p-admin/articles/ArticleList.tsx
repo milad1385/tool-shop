@@ -35,7 +35,7 @@ function ArticleList({ data, pagination }: IArticleList) {
           </Table.Body>
         </Table>
         {!data.length && <EmptyError />}
-        {data.length > 0 && <Pagination count={pagination.totalPages} />}
+        {data.length > 0 && <Pagination count={pagination.totalItems} />}
       </div>
     </div>
   );

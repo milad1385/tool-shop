@@ -9,6 +9,8 @@ import { IArticleComment, IArticleCommentList } from "@/libs/types";
 import { useAuthStore } from "@/stores/auth.store";
 
 function ArticleCommentList({ data, pagination }: IArticleCommentList) {
+  console.log(pagination);
+  
   const { user } = useAuthStore();
   const [optimisticArticleComment, deleteOptimistc] = useOptimistic(
     data,
@@ -39,7 +41,7 @@ function ArticleCommentList({ data, pagination }: IArticleCommentList) {
           </Table.Body>
         </Table>
         {!data.length && <EmptyError />}
-        {data.length && <Pagination count={pagination.totalPages} />}
+        {data.length && <Pagination count={pagination.totalItems} />}
       </div>
     </div>
   );

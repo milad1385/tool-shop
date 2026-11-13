@@ -38,7 +38,7 @@ async function OrderList({ data, pagination }: IIOrderList) {
           </Table.Body>
         </Table>
         {!data.length && <EmptyError />}
-        {data.length && <Pagination count={pagination.totalPages} />}
+        {data.length && <Pagination count={pagination.totalItems} />}
       </div>
     </div>
   );
