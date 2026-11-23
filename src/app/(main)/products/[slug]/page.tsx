@@ -40,7 +40,11 @@ async function page({ params }: IPage) {
         <ProductSlider images={product.images} />
         <ProductDetails {...product} />
       </div>
-      <SellersBox sellers={product.sellers} />
+      <SellersBox
+        sellers={product.sellers}
+        productId={product._id}
+        slug={product.slug}
+      />
       <ProductTabs {...product} />
       {relatedProducts.length > 0 && (
         <div className="mt-16 mb-10 bg-[#eab308] rounded-2xl p-8 shadow">

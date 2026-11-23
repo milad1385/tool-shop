@@ -3,7 +3,13 @@ import OtherSellerBox from "./OtherSellerBox";
 import { IOtherSellersModal } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
 
-function OtherSellersModal({ isShow, onClose, sellers }: IOtherSellersModal) {
+function OtherSellersModal({
+  isShow,
+  onClose,
+  sellers,
+  productId,
+  slug,
+}: IOtherSellersModal) {
   return (
     <div
       className={`bg-white h-[100%] fixed md:hidden transition-all overflow-y-auto py-5 ${
@@ -31,7 +37,12 @@ function OtherSellersModal({ isShow, onClose, sellers }: IOtherSellersModal) {
 
       <div className="mt-24 space-y-8 px-4">
         {sellers.map((item) => (
-          <OtherSellerBox key={item.seller._id} {...item} />
+          <OtherSellerBox
+            key={item.seller._id}
+            productId={productId}
+            slug={slug}
+            {...item}
+          />
         ))}
       </div>
     </div>

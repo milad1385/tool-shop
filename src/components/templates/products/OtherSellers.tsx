@@ -5,7 +5,7 @@ import { HiChevronLeft } from "react-icons/hi";
 import OtherSellersModal from "./OtherSellersModal";
 import { ISellersBox } from "@/libs/types";
 import { findCheapestPriceBTWSellers } from "@/utils/helper";
-function OtherSellers({ sellers }: ISellersBox) {
+function OtherSellers({ sellers, productId, slug }: ISellersBox) {
   const [isShowSellers, setIsShowSellers] = useState(false);
   const cheapestSeller = findCheapestPriceBTWSellers(sellers);
   const filteredSellers = sellers.filter(
@@ -29,6 +29,8 @@ function OtherSellers({ sellers }: ISellersBox) {
         sellers={filteredSellers}
         isShow={isShowSellers}
         onClose={setIsShowSellers}
+        productId={productId}
+        slug={slug}
       />
 
       <MenuOverlay isMobile isOpen={isShowSellers} onClose={setIsShowSellers} />

@@ -1,9 +1,37 @@
 import { ISellerBox } from "@/libs/types";
 import MobileSellerBox from "./MobileSellerBox";
 import { formattedPrice } from "@/utils/helper";
+import { useEffect, useState } from "react";
+import { checkProductInCart } from "@/libs/actions/cart.action";
+import AddToCart from "../Product/AddToCart";
 
-function OtherSellerBox({ isMain, seller, discount, price }: ISellerBox) {
+function OtherSellerBox({
+  isMain,
+  seller,
+  discount,
+  price,
+  productId,
+  slug,
+}: ISellerBox) {
+  const [inCart, setInCart] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+  const [itemId, setItemId] = useState(null);
   const finalPrice = price - (price * discount) / 100;
+
+  useEffect(() => {
+    const getBasketInfo = async () => {
+      const { inCart, quantity, itemId } = await checkProductInCart(
+        productId,
+        seller._id,
+      );
+
+      setInCart(inCart);
+      setQuantity(quantity);
+      setItemId(itemId);
+    };
+
+    getBasketInfo();
+  }, []);
   return (
     <div className="border border-gray-300 rounded-xl">
       <div className="px-5 py-4 space-y-2">
@@ -16,9 +44,15 @@ function OtherSellerBox({ isMain, seller, discount, price }: ISellerBox) {
         <MobileSellerBox sellerName={seller.name} />
       </div>
       <div className="border-t-[1.5px] border-t-gray-300 px-5 py-6 flex items-center justify-between">
-        <button className="bg-yellow-500 py-3 px-4 text-sm rounded-md text-white font-bold">
-          افزودن به سبد خرید
-        </button>
+        <AddToCart
+          productId={productId}
+          sellerId={seller._id}
+          initialInCart={inCart}
+          initialQuantity={quantity}
+          initialItemId={itemId}
+          slug={slug}
+          isNoraml
+        />
         <div className="flex flex-col items-center gap-y-2">
           <div className="flex items-center gap-x-2">
             <span className="font-bold text-base md:text-lg">
