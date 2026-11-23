@@ -342,3 +342,17 @@ export const getQuestionStatus = (status: string) => {
       };
   }
 };
+
+export const findCheapestPriceBTWSellers = (sellers) => {
+  const getFinalPrice = (price: number, discount: number = 0) => {
+    return price - (price * discount) / 100;
+  };
+
+  const cheapestSeller = sellers.reduce((cheapest, current) => {
+    const currentFinal = getFinalPrice(current.price, current.discount);
+    const cheapestFinal = getFinalPrice(cheapest.price, cheapest.discount);
+    return currentFinal < cheapestFinal ? current : cheapest;
+  });
+
+  return cheapestSeller;
+};
