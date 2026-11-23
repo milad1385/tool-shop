@@ -37,6 +37,8 @@ interface ISellerItem {
 }
 export interface ISellersBox {
   sellers: ISellerItem[];
+  productId?: string;
+  slug?: string;
 }
 export interface ISellerBox {
   seller: {
@@ -55,6 +57,8 @@ export interface ISellerBox {
   discount: number;
   stock: number;
   isMain?: boolean;
+  productId?: string;
+  slug?: string;
 }
 
 export interface IFeature {
@@ -800,6 +804,7 @@ export interface IAddToCartProps {
   initialQuantity: number;
   initialItemId?: string;
   slug?: string;
+  isNoraml?: boolean;
 }
 
 export type CartState = {
@@ -1222,4 +1227,6 @@ export interface IOtherSellersModal {
   isShow: boolean;
   onClose: React.Dispatch<React.SetStateAction<boolean>>;
   sellers: ISellerItem[];
+  productId?: string;
+  slug?: string;
 }
