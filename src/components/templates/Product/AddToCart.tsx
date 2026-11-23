@@ -20,6 +20,7 @@ function AddToCart({
   initialQuantity,
   initialItemId,
   slug,
+  isNoraml
 }: IAddToCartProps) {
   const router = useRouter();
   const { isAuthenticated } = useAuthStore();
@@ -151,7 +152,7 @@ function AddToCart({
       <button
         onClick={addToCartHandler}
         disabled={isAdding}
-        className="px-3 w-full md:w-[180px] py-3 rounded-md font-Iran bg-stone-800 hover:bg-stone-900 text-white mt-6 md:my-6 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
+        className={`px-3 ${!isNoraml ? "w-full" :""} text-sm md:text-base md:w-[180px] py-3 rounded-md font-Iran bg-stone-800 hover:bg-stone-900 text-white mt-6 md:my-6 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors`}
       >
         {isAdding ? (
           <>
@@ -166,7 +167,7 @@ function AddToCart({
   }
 
   return (
-    <div className="px-3 w-full md:w-[180px] py-2 rounded-md font-Iran bg-stone-800 text-white mt-6 md:my-6 flex items-center justify-between gap-2">
+    <div className="px-3  md:w-[180px] py-2 rounded-md font-Iran bg-stone-800 text-white mt-6 md:my-6 flex items-center justify-between gap-2">
       <button
         type="button"
         onClick={handleIncrease}
