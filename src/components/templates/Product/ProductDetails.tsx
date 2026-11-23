@@ -65,7 +65,7 @@ async function ProductDetails({
                   {formattedPrice(originalPrice)}
                 </span>
 
-                <span className="text-black font-bold text-lg md:text-xl">
+                <span className="text-black font-bold text-sm md:text-xl">
                   {formattedPrice(finalPrice)} تومان
                 </span>
 
@@ -74,7 +74,7 @@ async function ProductDetails({
                 </span>
               </>
             ) : (
-              <span className="font-bold text-zinc-800 text-lg">
+              <span className="font-bold text-zinc-800 text-sm md:text-lg">
                 {formattedPrice(finalPrice)} تومان
               </span>
             )}
