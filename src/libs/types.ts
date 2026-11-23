@@ -804,7 +804,7 @@ export interface IAddToCartProps {
   initialQuantity: number;
   initialItemId?: string;
   slug?: string;
-  isNoraml?: boolean;
+  isNormal?: boolean;
 }
 
 export type CartState = {
