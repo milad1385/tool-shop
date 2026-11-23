@@ -17,24 +17,26 @@ export interface IProductSeller {
   discount: number;
   stock: number;
 }
-export interface ISellersBox {
-  sellers: {
-    seller: {
-      _id: string;
-      name: string;
-      city?: string;
-      commission?: number;
-      contactDetails?: {
-        address?: string;
-        email?: string;
-        phone?: string;
-        postalCode?: string;
-      };
+
+interface ISellerItem {
+  seller: {
+    _id: string;
+    name: string;
+    city?: string;
+    commission?: number;
+    contactDetails?: {
+      address?: string;
+      email?: string;
+      phone?: string;
+      postalCode?: string;
     };
-    price: number;
-    discount: number;
-    stock: number;
-  }[];
+  };
+  price: number;
+  discount: number;
+  stock: number;
+}
+export interface ISellersBox {
+  sellers: ISellerItem[];
 }
 export interface ISellerBox {
   seller: {
@@ -52,6 +54,7 @@ export interface ISellerBox {
   price: number;
   discount: number;
   stock: number;
+  isMain?: boolean;
 }
 
 export interface IFeature {
@@ -1213,4 +1216,10 @@ export interface IArticleCommentsClient {
   initialComments: IArticleComment[];
   total: number;
   pageSize: number;
+}
+
+export interface IOtherSellersModal {
+  isShow: boolean;
+  onClose: React.Dispatch<React.SetStateAction<boolean>>;
+  sellers: ISellerItem[];
 }
