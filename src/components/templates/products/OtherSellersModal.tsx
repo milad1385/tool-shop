@@ -30,9 +30,6 @@ function OtherSellersModal({ isShow, onClose, sellers }: IOtherSellersModal) {
       </div>
 
       <div className="mt-24 space-y-8 px-4">
-        {/* <OtherSellerBox isMain />
-        <OtherSellerBox />
-        <OtherSellerBox /> */}
         {sellers.map((item) => (
           <OtherSellerBox key={item.seller._id} {...item} />
         ))}
