@@ -1,7 +1,9 @@
 import { FaXmark } from "react-icons/fa6";
 import OtherSellerBox from "./OtherSellerBox";
+import { IOtherSellersModal } from "@/libs/types";
+import { formattedPrice } from "@/utils/helper";
 
-function OtherSellersModal({ isShow, onClose }) {
+function OtherSellersModal({ isShow, onClose, sellers }: IOtherSellersModal) {
   return (
     <div
       className={`bg-white h-[100%] fixed md:hidden transition-all overflow-y-auto py-5 ${
@@ -15,9 +17,11 @@ function OtherSellersModal({ isShow, onClose }) {
       >
         <div className="flex flex-col gap-y-2">
           <h3 className="font-bold text-base text-zinc-700">
-            فروشندگان این کالا
+            {sellers.length === 1 ? "فروشنده دیگر" : "فروشندگان دیگر"} این کالا
           </h3>
-          <h4 className="text-gray-500 font-bold text-[13px]">3 فروشنده</h4>
+          <h4 className="text-gray-500 font-bold text-[13px]">
+            {formattedPrice(sellers.length)} فروشنده
+          </h4>
         </div>
         <FaXmark
           className="font-bold text-xl text-zinc-700"
@@ -26,9 +30,12 @@ function OtherSellersModal({ isShow, onClose }) {
       </div>
 
       <div className="mt-24 space-y-8 px-4">
-        <OtherSellerBox isMain/>
-        <OtherSellerBox/>
-        <OtherSellerBox/>
+        {/* <OtherSellerBox isMain />
+        <OtherSellerBox />
+        <OtherSellerBox /> */}
+        {sellers.map((item) => (
+          <OtherSellerBox key={item.seller._id} {...item} />
+        ))}
       </div>
     </div>
   );

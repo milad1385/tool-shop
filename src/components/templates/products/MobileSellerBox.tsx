@@ -10,7 +10,7 @@ import SendModal from "./SendModal";
 import MenuOverlay from "@/components/modules/main/Overlay";
 import ClubModal from "./ClubModal";
 
-function MobileSellerBox() {
+function MobileSellerBox({ sellerName }) {
   const [isShowSend, setIsShowSend] = useState(false);
   const [isShowClub, setIsShowClub] = useState(false);
   return (
@@ -22,9 +22,7 @@ function MobileSellerBox() {
           </div>
           <div className="flex flex-col gap-y-1">
             <div className="flex items-center gap-x-2">
-              <p className="text-black font-bold text-[13px]">
-                اسمارت تکنولوژی قشم
-              </p>
+              <p className="text-black font-bold text-[13px]">{sellerName}</p>
               <div className="bg-green-500 rounded-xl text-white px-2 py-0.5 text-sm">
                 منتخب
               </div>
