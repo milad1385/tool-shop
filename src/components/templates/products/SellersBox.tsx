@@ -14,7 +14,12 @@ async function SellersBox({ sellers, productId, slug }: ISellersBox) {
       {/* desktop seller box */}
       <div className="divide-y-2 divide-gray-100 hidden lg:block">
         {sellers.map((seller, index) => (
-          <SellerBox {...seller} key={index + 1} />
+          <SellerBox
+            {...seller}
+            productId={productId}
+            slug={slug}
+            key={index + 1}
+          />
         ))}
       </div>
 

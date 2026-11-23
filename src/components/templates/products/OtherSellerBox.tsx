@@ -51,7 +51,7 @@ function OtherSellerBox({
           initialQuantity={quantity}
           initialItemId={itemId}
           slug={slug}
-          isNoraml
+          isNormal
         />
         <div className="flex flex-col items-center gap-y-2">
           <div className="flex items-center gap-x-2">

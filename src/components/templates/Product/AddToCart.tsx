@@ -20,7 +20,7 @@ function AddToCart({
   initialQuantity,
   initialItemId,
   slug,
-  isNoraml
+  isNormal,
 }: IAddToCartProps) {
   const router = useRouter();
   const { isAuthenticated } = useAuthStore();
@@ -152,7 +152,7 @@ function AddToCart({
       <button
         onClick={addToCartHandler}
         disabled={isAdding}
-        className={`px-3 ${!isNoraml ? "w-full" :""} text-sm md:text-base md:w-[180px] py-3 rounded-md font-Iran bg-stone-800 hover:bg-stone-900 text-white mt-6 md:my-6 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors`}
+        className={`px-3 ${!isNormal ? "w-full" : ""} text-sm md:text-base md:w-[180px] py-3 rounded-md font-Iran ${!isNormal ? "bg-stone-800 hover:bg-stone-900" : "bg-yellow-500"} text-white mt-6 md:my-6 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors`}
       >
         {isAdding ? (
           <>

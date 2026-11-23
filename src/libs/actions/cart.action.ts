@@ -23,6 +23,7 @@ export async function addToCart(
     await connectDB();
 
     const product = await Product.findById(productId);
+
     if (!product) {
       return { success: false, message: "محصول یافت نشد" };
     }

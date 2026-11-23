@@ -1,10 +1,23 @@
+import { checkProductInCart } from "@/libs/actions/cart.action";
 import { ISellerBox } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
 import { FaRegCircleCheck, FaShop } from "react-icons/fa6";
 import { LuTruck } from "react-icons/lu";
+import AddToCart from "../Product/AddToCart";
 
-function SellerBox({ seller, discount, price, stock }: ISellerBox) {
+async function SellerBox({
+  seller,
+  discount,
+  price,
+  productId,
+  slug,
+}: ISellerBox) {
   const finalPrice = price - (price * discount) / 100;
+  const sellerId = seller._id;
+  const { inCart, quantity, itemId } = await checkProductInCart(
+    productId,
+    sellerId,
+  );
 
   return (
     <div className="flex items-center justify-between py-10">
@@ -72,9 +85,18 @@ function SellerBox({ seller, discount, price, stock }: ISellerBox) {
           )}
         </div>
 
-        <button className="bg-yellow-500 text-white rounded-lg px-3 py-3">
+        {/* <button className="bg-yellow-500 text-white rounded-lg px-3 py-3">
           افزودن به سبد خرید
-        </button>
+        </button> */}
+        <AddToCart
+          productId={productId}
+          sellerId={sellerId}
+          initialInCart={inCart}
+          initialQuantity={quantity}
+          initialItemId={itemId}
+          slug={slug}
+          isNormal
+        />
       </div>
     </div>
   );
