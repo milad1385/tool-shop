@@ -1,11 +1,19 @@
+"use client"
 import { IProduct } from "@/libs/types";
 import { formattedPrice, getCheapestPrice } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
-import { LuArrowDownUp } from "react-icons/lu";
+import CompareButton from "./CompareButton";
 
-function ProductBox({ name, slug, images, sellers }: IProduct) {
+function ProductBox({
+  name,
+  slug,
+  images,
+  sellers,
+  _id,
+  isInComparison,
+}: IProduct) {
   const { finalPrice, lowestPrice, discount } = getCheapestPrice(sellers);
 
   return (
@@ -53,9 +61,7 @@ function ProductBox({ name, slug, images, sellers }: IProduct) {
           <HiOutlineShoppingBag className="text-2xl" />
         </div>
 
-        <div className="bg-yellow-500 p-2 text-white rounded-lg md:cursor-pointer">
-          <LuArrowDownUp className="text-2xl" />
-        </div>
+        <CompareButton productId={_id} isInComparison={isInComparison} />
       </div>
     </div>
   );

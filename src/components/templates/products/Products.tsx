@@ -2,12 +2,12 @@ import EmptyState from "@/components/modules/main/EmptyState";
 import Pagination from "@/components/modules/main/Pagination";
 import PaginationFallback from "@/components/modules/main/PaginationFallback";
 import ProductBox from "@/components/modules/main/ProductBox";
+import { IProducts } from "@/libs/types";
 import { getProductsWithFilter } from "@/services/products.service";
 import { Suspense } from "react";
 import MobileFilter from "./MobileFilter";
 import MobileSearch from "./MobileSearch";
 import SortProduct from "./SortProduct";
-import { IProducts } from "@/libs/types";
 
 async function Products({ searchParams, sellerId }: IProducts) {
   const { page, category, min, max, brand, q, status } = await searchParams;
