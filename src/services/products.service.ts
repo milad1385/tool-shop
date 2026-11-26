@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import connectToDB from "@/configs/db";
 import {
   IFilterProduct,
@@ -8,6 +9,7 @@ import {
   IProduct,
 } from "@/libs/types";
 import Category from "@/models/Category";
+import Comparison from "@/models/Comparison";
 import Product from "@/models/Product";
 import { createPagination, normalizeData } from "@/utils/helper";
 import mongoose, { isValidObjectId } from "mongoose";
@@ -60,6 +62,7 @@ export const getAmazingOffers = async (
 ): Promise<IProduct[]> => {
   try {
     await connectToDB();
+    const session = await auth();
 
     const products = await Product.find({
       isAmazingOffer: true,
@@ -82,6 +85,19 @@ export const getAmazingOffers = async (
       }))
       .filter((p) => p.sellers.length > 0);
 
+    const comparison = await Comparison.find({});
+
+    filteredProducts.forEach((product) => {
+      comparison.forEach((c) => {
+        if (
+          product._id.toString() === c.product.toString() &&
+          session?.user?.id.toString() === c.user.toString()
+        ) {
+          product.isInComparison = true;
+        }
+      });
+    });
+
     return normalizeData(filteredProducts) as IProduct[];
   } catch (error: any) {
     throw new Error(error.message);
@@ -93,6 +109,7 @@ export const getFeaturedProducts = async (
 ): Promise<IProduct[]> => {
   try {
     await connectToDB();
+    const session = await auth();
 
     const products = await Product.find({
       isFeatured: true,
@@ -115,6 +132,19 @@ export const getFeaturedProducts = async (
       }))
       .filter((p) => p.sellers.length > 0);
 
+    const comparison = await Comparison.find({});
+
+    filteredProducts.forEach((product) => {
+      comparison.forEach((c) => {
+        if (
+          product._id.toString() === c.product.toString() &&
+          session?.user?.id.toString() === c.user.toString()
+        ) {
+          product.isInComparison = true;
+        }
+      });
+    });
+
     return normalizeData(filteredProducts) as IProduct[];
   } catch (error: any) {
     throw new Error(error.message);
@@ -127,6 +157,7 @@ export const getAllProducts = async (
 ): Promise<IProduct[]> => {
   try {
     await connectToDB();
+    const session = await auth();
     let filterByDate = {};
 
     if (numQuery) {
@@ -161,6 +192,19 @@ export const getAllProducts = async (
       }))
       .filter((p) => p.sellers.length > 0);
 
+    const comparison = await Comparison.find({});
+
+    filteredProducts.forEach((product) => {
+      comparison.forEach((c) => {
+        if (
+          product._id.toString() === c.product.toString() &&
+          session?.user?.id.toString() === c.user.toString()
+        ) {
+          product.isInComparison = true;
+        }
+      });
+    });
+
     return normalizeData(filteredProducts) as IProduct[];
   } catch (error: any) {
     throw new Error(error.message);
@@ -170,6 +214,7 @@ export const getAllProducts = async (
 export const getBestSellerProducts = async (limit: number = 10) => {
   try {
     await connectToDB();
+    const session = await auth();
 
     const products = await Product.find(
       {
@@ -194,6 +239,19 @@ export const getBestSellerProducts = async (limit: number = 10) => {
       }))
       .filter((p) => p.sellers.length > 0);
 
+    const comparison = await Comparison.find({});
+
+    filteredProducts.forEach((product) => {
+      comparison.forEach((c) => {
+        if (
+          product._id.toString() === c.product.toString() &&
+          session?.user?.id.toString() === c.user.toString()
+        ) {
+          product.isInComparison = true;
+        }
+      });
+    });
+
     return normalizeData(filteredProducts);
   } catch (error: any) {
     throw new Error(error?.message);
@@ -208,6 +266,7 @@ export const getProductsByCategory = async ({
 }: IGetProductsByCategory): Promise<IPaginatedResponse<IProduct>> => {
   try {
     await connectToDB();
+    const session = await auth();
 
     const category = await Category.findOne({ href: categorySlug });
     if (!category) {
@@ -239,6 +298,19 @@ export const getProductsByCategory = async ({
         createdAt: -1,
       });
 
+    const comparison = await Comparison.find({});
+
+    products.forEach((product) => {
+      comparison.forEach((c) => {
+        if (
+          product._id.toString() === c.product.toString() &&
+          session?.user?.id.toString() === c.user.toString()
+        ) {
+          product.isInComparison = true;
+        }
+      });
+    });
+
     return {
       data: normalizeData(products),
       pagination: createPagination({ page, limit, count }),
@@ -251,6 +323,7 @@ export const getProductsByCategory = async ({
 export const getProduct = async (slug: string): Promise<IProduct> => {
   try {
     await connectToDB();
+    const session = await auth();
 
     const product = await Product.findOne({
       status: "active",
@@ -269,6 +342,17 @@ export const getProduct = async (slug: string): Promise<IProduct> => {
     product.sellers = (product.sellers || []).filter((s) => s.seller);
 
     if (product.sellers.length === 0) return null;
+
+    const comparison = await Comparison.find({});
+
+    comparison.forEach((c) => {
+      if (
+        product._id.toString() === c.product.toString() &&
+        session?.user?.id.toString() === c.user.toString()
+      ) {
+        product.isInComparison = true;
+      }
+    });
 
     return normalizeData(product);
   } catch (error: any) {
@@ -422,6 +506,7 @@ export const getProductsWithFilter = async ({
 }: IGetProductsWithFilter) => {
   try {
     await connectToDB();
+    const session = await auth();
 
     const safePage = Number(page) || 1;
     const safeLimit = Number(limit) || 9;
@@ -588,6 +673,18 @@ export const getProductsWithFilter = async ({
       { path: "sellers.seller", select: "name city" },
     ]);
 
+    const comparison = await Comparison.find({});
+
+    populatedProducts.forEach((product) => {
+      comparison.forEach((c) => {
+        if (
+          product._id.toString() === c.product.toString() &&
+          session?.user?.id.toString() === c.user.toString()
+        ) {
+          product.isInComparison = true;
+        }
+      });
+    });
     return {
       data: normalizeData(populatedProducts),
       pagination: createPagination({
