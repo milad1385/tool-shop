@@ -1,4 +1,4 @@
-import ColorBoxes from "@/components/modules/main/ColorBoxes";
+import { checkProductInCart } from "@/libs/actions/cart.action";
 import { IProduct } from "@/libs/types";
 import { formattedPrice } from "@/utils/helper";
 import { FaRegCreditCard } from "react-icons/fa";
@@ -10,7 +10,7 @@ import { MdOutlineSupportAgent } from "react-icons/md";
 import { PiPaperPlaneRight } from "react-icons/pi";
 import AddToCart from "./AddToCart";
 import FactorItem from "./FactorItem";
-import { checkProductInCart } from "@/libs/actions/cart.action";
+import CompareBtn from "./CompareBtn";
 
 async function ProductDetails({
   name,
@@ -20,6 +20,7 @@ async function ProductDetails({
   sellers,
   _id,
   slug,
+  isInComparison,
 }: IProduct) {
   const productFeatures = [...features, ...customFeatures];
 
@@ -107,9 +108,7 @@ async function ProductDetails({
                   />
                 </div>
 
-                <button className="block border px-4 py-2 md:py-3 rounded-lg w-full md:w-[180px]">
-                  افزودن به مقایسه
-                </button>
+                <CompareBtn productId={_id} isInComparison={isInComparison} />
               </div>
 
               <div className="block md:hidden w-full">
