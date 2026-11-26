@@ -32,6 +32,7 @@ export interface IProduct extends Document {
   status?: "active" | "inactive" | "draft";
   isFeatured: boolean;
   isAmazingOffer: boolean;
+  isInComparison?: boolean;
   soldCount: number;
   createdAt?: Date;
   updatedAt?: Date;
