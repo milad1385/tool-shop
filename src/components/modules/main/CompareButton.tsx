@@ -4,19 +4,17 @@ import { useTransition } from "react";
 import { LuArrowDownUp } from "react-icons/lu";
 
 import toast from "react-hot-toast";
-import { addToComparison, removeFromComparison } from "@/libs/actions/comparison.action";
-
-interface Props {
-  productId: string;
-  isInComparison?: boolean;
-  className?: string;
-}
+import {
+  addToComparison,
+  removeFromComparison,
+} from "@/libs/actions/comparison.action";
+import { ICompareButton } from "@/libs/types";
 
 export default function CompareButton({
   productId,
   isInComparison = false,
   className = "",
-}: Props) {
+}: ICompareButton) {
   const [pending, startTransition] = useTransition();
 
   const handleClick = () => {
@@ -47,9 +45,7 @@ export default function CompareButton({
         ${isInComparison ? "ring-2 ring-yellow-700" : ""}
         ${className}`}
     >
-      <LuArrowDownUp
-        className={`text-2xl ${pending ? "animate-pulse" : ""}`}
-      />
+      <LuArrowDownUp className={`text-2xl ${pending ? "animate-pulse" : ""}`} />
     </button>
   );
 }
