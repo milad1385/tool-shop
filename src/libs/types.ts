@@ -89,6 +89,12 @@ export interface IProduct {
   isInComparison?: boolean;
 }
 
+export interface ICompareButton {
+  productId: string;
+  isInComparison?: boolean;
+  className?: string;
+}
+
 export interface ITitle {
   title: string;
   className?: string;
