@@ -86,6 +86,7 @@ export interface IProduct {
   createdAt?: Date;
   updatedAt?: Date;
   index?: number;
+  isInComparison?: boolean;
 }
 
 export interface ITitle {
