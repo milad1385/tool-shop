@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document, Model, Types } from "mongoose";
-
+import "@/models/Product"
+import "@/models/User"
 export interface IComparison extends Document {
   user: Types.ObjectId;
   product: Types.ObjectId;
